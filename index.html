@@ -91,27 +91,6 @@
         </div>
       </section>
 
-      <section class="stats-bar" aria-label="System stats">
-        <div class="stats-inner">
-          <div class="stat-card">
-            <div class="stat-number">100%</div>
-            <div class="stat-label">Recommendations shown with sources</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">&lt; 7d</div>
-            <div class="stat-label">Target freshness window for active checks</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">4</div>
-            <div class="stat-label">Verification states visible in the interface</div>
-          </div>
-          <div class="stat-card">
-            <div class="stat-number">1</div>
-            <div class="stat-label">City focus, so quality beats coverage</div>
-          </div>
-        </div>
-      </section>
-
       <section class="pipeline-section" aria-label="Verification pipeline">
         <div class="section-shell">
           <p class="eyebrow">Verification pipeline</p>
@@ -147,69 +126,27 @@
 
       <section class="problems-section" aria-label="Problem analysis">
         <div class="section-shell">
-          <p class="eyebrow">Problem analysis</p>
-          <h2 class="section-title">The product fixes trust failures, not just planning friction.</h2>
-          <div class="problems-table">
-            <div class="problem-row">
-              <div>
-                <h3>Search results force you to verify everything manually</h3>
-                <p>Ratings and reviews create noise, but they do not explain why a hotel or activity is current, real, or right for this trip.</p>
-              </div>
-              <div>
-                <h3>Recommendations expose their sources</h3>
-                <p>Hostliday makes verification inspectable with direct source links and freshness evidence on every pick.</p>
-              </div>
-              <div><span class="solution-tag source">Source visibility</span></div>
+          <p class="eyebrow">Why Hostliday</p>
+          <h2 class="section-title">Current AI planning vs. verified plans.</h2>
+          <div class="comparison-split">
+            <div class="comparison-current">
+              <h3>Current AI planning</h3>
+              <ul>
+                <li>Suggestions without sources</li>
+                <li>No freshness information</li>
+                <li>Unclear what's current vs. stale</li>
+                <li>You verify everything manually</li>
+              </ul>
             </div>
-
-            <div class="problem-row">
-              <div>
-                <h3>Generic AI outputs hide uncertainty</h3>
-                <p>They sound confident even when the underlying information is stale, missing, or thin.</p>
-              </div>
-              <div>
-                <h3>Confidence is graded, not faked</h3>
-                <p>Verified today, verified within 7 days, stale, and unverified states tell you exactly how much trust to assign.</p>
-              </div>
-              <div><span class="solution-tag fresh">Freshness logic</span></div>
+            <div class="comparison-hostliday">
+              <h3>Hostliday verified plans</h3>
+              <ul>
+                <li>Source link on every recommendation</li>
+                <li>Freshness timestamps visible</li>
+                <li>Confidence levels explicit</li>
+                <li>Fit reasoning explained</li>
+              </ul>
             </div>
-
-            <div class="problem-row">
-              <div>
-                <h3>Popular lists ignore your actual trip constraints</h3>
-                <p>They do not account for pace, routing, neighborhood fit, or how the day should realistically flow.</p>
-              </div>
-              <div>
-                <h3>The plan explains the match</h3>
-                <p>Recommendations include fit reasoning and itinerary guardrails, so the output feels deliberate instead of generic.</p>
-              </div>
-              <div><span class="solution-tag match">Preference matching</span></div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="states-section" aria-label="Verification states">
-        <div class="section-shell">
-          <p class="eyebrow">Confidence model</p>
-          <h2 class="section-title">The interface gets more explicit as certainty decreases.</h2>
-          <div class="states-grid">
-            <article class="state-card state-good">
-              <span class="status-pill status-verified-today">Verified today</span>
-              <p>Confirmed within the last 24 hours, with matching source data and no unresolved conflicts.</p>
-            </article>
-            <article class="state-card state-good-alt">
-              <span class="status-pill status-verified-within-7-days">Verified within 7 days</span>
-              <p>Recent enough to trust for planning, while still signaling that drift is possible.</p>
-            </article>
-            <article class="state-card state-warn">
-              <span class="status-pill status-stale">Stale</span>
-              <p>Still shown if useful, but visibly marked so the user knows to double-check before relying on it.</p>
-            </article>
-            <article class="state-card state-bad">
-              <span class="status-pill status-unverified">Unverified</span>
-              <p>No live confirmation available. The system surfaces that uncertainty instead of hiding it behind polished copy.</p>
-            </article>
           </div>
         </div>
       </section>

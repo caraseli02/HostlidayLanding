@@ -457,6 +457,69 @@ a { color: inherit; }
   background: rgba(15, 23, 41, 0.06);
 }
 
+/* ═══ COMPARISON SPLIT ═══ */
+.comparison-split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-3xl);
+  margin-top: var(--spacing-2xl);
+}
+
+.comparison-current,
+.comparison-hostliday {
+  padding: var(--spacing-xl);
+  border-radius: var(--radius-lg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.comparison-current {
+  border-color: var(--border-strong);
+}
+
+.comparison-current h3,
+.comparison-hostliday h3 {
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: var(--ink-strong);
+  margin-bottom: var(--spacing-md);
+}
+
+.comparison-current ul,
+.comparison-hostliday ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.comparison-current li,
+.comparison-hostliday li {
+  padding: var(--spacing-sm) 0;
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--ink-muted);
+  border-bottom: 1px solid var(--border);
+}
+
+.comparison-current li:last-child,
+.comparison-hostliday li:last-child {
+  border-bottom: 0;
+}
+
+.comparison-current li::before {
+  content: "✕ ";
+  color: var(--red-core);
+  font-weight: 700;
+  margin-right: var(--spacing-sm);
+}
+
+.comparison-hostliday li::before {
+  content: "✓ ";
+  color: var(--success);
+  font-weight: 700;
+  margin-right: var(--spacing-sm);
+}
+
 .states-grid {
   margin-top: 36px;
   display: grid;
