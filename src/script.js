@@ -21,7 +21,9 @@ const HOTEL_DATA = [
     paces: ["slow", "balanced"],
     status: "verified today",
     why: "Hidden courtyards and walkable old-town lanes make this ideal for low-friction evenings.",
-    source: "https://www.hotelneri.com/",
+    freshness: "Checked 3 hours ago",
+    source: "hotelneri.com",
+    sourceUrl: "https://www.hotelneri.com/",
     booking: "https://www.booking.com/"
   },
   {
@@ -32,7 +34,9 @@ const HOTEL_DATA = [
     paces: ["balanced", "packed"],
     status: "verified within 7 days",
     why: "Strong rooftop and central routing reduce travel dead-time across major architecture stops.",
-    source: "https://www.h10hotels.com/",
+    freshness: "Checked 2 days ago",
+    source: "h10hotels.com",
+    sourceUrl: "https://www.h10hotels.com/",
     booking: "https://www.booking.com/"
   },
   {
@@ -43,7 +47,9 @@ const HOTEL_DATA = [
     paces: ["slow", "balanced"],
     status: "verified within 7 days",
     why: "Spa-first reset with strong El Born placement for evening food routes and shorter transfers.",
-    source: "https://www.yurbbanpassage.com/",
+    freshness: "Checked 5 days ago",
+    source: "yurbbanpassage.com",
+    sourceUrl: "https://www.yurbbanpassage.com/",
     booking: "https://www.booking.com/"
   },
   {
@@ -54,7 +60,9 @@ const HOTEL_DATA = [
     paces: ["packed", "balanced"],
     status: "stale",
     why: "Good value location near transit and architecture routes, but recent amenity data needs re-check.",
-    source: "https://room-matehotels.com/",
+    freshness: "Checked 12 days ago",
+    source: "room-matehotels.com",
+    sourceUrl: "https://room-matehotels.com/",
     booking: "https://www.booking.com/"
   },
   {
@@ -65,7 +73,9 @@ const HOTEL_DATA = [
     paces: ["slow", "balanced"],
     status: "unverified",
     why: "Promising fit for calmer pacing and old-town access, but live verification was not confirmed.",
-    source: "https://www.hotelrecbarcelona.com/",
+    freshness: "Not verified",
+    source: "hotelrecbarcelona.com",
+    sourceUrl: "https://www.hotelrecbarcelona.com/",
     booking: "https://www.booking.com/"
   }
 ];
@@ -83,11 +93,11 @@ const ACTIVITY_LIBRARY = {
   ],
   architecture: [
     "Sagrada Familia reserved slot",
-    "Modernisme route: Casa Batllo + Passeig de Gracia",
+    "Modernisme route: Casa Batlló + Passeig de Gràcia",
     "Sunset Bunkers del Carmel viewpoint"
   ],
   nightlife: [
-    "Cocktail bar cluster in Gracia",
+    "Cocktail bar cluster in Gràcia",
     "Rooftop live set near the waterfront",
     "Late-night vermouth stop"
   ],
@@ -98,7 +108,7 @@ const ACTIVITY_LIBRARY = {
   ]
 };
 
-const MEAL_BLOCKS = ["Lunch moment", "Dinner moment"];
+const MEAL_BLOCKS = ["Lunch anchor", "Dinner anchor"];
 
 daysInput.addEventListener("input", () => {
   daysReadout.textContent = daysInput.value;
@@ -170,15 +180,7 @@ function readForm() {
 
   return {
     valid: true,
-    data: {
-      useCase,
-      budget,
-      pace,
-      iconic,
-      vibe,
-      days,
-      priorities: selectedPriorities
-    }
+    data: { useCase, budget, pace, iconic, vibe, days, priorities: selectedPriorities }
   };
 }
 
@@ -186,12 +188,12 @@ function renderResults(data) {
   const prioritiesLabel = data.priorities.length ? data.priorities.join(" + ") : "general highlights";
   resultsSubtitle.textContent = `${capitalize(data.days + "-day")} ${labelForUseCase(
     data.useCase
-  )} with ${data.vibe} tone, ${data.pace} pace, ${data.iconic} iconic intensity, and ${prioritiesLabel} focus.`;
+  )} · ${data.vibe} tone · ${data.pace} pace · ${data.iconic} iconic intensity · ${prioritiesLabel} focus`;
 
   const hotels = buildHotels(data);
   const itinerary = buildItinerary(data);
 
-  renderHotels(hotels);
+  renderHotels(hotels, data);
   renderItinerary(itinerary);
 }
 
@@ -200,13 +202,10 @@ function buildHotels(data) {
     (hotel) =>
       hotel.vibe.includes(data.vibe) && hotel.budgets.includes(data.budget) && hotel.paces.includes(data.pace)
   );
-
   const relaxedMatches = HOTEL_DATA.filter(
     (hotel) => hotel.vibe.includes(data.vibe) && hotel.budgets.includes(data.budget)
   );
-
   const fallback = HOTEL_DATA.filter((hotel) => hotel.budgets.includes(data.budget));
-
   const candidatePool = uniqueByName([...directMatches, ...relaxedMatches, ...fallback]);
   return candidatePool.slice(0, 4);
 }
@@ -219,7 +218,6 @@ function buildItinerary(data) {
     const dayNumber = index + 1;
     const focusedPriority = priorityPool[index % priorityPool.length];
     const activities = pickActivityBlock(focusedPriority, paceBlocks, data.iconic);
-
     return {
       dayNumber,
       context: dayContext(dayNumber, data),
@@ -235,7 +233,6 @@ function pickActivityBlock(priority, count, iconic) {
     medium: ["One iconic anchor slot"],
     high: ["Two iconic anchor slots with timed entries"]
   };
-
   return [...base.slice(0, count), ...(iconicExtra[iconic] || [])].slice(0, 4);
 }
 
@@ -246,30 +243,32 @@ function dayContext(dayNumber, data) {
     family: "family-friendly timing",
     solo: "solo discovery rhythm"
   };
-
-  return `Day ${dayNumber}: ${mode[data.useCase] || "city-break flow"}, max 45 min legs unless flagged.`;
+  return `Day ${dayNumber}: ${mode[data.useCase] || "city-break flow"} · max 45 min legs unless flagged`;
 }
 
-function renderHotels(hotels) {
+function renderHotels(hotels, data) {
   hotelList.innerHTML = "";
 
   hotels.forEach((hotel) => {
     const fragment = hotelTemplate.content.cloneNode(true);
     const titleNode = fragment.querySelector("h4");
     const statusNode = fragment.querySelector(".status-pill");
+    const matchReasonNode = fragment.querySelector(".hotel-match-reason");
     const metaNode = fragment.querySelector(".hotel-meta");
-    const whyNode = fragment.querySelector(".hotel-why");
-    const sourceLink = fragment.querySelectorAll("a")[0];
-    const bookingLink = fragment.querySelectorAll("a")[1];
+    const freshnessNode = fragment.querySelector(".hotel-freshness");
+    const sourceNode = fragment.querySelector(".hotel-source");
+    const links = fragment.querySelectorAll("a");
 
     titleNode.textContent = hotel.name;
     statusNode.textContent = hotel.status;
     statusNode.classList.add(`status-${hotel.status.replaceAll(" ", "-")}`);
-    metaNode.textContent = `${hotel.neighborhood} • vibe fit: ${hotel.vibe.join(" / ")}`;
-    whyNode.textContent = hotel.why;
+    matchReasonNode.textContent = hotel.why;
+    metaNode.textContent = `${hotel.neighborhood} · vibe fit: ${hotel.vibe.join(" / ")}`;
+    freshnessNode.textContent = `🕐 ${hotel.freshness}`;
+    sourceNode.textContent = `📎 ${hotel.source}`;
 
-    sourceLink.href = hotel.source;
-    bookingLink.href = hotel.booking;
+    links[0].href = hotel.sourceUrl;
+    links[1].href = hotel.booking;
 
     hotelList.appendChild(fragment);
   });
@@ -300,9 +299,7 @@ function renderItinerary(days) {
 function uniqueByName(items) {
   const seen = new Set();
   return items.filter((item) => {
-    if (seen.has(item.name)) {
-      return false;
-    }
+    if (seen.has(item.name)) return false;
     seen.add(item.name);
     return true;
   });
@@ -315,7 +312,6 @@ function labelForUseCase(value) {
     family: "family break",
     solo: "solo culture trip"
   };
-
   return map[value] || "city break";
 }
 

@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hostliday — Verified Barcelona Travel Plans</title>
+    <title>Hostliday — Verified Barcelona Planning Infrastructure</title>
     <meta
       name="description"
-      content="Every hotel, every activity — source-verified, freshness-stamped, and matched to your trip. Plan a Barcelona trip you can actually trust."
+      content="Barcelona-only trip planning with source-backed recommendations, freshness timestamps, and visible verification logic. Try the demo and inspect the system yourself."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -16,16 +16,13 @@
     />
   </head>
   <body>
-    <div class="ambient-layer" aria-hidden="true"></div>
-
-    <!-- ═══ NAVIGATION ═══ -->
     <nav class="site-nav">
       <div class="nav-inner">
         <div class="brand-lockup">
           <span class="brand-mark" aria-hidden="true">H</span>
           <div class="brand-copy">
             <p class="brand-name">Hostliday</p>
-            <p class="brand-tag">Experiences, adventures, and stays</p>
+            <p class="brand-tag">Barcelona-only verified trip planning</p>
           </div>
         </div>
         <a href="#demo" class="nav-cta">Try the demo</a>
@@ -33,210 +30,285 @@
     </nav>
 
     <main>
-      <!-- ═══ HERO: Proof-first ═══ -->
       <section class="hero" aria-label="Hero">
-        <div class="hero-atmosphere" aria-hidden="true">Barcelona · Gothic Quarter · El Born · Gràcia · Eixample · Barceloneta</div>
         <div class="hero-inner">
-          <div class="hero-text">
-            <h1 class="hero-headline">
-              Every recommendation<br/>comes with receipts.
-            </h1>
+          <div class="hero-copy">
+            <p class="eyebrow">Barcelona specialist</p>
+            <h1>Trip planning backed by visible verification.</h1>
             <p class="hero-sub">
-              Every hotel comes with source links, freshness stamps, and a match explanation. Not a black-box suggestion — a recommendation you can verify before you book.
+              Hostliday turns Barcelona planning into a trust system. Every recommendation ships with
+              source links, freshness timestamps, verification state, and match reasoning, so you can
+              inspect the plan before you trust it.
             </p>
-            <a href="#demo" class="btn-primary btn-hero">Try the demo</a>
+            <div class="hero-actions">
+              <a href="#demo" class="btn-primary">Try the demo</a>
+            </div>
           </div>
-          <div class="hero-proof-card">
-            <article class="proof-recommendation">
-              <div class="proof-card-head">
-                <div class="proof-card-hotel">
-                  <h3>Hotel 1898</h3>
-                  <span class="proof-location">La Rambla, Barcelona</span>
+
+          <aside class="data-card" aria-label="Live verification status">
+            <div class="data-card-header">
+              <h2>Live verification status</h2>
+              <span>System active</span>
+            </div>
+
+            <div class="data-card-body">
+              <div class="data-row data-row-strong">
+                <div>
+                  <p class="data-label">Trip profile</p>
+                  <p class="data-primary">3-day romantic city break</p>
                 </div>
-                <span class="status-pill status-verified-today">✓ Verified today</span>
+                <span class="data-badge success">Inputs locked</span>
               </div>
-              <div class="proof-match">
-                <span class="match-label">Why this fits your trip</span>
-                <div class="match-tags">
-                  <span class="match-tag">Romantic</span>
-                  <span class="match-tag">Boutique</span>
-                  <span class="match-tag">Slow pace</span>
-                  <span class="match-tag">Food-focused</span>
+
+              <div class="data-row">
+                <span class="data-label">Hotel 1898</span>
+                <span class="data-value success">Verified today</span>
+              </div>
+              <div class="data-row">
+                <span class="data-label">Picasso Museum slot</span>
+                <span class="data-value success">Checked 6h ago</span>
+              </div>
+              <div class="data-row">
+                <span class="data-label">Cal Pep dinner stop</span>
+                <span class="data-value warning">Verified 5d ago</span>
+              </div>
+              <div class="data-row">
+                <span class="data-label">Barceloneta rooftop option</span>
+                <span class="data-value neutral">Needs re-check</span>
+              </div>
+
+              <div class="audit-block">
+                <p class="audit-label">Verification primitives attached</p>
+                <div class="audit-tags">
+                  <span>Source link</span>
+                  <span>Freshness stamp</span>
+                  <span>Fit reasoning</span>
+                  <span>Next action</span>
                 </div>
               </div>
-              <div class="proof-details">
-                <div class="proof-detail">
-                  <span class="detail-label">Freshness</span>
-                  <span class="detail-value fresh">Checked 4 hours ago</span>
-                </div>
-                <div class="proof-detail">
-                  <span class="detail-label">Source</span>
-                  <span class="detail-value">Booking.com · 8.6/10</span>
-                </div>
-                <div class="proof-detail">
-                  <span class="detail-label">Neighborhood</span>
-                  <span class="detail-value">Gothic Quarter · 2 min walk</span>
-                </div>
-              </div>
-              <div class="proof-links">
-                <a href="#">View source ↗</a>
-                <a href="#">Book hotel ↗</a>
-              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+
+      <section class="stats-bar" aria-label="System stats">
+        <div class="stats-inner">
+          <div class="stat-card">
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Recommendations shown with sources</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">&lt; 7d</div>
+            <div class="stat-label">Target freshness window for active checks</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">4</div>
+            <div class="stat-label">Verification states visible in the interface</div>
+          </div>
+          <div class="stat-card">
+            <div class="stat-number">1</div>
+            <div class="stat-label">City focus, so quality beats coverage</div>
+          </div>
+        </div>
+      </section>
+
+      <section class="pipeline-section" aria-label="Verification pipeline">
+        <div class="section-shell">
+          <p class="eyebrow">Verification pipeline</p>
+          <h2 class="section-title">Every plan moves through the same four-step system.</h2>
+          <div class="pipeline-grid">
+            <article class="pipeline-step">
+              <p class="step-tag">Step 1</p>
+              <h3>Collect the real planning inputs</h3>
+              <p>Trip shape, budget, pace, vibe, and priorities define the search space before recommendations appear.</p>
+              <div class="status-line"><span class="status-dot"></span> Structured input</div>
+            </article>
+            <article class="pipeline-step">
+              <p class="step-tag">Step 2</p>
+              <h3>Cross-check candidate recommendations</h3>
+              <p>Hotels and activities are evaluated against live sources instead of being presented as unsupported suggestions.</p>
+              <div class="status-line"><span class="status-dot"></span> Source-linked</div>
+            </article>
+            <article class="pipeline-step">
+              <p class="step-tag">Step 3</p>
+              <h3>Assign confidence and freshness</h3>
+              <p>Each recommendation gets a visible state, timestamp, and clear handling when confidence drops.</p>
+              <div class="status-line"><span class="status-dot warn"></span> Freshness-aware</div>
+            </article>
+            <article class="pipeline-step">
+              <p class="step-tag">Step 4</p>
+              <h3>Deliver a paced, explainable plan</h3>
+              <p>The output combines verified stays with a day-by-day itinerary that explains why each choice belongs.</p>
+              <div class="status-line"><span class="status-dot"></span> Reasoned output</div>
             </article>
           </div>
         </div>
       </section>
 
-      <!-- ═══ THE WEDGE: Side-by-side ═══ -->
-      <section class="wedge-section" aria-label="Comparison">
-        <div class="wedge-atmosphere" aria-hidden="true">Carrer de la Princesa · Passeig de Gràcia</div>
-        <div class="wedge-inner">
-          <h2 class="section-title">Google gives you 10 tabs.<br/>ChatGPT gives you vibes.<br/>We give you receipts.</h2>
-          <div class="wedge-comparison">
-            <div class="wedge-card wedge-other">
-              <span class="wedge-label">What other sites show</span>
-              <div class="wedge-mock-other">
-                <div class="mock-hotel-name">Hotel 1898</div>
-                <div class="mock-stars">★★★★★</div>
-                <div class="mock-price">€142/night</div>
-                <div class="mock-meta">1,247 reviews · 8.6 rating</div>
-                <div class="mock-blanks">
-                  <div class="blank-line"></div>
-                  <div class="blank-line short"></div>
-                </div>
+      <section class="problems-section" aria-label="Problem analysis">
+        <div class="section-shell">
+          <p class="eyebrow">Problem analysis</p>
+          <h2 class="section-title">The product fixes trust failures, not just planning friction.</h2>
+          <div class="problems-table">
+            <div class="problem-row">
+              <div>
+                <h3>Search results force you to verify everything manually</h3>
+                <p>Ratings and reviews create noise, but they do not explain why a hotel or activity is current, real, or right for this trip.</p>
               </div>
-              <p class="wedge-caption">Star rating, price, reviews.<br/>No sources. No freshness. No match reasoning.</p>
+              <div>
+                <h3>Recommendations expose their sources</h3>
+                <p>Hostliday makes verification inspectable with direct source links and freshness evidence on every pick.</p>
+              </div>
+              <div><span class="solution-tag source">Source visibility</span></div>
             </div>
-            <div class="wedge-vs">vs.</div>
-            <div class="wedge-card wedge-hostliday">
-              <span class="wedge-label">What Hostliday shows</span>
-              <div class="wedge-mock-hl">
-                <div class="mock-hl-head">
-                  <span class="mock-hl-name">Hotel 1898</span>
-                  <span class="status-pill status-verified-today">✓ Verified today</span>
-                </div>
-                <div class="mock-hl-match">
-                  <span class="match-tag">Romantic</span>
-                  <span class="match-tag">Boutique</span>
-                  <span class="match-tag">Slow pace</span>
-                </div>
-                <div class="mock-hl-fresh">🕐 Checked 4 hours ago</div>
-                <div class="mock-hl-source">📎 Booking.com · 8.6/10</div>
-                <div class="mock-hl-why">"Fits your boutique + slow pace preference. Walking distance to Born district for food."</div>
+
+            <div class="problem-row">
+              <div>
+                <h3>Generic AI outputs hide uncertainty</h3>
+                <p>They sound confident even when the underlying information is stale, missing, or thin.</p>
               </div>
-              <p class="wedge-caption">Verification status · Freshness date · Source link · Match reasoning.<br/><strong>Everything visible. Nothing hidden.</strong></p>
+              <div>
+                <h3>Confidence is graded, not faked</h3>
+                <p>Verified today, verified within 7 days, stale, and unverified states tell you exactly how much trust to assign.</p>
+              </div>
+              <div><span class="solution-tag fresh">Freshness logic</span></div>
+            </div>
+
+            <div class="problem-row">
+              <div>
+                <h3>Popular lists ignore your actual trip constraints</h3>
+                <p>They do not account for pace, routing, neighborhood fit, or how the day should realistically flow.</p>
+              </div>
+              <div>
+                <h3>The plan explains the match</h3>
+                <p>Recommendations include fit reasoning and itinerary guardrails, so the output feels deliberate instead of generic.</p>
+              </div>
+              <div><span class="solution-tag match">Preference matching</span></div>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ═══ OBJECTION ═══ -->
-      <section class="objection-section" aria-label="Why Hostliday">
-        <div class="objection-inner">
-          <h2 class="section-title">"Why not just Google it?"</h2>
-          <div class="objection-grid">
-            <div class="objection-item">
-              <h3>Google</h3>
-              <p>10 open tabs. Cross-referencing reviews yourself. No way to know if info is 3 days or 3 years old.</p>
-            </div>
-            <div class="objection-item">
-              <h3>AI chat</h3>
-              <p>Confident suggestions, zero sources. Sounds great until you arrive and the restaurant closed 6 months ago.</p>
-            </div>
-            <div class="objection-item objection-item--hl">
-              <h3>Hostliday</h3>
-              <p>Every recommendation links to its source. Freshness is timestamped. Match reasoning is visible. You verify before you book.</p>
-            </div>
+      <section class="states-section" aria-label="Verification states">
+        <div class="section-shell">
+          <p class="eyebrow">Confidence model</p>
+          <h2 class="section-title">The interface gets more explicit as certainty decreases.</h2>
+          <div class="states-grid">
+            <article class="state-card state-good">
+              <span class="status-pill status-verified-today">Verified today</span>
+              <p>Confirmed within the last 24 hours, with matching source data and no unresolved conflicts.</p>
+            </article>
+            <article class="state-card state-good-alt">
+              <span class="status-pill status-verified-within-7-days">Verified within 7 days</span>
+              <p>Recent enough to trust for planning, while still signaling that drift is possible.</p>
+            </article>
+            <article class="state-card state-warn">
+              <span class="status-pill status-stale">Stale</span>
+              <p>Still shown if useful, but visibly marked so the user knows to double-check before relying on it.</p>
+            </article>
+            <article class="state-card state-bad">
+              <span class="status-pill status-unverified">Unverified</span>
+              <p>No live confirmation available. The system surfaces that uncertainty instead of hiding it behind polished copy.</p>
+            </article>
           </div>
         </div>
       </section>
 
-      <!-- ═══ DEMO APP (seamless continuation) ═══ -->
       <section class="demo-section" id="demo" aria-label="Planner demo">
         <div class="demo-shell">
-          <header class="demo-header">
-            <h2 class="section-title">Plan your own verified Barcelona trip</h2>
-            <p class="demo-subtitle">Fill in your preferences and watch every recommendation arrive with sources, freshness stamps, and match reasoning. This is a working demo.</p>
-          </header>
+          <div class="demo-header-block">
+            <div>
+              <p class="eyebrow">System demo</p>
+              <h2 class="section-title">Test the planner, then inspect the output yourself.</h2>
+            </div>
+            <p class="demo-kicker">This is a working prototype for Barcelona-only trip planning. The form stays structured so the recommendations can stay explainable.</p>
+          </div>
 
           <div class="app-shell" id="appShell">
             <section class="screen screen-active" id="screenInput" aria-labelledby="plannerTitle">
               <form id="tripForm" class="planner-card" novalidate>
-                <div class="field-row">
-                  <label for="tripUseCase">Trip use case</label>
-                  <select id="tripUseCase" name="tripUseCase" required>
-                    <option value="">Choose one</option>
-                    <option value="romantic">Romantic escape</option>
-                    <option value="friends">Friends weekend</option>
-                    <option value="family">Family trip</option>
-                    <option value="solo">Solo culture reset</option>
-                  </select>
-                </div>
-
-                <div class="field-split">
-                  <div class="field-row">
-                    <label for="tripDays">Trip length</label>
-                    <input id="tripDays" name="tripDays" type="range" min="1" max="7" value="3" />
-                    <div class="range-readout"><span id="daysReadout">3</span> days</div>
-                  </div>
-
-                  <div class="field-row">
-                    <label for="tripBudget">Budget band</label>
-                    <select id="tripBudget" name="tripBudget" required>
-                      <option value="">Select budget</option>
-                      <option value="value">Value-minded</option>
-                      <option value="comfort">Comfort</option>
-                      <option value="premium">Premium</option>
-                      <option value="luxury">Luxury</option>
-                    </select>
+                <div class="form-group">
+                  <p class="form-group-label">Trip profile</p>
+                  <div class="field-split">
+                    <div class="field-row">
+                      <label for="tripUseCase">Use case</label>
+                      <select id="tripUseCase" name="tripUseCase" required>
+                        <option value="">Choose one</option>
+                        <option value="romantic">Romantic escape</option>
+                        <option value="friends">Friends weekend</option>
+                        <option value="family">Family trip</option>
+                        <option value="solo">Solo culture reset</option>
+                      </select>
+                    </div>
+                    <div class="field-row">
+                      <label for="tripBudget">Budget band</label>
+                      <select id="tripBudget" name="tripBudget" required>
+                        <option value="">Select budget</option>
+                        <option value="value">Value-minded</option>
+                        <option value="comfort">Comfort</option>
+                        <option value="premium">Premium</option>
+                        <option value="luxury">Luxury</option>
+                      </select>
+                    </div>
                   </div>
                 </div>
 
-                <div class="field-split">
-                  <div class="field-row">
-                    <label for="tripPace">Pace</label>
-                    <select id="tripPace" name="tripPace" required>
-                      <option value="">Select pace</option>
-                      <option value="slow">Slow</option>
-                      <option value="balanced">Balanced</option>
-                      <option value="packed">Packed</option>
-                    </select>
+                <div class="form-group">
+                  <p class="form-group-label">Trip shape</p>
+                  <div class="field-split">
+                    <div class="field-row">
+                      <label for="tripDays">Trip length</label>
+                      <input id="tripDays" name="tripDays" type="range" min="1" max="7" value="3" />
+                      <div class="range-readout"><span id="daysReadout">3</span> days</div>
+                    </div>
+                    <div class="field-row">
+                      <label for="tripPace">Pace</label>
+                      <select id="tripPace" name="tripPace" required>
+                        <option value="">Select pace</option>
+                        <option value="slow">Slow — savor each stop</option>
+                        <option value="balanced">Balanced — see plenty, rest enough</option>
+                        <option value="packed">Packed — maximum coverage</option>
+                      </select>
+                    </div>
                   </div>
+                </div>
 
-                  <div class="field-row">
-                    <label for="iconicIntensity">Iconic sites intensity</label>
+                <div class="form-group">
+                  <p class="form-group-label">Style and priorities</p>
+                  <div class="field-row field-row-gap">
+                    <label for="iconicIntensity">How many iconic sites?</label>
                     <select id="iconicIntensity" name="iconicIntensity" required>
                       <option value="">Choose intensity</option>
-                      <option value="low">Low</option>
-                      <option value="medium">Medium</option>
-                      <option value="high">High</option>
+                      <option value="low">Low — skip the tourist traps</option>
+                      <option value="medium">Medium — hit the must-sees, skip the rest</option>
+                      <option value="high">High — Sagrada Familia, Park Güell, the works</option>
                     </select>
                   </div>
+
+                  <fieldset class="field-row field-row-gap">
+                    <legend>Stay vibe</legend>
+                    <div class="chip-group" id="vibeGroup">
+                      <label><input type="radio" name="vibeTag" value="intimate boutique" required /> Intimate boutique</label>
+                      <label><input type="radio" name="vibeTag" value="luxury spa" /> Luxury spa</label>
+                      <label><input type="radio" name="vibeTag" value="scenic rooftop" /> Scenic rooftop</label>
+                      <label><input type="radio" name="vibeTag" value="quiet old-town charm" /> Quiet old-town charm</label>
+                    </div>
+                  </fieldset>
+
+                  <fieldset class="field-row">
+                    <legend>Focus priorities (choose up to 2)</legend>
+                    <div class="chip-group" id="priorityGroup">
+                      <label><input type="checkbox" name="priority" value="food" /> Food</label>
+                      <label><input type="checkbox" name="priority" value="culture" /> Culture</label>
+                      <label><input type="checkbox" name="priority" value="architecture" /> Architecture</label>
+                      <label><input type="checkbox" name="priority" value="nightlife" /> Nightlife</label>
+                      <label><input type="checkbox" name="priority" value="wellness" /> Wellness</label>
+                    </div>
+                  </fieldset>
                 </div>
 
-                <fieldset class="field-row">
-                  <legend>Romantic / stay vibe tag</legend>
-                  <div class="chip-group" id="vibeGroup">
-                    <label><input type="radio" name="vibeTag" value="intimate boutique" required /> Intimate boutique</label>
-                    <label><input type="radio" name="vibeTag" value="luxury spa" /> Luxury spa</label>
-                    <label><input type="radio" name="vibeTag" value="scenic rooftop" /> Scenic rooftop</label>
-                    <label><input type="radio" name="vibeTag" value="quiet old-town charm" /> Quiet old-town charm</label>
-                  </div>
-                </fieldset>
-
-                <fieldset class="field-row">
-                  <legend>Focus priorities (choose up to 2)</legend>
-                  <div class="chip-group" id="priorityGroup">
-                    <label><input type="checkbox" name="priority" value="food" /> Food</label>
-                    <label><input type="checkbox" name="priority" value="culture" /> Culture</label>
-                    <label><input type="checkbox" name="priority" value="architecture" /> Architecture</label>
-                    <label><input type="checkbox" name="priority" value="nightlife" /> Nightlife</label>
-                    <label><input type="checkbox" name="priority" value="wellness" /> Wellness</label>
-                  </div>
-                </fieldset>
-
                 <div class="cta-row">
-                  <button type="submit" class="btn-primary btn-full">Generate verified plan</button>
+                  <button type="submit" class="btn-primary btn-full">Try the demo</button>
                   <p class="validation-copy" id="formValidation" role="alert" aria-live="polite"></p>
                 </div>
               </form>
@@ -247,7 +319,7 @@
                 <button type="button" class="btn-ghost" id="editTripButton">← Edit trip inputs</button>
                 <div>
                   <p class="eyebrow">Generated plan</p>
-                  <h2 id="resultsTitle">Your Barcelona plan</h2>
+                  <h2 id="resultsTitle">Your verified Barcelona plan</h2>
                   <p class="results-subtitle" id="resultsSubtitle"></p>
                 </div>
               </div>
@@ -256,15 +328,15 @@
                 <section class="panel" aria-labelledby="hotelPanelTitle">
                   <div class="panel-head">
                     <h3 id="hotelPanelTitle">Hotel options</h3>
-                    <span class="meta-pill">2–4 options</span>
+                    <span class="meta-pill">Source-linked · freshness-aware</span>
                   </div>
                   <div id="hotelList" class="hotel-list"></div>
                 </section>
 
                 <section class="panel" aria-labelledby="itineraryPanelTitle">
                   <div class="panel-head">
-                    <h3 id="itineraryPanelTitle">Itinerary</h3>
-                    <span class="meta-pill">Max 4 blocks / day</span>
+                    <h3 id="itineraryPanelTitle">Day-by-day itinerary</h3>
+                    <span class="meta-pill">Pacing-checked · max 4 major blocks</span>
                   </div>
                   <div id="itineraryList" class="itinerary-list"></div>
                 </section>
@@ -274,48 +346,9 @@
         </div>
       </section>
 
-      <!-- ═══ CREDIBILITY ═══ -->
-      <section class="credibility-section" aria-label="About">
-        <div class="credibility-inner">
-          <div class="credibility-statement">
-            <p class="credibility-eyebrow">Why this exists</p>
-            <p>We got tired of travel plans built on outdated blog posts and unverifiable AI suggestions. So we built a tool that shows its work — every source, every freshness date, every match reason. Barcelona first. More cities when we get this right.</p>
-          </div>
-          <div class="credibility-metrics">
-            <div class="metric">
-              <span class="metric-number">5</span>
-              <span class="metric-label">Barcelona neighborhoods covered</span>
-            </div>
-            <div class="metric">
-              <span class="metric-number">4</span>
-              <span class="metric-label">Verification states tracked</span>
-            </div>
-            <div class="metric">
-              <span class="metric-number">100%</span>
-              <span class="metric-label">Recommendations source-linked</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- ═══ FOOTER ═══ -->
       <footer class="site-footer">
         <div class="footer-inner">
-          <div class="brand-lockup">
-            <span class="brand-mark" aria-hidden="true">H</span>
-            <div class="brand-copy">
-              <p class="brand-name">Hostliday</p>
-              <p class="brand-tag">Experiences, adventures, and stays</p>
-            </div>
-          </div>
-          <div class="footer-neighborhoods">
-            <span>Gothic Quarter</span>
-            <span>El Born</span>
-            <span>Gràcia</span>
-            <span>Barceloneta</span>
-            <span>Eixample</span>
-          </div>
-          <p class="footer-note">Barcelona Specialist · Trust-First Planning · Demo Version</p>
+          <p class="footer-note">Hostliday · Barcelona-only verified trip planning · Source-backed demo</p>
         </div>
       </footer>
     </main>
@@ -326,21 +359,23 @@
           <h4></h4>
           <span class="status-pill"></span>
         </div>
+        <p class="hotel-match-reason"></p>
         <p class="hotel-meta"></p>
-        <p class="hotel-why"></p>
+        <div class="hotel-details">
+          <span class="hotel-freshness"></span>
+          <span class="hotel-source"></span>
+        </div>
         <div class="hotel-links">
-          <a target="_blank" rel="noreferrer noopener">View source</a>
-          <a target="_blank" rel="noreferrer noopener">Book hotel</a>
+          <a target="_blank" rel="noreferrer noopener">View source ↗</a>
+          <a target="_blank" rel="noreferrer noopener">Book hotel ↗</a>
         </div>
       </article>
     </template>
 
     <template id="dayCardTemplate">
       <article class="day-card">
-        <header>
-          <h4></h4>
-          <p class="day-context"></p>
-        </header>
+        <h4></h4>
+        <p class="day-context"></p>
         <ul class="activity-list"></ul>
       </article>
     </template>
