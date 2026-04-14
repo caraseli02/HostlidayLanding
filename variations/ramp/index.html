@@ -1,0 +1,346 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hostliday — Stop Guessing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ═══════════════════════════════════════
+       CONCEPT 3: HIGH-CONVICTION PREMIUM TRUST BRAND
+       Strategy: Ramp-inspired authority and decisiveness.
+       The page IS a conviction statement — minimal, bold, commanding.
+
+       Hero framing: Bold imperative — "Stop guessing. Start trusting."
+       Proof structure: Direct comparison table (us vs. everyone else)
+       Section order: Hero → Comparison → Authority signals → CTA
+       Conversion logic: Authority + urgency — decisive framing, binary choice
+       ═══════════════════════════════════════ */
+    :root {
+      --ink: #ffffff;
+      --ink-muted: #8a8f98;
+      --dark-bg: #0a0a0f;
+      --dark-surface: #141419;
+      --dark-border: #1f2028;
+      --red-core: #be0000;
+      --red-hot: #e01020;
+      --red-deep: #810000;
+      --red-glow: rgba(190, 0, 0, 0.15);
+      --success: #2dd272;
+      --radius-lg: 20px;
+      --radius-sm: 8px;
+      --max-width: 1100px;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Montserrat", sans-serif;
+      color: var(--ink); background: var(--dark-bg); line-height: 1.6;
+    }
+
+    /* NAV */
+    .site-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(10,10,15,0.85); backdrop-filter: blur(16px);
+      border-bottom: 1px solid var(--dark-border);
+    }
+    .nav-inner {
+      max-width: var(--max-width); margin: 0 auto; padding: 0 28px; height: 64px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .brand-lockup { display: flex; align-items: center; gap: 12px; }
+    .brand-mark {
+      width: 34px; height: 34px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--red-hot), var(--red-deep));
+      font-weight: 800; font-size: 0.95rem; color: #fff;
+      display: grid; place-items: center;
+    }
+    .brand-name { font-weight: 700; font-size: 0.95rem; color: #fff; }
+    .brand-tag { font-size: 0.58rem; color: var(--ink-muted); letter-spacing: 0.05em; }
+    .nav-cta {
+      background: #fff; color: var(--dark-bg);
+      padding: 8px 22px; border-radius: 50px;
+      text-decoration: none; font-size: 0.82rem; font-weight: 700;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--red-hot); color: #fff; }
+
+    /* HERO — Bold imperative */
+    .hero {
+      padding: 120px 28px 100px;
+      text-align: center; position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 60% 50% at 50% 0%, var(--red-glow), transparent);
+      pointer-events: none;
+    }
+    .hero-inner { position: relative; max-width: 820px; margin: 0 auto; }
+    .hero .eyebrow {
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 700; color: var(--red-hot); margin-bottom: 20px; display: inline-block;
+    }
+    .hero h1 {
+      font-size: clamp(2.4rem, 6vw, 4.2rem);
+      font-weight: 800; line-height: 1.06; letter-spacing: -0.03em;
+      margin-bottom: 20px;
+    }
+    .hero h1 .highlight {
+      background: linear-gradient(135deg, var(--red-hot), #ff4444);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      font-size: 1.1rem; color: var(--ink-muted);
+      max-width: 520px; margin: 0 auto 40px; line-height: 1.65;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: #fff; color: var(--dark-bg);
+      padding: 14px 36px; border-radius: 50px;
+      text-decoration: none; font-weight: 700; font-size: 0.95rem;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .btn-primary:hover { background: var(--red-hot); color: #fff; transform: translateY(-1px); }
+
+    .hero-proof {
+      display: flex; justify-content: center; gap: 40px;
+      margin-top: 60px; flex-wrap: wrap;
+    }
+    .proof-item {
+      display: flex; align-items: center; gap: 8px;
+      font-size: 0.78rem; color: var(--ink-muted);
+    }
+    .proof-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: var(--success); box-shadow: 0 0 8px rgba(45,210,114,0.4);
+    }
+
+    /* COMPARISON — Us vs. everyone else */
+    .comparison-section { padding: 80px 28px; }
+    .comparison-inner { max-width: var(--max-width); margin: 0 auto; }
+    .comparison-inner .eyebrow {
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 700; color: var(--red-hot);
+    }
+    .comparison-inner .section-title {
+      font-size: clamp(1.5rem, 3.5vw, 2.6rem);
+      font-weight: 800; margin-top: 8px; letter-spacing: -0.01em;
+    }
+
+    .comparison-table {
+      margin-top: 44px;
+      border: 1px solid var(--dark-border); border-radius: var(--radius-lg);
+      overflow: hidden;
+    }
+    .comparison-header {
+      display: grid; grid-template-columns: 1fr 160px 160px;
+      background: var(--dark-surface); padding: 16px 24px;
+      border-bottom: 1px solid var(--dark-border);
+      font-size: 0.75rem; font-weight: 700; text-transform: uppercase;
+      letter-spacing: 0.1em; color: var(--ink-muted);
+    }
+    .comparison-header .us { color: var(--red-hot); text-align: center; }
+    .comparison-header .them { text-align: center; }
+    .comparison-row {
+      display: grid; grid-template-columns: 1fr 160px 160px;
+      padding: 20px 24px; align-items: center;
+      border-bottom: 1px solid var(--dark-border);
+    }
+    .comparison-row:last-child { border-bottom: none; }
+    .comparison-row .feature {
+      font-size: 0.9rem; font-weight: 600; color: #fff;
+    }
+    .comparison-row .feature small {
+      display: block; font-size: 0.78rem; font-weight: 400;
+      color: var(--ink-muted); margin-top: 2px;
+    }
+    .comparison-row .us-val, .comparison-row .them-val {
+      text-align: center; font-size: 0.85rem; font-weight: 700;
+    }
+    .comparison-row .us-val { color: var(--success); }
+    .comparison-row .them-val { color: var(--ink-muted); }
+    .check { font-size: 1.1rem; }
+    .cross { color: #555; }
+
+    /* AUTHORITY SIGNALS — Trust markers with weight */
+    .authority-section {
+      padding: 80px 28px;
+      background: var(--dark-surface);
+      border-top: 1px solid var(--dark-border);
+      border-bottom: 1px solid var(--dark-border);
+    }
+    .authority-inner { max-width: var(--max-width); margin: 0 auto; }
+    .authority-inner .eyebrow {
+      font-size: 0.68rem; letter-spacing: 0.2em; text-transform: uppercase;
+      font-weight: 700; color: var(--red-hot);
+    }
+    .authority-inner .section-title {
+      font-size: clamp(1.5rem, 3.5vw, 2.6rem);
+      font-weight: 800; margin-top: 8px;
+    }
+    .authority-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 24px; margin-top: 44px;
+    }
+    .authority-card {
+      background: var(--dark-bg); border: 1px solid var(--dark-border);
+      border-radius: var(--radius-lg); padding: 32px 28px;
+      transition: border-color 0.3s, box-shadow 0.3s;
+    }
+    .authority-card:hover {
+      border-color: rgba(190,0,0,0.3);
+      box-shadow: 0 0 30px var(--red-glow);
+    }
+    .authority-number {
+      font-size: 2.2rem; font-weight: 800;
+      background: linear-gradient(135deg, var(--red-hot), var(--red-deep));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      margin-bottom: 10px;
+    }
+    .authority-card h3 { font-size: 1rem; font-weight: 700; color: #fff; margin-bottom: 6px; }
+    .authority-card p { font-size: 0.82rem; color: var(--ink-muted); line-height: 1.6; }
+
+    /* CTA */
+    .cta-section {
+      padding: 100px 28px; text-align: center;
+      position: relative; overflow: hidden;
+    }
+    .cta-section::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse 50% 60% at 50% 50%, var(--red-glow), transparent);
+      pointer-events: none;
+    }
+    .cta-section > * { position: relative; }
+    .cta-section h2 { font-size: clamp(1.8rem, 4vw, 3rem); font-weight: 800; margin-bottom: 14px; }
+    .cta-section p { color: var(--ink-muted); margin-bottom: 32px; font-size: 1.05rem; }
+
+    /* FOOTER */
+    .site-footer {
+      padding: 36px 28px;
+      border-top: 1px solid var(--dark-border);
+      text-align: center;
+    }
+    .footer-note { font-size: 0.72rem; color: var(--ink-muted); }
+
+    @media (max-width: 768px) {
+      .authority-grid { grid-template-columns: 1fr; }
+      .comparison-table { overflow-x: auto; }
+      .comparison-header, .comparison-row { grid-template-columns: 1fr 120px 120px; font-size: 0.8rem; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <div class="brand-lockup">
+        <span class="brand-mark">H</span>
+        <div><p class="brand-name">Hostliday</p><p class="brand-tag">Experiences, adventures, and stays</p></div>
+      </div>
+      <a href="#demo" class="nav-cta">Try the demo</a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- ═══ HERO: Bold imperative ═══ -->
+    <section class="hero">
+      <div class="hero-inner">
+        <p class="eyebrow">Barcelona Specialist</p>
+        <h1>Stop guessing.<br/>Start <span class="highlight">trusting</span>.</h1>
+        <p class="hero-sub">Every travel recommendation on Hostliday is source-verified, freshness-stamped, and matched to your trip. No other platform does this.</p>
+        <a href="#demo" class="btn-primary">Try the demo</a>
+
+        <div class="hero-proof">
+          <div class="proof-item"><span class="proof-dot"></span> Source-backed</div>
+          <div class="proof-item"><span class="proof-dot"></span> Freshness verified</div>
+          <div class="proof-item"><span class="proof-dot"></span> Barcelona-first</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ COMPARISON: Us vs. everyone else ═══ -->
+    <section class="comparison-section">
+      <div class="comparison-inner">
+        <p class="eyebrow">Why us</p>
+        <h2 class="section-title">Most travel platforms ask you to trust them.<br/>We show you the receipts.</h2>
+        <div class="comparison-table">
+          <div class="comparison-header">
+            <span>Feature</span>
+            <span class="us">Hostliday</span>
+            <span class="them">Others</span>
+          </div>
+          <div class="comparison-row">
+            <div class="feature">Source links on every pick<small>See exactly where each recommendation comes from</small></div>
+            <div class="us-val"><span class="check">✓</span></div>
+            <div class="them-val"><span class="cross">✗</span></div>
+          </div>
+          <div class="comparison-row">
+            <div class="feature">Freshness timestamps<small>Know when a recommendation was last verified</small></div>
+            <div class="us-val"><span class="check">✓</span></div>
+            <div class="them-val"><span class="cross">✗</span></div>
+          </div>
+          <div class="comparison-row">
+            <div class="feature">Preference matching<small>Recommendations shaped by your budget, pace, and vibe</small></div>
+            <div class="us-val"><span class="check">✓</span></div>
+            <div class="them-val"><span class="cross">✗</span></div>
+          </div>
+          <div class="comparison-row">
+            <div class="feature">Transparent reasoning<small>Every pick explains why it fits your specific trip</small></div>
+            <div class="us-val"><span class="check">✓</span></div>
+            <div class="them-val"><span class="cross">✗</span></div>
+          </div>
+          <div class="comparison-row">
+            <div class="feature">Stale data flagging<small>Outdated info is caught and re-verified, not hidden</small></div>
+            <div class="us-val"><span class="check">✓</span></div>
+            <div class="them-val"><span class="cross">✗</span></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ AUTHORITY SIGNALS: Weight + numbers ═══ -->
+    <section class="authority-section">
+      <div class="authority-inner">
+        <p class="eyebrow">By the numbers</p>
+        <h2 class="section-title">Trust isn't a feeling. It's a system.</h2>
+        <div class="authority-grid">
+          <div class="authority-card">
+            <div class="authority-number">100%</div>
+            <h3>Source-backed</h3>
+            <p>Every hotel and activity links to its original source. Zero unsourced recommendations.</p>
+          </div>
+          <div class="authority-card">
+            <div class="authority-number">&lt;48h</div>
+            <h3>Freshness guarantee</h3>
+            <p>Recommendations older than 48 hours are automatically flagged for re-verification.</p>
+          </div>
+          <div class="authority-card">
+            <div class="authority-number">0</div>
+            <h3>Black boxes</h3>
+            <p>Every pick includes reasoning. You see why it matches — budget, pace, vibe. Full transparency.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section" id="demo">
+      <h2>The demo is live.<br/>See for yourself.</h2>
+      <p>No signup. No credit card. Just verified Barcelona recommendations.</p>
+      <a href="../index.html#demo" class="btn-primary">Try the demo</a>
+    </section>
+
+    <footer class="site-footer">
+      <div class="brand-lockup" style="justify-content:center">
+        <span class="brand-mark">H</span>
+        <div>
+          <p class="brand-name">Hostliday</p>
+          <p class="footer-note">Barcelona Specialist · Trust-First Planning · Demo Version</p>
+        </div>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>

@@ -1,0 +1,380 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hostliday — Your Travel Planning Assistant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ═══════════════════════════════════════
+       CONCEPT 1: CONVERSATIONAL TRUST ASSISTANT
+       Strategy: Intercom-inspired guided assistant.
+       The page IS the product preview — a conversation you want to join.
+
+       Hero framing: "Meet your planner" — personal, warm, chat-native
+       Proof structure: Live conversation demonstrating verified output
+       Section order: Hero → Chat demo → What makes it different → Trust promises → CTA
+       Conversion logic: Emotional pull — "start the conversation" = try the demo
+       ═══════════════════════════════════════ */
+    :root {
+      --ink: #1a1a1a;
+      --red-core: #be0000;
+      --red-hot: #da0000;
+      --red-deep: #810000;
+      --mist: #e1dfdd;
+      --ash: #6b6b6b;
+      --paper: #fffaf9;
+      --surface: #ffffff;
+      --success: #226644;
+      --radius-lg: 20px;
+      --radius-md: 14px;
+      --max-width: 1080px;
+      --chat-bg: #f0eceb;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: "Montserrat", sans-serif;
+      color: var(--ink); background: var(--paper); line-height: 1.6;
+    }
+
+    /* NAV */
+    .site-nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(255,255,255,0.92); backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(0,0,0,0.06);
+    }
+    .nav-inner {
+      max-width: var(--max-width); margin: 0 auto; padding: 14px 24px;
+      display: flex; justify-content: space-between; align-items: center;
+    }
+    .brand-lockup { display: flex; align-items: center; gap: 10px; }
+    .brand-mark {
+      width: 36px; height: 36px; border-radius: 10px;
+      background: linear-gradient(135deg, var(--red-hot), var(--red-deep));
+      color: #fff; font-weight: 800; font-size: 1.1rem;
+      display: grid; place-items: center;
+    }
+    .brand-name { font-weight: 700; font-size: 1rem; }
+    .brand-tag { font-size: 0.65rem; color: var(--ash); }
+    .nav-cta {
+      background: var(--ink); color: #fff;
+      padding: 9px 20px; border-radius: 50px;
+      text-decoration: none; font-size: 0.82rem; font-weight: 600;
+      transition: background 0.2s;
+    }
+    .nav-cta:hover { background: var(--red-core); }
+
+    /* HERO — "Meet your planner" framing */
+    .hero {
+      padding: 80px 24px 60px;
+      background: linear-gradient(180deg, var(--paper) 0%, #f5efed 100%);
+    }
+    .hero-inner {
+      max-width: 720px; margin: 0 auto; text-align: center;
+    }
+    .hero .eyebrow {
+      display: inline-block;
+      background: rgba(190,0,0,0.08); color: var(--red-core);
+      font-size: 0.7rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 5px 14px; border-radius: 50px; margin-bottom: 20px;
+    }
+    .hero h1 {
+      font-size: clamp(1.8rem, 4.2vw, 2.8rem);
+      font-weight: 800; line-height: 1.15; margin-bottom: 14px;
+    }
+    .hero h1 em {
+      font-style: normal;
+      background: linear-gradient(135deg, var(--red-hot), var(--red-deep));
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .hero-sub {
+      font-size: 1rem; color: var(--ash); max-width: 520px;
+      margin: 0 auto 28px; line-height: 1.65;
+    }
+    .btn-primary {
+      display: inline-block;
+      background: var(--red-core); color: #fff;
+      padding: 13px 32px; border-radius: 50px;
+      text-decoration: none; font-weight: 600; font-size: 0.95rem;
+      box-shadow: 0 4px 20px rgba(190,0,0,0.25);
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn-primary:hover { transform: translateY(-1px); box-shadow: 0 6px 28px rgba(190,0,0,0.35); }
+
+    /* CHAT DEMO — The product IS the proof */
+    .chat-demo {
+      padding: 40px 24px 60px;
+      background: var(--paper);
+    }
+    .chat-demo-inner {
+      max-width: 560px; margin: 0 auto;
+    }
+    .chat-window {
+      background: var(--chat-bg); border-radius: var(--radius-lg);
+      padding: 28px 24px; box-shadow: 0 8px 40px rgba(0,0,0,0.06);
+    }
+    .chat-header {
+      display: flex; align-items: center; gap: 10px;
+      padding-bottom: 16px; border-bottom: 1px solid rgba(0,0,0,0.06);
+      margin-bottom: 20px;
+    }
+    .chat-avatar {
+      width: 36px; height: 36px; border-radius: 50%;
+      background: linear-gradient(135deg, var(--red-hot), var(--red-deep));
+      color: #fff; font-weight: 800; font-size: 0.85rem;
+      display: grid; place-items: center;
+    }
+    .chat-name { font-weight: 700; font-size: 0.88rem; }
+    .chat-status { font-size: 0.7rem; color: var(--success); }
+    .chat-messages { display: flex; flex-direction: column; gap: 14px; }
+    .bubble {
+      padding: 14px 18px; border-radius: 18px;
+      font-size: 0.85rem; line-height: 1.55; max-width: 85%;
+    }
+    .bubble-user {
+      background: var(--red-core); color: #fff;
+      align-self: flex-end; border-bottom-right-radius: 4px;
+    }
+    .bubble-bot {
+      background: var(--surface); color: var(--ink);
+      align-self: flex-start; border-bottom-left-radius: 4px;
+      border: 1px solid rgba(0,0,0,0.06);
+    }
+    .bubble-bot strong { color: var(--red-core); }
+    .verified-tag {
+      display: inline-flex; align-items: center; gap: 4px;
+      background: rgba(34,102,68,0.08); color: var(--success);
+      font-size: 0.72rem; font-weight: 600; padding: 2px 8px;
+      border-radius: 50px; margin-top: 6px;
+    }
+    .chat-input {
+      margin-top: 16px;
+      background: var(--surface); border-radius: 50px;
+      padding: 12px 18px; border: 1px solid rgba(0,0,0,0.08);
+      display: flex; align-items: center; justify-content: space-between;
+    }
+    .chat-input span { color: var(--ash); font-size: 0.82rem; }
+    .chat-input a {
+      background: var(--red-core); color: #fff;
+      padding: 6px 16px; border-radius: 50px;
+      text-decoration: none; font-size: 0.78rem; font-weight: 600;
+    }
+
+    /* WHAT'S DIFFERENT — Friendly comparison cards */
+    .different-section { padding: 80px 24px; background: #f7f3f1; }
+    .different-inner { max-width: var(--max-width); margin: 0 auto; }
+    .different-inner .eyebrow {
+      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+      font-weight: 700; color: var(--red-core); text-align: center;
+    }
+    .different-inner .section-title {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 800; text-align: center; margin-top: 6px;
+    }
+    .different-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 24px; margin-top: 40px;
+    }
+    .diff-card {
+      background: var(--surface); border-radius: var(--radius-lg);
+      padding: 28px 24px; border: 1px solid rgba(0,0,0,0.06);
+    }
+    .diff-card .diff-label {
+      font-size: 0.7rem; font-weight: 700; letter-spacing: 0.1em;
+      text-transform: uppercase; margin-bottom: 8px;
+    }
+    .diff-card .diff-label.old { color: var(--ash); }
+    .diff-card .diff-label.new { color: var(--success); }
+    .diff-card h3 { font-size: 1rem; font-weight: 700; margin-bottom: 6px; }
+    .diff-card p { font-size: 0.85rem; color: var(--ash); line-height: 1.6; }
+
+    /* TRUST PROMISES — Warm, personal commitments */
+    .promises-section { padding: 80px 24px; }
+    .promises-inner { max-width: 720px; margin: 0 auto; text-align: center; }
+    .promises-inner .eyebrow {
+      font-size: 0.7rem; letter-spacing: 0.15em; text-transform: uppercase;
+      font-weight: 700; color: var(--red-core);
+    }
+    .promises-inner .section-title {
+      font-size: clamp(1.4rem, 3vw, 2rem);
+      font-weight: 800; margin-top: 6px;
+    }
+    .promise-list {
+      margin-top: 40px; display: flex; flex-direction: column; gap: 20px;
+      text-align: left;
+    }
+    .promise-item {
+      display: flex; gap: 16px; align-items: flex-start;
+      background: var(--surface); border-radius: var(--radius-md);
+      padding: 20px 24px; border: 1px solid rgba(0,0,0,0.06);
+    }
+    .promise-check {
+      flex-shrink: 0; width: 28px; height: 28px; border-radius: 50%;
+      background: rgba(34,102,68,0.08); color: var(--success);
+      display: grid; place-items: center; font-size: 0.85rem; font-weight: 700;
+    }
+    .promise-item h3 { font-size: 0.95rem; font-weight: 700; margin-bottom: 4px; }
+    .promise-item p { font-size: 0.82rem; color: var(--ash); line-height: 1.6; }
+
+    /* CTA */
+    .cta-banner {
+      padding: 80px 24px; text-align: center;
+      background: linear-gradient(135deg, var(--red-deep), var(--red-core));
+      color: #fff;
+    }
+    .cta-banner h2 { font-size: clamp(1.6rem, 3vw, 2.4rem); font-weight: 800; margin-bottom: 12px; }
+    .cta-banner p { opacity: 0.85; margin-bottom: 28px; font-size: 1rem; }
+    .cta-banner .btn-primary {
+      background: #fff; color: var(--red-core);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+    }
+
+    /* FOOTER */
+    .site-footer {
+      padding: 40px 24px; text-align: center;
+      border-top: 1px solid rgba(0,0,0,0.06);
+    }
+    .footer-note { font-size: 0.78rem; color: var(--ash); margin-top: 8px; }
+
+    @media (max-width: 700px) {
+      .different-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <nav class="site-nav">
+    <div class="nav-inner">
+      <div class="brand-lockup">
+        <span class="brand-mark" aria-hidden="true">H</span>
+        <div><p class="brand-name">Hostliday</p><p class="brand-tag">Experiences, adventures, and stays</p></div>
+      </div>
+      <a href="#demo" class="nav-cta">Try the demo</a>
+    </div>
+  </nav>
+
+  <main>
+    <!-- ═══ HERO: "Meet your planner" ═══ -->
+    <section class="hero">
+      <div class="hero-inner">
+        <span class="eyebrow">Barcelona Specialist</span>
+        <h1>Meet the planner that<br/>actually <em>gets to know</em> your trip</h1>
+        <p class="hero-sub">Tell Hostliday what matters — budget, vibe, pace — and get back a plan where every pick is verified, every reason is clear, and nothing is left to chance.</p>
+        <a href="#demo" class="btn-primary">Try the demo</a>
+      </div>
+    </section>
+
+    <!-- ═══ CHAT DEMO: Product as proof ═══ -->
+    <section class="chat-demo" id="demo">
+      <div class="chat-demo-inner">
+        <div class="chat-window">
+          <div class="chat-header">
+            <div class="chat-avatar">H</div>
+            <div>
+              <p class="chat-name">Hostliday</p>
+              <p class="chat-status">● Barcelona specialist</p>
+            </div>
+          </div>
+          <div class="chat-messages">
+            <div class="bubble bubble-user">I want a 3-day romantic Barcelona trip. Boutique hotel, slow pace, food-focused.</div>
+            <div class="bubble bubble-bot">
+              <strong>Hotel 1898</strong> — La Rambla, verified 2 days ago. Intimate rooftop, walking distance to Gothic Quarter. Fits your boutique + slow pace perfectly.
+              <div class="verified-tag">✓ Source verified</div>
+            </div>
+            <div class="bubble bubble-bot">
+              For food, skip the tourist traps. <strong>Cal Pep</strong> in Born district — verified yesterday — locals queue before it opens. Pair it with a morning at <strong>Santa Caterina Market</strong>.
+              <div class="verified-tag">✓ Freshness checked</div>
+            </div>
+          </div>
+          <div class="chat-input">
+            <span>Describe your trip…</span>
+            <a href="../index.html#demo">Try the demo</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ WHAT'S DIFFERENT: Before/after comparison ═══ -->
+    <section class="different-section">
+      <div class="different-inner">
+        <p class="eyebrow">What's different?</p>
+        <h2 class="section-title">Every other site makes you do the work.<br/>We do it for you.</h2>
+        <div class="different-grid">
+          <div class="diff-card">
+            <p class="diff-label old">The old way</p>
+            <h3>Open 30 tabs, cross-reference yourself</h3>
+            <p>Blogs, reviews, Booking.com, Reddit — you verify everything manually because nothing is reliable on its own.</p>
+          </div>
+          <div class="diff-card">
+            <p class="diff-label new">With Hostliday</p>
+            <h3>Tell us once, get verified picks</h3>
+            <p>Every recommendation comes pre-verified with freshness dates and source links. The trust work is already done.</p>
+          </div>
+          <div class="diff-card">
+            <p class="diff-label old">The old way</p>
+            <h3>Generic "Top 10" lists</h3>
+            <p>One-size-fits-all recommendations that ignore your pace, budget, companions, and what you actually care about.</p>
+          </div>
+          <div class="diff-card">
+            <p class="diff-label new">With Hostliday</p>
+            <h3>Matched to your exact trip</h3>
+            <p>Your preferences shape every pick. See exactly why each hotel and activity fits — not just what it is.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ TRUST PROMISES: Personal commitments ═══ -->
+    <section class="promises-section">
+      <div class="promises-inner">
+        <p class="eyebrow">Our promises</p>
+        <h2 class="section-title">What we commit to, every single plan.</h2>
+        <div class="promise-list">
+          <div class="promise-item">
+            <div class="promise-check">✓</div>
+            <div>
+              <h3>Every pick has a source</h3>
+              <p>No phantom recommendations. Every hotel and activity links back to where we found it.</p>
+            </div>
+          </div>
+          <div class="promise-item">
+            <div class="promise-check">✓</div>
+            <div>
+              <h3>Freshness is visible</h3>
+              <p>You'll always see when a recommendation was last verified. No hiding stale data.</p>
+            </div>
+          </div>
+          <div class="promise-item">
+            <div class="promise-check">✓</div>
+            <div>
+              <h3>Reasoning is transparent</h3>
+              <p>We show you why a pick fits your trip — budget match, pace match, vibe match. No black box.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-banner">
+      <h2>Start planning with confidence</h2>
+      <p>Try the Barcelona demo — see how verified recommendations feel.</p>
+      <a href="../index.html#demo" class="btn-primary">Try the demo</a>
+    </section>
+
+    <footer class="site-footer">
+      <div class="brand-lockup" style="justify-content:center">
+        <span class="brand-mark" aria-hidden="true">H</span>
+        <div>
+          <p class="brand-name">Hostliday</p>
+          <p class="footer-note">Barcelona Specialist · Trust-First Planning · Demo Version</p>
+        </div>
+      </div>
+    </footer>
+  </main>
+</body>
+</html>
