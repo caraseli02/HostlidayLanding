@@ -3,23 +3,24 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hostliday | Trust-First Barcelona Planner Demo</title>
+    <title>Hostliday — Trust-First Travel Planning</title>
     <meta
       name="description"
-      content="Interactive 2-screen demo for the Hostliday trust-first Barcelona city break planner."
+      content="Hostliday plans your trip with verified recommendations — every hotel, every activity, backed by real sources. Stop guessing. Start trusting."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
       rel="stylesheet"
     />
   </head>
   <body>
     <div class="ambient-layer" aria-hidden="true"></div>
 
-    <main class="app-shell" id="appShell">
-      <header class="topbar">
+    <!-- ═══ NAVIGATION ═══ -->
+    <nav class="site-nav">
+      <div class="nav-inner">
         <div class="brand-lockup">
           <span class="brand-mark" aria-hidden="true">H</span>
           <div class="brand-copy">
@@ -27,135 +28,232 @@
             <p class="brand-tag">Experiences, adventures, and stays</p>
           </div>
         </div>
-        <p class="topbar-note">Barcelona Specialist</p>
-      </header>
+        <a href="#demo" class="nav-cta">Try the demo</a>
+      </div>
+    </nav>
 
-      <section class="screen screen-active" id="screenInput" aria-labelledby="plannerTitle">
-        <div class="screen-grid">
-          <aside class="narrative-card">
-            <p class="eyebrow">Trust-First Planner</p>
-            <h1 id="plannerTitle">Plan a Barcelona city break people trust enough to stop tab-hopping.</h1>
-            <p>
-              This demo mirrors the product wedge: one city, 1-7 days, clear vibe controls, and results
-              that always show why they fit plus verification status.
-            </p>
-            <ul class="principles">
-              <li>Source-backed picks</li>
-              <li>Verification freshness</li>
-              <li>Low-friction daily flow</li>
-            </ul>
-          </aside>
-
-          <form id="tripForm" class="planner-card" novalidate>
-            <div class="field-row">
-              <label for="tripUseCase">Trip use case</label>
-              <select id="tripUseCase" name="tripUseCase" required>
-                <option value="">Choose one</option>
-                <option value="romantic">Romantic escape</option>
-                <option value="friends">Friends weekend</option>
-                <option value="family">Family trip</option>
-                <option value="solo">Solo culture reset</option>
-              </select>
+    <main>
+      <!-- ═══ HERO ═══ -->
+      <section class="hero">
+        <div class="hero-inner">
+          <p class="eyebrow">Barcelona Specialist</p>
+          <h1 class="hero-headline">
+            Travel recommendations you can actually trust.
+          </h1>
+          <p class="hero-sub">
+            Every hotel, every activity, backed by real sources and freshness checks. 
+            No guesswork. No outdated reviews. Just verified plans that fit how you actually travel.
+          </p>
+          <div class="hero-actions">
+            <a href="#demo" class="btn-primary btn-hero">Try the demo</a>
+          </div>
+          <div class="hero-proof">
+            <div class="proof-item">
+              <span class="proof-dot verified"></span>
+              <span>Source-backed picks</span>
             </div>
-
-            <div class="field-split">
-              <div class="field-row">
-                <label for="tripDays">Trip length</label>
-                <input id="tripDays" name="tripDays" type="range" min="1" max="7" value="3" />
-                <div class="range-readout"><span id="daysReadout">3</span> days</div>
-              </div>
-
-              <div class="field-row">
-                <label for="tripBudget">Budget band</label>
-                <select id="tripBudget" name="tripBudget" required>
-                  <option value="">Select budget</option>
-                  <option value="value">Value-minded</option>
-                  <option value="comfort">Comfort</option>
-                  <option value="premium">Premium</option>
-                  <option value="luxury">Luxury</option>
-                </select>
-              </div>
+            <div class="proof-item">
+              <span class="proof-dot verified"></span>
+              <span>Verification freshness</span>
             </div>
-
-            <div class="field-split">
-              <div class="field-row">
-                <label for="tripPace">Pace</label>
-                <select id="tripPace" name="tripPace" required>
-                  <option value="">Select pace</option>
-                  <option value="slow">Slow</option>
-                  <option value="balanced">Balanced</option>
-                  <option value="packed">Packed</option>
-                </select>
-              </div>
-
-              <div class="field-row">
-                <label for="iconicIntensity">Iconic sites intensity</label>
-                <select id="iconicIntensity" name="iconicIntensity" required>
-                  <option value="">Choose intensity</option>
-                  <option value="low">Low</option>
-                  <option value="medium">Medium</option>
-                  <option value="high">High</option>
-                </select>
-              </div>
+            <div class="proof-item">
+              <span class="proof-dot verified"></span>
+              <span>Barcelona-first</span>
             </div>
-
-            <fieldset class="field-row">
-              <legend>Romantic / stay vibe tag</legend>
-              <div class="chip-group" id="vibeGroup">
-                <label><input type="radio" name="vibeTag" value="intimate boutique" required /> Intimate boutique</label>
-                <label><input type="radio" name="vibeTag" value="luxury spa" /> Luxury spa</label>
-                <label><input type="radio" name="vibeTag" value="scenic rooftop" /> Scenic rooftop</label>
-                <label><input type="radio" name="vibeTag" value="quiet old-town charm" /> Quiet old-town charm</label>
-              </div>
-            </fieldset>
-
-            <fieldset class="field-row">
-              <legend>Focus priorities (choose up to 2)</legend>
-              <div class="chip-group" id="priorityGroup">
-                <label><input type="checkbox" name="priority" value="food" /> Food</label>
-                <label><input type="checkbox" name="priority" value="culture" /> Culture</label>
-                <label><input type="checkbox" name="priority" value="architecture" /> Architecture</label>
-                <label><input type="checkbox" name="priority" value="nightlife" /> Nightlife</label>
-                <label><input type="checkbox" name="priority" value="wellness" /> Wellness</label>
-              </div>
-            </fieldset>
-
-            <div class="cta-row">
-              <button type="submit" class="btn-primary">Generate trust-first plan</button>
-              <p class="validation-copy" id="formValidation" role="alert" aria-live="polite"></p>
-            </div>
-          </form>
-        </div>
-      </section>
-
-      <section class="screen" id="screenResults" aria-labelledby="resultsTitle" hidden>
-        <div class="results-head">
-          <button type="button" class="btn-ghost" id="editTripButton">Edit trip inputs</button>
-          <div>
-            <p class="eyebrow">Generated plan</p>
-            <h2 id="resultsTitle">Barcelona plan summary</h2>
-            <p class="results-subtitle" id="resultsSubtitle"></p>
           </div>
         </div>
+      </section>
 
-        <div class="results-grid">
-          <section class="panel" aria-labelledby="hotelPanelTitle">
-            <div class="panel-head">
-              <h3 id="hotelPanelTitle">Hotel options</h3>
-              <span class="meta-pill">2-4 options</span>
+      <!-- ═══ WHY TRUST MATTERS ═══ -->
+      <section class="section trust-section">
+        <div class="section-inner">
+          <p class="eyebrow">Why trust-first?</p>
+          <h2 class="section-title">Most travel planning is broken.</h2>
+          <div class="trust-grid">
+            <div class="trust-card">
+              <div class="trust-icon">🔍</div>
+              <h3>Open 30 tabs, still unsure</h3>
+              <p>You cross-reference blogs, reviews, and Booking.com because nothing feels reliable on its own. The work falls on you.</p>
             </div>
-            <div id="hotelList" class="hotel-list"></div>
-          </section>
-
-          <section class="panel" aria-labelledby="itineraryPanelTitle">
-            <div class="panel-head">
-              <h3 id="itineraryPanelTitle">Itinerary</h3>
-              <span class="meta-pill">Max 4 major blocks/day</span>
+            <div class="trust-card">
+              <div class="trust-icon">⚠️</div>
+              <h3>Stale or fake reviews</h3>
+              <p>Recommendations rot. A hotel praised 18 months ago may have changed hands. Most platforms don't tell you when data was last checked.</p>
             </div>
-            <div id="itineraryList" class="itinerary-list"></div>
-          </section>
+            <div class="trust-card">
+              <div class="trust-icon">🎯</div>
+              <h3>Generic picks, not yours</h3>
+              <p>"Top 10 things to do" lists ignore your pace, budget, and vibe. You end up filtering noise instead of discovering great matches.</p>
+            </div>
+          </div>
         </div>
       </section>
+
+      <!-- ═══ HOW IT WORKS ═══ -->
+      <section class="section how-section">
+        <div class="section-inner">
+          <p class="eyebrow">How Hostliday works</p>
+          <h2 class="section-title">Verified picks. Clear reasons. One plan.</h2>
+          <div class="steps-grid">
+            <div class="step">
+              <span class="step-number">1</span>
+              <h3>Tell us your trip</h3>
+              <p>Who you're with, how many days, your budget, pace, and what matters most. No vague filters — real preferences.</p>
+            </div>
+            <div class="step">
+              <span class="step-number">2</span>
+              <h3>Get matched recommendations</h3>
+              <p>Hotels and activities selected from verified sources, each one tagged with a freshness status so you know exactly when it was last checked.</p>
+            </div>
+            <div class="step">
+              <span class="step-number">3</span>
+              <h3>See why, not just what</h3>
+              <p>Every pick comes with a reason it fits your trip. Every verification status is visible. No black box — transparent recommendations.</p>
+            </div>
+          </div>
+          <div class="how-cta">
+            <a href="#demo" class="btn-primary">Try the demo</a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ DEMO APP ═══ -->
+      <section class="section demo-section" id="demo">
+        <div class="demo-shell">
+          <header class="demo-header">
+            <p class="eyebrow">Live Demo</p>
+            <h2 class="section-title">Plan a Barcelona trip right now</h2>
+            <p class="demo-subtitle">This is a working demo — fill in your preferences and see how Hostliday matches and explains every pick.</p>
+          </header>
+
+          <div class="app-shell" id="appShell">
+            <section class="screen screen-active" id="screenInput" aria-labelledby="plannerTitle">
+              <form id="tripForm" class="planner-card" novalidate>
+                <div class="field-row">
+                  <label for="tripUseCase">Trip use case</label>
+                  <select id="tripUseCase" name="tripUseCase" required>
+                    <option value="">Choose one</option>
+                    <option value="romantic">Romantic escape</option>
+                    <option value="friends">Friends weekend</option>
+                    <option value="family">Family trip</option>
+                    <option value="solo">Solo culture reset</option>
+                  </select>
+                </div>
+
+                <div class="field-split">
+                  <div class="field-row">
+                    <label for="tripDays">Trip length</label>
+                    <input id="tripDays" name="tripDays" type="range" min="1" max="7" value="3" />
+                    <div class="range-readout"><span id="daysReadout">3</span> days</div>
+                  </div>
+
+                  <div class="field-row">
+                    <label for="tripBudget">Budget band</label>
+                    <select id="tripBudget" name="tripBudget" required>
+                      <option value="">Select budget</option>
+                      <option value="value">Value-minded</option>
+                      <option value="comfort">Comfort</option>
+                      <option value="premium">Premium</option>
+                      <option value="luxury">Luxury</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="field-split">
+                  <div class="field-row">
+                    <label for="tripPace">Pace</label>
+                    <select id="tripPace" name="tripPace" required>
+                      <option value="">Select pace</option>
+                      <option value="slow">Slow</option>
+                      <option value="balanced">Balanced</option>
+                      <option value="packed">Packed</option>
+                    </select>
+                  </div>
+
+                  <div class="field-row">
+                    <label for="iconicIntensity">Iconic sites intensity</label>
+                    <select id="iconicIntensity" name="iconicIntensity" required>
+                      <option value="">Choose intensity</option>
+                      <option value="low">Low</option>
+                      <option value="medium">Medium</option>
+                      <option value="high">High</option>
+                    </select>
+                  </div>
+                </div>
+
+                <fieldset class="field-row">
+                  <legend>Romantic / stay vibe tag</legend>
+                  <div class="chip-group" id="vibeGroup">
+                    <label><input type="radio" name="vibeTag" value="intimate boutique" required /> Intimate boutique</label>
+                    <label><input type="radio" name="vibeTag" value="luxury spa" /> Luxury spa</label>
+                    <label><input type="radio" name="vibeTag" value="scenic rooftop" /> Scenic rooftop</label>
+                    <label><input type="radio" name="vibeTag" value="quiet old-town charm" /> Quiet old-town charm</label>
+                  </div>
+                </fieldset>
+
+                <fieldset class="field-row">
+                  <legend>Focus priorities (choose up to 2)</legend>
+                  <div class="chip-group" id="priorityGroup">
+                    <label><input type="checkbox" name="priority" value="food" /> Food</label>
+                    <label><input type="checkbox" name="priority" value="culture" /> Culture</label>
+                    <label><input type="checkbox" name="priority" value="architecture" /> Architecture</label>
+                    <label><input type="checkbox" name="priority" value="nightlife" /> Nightlife</label>
+                    <label><input type="checkbox" name="priority" value="wellness" /> Wellness</label>
+                  </div>
+                </fieldset>
+
+                <div class="cta-row">
+                  <button type="submit" class="btn-primary btn-full">Generate trust-first plan</button>
+                  <p class="validation-copy" id="formValidation" role="alert" aria-live="polite"></p>
+                </div>
+              </form>
+            </section>
+
+            <section class="screen" id="screenResults" aria-labelledby="resultsTitle" hidden>
+              <div class="results-head">
+                <button type="button" class="btn-ghost" id="editTripButton">← Edit trip inputs</button>
+                <div>
+                  <p class="eyebrow">Generated plan</p>
+                  <h2 id="resultsTitle">Your Barcelona plan</h2>
+                  <p class="results-subtitle" id="resultsSubtitle"></p>
+                </div>
+              </div>
+
+              <div class="results-grid">
+                <section class="panel" aria-labelledby="hotelPanelTitle">
+                  <div class="panel-head">
+                    <h3 id="hotelPanelTitle">Hotel options</h3>
+                    <span class="meta-pill">2–4 options</span>
+                  </div>
+                  <div id="hotelList" class="hotel-list"></div>
+                </section>
+
+                <section class="panel" aria-labelledby="itineraryPanelTitle">
+                  <div class="panel-head">
+                    <h3 id="itineraryPanelTitle">Itinerary</h3>
+                    <span class="meta-pill">Max 4 blocks / day</span>
+                  </div>
+                  <div id="itineraryList" class="itinerary-list"></div>
+                </section>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ FOOTER ═══ -->
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <div class="brand-lockup">
+            <span class="brand-mark" aria-hidden="true">H</span>
+            <div class="brand-copy">
+              <p class="brand-name">Hostliday</p>
+              <p class="brand-tag">Experiences, adventures, and stays</p>
+            </div>
+          </div>
+          <p class="footer-note">Barcelona Specialist · Trust-First Planning · Demo Version</p>
+        </div>
+      </footer>
     </main>
 
     <template id="hotelCardTemplate">
