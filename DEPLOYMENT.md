@@ -14,17 +14,22 @@
 
 ## Deployment Flow
 
-```
-git push origin main
-  → GitHub Actions CI runs (build check)
-  → Vercel auto-deploys from main → https://hostliday-landing.vercel.app
+> ⚠️ **Never push directly to `main`.** All changes go through PRs.
 
-PR to main
-  → GitHub Actions CI runs
-  → Vercel creates a preview deployment (unique URL in PR comment)
+```
+1. Create a feature branch from main
+   → git checkout -b feat/my-change main
+
+2. Push branch & open PR
+   → GitHub Actions CI runs (build check)
+   → Vercel creates a PREVIEW deployment (unique URL in PR comment)
+
+3. Review preview URL → approve & merge PR
+   → Vercel auto-deploys merged code to production
+   → Live at https://hostliday-landing.vercel.app
 ```
 
-**That's it.** Vercel is linked via the GitHub app (`vercel[bot]`). No extra workflow file needed — Vercel listens to the repo directly.
+**That's it.** Vercel is linked via the GitHub app (`vercel[bot]`). No extra workflow file needed — Vercel listens to the repo directly. Production deploys happen only when PRs are merged into `main`.
 
 ## What Was Disabled
 
@@ -52,8 +57,8 @@ PR to main
 
 For each iteration:
 
-- [ ] Push to `main` → verify live at `https://hostliday-landing.vercel.app`
-- [ ] Or: open a PR → review preview URL → merge when approved
+- [ ] Open a PR → review preview URL → merge when approved
+- [ ] After merge, verify live at `https://hostliday-landing.vercel.app`
 - [ ] Check Vercel dashboard for build errors if site doesn't update
 - [ ] Confirm CI passes (green check on GitHub)
 
