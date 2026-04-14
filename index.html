@@ -3,10 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hostliday — Trust-First Travel Planning</title>
+    <title>Hostliday — Verified Barcelona Travel Plans</title>
     <meta
       name="description"
-      content="Hostliday plans your trip with verified recommendations — every hotel, every activity, backed by real sources. Stop guessing. Start trusting."
+      content="Every hotel, every activity — source-verified, freshness-stamped, and matched to your trip. Plan a Barcelona trip you can actually trust."
     />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -33,97 +33,130 @@
     </nav>
 
     <main>
-      <!-- ═══ HERO ═══ -->
-      <section class="hero">
+      <!-- ═══ HERO: Proof-first ═══ -->
+      <section class="hero" aria-label="Hero">
+        <div class="hero-atmosphere" aria-hidden="true">Barcelona · Gothic Quarter · El Born · Gràcia · Eixample · Barceloneta</div>
         <div class="hero-inner">
-          <p class="eyebrow">Barcelona Specialist</p>
-          <h1 class="hero-headline">
-            Travel recommendations you can actually trust.
-          </h1>
-          <p class="hero-sub">
-            Every hotel, every activity, backed by real sources and freshness checks. 
-            No guesswork. No outdated reviews. Just verified plans that fit how you actually travel.
-          </p>
-          <div class="hero-actions">
+          <div class="hero-text">
+            <h1 class="hero-headline">
+              Every recommendation<br/>comes with receipts.
+            </h1>
+            <p class="hero-sub">
+              Every hotel comes with source links, freshness stamps, and a match explanation. Not a black-box suggestion — a recommendation you can verify before you book.
+            </p>
             <a href="#demo" class="btn-primary btn-hero">Try the demo</a>
           </div>
-          <div class="hero-proof">
-            <div class="proof-item">
-              <span class="proof-dot verified"></span>
-              <span>Source-backed picks</span>
+          <div class="hero-proof-card">
+            <article class="proof-recommendation">
+              <div class="proof-card-head">
+                <div class="proof-card-hotel">
+                  <h3>Hotel 1898</h3>
+                  <span class="proof-location">La Rambla, Barcelona</span>
+                </div>
+                <span class="status-pill status-verified-today">✓ Verified today</span>
+              </div>
+              <div class="proof-match">
+                <span class="match-label">Why this fits your trip</span>
+                <div class="match-tags">
+                  <span class="match-tag">Romantic</span>
+                  <span class="match-tag">Boutique</span>
+                  <span class="match-tag">Slow pace</span>
+                  <span class="match-tag">Food-focused</span>
+                </div>
+              </div>
+              <div class="proof-details">
+                <div class="proof-detail">
+                  <span class="detail-label">Freshness</span>
+                  <span class="detail-value fresh">Checked 4 hours ago</span>
+                </div>
+                <div class="proof-detail">
+                  <span class="detail-label">Source</span>
+                  <span class="detail-value">Booking.com · 8.6/10</span>
+                </div>
+                <div class="proof-detail">
+                  <span class="detail-label">Neighborhood</span>
+                  <span class="detail-value">Gothic Quarter · 2 min walk</span>
+                </div>
+              </div>
+              <div class="proof-links">
+                <a href="#">View source ↗</a>
+                <a href="#">Book hotel ↗</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <!-- ═══ THE WEDGE: Side-by-side ═══ -->
+      <section class="wedge-section" aria-label="Comparison">
+        <div class="wedge-atmosphere" aria-hidden="true">Carrer de la Princesa · Passeig de Gràcia</div>
+        <div class="wedge-inner">
+          <h2 class="section-title">Google gives you 10 tabs.<br/>ChatGPT gives you vibes.<br/>We give you receipts.</h2>
+          <div class="wedge-comparison">
+            <div class="wedge-card wedge-other">
+              <span class="wedge-label">What other sites show</span>
+              <div class="wedge-mock-other">
+                <div class="mock-hotel-name">Hotel 1898</div>
+                <div class="mock-stars">★★★★★</div>
+                <div class="mock-price">€142/night</div>
+                <div class="mock-meta">1,247 reviews · 8.6 rating</div>
+                <div class="mock-blanks">
+                  <div class="blank-line"></div>
+                  <div class="blank-line short"></div>
+                </div>
+              </div>
+              <p class="wedge-caption">Star rating, price, reviews.<br/>No sources. No freshness. No match reasoning.</p>
             </div>
-            <div class="proof-item">
-              <span class="proof-dot verified"></span>
-              <span>Verification freshness</span>
-            </div>
-            <div class="proof-item">
-              <span class="proof-dot verified"></span>
-              <span>Barcelona-first</span>
+            <div class="wedge-vs">vs.</div>
+            <div class="wedge-card wedge-hostliday">
+              <span class="wedge-label">What Hostliday shows</span>
+              <div class="wedge-mock-hl">
+                <div class="mock-hl-head">
+                  <span class="mock-hl-name">Hotel 1898</span>
+                  <span class="status-pill status-verified-today">✓ Verified today</span>
+                </div>
+                <div class="mock-hl-match">
+                  <span class="match-tag">Romantic</span>
+                  <span class="match-tag">Boutique</span>
+                  <span class="match-tag">Slow pace</span>
+                </div>
+                <div class="mock-hl-fresh">🕐 Checked 4 hours ago</div>
+                <div class="mock-hl-source">📎 Booking.com · 8.6/10</div>
+                <div class="mock-hl-why">"Fits your boutique + slow pace preference. Walking distance to Born district for food."</div>
+              </div>
+              <p class="wedge-caption">Verification status · Freshness date · Source link · Match reasoning.<br/><strong>Everything visible. Nothing hidden.</strong></p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ═══ WHY TRUST MATTERS ═══ -->
-      <section class="section trust-section">
-        <div class="section-inner">
-          <p class="eyebrow">Why trust-first?</p>
-          <h2 class="section-title">Most travel planning is broken.</h2>
-          <div class="trust-grid">
-            <div class="trust-card">
-              <div class="trust-icon">🔍</div>
-              <h3>Open 30 tabs, still unsure</h3>
-              <p>You cross-reference blogs, reviews, and Booking.com because nothing feels reliable on its own. The work falls on you.</p>
+      <!-- ═══ OBJECTION ═══ -->
+      <section class="objection-section" aria-label="Why Hostliday">
+        <div class="objection-inner">
+          <h2 class="section-title">"Why not just Google it?"</h2>
+          <div class="objection-grid">
+            <div class="objection-item">
+              <h3>Google</h3>
+              <p>10 open tabs. Cross-referencing reviews yourself. No way to know if info is 3 days or 3 years old.</p>
             </div>
-            <div class="trust-card">
-              <div class="trust-icon">⚠️</div>
-              <h3>Stale or fake reviews</h3>
-              <p>Recommendations rot. A hotel praised 18 months ago may have changed hands. Most platforms don't tell you when data was last checked.</p>
+            <div class="objection-item">
+              <h3>AI chat</h3>
+              <p>Confident suggestions, zero sources. Sounds great until you arrive and the restaurant closed 6 months ago.</p>
             </div>
-            <div class="trust-card">
-              <div class="trust-icon">🎯</div>
-              <h3>Generic picks, not yours</h3>
-              <p>"Top 10 things to do" lists ignore your pace, budget, and vibe. You end up filtering noise instead of discovering great matches.</p>
+            <div class="objection-item objection-item--hl">
+              <h3>Hostliday</h3>
+              <p>Every recommendation links to its source. Freshness is timestamped. Match reasoning is visible. You verify before you book.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- ═══ HOW IT WORKS ═══ -->
-      <section class="section how-section">
-        <div class="section-inner">
-          <p class="eyebrow">How Hostliday works</p>
-          <h2 class="section-title">Verified picks. Clear reasons. One plan.</h2>
-          <div class="steps-grid">
-            <div class="step">
-              <span class="step-number">1</span>
-              <h3>Tell us your trip</h3>
-              <p>Who you're with, how many days, your budget, pace, and what matters most. No vague filters — real preferences.</p>
-            </div>
-            <div class="step">
-              <span class="step-number">2</span>
-              <h3>Get matched recommendations</h3>
-              <p>Hotels and activities selected from verified sources, each one tagged with a freshness status so you know exactly when it was last checked.</p>
-            </div>
-            <div class="step">
-              <span class="step-number">3</span>
-              <h3>See why, not just what</h3>
-              <p>Every pick comes with a reason it fits your trip. Every verification status is visible. No black box — transparent recommendations.</p>
-            </div>
-          </div>
-          <div class="how-cta">
-            <a href="#demo" class="btn-primary">Try the demo</a>
-          </div>
-        </div>
-      </section>
-
-      <!-- ═══ DEMO APP ═══ -->
-      <section class="section demo-section" id="demo">
+      <!-- ═══ DEMO APP (seamless continuation) ═══ -->
+      <section class="demo-section" id="demo" aria-label="Planner demo">
         <div class="demo-shell">
           <header class="demo-header">
-            <p class="eyebrow">Live Demo</p>
-            <h2 class="section-title">Plan a Barcelona trip right now</h2>
-            <p class="demo-subtitle">This is a working demo — fill in your preferences and see how Hostliday matches and explains every pick.</p>
+            <h2 class="section-title">Plan your own verified Barcelona trip</h2>
+            <p class="demo-subtitle">Fill in your preferences and watch every recommendation arrive with sources, freshness stamps, and match reasoning. This is a working demo.</p>
           </header>
 
           <div class="app-shell" id="appShell">
@@ -203,7 +236,7 @@
                 </fieldset>
 
                 <div class="cta-row">
-                  <button type="submit" class="btn-primary btn-full">Generate trust-first plan</button>
+                  <button type="submit" class="btn-primary btn-full">Generate verified plan</button>
                   <p class="validation-copy" id="formValidation" role="alert" aria-live="polite"></p>
                 </div>
               </form>
@@ -241,6 +274,30 @@
         </div>
       </section>
 
+      <!-- ═══ CREDIBILITY ═══ -->
+      <section class="credibility-section" aria-label="About">
+        <div class="credibility-inner">
+          <div class="credibility-statement">
+            <p class="credibility-eyebrow">Why this exists</p>
+            <p>We got tired of travel plans built on outdated blog posts and unverifiable AI suggestions. So we built a tool that shows its work — every source, every freshness date, every match reason. Barcelona first. More cities when we get this right.</p>
+          </div>
+          <div class="credibility-metrics">
+            <div class="metric">
+              <span class="metric-number">5</span>
+              <span class="metric-label">Barcelona neighborhoods covered</span>
+            </div>
+            <div class="metric">
+              <span class="metric-number">4</span>
+              <span class="metric-label">Verification states tracked</span>
+            </div>
+            <div class="metric">
+              <span class="metric-number">100%</span>
+              <span class="metric-label">Recommendations source-linked</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
       <!-- ═══ FOOTER ═══ -->
       <footer class="site-footer">
         <div class="footer-inner">
@@ -250,6 +307,13 @@
               <p class="brand-name">Hostliday</p>
               <p class="brand-tag">Experiences, adventures, and stays</p>
             </div>
+          </div>
+          <div class="footer-neighborhoods">
+            <span>Gothic Quarter</span>
+            <span>El Born</span>
+            <span>Gràcia</span>
+            <span>Barceloneta</span>
+            <span>Eixample</span>
           </div>
           <p class="footer-note">Barcelona Specialist · Trust-First Planning · Demo Version</p>
         </div>
