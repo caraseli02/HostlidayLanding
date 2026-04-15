@@ -1,137 +1,69 @@
-# HostlidayLanding — Deployment Plan
+# Hostliday Landing — Deployment Flow
 
-## Recommendation: GitHub Pages via GitHub Actions
+> **Status:** Verified 2026-04-14 | **Issue:** CAR-13
 
-**Why GitHub Pages:**
-- **Zero cost** for public repos
-- **Zero config hosting** — serves static files from `dist/` (36KB total)
-- **Native GitHub integration** — repo already on `github.com/caraseli02/HostlidayLanding`
-- **Custom domain support** — can point `hostliday.com` or a subdomain later
-- **HTTPS by default** — free SSL certificates
-- **Branch-based deploys** — clean CI/CD via GitHub Actions
+## Current State
 
-**Alternatives considered:**
-| Platform | Cost | Notes |
-|---|---|---|
-| Vercel | Free tier | Overkill for a single static page; adds vendor coupling |
-| Netlify | Free tier | Similar to Vercel; unnecessary for this scope |
-| Cloudflare Pages | Free | Good but adds account management overhead |
-| AWS S3 + CloudFront | ~$0.50/mo | Too much infra for a landing page |
-| GitHub Pages | **Free** | ✅ Best fit: native, zero-config, already integrated |
+| Item | Value |
+|------|-------|
+| **Platform** | Vercel (auto-deploy via GitHub integration) |
+| **Production URL** | https://hostliday-landing.vercel.app |
+| **Repo** | `caraseli02/HostlidayLanding` (public) |
+| **Framework** | Vite + vite-plus, pnpm |
+| **CI** | GitHub Actions (`ci.yml`) — runs `pnpm build` on push/PR to main |
 
----
+## Deployment Flow
 
-## Deployment Workflow
+> ⚠️ **Never push directly to `main`.** All changes go through PRs.
 
-### Step 1: Add GitHub Actions workflow
+```
+1. Create a feature branch from main
+   → git checkout -b feat/my-change main
 
-Create `.github/workflows/deploy.yml`:
+2. Push branch & open PR
+   → GitHub Actions CI runs (build check)
+   → Vercel creates a PREVIEW deployment (unique URL in PR comment)
 
-```yaml
-name: Deploy to GitHub Pages
-
-on:
-  push:
-    branches: [main]
-  workflow_dispatch:
-
-permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: "pages"
-  cancel-in-progress: true
-
-jobs:
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v4
-
-      - uses: pnpm/action-setup@v4
-        with:
-          version: 10
-
-      - uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: pnpm
-
-      - run: pnpm install --frozen-lockfile
-      - run: pnpm build
-
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: dist
-
-  deploy:
-    needs: build
-    runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
-    steps:
-      - uses: actions/deploy-pages@v4
-        id: deployment
+3. Review preview URL → approve & merge PR
+   → Vercel auto-deploys merged code to production
+   → Live at https://hostliday-landing.vercel.app
 ```
 
-### Step 2: Enable GitHub Pages in repo settings
+**That's it.** Vercel is linked via the GitHub app (`vercel[bot]`). No extra workflow file needed — Vercel listens to the repo directly. Production deploys happen only when PRs are merged into `main`.
 
-1. Go to **Settings → Pages**
-2. Under **Build and deployment → Source**, select **GitHub Actions**
-3. The workflow above handles the rest
+## What Was Disabled
 
-### Step 3: Verify deployment
+- `deploy.yml.disabled` — was a GitHub Pages workflow. Correctly disabled. GitHub Pages is no longer the target.
 
-After pushing to `main`:
-- Site live at: `https://caraseli02.github.io/HostlidayLanding/`
-- Check **Actions** tab for build status
+## Verified Facts
 
-### Step 4 (Optional): Custom domain
+1. **Vercel project exists** — `vercel[bot]` has made Production deployments (latest: 2026-04-14T18:27:52Z).
+2. **Homepage is set** — repo homepage = `https://hostliday-landing.vercel.app`.
+3. **Site is live** — returns HTTP 200.
+4. **CI is lightweight** — single `build` job, no deploy step (Vercel handles that).
 
-1. Add `CNAME` file to `dist/` via vite config:
-   ```ts
-   // vite.config.ts — add to defineConfig:
-   build: { rollupOptions: {} },
-   // For custom domain, create public/CNAME with: hostliday.com
-   ```
-2. In **Settings → Pages → Custom domain**, enter your domain
-3. Configure DNS at your registrar:
-   - CNAME record: `hostliday.com` → `caraseli02.github.io`
+## Gaps & Recommendations
 
----
+| # | Item | Status | Action |
+|---|------|--------|--------|
+| 1 | Vercel project ownership | ✅ Linked via `vercel[bot]` | Confirm Vlad has Vercel dashboard access to manage settings |
+| 2 | Preview deployments | ✅ Auto (Vercel default for PRs) | No action needed |
+| 3 | Custom domain | ❌ Not configured | Optional: add `hostliday.com` or subdomain when ready |
+| 4 | Build output directory | ✅ Defaults to `dist/` (Vite standard) | Verify in Vercel dashboard → Settings → Build |
+| 5 | Environment variables | ❓ Unknown | Check Vercel dashboard if any env vars are needed |
+| 6 | Deploy protection | ❓ Unknown | Consider enabling Vercel's "Deployment Protection" for non-production previews |
 
-## Required Environment / Assumptions
+## MVP Review Checklist
 
-- **GitHub repo**: Public (required for free GitHub Pages)
-- **pnpm**: v10+ (already in use, lockfile committed)
-- **Node**: 20 LTS
-- **Build output**: `dist/` directory (static HTML/CSS/JS, ~36KB)
-- **No server-side requirements** — purely static
-- **No environment variables** needed for the landing page
+For each iteration:
 
----
+- [ ] Open a PR → review preview URL → merge when approved
+- [ ] After merge, verify live at `https://hostliday-landing.vercel.app`
+- [ ] Check Vercel dashboard for build errors if site doesn't update
+- [ ] Confirm CI passes (green check on GitHub)
 
-## Implementation Checklist
+## Operational Owner
 
-- [ ] Create `.github/workflows/deploy.yml` (content above)
-- [ ] Ensure repo is public (Settings → General → Danger Zone)
-- [ ] Enable GitHub Pages with Actions source (Settings → Pages)
-- [ ] Push to `main` and verify first deploy
-- [ ] Confirm live URL: `https://caraseli02.github.io/HostlidayLanding/`
-- [ ] (Optional) Configure custom domain
-
----
-
-## Monitoring
-
-- **Build status**: GitHub Actions badge (add to README)
-- **Uptime**: GitHub Pages SLA (99.95%)
-- **Analytics**: Add Plausible/Umami script in `index.html` head if needed
-
-```markdown
-<!-- Add to README.md for build status badge -->
-[![Deploy](https://github.com/caraseli02/HostlidayLanding/actions/workflows/deploy.yml/badge.svg)](https://github.com/caraseli02/HostlidayLanding/actions/workflows/deploy.yml)
-```
+- **Current:** Vercel auto-deploy (no manual step needed)
+- **Recommended:** Vlad should log into Vercel dashboard to confirm full ownership of the project
+- **Future:** For custom domains, env vars, or deploy hooks → Vercel dashboard → Project Settings
