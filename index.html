@@ -226,56 +226,48 @@
 
           <div class="app-shell" id="appShell">
             <section class="screen screen-active" id="screenInput" aria-labelledby="plannerTitle">
-              <form id="tripForm" class="planner-card" novalidate>
-                <div class="form-group">
-                  <p class="form-group-label">Trip profile</p>
-                  <div class="field-split">
-                    <div class="field-row">
-                      <label for="tripUseCase">Use case</label>
-                      <select id="tripUseCase" name="tripUseCase" required>
-                        <option value="">Choose one</option>
-                        <option value="romantic">Romantic escape</option>
-                        <option value="friends">Friends weekend</option>
-                        <option value="family">Family trip</option>
-                        <option value="solo">Solo culture reset</option>
-                      </select>
-                    </div>
-                    <div class="field-row">
-                      <label for="tripBudget">Budget band</label>
-                      <select id="tripBudget" name="tripBudget" required>
-                        <option value="">Select budget</option>
-                        <option value="value">Value-minded</option>
-                        <option value="comfort">Comfort</option>
-                        <option value="premium">Premium</option>
-                        <option value="luxury">Luxury</option>
-                      </select>
-                    </div>
+              <form id="tripForm" class="planner-card wizard-form" novalidate>
+                <div class="form-group" data-step="1">
+                  <p class="form-group-label">Step 1: Trip basics</p>
+                  <div class="field-row">
+                    <label for="tripUseCase">Use case</label>
+                    <select id="tripUseCase" name="tripUseCase" required>
+                      <option value="">Choose one</option>
+                      <option value="romantic">Romantic escape</option>
+                      <option value="friends">Friends weekend</option>
+                      <option value="family">Family trip</option>
+                      <option value="solo">Solo culture reset</option>
+                    </select>
+                  </div>
+                  <div class="field-row">
+                    <label for="tripDays">Trip length</label>
+                    <input id="tripDays" name="tripDays" type="range" min="1" max="7" value="3" />
+                    <div class="range-readout"><span id="daysReadout">3</span> days</div>
                   </div>
                 </div>
 
-                <div class="form-group">
-                  <p class="form-group-label">Trip shape</p>
-                  <div class="field-split">
-                    <div class="field-row">
-                      <label for="tripDays">Trip length</label>
-                      <input id="tripDays" name="tripDays" type="range" min="1" max="7" value="3" />
-                      <div class="range-readout"><span id="daysReadout">3</span> days</div>
-                    </div>
-                    <div class="field-row">
-                      <label for="tripPace">Pace</label>
-                      <select id="tripPace" name="tripPace" required>
-                        <option value="">Select pace</option>
-                        <option value="slow">Slow — savor each stop</option>
-                        <option value="balanced">Balanced — see plenty, rest enough</option>
-                        <option value="packed">Packed — maximum coverage</option>
-                      </select>
-                    </div>
+                <div class="form-group" data-step="2">
+                  <p class="form-group-label">Step 2: Travel style</p>
+                  <div class="field-row">
+                    <label for="tripBudget">Budget band</label>
+                    <select id="tripBudget" name="tripBudget" required>
+                      <option value="">Select budget</option>
+                      <option value="value">Value-minded</option>
+                      <option value="comfort">Comfort</option>
+                      <option value="premium">Premium</option>
+                      <option value="luxury">Luxury</option>
+                    </select>
                   </div>
-                </div>
-
-                <div class="form-group">
-                  <p class="form-group-label">Style and priorities</p>
-                  <div class="field-row field-row-gap">
+                  <div class="field-row">
+                    <label for="tripPace">Pace</label>
+                    <select id="tripPace" name="tripPace" required>
+                      <option value="">Select pace</option>
+                      <option value="slow">Slow — savor each stop</option>
+                      <option value="balanced">Balanced — see plenty, rest enough</option>
+                      <option value="packed">Packed — maximum coverage</option>
+                    </select>
+                  </div>
+                  <div class="field-row">
                     <label for="iconicIntensity">How many iconic sites?</label>
                     <select id="iconicIntensity" name="iconicIntensity" required>
                       <option value="">Choose intensity</option>
@@ -284,7 +276,10 @@
                       <option value="high">High — Sagrada Familia, Park Güell, the works</option>
                     </select>
                   </div>
+                </div>
 
+                <div class="form-group" data-step="3">
+                  <p class="form-group-label">Step 3: Fine-tuning</p>
                   <fieldset class="field-row field-row-gap">
                     <legend>Stay vibe</legend>
                     <div class="chip-group" id="vibeGroup">
@@ -308,7 +303,7 @@
                 </div>
 
                 <div class="cta-row">
-                  <button type="submit" class="btn-primary btn-full">Try the demo</button>
+                  <div class="wizard-nav"></div>
                   <p class="validation-copy" id="formValidation" role="alert" aria-live="polite"></p>
                 </div>
               </form>

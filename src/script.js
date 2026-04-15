@@ -1,3 +1,6 @@
+// CAR-11: Demo Form UX Improvements
+// 3-step wizard with inline validation and loading state
+
 const form = document.getElementById("tripForm");
 const daysReadout = document.getElementById("daysReadout");
 const daysInput = document.getElementById("tripDays");
@@ -11,6 +14,10 @@ const itineraryList = document.getElementById("itineraryList");
 
 const hotelTemplate = document.getElementById("hotelCardTemplate");
 const dayTemplate = document.getElementById("dayCardTemplate");
+
+// Wizard state
+let currentStep = 1;
+const TOTAL_STEPS = 3;
 
 const HOTEL_DATA = [
   {
@@ -110,6 +117,13 @@ const ACTIVITY_LIBRARY = {
 
 const MEAL_BLOCKS = ["Lunch anchor", "Dinner anchor"];
 
+// Initialize wizard
+function initWizard() {
+  updateStepVisibility();
+  updateStepIndicators();
+  setupPriorityCounter();
+}
+
 daysInput.addEventListener("input", () => {
   daysReadout.textContent = daysInput.value;
 });
@@ -118,8 +132,179 @@ editTripButton.addEventListener("click", () => {
   showScreen("input");
 });
 
+// Wizard navigation
+function goToStep(step) {
+  // Validate current step before moving forward
+  if (step > currentStep && !validateStep(currentStep)) {
+    return;
+  }
+
+  currentStep = step;
+  updateStepVisibility();
+  updateStepIndicators();
+  clearValidationErrors();
+}
+
+function updateStepVisibility() {
+  // Hide all form groups
+  document.querySelectorAll('.form-group').forEach(group => {
+    group.style.display = 'none';
+  });
+
+  // Show current step groups
+  if (currentStep === 1) {
+    document.querySelector('.form-group:nth-of-type(1)').style.display = 'block';
+  } else if (currentStep === 2) {
+    document.querySelector('.form-group:nth-of-type(2)').style.display = 'block';
+  } else if (currentStep === 3) {
+    document.querySelector('.form-group:nth-of-type(3)').style.display = 'block';
+  }
+
+  // Update navigation buttons
+  updateNavigationButtons();
+}
+
+function updateNavigationButtons() {
+  let navHtml = '';
+
+  if (currentStep > 1) {
+    navHtml += '<button type="button" class="btn-secondary" onclick="goToStep(' + (currentStep - 1) + ')">← Back</button>';
+  }
+
+  if (currentStep < TOTAL_STEPS) {
+    navHtml += '<button type="button" class="btn-primary btn-full" onclick="goToStep(' + (currentStep + 1) + ')">Next →</button>';
+  } else {
+    navHtml += '<button type="submit" class="btn-primary btn-full">Generate my verified plan</button>';
+  }
+
+  const existingNav = document.querySelector('.wizard-nav');
+  if (existingNav) existingNav.remove();
+
+  const navContainer = document.createElement('div');
+  navContainer.className = 'wizard-nav';
+  navContainer.innerHTML = navHtml;
+
+  const ctaRow = document.querySelector('.cta-row');
+  ctaRow.innerHTML = '';
+  ctaRow.appendChild(navContainer);
+}
+
+function updateStepIndicators() {
+  let indicatorsHtml = '';
+  for (let i = 1; i <= TOTAL_STEPS; i++) {
+    const isActive = i === currentStep;
+    const isCompleted = i < currentStep;
+    indicatorsHtml += `<span class="step-dot ${isActive ? 'step-active' : ''} ${isCompleted ? 'step-completed' : ''}" data-step="${i}"></span>`;
+  }
+
+  let existingIndicator = document.querySelector('.step-indicator');
+  if (!existingIndicator) {
+    existingIndicator = document.createElement('div');
+    existingIndicator.className = 'step-indicator';
+    form.insertBefore(existingIndicator, form.firstChild);
+  }
+  existingIndicator.innerHTML = indicatorsHtml;
+}
+
+// Validation
+function validateStep(step) {
+  clearValidationErrors();
+
+  let isValid = true;
+
+  if (step === 1) {
+    const useCase = document.getElementById('tripUseCase');
+    if (!useCase.value) {
+      showFieldError(useCase, 'Select a trip type');
+      isValid = false;
+    }
+  } else if (step === 2) {
+    const budget = document.getElementById('tripBudget');
+    const pace = document.getElementById('tripPace');
+    const iconic = document.getElementById('iconicIntensity');
+
+    if (!budget.value) {
+      showFieldError(budget, 'Select a budget level');
+      isValid = false;
+    }
+    if (!pace.value) {
+      showFieldError(pace, 'Select your preferred pace');
+      isValid = false;
+    }
+    if (!iconic.value) {
+      showFieldError(iconic, 'Choose sightseeing intensity');
+      isValid = false;
+    }
+  } else if (step === 3) {
+    const vibes = document.querySelectorAll('input[name="vibeTag"]');
+    const vibeSelected = Array.from(vibes).some(v => v.checked);
+    if (!vibeSelected) {
+      showFieldError(vibes[0].closest('.field-row'), 'Select a stay vibe');
+      isValid = false;
+    }
+  }
+
+  return isValid;
+}
+
+function showFieldError(field, message) {
+  field.classList.add('field-error');
+  const errorDiv = document.createElement('p');
+  errorDiv.className = 'field-error-text';
+  errorDiv.textContent = message;
+  field.parentNode.appendChild(errorDiv);
+}
+
+function clearValidationErrors() {
+  document.querySelectorAll('.field-error').forEach(el => {
+    el.classList.remove('field-error');
+  });
+  document.querySelectorAll('.field-error-text').forEach(el => {
+    el.remove();
+  });
+  validationNode.textContent = '';
+}
+
+// Priority counter
+function setupPriorityCounter() {
+  const priorityGroup = document.getElementById('priorityGroup');
+  const checkboxes = priorityGroup.querySelectorAll('input[type="checkbox"]');
+
+  checkboxes.forEach(cb => {
+    cb.addEventListener('change', () => {
+      const checkedCount = Array.from(checkboxes).filter(c => c.checked).length;
+
+      // Update counter display
+      let counter = priorityGroup.querySelector('.priority-counter');
+      if (!counter) {
+        counter = document.createElement('span');
+        counter.className = 'priority-counter';
+        priorityGroup.appendChild(counter);
+      }
+      counter.textContent = `${checkedCount}/2 selected`;
+
+      // Disable unchecked boxes if limit reached
+      if (checkedCount >= 2) {
+        checkboxes.forEach(c => {
+          if (!c.checked) c.disabled = true;
+        });
+      } else {
+        checkboxes.forEach(c => {
+          c.disabled = false;
+        });
+      }
+    });
+  });
+}
+
 form.addEventListener("submit", (event) => {
   event.preventDefault();
+
+  // Final validation
+  if (!validateStep(3)) {
+    return;
+  }
+
   const payload = readForm();
   if (!payload.valid) {
     validationNode.textContent = payload.error;
@@ -127,31 +312,8 @@ form.addEventListener("submit", (event) => {
   }
 
   validationNode.textContent = "";
-  renderResults(payload.data);
-  showScreen("results");
+  showLoadingState(payload.data);
 });
-
-function showScreen(target) {
-  if (target === "results") {
-    screenInput.hidden = true;
-    screenInput.classList.remove("screen-active");
-
-    screenResults.hidden = false;
-    requestAnimationFrame(() => {
-      screenResults.classList.add("screen-active");
-    });
-    return;
-  }
-
-  screenResults.classList.remove("screen-active");
-  setTimeout(() => {
-    screenResults.hidden = true;
-    screenInput.hidden = false;
-    requestAnimationFrame(() => {
-      screenInput.classList.add("screen-active");
-    });
-  }, 220);
-}
 
 function readForm() {
   const data = new FormData(form);
@@ -184,8 +346,108 @@ function readForm() {
   };
 }
 
+// Loading state
+function showLoadingState(data) {
+  const loadingHtml = `
+    <div class="loading-state">
+      <div class="loading-skeleton">
+        <div class="skeleton-card"></div>
+        <div class="skeleton-card"></div>
+      </div>
+      <p class="loading-message">Cross-referencing sources, checking freshness, building your plan...</p>
+    </div>
+  `;
+
+  screenInput.hidden = true;
+  screenInput.classList.remove('screen-active');
+
+  screenResults.innerHTML = loadingHtml;
+  screenResults.hidden = false;
+  screenResults.classList.add('screen-active');
+
+  // Simulate loading then show results
+  setTimeout(() => {
+    renderResults(data);
+    showScreen("results");
+  }, 1500);
+}
+
+function showScreen(target) {
+  if (target === "results") {
+    screenInput.hidden = true;
+    screenInput.classList.remove("screen-active");
+
+    screenResults.hidden = false;
+    requestAnimationFrame(() => {
+      screenResults.classList.add("screen-active");
+    });
+    return;
+  }
+
+  screenResults.classList.remove("screen-active");
+  setTimeout(() => {
+    screenResults.hidden = true;
+    screenInput.hidden = false;
+    requestAnimationFrame(() => {
+      screenInput.classList.add("screen-active");
+    });
+  }, 220);
+}
+
 function renderResults(data) {
+  // Build summary header
   const prioritiesLabel = data.priorities.length ? data.priorities.join(" + ") : "general highlights";
+  const summaryHtml = `
+    <div class="results-summary">
+      <div class="summary-config">
+        <span class="summary-pill">${data.days}-day</span>
+        <span class="summary-pill">${labelForUseCase(data.useCase)}</span>
+        <span class="summary-pill">${data.budget}</span>
+        <span class="summary-pill">${data.pace}</span>
+        <span class="summary-pill">${prioritiesLabel}</span>
+      </div>
+      <div class="summary-actions">
+        <button type="button" class="btn-secondary" id="editTripButton">← Edit trip inputs</button>
+      </div>
+    </div>
+    <div class="results-head">
+      <div>
+        <p class="eyebrow">Generated plan</p>
+        <h2 id="resultsTitle">Your verified Barcelona plan</h2>
+        <p class="results-subtitle" id="resultsSubtitle"></p>
+      </div>
+    </div>
+  `;
+
+  // Reattach edit button listener
+  screenResults.innerHTML = summaryHtml + `
+    <div class="results-grid">
+      <section class="panel" aria-labelledby="hotelPanelTitle">
+        <div class="panel-head">
+          <h3 id="hotelPanelTitle">Hotel options</h3>
+          <span class="meta-pill">Source-linked · freshness-aware</span>
+        </div>
+        <div id="hotelList" class="hotel-list"></div>
+      </section>
+
+      <section class="panel" aria-labelledby="itineraryPanelTitle">
+        <div class="panel-head">
+          <h3 id="itineraryPanelTitle">Day-by-day itinerary</h3>
+          <span class="meta-pill">Pacing-checked · max 4 major blocks</span>
+        </div>
+        <div id="itineraryList" class="itinerary-list"></div>
+      </section>
+    </div>
+  `;
+
+  document.getElementById('editTripButton').addEventListener('click', () => {
+    showScreen("input");
+  });
+
+  resultsSubtitle = document.getElementById("resultsSubtitle");
+  hotelList = document.getElementById("hotelList");
+  itineraryList = document.getElementById("itineraryList");
+
   resultsSubtitle.textContent = `${capitalize(data.days + "-day")} ${labelForUseCase(
     data.useCase
   )} · ${data.vibe} tone · ${data.pace} pace · ${data.iconic} iconic intensity · ${prioritiesLabel} focus`;
@@ -318,3 +580,9 @@ function labelForUseCase(value) {
 function capitalize(input) {
   return input.charAt(0).toUpperCase() + input.slice(1);
 }
+
+// Make global functions available for onclick handlers
+window.goToStep = goToStep;
+
+// Initialize on load
+initWizard();
