@@ -8,9 +8,9 @@ const validationNode = document.getElementById("formValidation");
 const screenInput = document.getElementById("screenInput");
 const screenResults = document.getElementById("screenResults");
 const editTripButton = document.getElementById("editTripButton");
-const resultsSubtitle = document.getElementById("resultsSubtitle");
-const hotelList = document.getElementById("hotelList");
-const itineraryList = document.getElementById("itineraryList");
+let resultsSubtitle = document.getElementById("resultsSubtitle");
+let hotelList = document.getElementById("hotelList");
+let itineraryList = document.getElementById("itineraryList");
 
 const hotelTemplate = document.getElementById("hotelCardTemplate");
 const dayTemplate = document.getElementById("dayCardTemplate");
