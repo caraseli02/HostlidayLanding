@@ -5,7 +5,7 @@ export default defineConfig({
   lint: {
     options: {
       typeAware: true,
-      typeCheck: true
-    }
-  }
+      typeCheck: true,
+    },
+  },
 });

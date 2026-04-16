@@ -35,9 +35,7 @@ interface ItineraryDay {
   blocks: string[];
 }
 
-type FormResult =
-  | { valid: false; error: string }
-  | { valid: true; data: TripPayload };
+type FormResult = { valid: false; error: string } | { valid: true; data: TripPayload };
 
 const form = document.getElementById("tripForm") as HTMLFormElement;
 const daysReadout = document.getElementById("daysReadout")!;
@@ -65,7 +63,7 @@ const HOTEL_DATA: Hotel[] = [
     freshness: "Checked 3 hours ago",
     source: "hotelneri.com",
     sourceUrl: "https://www.hotelneri.com/",
-    booking: "https://www.booking.com/"
+    booking: "https://www.booking.com/",
   },
   {
     name: "H10 Casa Mimosa",
@@ -78,7 +76,7 @@ const HOTEL_DATA: Hotel[] = [
     freshness: "Checked 2 days ago",
     source: "h10hotels.com",
     sourceUrl: "https://www.h10hotels.com/",
-    booking: "https://www.booking.com/"
+    booking: "https://www.booking.com/",
   },
   {
     name: "Yurbban Passage Hotel & Spa",
@@ -91,7 +89,7 @@ const HOTEL_DATA: Hotel[] = [
     freshness: "Checked 5 days ago",
     source: "yurbbanpassage.com",
     sourceUrl: "https://www.yurbbanpassage.com/",
-    booking: "https://www.booking.com/"
+    booking: "https://www.booking.com/",
   },
   {
     name: "Room Mate Carla",
@@ -104,7 +102,7 @@ const HOTEL_DATA: Hotel[] = [
     freshness: "Checked 12 days ago",
     source: "room-matehotels.com",
     sourceUrl: "https://room-matehotels.com/",
-    booking: "https://www.booking.com/"
+    booking: "https://www.booking.com/",
   },
   {
     name: "Hotel Rec Barcelona",
@@ -117,36 +115,32 @@ const HOTEL_DATA: Hotel[] = [
     freshness: "Not verified",
     source: "hotelrecbarcelona.com",
     sourceUrl: "https://www.hotelrecbarcelona.com/",
-    booking: "https://www.booking.com/"
-  }
+    booking: "https://www.booking.com/",
+  },
 ];
 
 const ACTIVITY_LIBRARY: Record<ActivityCategory, string[]> = {
   culture: [
     "Picasso Museum timed entry",
     "Roman wall and Gothic lanes walk",
-    "Catalan music venue evening"
+    "Catalan music venue evening",
   ],
   food: [
     "Market tasting block in El Born",
     "Long lunch with local tapas route",
-    "Chef-led dinner in Eixample"
+    "Chef-led dinner in Eixample",
   ],
   architecture: [
     "Sagrada Familia reserved slot",
     "Modernisme route: Casa Batlló + Passeig de Gràcia",
-    "Sunset Bunkers del Carmel viewpoint"
+    "Sunset Bunkers del Carmel viewpoint",
   ],
   nightlife: [
     "Cocktail bar cluster in Gràcia",
     "Rooftop live set near the waterfront",
-    "Late-night vermouth stop"
+    "Late-night vermouth stop",
   ],
-  wellness: [
-    "Spa recovery block",
-    "Beachfront sunrise walk",
-    "Mindful pause in Ciutadella Park"
-  ]
+  wellness: ["Spa recovery block", "Beachfront sunrise walk", "Mindful pause in Ciutadella Park"],
 };
 
 const MEAL_BLOCKS = ["Lunch anchor", "Dinner anchor"] as const;
@@ -201,7 +195,7 @@ function readForm(): FormResult {
   if (selectedPriorities.length > 2) {
     return {
       valid: false,
-      error: "Select up to 2 priorities so the plan remains focused and trustworthy."
+      error: "Select up to 2 priorities so the plan remains focused and trustworthy.",
     };
   }
 
@@ -215,20 +209,22 @@ function readForm(): FormResult {
   if (!useCase || !budget || !pace || !iconic || !vibe || !days) {
     return {
       valid: false,
-      error: "Complete all required fields to generate a constrained Barcelona plan."
+      error: "Complete all required fields to generate a constrained Barcelona plan.",
     };
   }
 
   return {
     valid: true,
-    data: { useCase, budget, pace, iconic, vibe, days, priorities: selectedPriorities }
+    data: { useCase, budget, pace, iconic, vibe, days, priorities: selectedPriorities },
   };
 }
 
 function renderResults(data: TripPayload): void {
-  const prioritiesLabel = data.priorities.length ? data.priorities.join(" + ") : "general highlights";
+  const prioritiesLabel = data.priorities.length
+    ? data.priorities.join(" + ")
+    : "general highlights";
   resultsSubtitle.textContent = `${capitalize(data.days + "-day")} ${labelForUseCase(
-    data.useCase
+    data.useCase,
   )} · ${data.vibe} tone · ${data.pace} pace · ${data.iconic} iconic intensity · ${prioritiesLabel} focus`;
 
   const hotels = buildHotels(data);
@@ -241,10 +237,12 @@ function renderResults(data: TripPayload): void {
 function buildHotels(data: TripPayload): Hotel[] {
   const directMatches = HOTEL_DATA.filter(
     (hotel) =>
-      hotel.vibe.includes(data.vibe) && hotel.budgets.includes(data.budget) && hotel.paces.includes(data.pace)
+      hotel.vibe.includes(data.vibe) &&
+      hotel.budgets.includes(data.budget) &&
+      hotel.paces.includes(data.pace),
   );
   const relaxedMatches = HOTEL_DATA.filter(
-    (hotel) => hotel.vibe.includes(data.vibe) && hotel.budgets.includes(data.budget)
+    (hotel) => hotel.vibe.includes(data.vibe) && hotel.budgets.includes(data.budget),
   );
   const fallback = HOTEL_DATA.filter((hotel) => hotel.budgets.includes(data.budget));
   const candidatePool = uniqueByName([...directMatches, ...relaxedMatches, ...fallback]);
@@ -252,7 +250,9 @@ function buildHotels(data: TripPayload): Hotel[] {
 }
 
 function buildItinerary(data: TripPayload): ItineraryDay[] {
-  const priorityPool = data.priorities.length ? data.priorities : ["culture", "architecture"] as ActivityCategory[];
+  const priorityPool = data.priorities.length
+    ? data.priorities
+    : (["culture", "architecture"] as ActivityCategory[]);
   const paceBlocks = data.pace === "slow" ? 2 : data.pace === "balanced" ? 3 : 4;
 
   return Array.from({ length: data.days }).map((_, index) => {
@@ -262,17 +262,21 @@ function buildItinerary(data: TripPayload): ItineraryDay[] {
     return {
       dayNumber,
       context: dayContext(dayNumber, data),
-      blocks: [...activities, ...MEAL_BLOCKS]
+      blocks: [...activities, ...MEAL_BLOCKS],
     };
   });
 }
 
-function pickActivityBlock(priority: ActivityCategory, count: number, iconic: IconicIntensity): string[] {
+function pickActivityBlock(
+  priority: ActivityCategory,
+  count: number,
+  iconic: IconicIntensity,
+): string[] {
   const base = [...(ACTIVITY_LIBRARY[priority] || ACTIVITY_LIBRARY.culture)];
   const iconicExtra: Record<IconicIntensity, string[]> = {
     low: [],
     medium: ["One iconic anchor slot"],
-    high: ["Two iconic anchor slots with timed entries"]
+    high: ["Two iconic anchor slots with timed entries"],
   };
   return [...base.slice(0, count), ...iconicExtra[iconic]].slice(0, 4);
 }
@@ -282,7 +286,7 @@ function dayContext(dayNumber: number, data: TripPayload): string {
     romantic: "romantic cadence",
     friends: "group momentum",
     family: "family-friendly timing",
-    solo: "solo discovery rhythm"
+    solo: "solo discovery rhythm",
   };
   return `Day ${dayNumber}: ${mode[data.useCase] || "city-break flow"} · max 45 min legs unless flagged`;
 }
@@ -351,7 +355,7 @@ function labelForUseCase(value: string): string {
     romantic: "romantic escape",
     friends: "friends weekend",
     family: "family break",
-    solo: "solo culture trip"
+    solo: "solo culture trip",
   };
   return map[value] || "city break";
 }
