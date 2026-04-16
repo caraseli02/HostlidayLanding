@@ -4,13 +4,13 @@
 
 ## Current State
 
-| Item | Value |
-|------|-------|
-| **Platform** | Vercel (auto-deploy via GitHub integration) |
-| **Production URL** | https://hostliday-landing.vercel.app |
-| **Repo** | `caraseli02/HostlidayLanding` (public) |
-| **Framework** | Vite + vite-plus, pnpm |
-| **CI** | GitHub Actions (`ci.yml`) — runs `pnpm build` on push/PR to main |
+| Item               | Value                                                            |
+| ------------------ | ---------------------------------------------------------------- |
+| **Platform**       | Vercel (auto-deploy via GitHub integration)                      |
+| **Production URL** | https://hostliday-landing.vercel.app                             |
+| **Repo**           | `caraseli02/HostlidayLanding` (public)                           |
+| **Framework**      | Vite + vite-plus, pnpm                                           |
+| **CI**             | GitHub Actions (`ci.yml`) — runs `pnpm build` on push/PR to main |
 
 ## Deployment Flow
 
@@ -44,14 +44,14 @@
 
 ## Gaps & Recommendations
 
-| # | Item | Status | Action |
-|---|------|--------|--------|
-| 1 | Vercel project ownership | ✅ Linked via `vercel[bot]` | Confirm Vlad has Vercel dashboard access to manage settings |
-| 2 | Preview deployments | ✅ Auto (Vercel default for PRs) | No action needed |
-| 3 | Custom domain | ❌ Not configured | Optional: add `hostliday.com` or subdomain when ready |
-| 4 | Build output directory | ✅ Defaults to `dist/` (Vite standard) | Verify in Vercel dashboard → Settings → Build |
-| 5 | Environment variables | ❓ Unknown | Check Vercel dashboard if any env vars are needed |
-| 6 | Deploy protection | ❓ Unknown | Consider enabling Vercel's "Deployment Protection" for non-production previews |
+| #   | Item                     | Status                                 | Action                                                                         |
+| --- | ------------------------ | -------------------------------------- | ------------------------------------------------------------------------------ |
+| 1   | Vercel project ownership | ✅ Linked via `vercel[bot]`            | Confirm Vlad has Vercel dashboard access to manage settings                    |
+| 2   | Preview deployments      | ✅ Auto (Vercel default for PRs)       | No action needed                                                               |
+| 3   | Custom domain            | ❌ Not configured                      | Optional: add `hostliday.com` or subdomain when ready                          |
+| 4   | Build output directory   | ✅ Defaults to `dist/` (Vite standard) | Verify in Vercel dashboard → Settings → Build                                  |
+| 5   | Environment variables    | ❓ Unknown                             | Check Vercel dashboard if any env vars are needed                              |
+| 6   | Deploy protection        | ❓ Unknown                             | Consider enabling Vercel's "Deployment Protection" for non-production previews |
 
 ## MVP Review Checklist
 

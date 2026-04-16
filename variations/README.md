@@ -8,7 +8,7 @@ Each concept uses a **different section skeleton**, **different hero framing**, 
 
 **Inspiration:** Intercom
 
-**Hero framing:** "Meet your planner" — personal, warm, the page *is* a conversation preview
+**Hero framing:** "Meet your planner" — personal, warm, the page _is_ a conversation preview
 
 **Section order:** Hero → Chat demo → Before/after comparison → Trust promises → CTA
 
@@ -54,15 +54,15 @@ Each concept uses a **different section skeleton**, **different hero framing**, 
 
 ## Structural Differences Summary
 
-| Dimension | Concept 1 (Intercom) | Concept 2 (Rippling) | Concept 3 (Ramp) |
-|---|---|---|---|
-| **Hero framing** | Personal introduction | Data dashboard | Bold imperative |
-| **Proof model** | Live chat demo | Metrics + pipeline + table | Competitive comparison |
-| **Section count** | 5 sections | 5 sections | 4 sections |
-| **Section order** | Chat → Comparison → Promises | Stats → Pipeline → Problems | Comparison → Authority |
-| **Conversion hook** | Emotional / experiential | Rational / systematic | Authoritative / decisive |
-| **Tone** | Warm, conversational | Structured, analytical | Bold, commanding |
-| **Dark/light** | Light (warm paper) | Light (clean surface) | Dark (premium) |
+| Dimension           | Concept 1 (Intercom)         | Concept 2 (Rippling)        | Concept 3 (Ramp)         |
+| ------------------- | ---------------------------- | --------------------------- | ------------------------ |
+| **Hero framing**    | Personal introduction        | Data dashboard              | Bold imperative          |
+| **Proof model**     | Live chat demo               | Metrics + pipeline + table  | Competitive comparison   |
+| **Section count**   | 5 sections                   | 5 sections                  | 4 sections               |
+| **Section order**   | Chat → Comparison → Promises | Stats → Pipeline → Problems | Comparison → Authority   |
+| **Conversion hook** | Emotional / experiential     | Rational / systematic       | Authoritative / decisive |
+| **Tone**            | Warm, conversational         | Structured, analytical      | Bold, commanding         |
+| **Dark/light**      | Light (warm paper)           | Light (clean surface)       | Dark (premium)           |
 
 ---
 
