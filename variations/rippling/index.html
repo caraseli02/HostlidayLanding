@@ -1,14 +1,17 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hostliday — Verified Travel Infrastructure</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet" />
-  <style>
-    /* ═══════════════════════════════════════
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hostliday — Verified Travel Infrastructure</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      /* ═══════════════════════════════════════
        CONCEPT 2: VERIFICATION INFRASTRUCTURE
        Strategy: Rippling-inspired system credibility.
        The page IS an audit report — data-rich, structured, system-first.
@@ -18,354 +21,578 @@
        Section order: Hero → Stats bar → How verification works → Problems solved → CTA
        Conversion logic: Rational credibility — "see the system, then test it"
        ═══════════════════════════════════════ */
-    :root {
-      --ink: #0f1729;
-      --red-core: #be0000;
-      --red-hot: #da0000;
-      --red-deep: #810000;
-      --ash: #5e6b7f;
-      --paper: #f8f9fb;
-      --surface: #ffffff;
-      --border: #e2e6ee;
-      --success: #12a34b;
-      --radius-lg: 16px;
-      --radius-md: 10px;
-      --radius-sm: 6px;
-      --max-width: 1160px;
-    }
+      :root {
+        --ink: #0f1729;
+        --red-core: #be0000;
+        --red-hot: #da0000;
+        --red-deep: #810000;
+        --ash: #5e6b7f;
+        --paper: #f8f9fb;
+        --surface: #ffffff;
+        --border: #e2e6ee;
+        --success: #12a34b;
+        --radius-lg: 16px;
+        --radius-md: 10px;
+        --radius-sm: 6px;
+        --max-width: 1160px;
+      }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-    html { scroll-behavior: smooth; }
-    body {
-      font-family: "Montserrat", sans-serif;
-      color: var(--ink); background: var(--paper); line-height: 1.6;
-    }
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        font-family: "Montserrat", sans-serif;
+        color: var(--ink);
+        background: var(--paper);
+        line-height: 1.6;
+      }
 
-    /* NAV */
-    .site-nav {
-      position: sticky; top: 0; z-index: 100;
-      background: var(--surface); border-bottom: 1px solid var(--border);
-    }
-    .nav-inner {
-      max-width: var(--max-width); margin: 0 auto; padding: 0 32px; height: 60px;
-      display: flex; justify-content: space-between; align-items: center;
-    }
-    .brand-lockup { display: flex; align-items: center; gap: 10px; }
-    .brand-mark {
-      width: 32px; height: 32px; border-radius: 8px;
-      background: var(--ink); color: #fff; font-weight: 800; font-size: 0.95rem;
-      display: grid; place-items: center;
-    }
-    .brand-name { font-weight: 700; font-size: 0.95rem; }
-    .brand-tag { font-size: 0.6rem; color: var(--ash); }
-    .nav-cta {
-      background: var(--ink); color: #fff;
-      padding: 8px 22px; border-radius: var(--radius-sm);
-      text-decoration: none; font-size: 0.82rem; font-weight: 600;
-    }
-    .nav-cta:hover { background: var(--red-core); }
+      /* NAV */
+      .site-nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+      }
+      .nav-inner {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        padding: 0 32px;
+        height: 60px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .brand-lockup {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .brand-mark {
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        background: var(--ink);
+        color: #fff;
+        font-weight: 800;
+        font-size: 0.95rem;
+        display: grid;
+        place-items: center;
+      }
+      .brand-name {
+        font-weight: 700;
+        font-size: 0.95rem;
+      }
+      .brand-tag {
+        font-size: 0.6rem;
+        color: var(--ash);
+      }
+      .nav-cta {
+        background: var(--ink);
+        color: #fff;
+        padding: 8px 22px;
+        border-radius: var(--radius-sm);
+        text-decoration: none;
+        font-size: 0.82rem;
+        font-weight: 600;
+      }
+      .nav-cta:hover {
+        background: var(--red-core);
+      }
 
-    /* HERO — Split: claim + data card */
-    .hero {
-      padding: 80px 32px 60px;
-      background: var(--surface); border-bottom: 1px solid var(--border);
-    }
-    .hero-inner {
-      max-width: var(--max-width); margin: 0 auto;
-      display: grid; grid-template-columns: 1fr 380px; gap: 60px;
-      align-items: center;
-    }
-    .eyebrow {
-      font-size: 0.68rem; letter-spacing: 0.15em; text-transform: uppercase;
-      font-weight: 700; color: var(--red-core);
-    }
-    .hero h1 {
-      font-size: clamp(1.8rem, 3.8vw, 2.8rem);
-      font-weight: 800; line-height: 1.12; margin-top: 10px;
-    }
-    .hero-sub {
-      font-size: 0.95rem; color: var(--ash); margin-top: 14px;
-      max-width: 480px; line-height: 1.65;
-    }
-    .hero-actions { margin-top: 24px; }
-    .btn-primary {
-      display: inline-block;
-      background: var(--red-core); color: #fff;
-      padding: 12px 28px; border-radius: var(--radius-sm);
-      text-decoration: none; font-weight: 600; font-size: 0.9rem;
-    }
-    .btn-primary:hover { background: var(--red-deep); }
+      /* HERO — Split: claim + data card */
+      .hero {
+        padding: 80px 32px 60px;
+        background: var(--surface);
+        border-bottom: 1px solid var(--border);
+      }
+      .hero-inner {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: 1fr 380px;
+        gap: 60px;
+        align-items: center;
+      }
+      .eyebrow {
+        font-size: 0.68rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        font-weight: 700;
+        color: var(--red-core);
+      }
+      .hero h1 {
+        font-size: clamp(1.8rem, 3.8vw, 2.8rem);
+        font-weight: 800;
+        line-height: 1.12;
+        margin-top: 10px;
+      }
+      .hero-sub {
+        font-size: 0.95rem;
+        color: var(--ash);
+        margin-top: 14px;
+        max-width: 480px;
+        line-height: 1.65;
+      }
+      .hero-actions {
+        margin-top: 24px;
+      }
+      .btn-primary {
+        display: inline-block;
+        background: var(--red-core);
+        color: #fff;
+        padding: 12px 28px;
+        border-radius: var(--radius-sm);
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 0.9rem;
+      }
+      .btn-primary:hover {
+        background: var(--red-deep);
+      }
 
-    /* Data card */
-    .data-card {
-      background: var(--paper); border: 1px solid var(--border);
-      border-radius: var(--radius-lg); padding: 28px;
-    }
-    .data-card-header {
-      display: flex; justify-content: space-between; align-items: center;
-      margin-bottom: 20px; padding-bottom: 14px; border-bottom: 1px solid var(--border);
-    }
-    .data-card-header h3 { font-size: 0.85rem; font-weight: 700; }
-    .data-card-header span {
-      font-size: 0.68rem; color: var(--success); font-weight: 600;
-      background: rgba(18,163,75,0.08); padding: 3px 10px; border-radius: 50px;
-    }
-    .data-row {
-      display: flex; justify-content: space-between; align-items: center;
-      padding: 10px 0; border-bottom: 1px solid var(--border);
-    }
-    .data-row:last-child { border-bottom: none; }
-    .data-label { font-size: 0.82rem; color: var(--ash); }
-    .data-value { font-size: 0.85rem; font-weight: 700; }
-    .data-value.verified { color: var(--success); }
+      /* Data card */
+      .data-card {
+        background: var(--paper);
+        border: 1px solid var(--border);
+        border-radius: var(--radius-lg);
+        padding: 28px;
+      }
+      .data-card-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+        padding-bottom: 14px;
+        border-bottom: 1px solid var(--border);
+      }
+      .data-card-header h3 {
+        font-size: 0.85rem;
+        font-weight: 700;
+      }
+      .data-card-header span {
+        font-size: 0.68rem;
+        color: var(--success);
+        font-weight: 600;
+        background: rgba(18, 163, 75, 0.08);
+        padding: 3px 10px;
+        border-radius: 50px;
+      }
+      .data-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 10px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .data-row:last-child {
+        border-bottom: none;
+      }
+      .data-label {
+        font-size: 0.82rem;
+        color: var(--ash);
+      }
+      .data-value {
+        font-size: 0.85rem;
+        font-weight: 700;
+      }
+      .data-value.verified {
+        color: var(--success);
+      }
 
-    /* STATS BAR — Quantitative proof */
-    .stats-bar { background: var(--ink); color: #fff; padding: 40px 32px; }
-    .stats-inner {
-      max-width: var(--max-width); margin: 0 auto;
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; text-align: center;
-    }
-    .stat-number {
-      font-size: clamp(1.8rem, 3.5vw, 2.6rem); font-weight: 800;
-      background: linear-gradient(135deg, var(--red-hot), #fff);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-    }
-    .stat-label { font-size: 0.78rem; color: rgba(255,255,255,0.6); margin-top: 4px; }
+      /* STATS BAR — Quantitative proof */
+      .stats-bar {
+        background: var(--ink);
+        color: #fff;
+        padding: 40px 32px;
+      }
+      .stats-inner {
+        max-width: var(--max-width);
+        margin: 0 auto;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 32px;
+        text-align: center;
+      }
+      .stat-number {
+        font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+        font-weight: 800;
+        background: linear-gradient(135deg, var(--red-hot), #fff);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+      }
+      .stat-label {
+        font-size: 0.78rem;
+        color: rgba(255, 255, 255, 0.6);
+        margin-top: 4px;
+      }
 
-    /* VERIFICATION PIPELINE — How the system works */
-    .pipeline-section { padding: 80px 32px; background: var(--surface); }
-    .pipeline-inner { max-width: var(--max-width); margin: 0 auto; }
-    .pipeline-inner .section-title {
-      font-size: clamp(1.4rem, 2.8vw, 2rem);
-      font-weight: 800; margin-top: 6px;
-    }
-    .pipeline-grid {
-      display: grid; grid-template-columns: repeat(4, 1fr); gap: 0;
-      margin-top: 44px;
-    }
-    .pipeline-step {
-      padding: 28px 20px; position: relative;
-      border: 1px solid var(--border);
-      border-right: none;
-    }
-    .pipeline-step:last-child { border-right: 1px solid var(--border); }
-    .pipeline-step .step-tag {
-      font-size: 0.62rem; font-weight: 700; letter-spacing: 0.12em;
-      text-transform: uppercase; color: var(--red-core);
-      margin-bottom: 10px;
-    }
-    .pipeline-step h3 { font-size: 0.92rem; font-weight: 700; margin-bottom: 6px; }
-    .pipeline-step p { font-size: 0.8rem; color: var(--ash); line-height: 1.55; }
-    .pipeline-step .status-line {
-      margin-top: 12px; display: flex; align-items: center; gap: 6px;
-      font-size: 0.72rem; font-weight: 600;
-    }
-    .status-dot {
-      width: 7px; height: 7px; border-radius: 50%;
-      background: var(--success);
-    }
-    .status-dot.warn { background: #e6a817; }
+      /* VERIFICATION PIPELINE — How the system works */
+      .pipeline-section {
+        padding: 80px 32px;
+        background: var(--surface);
+      }
+      .pipeline-inner {
+        max-width: var(--max-width);
+        margin: 0 auto;
+      }
+      .pipeline-inner .section-title {
+        font-size: clamp(1.4rem, 2.8vw, 2rem);
+        font-weight: 800;
+        margin-top: 6px;
+      }
+      .pipeline-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0;
+        margin-top: 44px;
+      }
+      .pipeline-step {
+        padding: 28px 20px;
+        position: relative;
+        border: 1px solid var(--border);
+        border-right: none;
+      }
+      .pipeline-step:last-child {
+        border-right: 1px solid var(--border);
+      }
+      .pipeline-step .step-tag {
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--red-core);
+        margin-bottom: 10px;
+      }
+      .pipeline-step h3 {
+        font-size: 0.92rem;
+        font-weight: 700;
+        margin-bottom: 6px;
+      }
+      .pipeline-step p {
+        font-size: 0.8rem;
+        color: var(--ash);
+        line-height: 1.55;
+      }
+      .pipeline-step .status-line {
+        margin-top: 12px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-size: 0.72rem;
+        font-weight: 600;
+      }
+      .status-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: var(--success);
+      }
+      .status-dot.warn {
+        background: #e6a817;
+      }
 
-    /* PROBLEMS TABLE — Structured analysis */
-    .problems-section { padding: 80px 32px; }
-    .problems-inner { max-width: var(--max-width); margin: 0 auto; }
-    .problems-inner .section-title {
-      font-size: clamp(1.4rem, 2.8vw, 2rem);
-      font-weight: 800; margin-top: 6px;
-    }
-    .problems-table { margin-top: 36px; }
-    .problem-row {
-      display: grid; grid-template-columns: 1fr 1fr 160px;
-      gap: 20px; align-items: center;
-      padding: 20px 0; border-bottom: 1px solid var(--border);
-    }
-    .problem-row:first-child { border-top: 1px solid var(--border); }
-    .problem-row h3 { font-size: 0.92rem; font-weight: 700; margin-bottom: 3px; }
-    .problem-row p { font-size: 0.8rem; color: var(--ash); }
-    .solution-tag {
-      text-align: right;
-      font-size: 0.78rem; font-weight: 700; padding: 4px 12px;
-      border-radius: var(--radius-sm); display: inline-block;
-    }
-    .solution-tag.source { color: var(--success); background: rgba(18,163,75,0.08); }
-    .solution-tag.fresh { color: var(--red-core); background: rgba(190,0,0,0.06); }
-    .solution-tag.match { color: var(--ink); background: rgba(15,23,41,0.06); }
+      /* PROBLEMS TABLE — Structured analysis */
+      .problems-section {
+        padding: 80px 32px;
+      }
+      .problems-inner {
+        max-width: var(--max-width);
+        margin: 0 auto;
+      }
+      .problems-inner .section-title {
+        font-size: clamp(1.4rem, 2.8vw, 2rem);
+        font-weight: 800;
+        margin-top: 6px;
+      }
+      .problems-table {
+        margin-top: 36px;
+      }
+      .problem-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr 160px;
+        gap: 20px;
+        align-items: center;
+        padding: 20px 0;
+        border-bottom: 1px solid var(--border);
+      }
+      .problem-row:first-child {
+        border-top: 1px solid var(--border);
+      }
+      .problem-row h3 {
+        font-size: 0.92rem;
+        font-weight: 700;
+        margin-bottom: 3px;
+      }
+      .problem-row p {
+        font-size: 0.8rem;
+        color: var(--ash);
+      }
+      .solution-tag {
+        text-align: right;
+        font-size: 0.78rem;
+        font-weight: 700;
+        padding: 4px 12px;
+        border-radius: var(--radius-sm);
+        display: inline-block;
+      }
+      .solution-tag.source {
+        color: var(--success);
+        background: rgba(18, 163, 75, 0.08);
+      }
+      .solution-tag.fresh {
+        color: var(--red-core);
+        background: rgba(190, 0, 0, 0.06);
+      }
+      .solution-tag.match {
+        color: var(--ink);
+        background: rgba(15, 23, 41, 0.06);
+      }
 
-    /* CTA */
-    .cta-section {
-      padding: 80px 32px; text-align: center;
-      background: linear-gradient(135deg, var(--red-deep), var(--red-core)); color: #fff;
-    }
-    .cta-section h2 { font-size: clamp(1.5rem, 3vw, 2.2rem); font-weight: 800; margin-bottom: 10px; }
-    .cta-section p { opacity: 0.85; margin-bottom: 24px; }
-    .cta-section .btn-primary { background: #fff; color: var(--red-core); }
+      /* CTA */
+      .cta-section {
+        padding: 80px 32px;
+        text-align: center;
+        background: linear-gradient(135deg, var(--red-deep), var(--red-core));
+        color: #fff;
+      }
+      .cta-section h2 {
+        font-size: clamp(1.5rem, 3vw, 2.2rem);
+        font-weight: 800;
+        margin-bottom: 10px;
+      }
+      .cta-section p {
+        opacity: 0.85;
+        margin-bottom: 24px;
+      }
+      .cta-section .btn-primary {
+        background: #fff;
+        color: var(--red-core);
+      }
 
-    /* FOOTER */
-    .site-footer {
-      padding: 32px; text-align: center;
-      background: var(--ink); color: rgba(255,255,255,0.4); font-size: 0.75rem;
-    }
+      /* FOOTER */
+      .site-footer {
+        padding: 32px;
+        text-align: center;
+        background: var(--ink);
+        color: rgba(255, 255, 255, 0.4);
+        font-size: 0.75rem;
+      }
 
-    @media (max-width: 768px) {
-      .hero-inner { grid-template-columns: 1fr; }
-      .stats-inner { grid-template-columns: 1fr 1fr; }
-      .pipeline-grid { grid-template-columns: 1fr; }
-      .pipeline-step { border-right: 1px solid var(--border); border-bottom: none; }
-      .pipeline-step:last-child { border-bottom: 1px solid var(--border); }
-      .problem-row { grid-template-columns: 1fr; }
-      .solution-tag { text-align: left; }
-    }
-  </style>
-</head>
-<body>
-  <nav class="site-nav">
-    <div class="nav-inner">
-      <div class="brand-lockup">
-        <span class="brand-mark">H</span>
-        <div><p class="brand-name">Hostliday</p><p class="brand-tag">Experiences, adventures, and stays</p></div>
-      </div>
-      <a href="#demo" class="nav-cta">Try the demo</a>
-    </div>
-  </nav>
-
-  <main>
-    <!-- ═══ HERO: Claim + live verification card ═══ -->
-    <section class="hero">
-      <div class="hero-inner">
-        <div>
-          <p class="eyebrow">Barcelona Specialist</p>
-          <h1>Travel recommendations backed by verified data.</h1>
-          <p class="hero-sub">Every hotel, every activity — source-checked, freshness-tagged, and matched to your exact preferences. See the system at work.</p>
-          <div class="hero-actions">
-            <a href="#demo" class="btn-primary">Try the demo</a>
+      @media (max-width: 768px) {
+        .hero-inner {
+          grid-template-columns: 1fr;
+        }
+        .stats-inner {
+          grid-template-columns: 1fr 1fr;
+        }
+        .pipeline-grid {
+          grid-template-columns: 1fr;
+        }
+        .pipeline-step {
+          border-right: 1px solid var(--border);
+          border-bottom: none;
+        }
+        .pipeline-step:last-child {
+          border-bottom: 1px solid var(--border);
+        }
+        .problem-row {
+          grid-template-columns: 1fr;
+        }
+        .solution-tag {
+          text-align: left;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav class="site-nav">
+      <div class="nav-inner">
+        <div class="brand-lockup">
+          <span class="brand-mark">H</span>
+          <div>
+            <p class="brand-name">Hostliday</p>
+            <p class="brand-tag">Experiences, adventures, and stays</p>
           </div>
         </div>
-        <div class="data-card">
-          <div class="data-card-header">
-            <h3>Live Verification Status</h3>
-            <span>✓ All verified</span>
+        <a href="#demo" class="nav-cta">Try the demo</a>
+      </div>
+    </nav>
+
+    <main>
+      <!-- ═══ HERO: Claim + live verification card ═══ -->
+      <section class="hero">
+        <div class="hero-inner">
+          <div>
+            <p class="eyebrow">Barcelona Specialist</p>
+            <h1>Travel recommendations backed by verified data.</h1>
+            <p class="hero-sub">
+              Every hotel, every activity — source-checked, freshness-tagged, and matched to your
+              exact preferences. See the system at work.
+            </p>
+            <div class="hero-actions">
+              <a href="#demo" class="btn-primary">Try the demo</a>
+            </div>
           </div>
-          <div class="data-row">
-            <span class="data-label">Hotel 1898</span>
-            <span class="data-value verified">Verified 2d ago</span>
-          </div>
-          <div class="data-row">
-            <span class="data-label">Gothic Quarter Walk</span>
-            <span class="data-value verified">Verified 1d ago</span>
-          </div>
-          <div class="data-row">
-            <span class="data-label">Barceloneta Beach</span>
-            <span class="data-value verified">Verified 5d ago</span>
-          </div>
-          <div class="data-row">
-            <span class="data-label">La Boqueria</span>
-            <span class="data-value verified">Verified 3d ago</span>
-          </div>
-          <div class="data-row">
-            <span class="data-label">Cal Pep</span>
-            <span class="data-value verified">Verified 1d ago</span>
+          <div class="data-card">
+            <div class="data-card-header">
+              <h3>Live Verification Status</h3>
+              <span>✓ All verified</span>
+            </div>
+            <div class="data-row">
+              <span class="data-label">Hotel 1898</span>
+              <span class="data-value verified">Verified 2d ago</span>
+            </div>
+            <div class="data-row">
+              <span class="data-label">Gothic Quarter Walk</span>
+              <span class="data-value verified">Verified 1d ago</span>
+            </div>
+            <div class="data-row">
+              <span class="data-label">Barceloneta Beach</span>
+              <span class="data-value verified">Verified 5d ago</span>
+            </div>
+            <div class="data-row">
+              <span class="data-label">La Boqueria</span>
+              <span class="data-value verified">Verified 3d ago</span>
+            </div>
+            <div class="data-row">
+              <span class="data-label">Cal Pep</span>
+              <span class="data-value verified">Verified 1d ago</span>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ═══ STATS: Quantitative system proof ═══ -->
-    <section class="stats-bar">
-      <div class="stats-inner">
-        <div><div class="stat-number">100%</div><div class="stat-label">Source-backed recommendations</div></div>
-        <div><div class="stat-number">&lt;48h</div><div class="stat-label">Average freshness window</div></div>
-        <div><div class="stat-number">5</div><div class="stat-label">Verification checks per pick</div></div>
-        <div><div class="stat-number">0</div><div class="stat-label">Unsourced recommendations</div></div>
-      </div>
-    </section>
-
-    <!-- ═══ VERIFICATION PIPELINE: How the system works ═══ -->
-    <section class="pipeline-section">
-      <div class="pipeline-inner">
-        <p class="eyebrow">Verification pipeline</p>
-        <h2 class="section-title">Every pick goes through four checks.</h2>
-        <div class="pipeline-grid">
-          <div class="pipeline-step">
-            <p class="step-tag">Input</p>
-            <h3>Define preferences</h3>
-            <p>Companions, days, budget, pace, priorities — real inputs, not vague filters.</p>
-            <div class="status-line"><span class="status-dot"></span> User-provided</div>
+      <!-- ═══ STATS: Quantitative system proof ═══ -->
+      <section class="stats-bar">
+        <div class="stats-inner">
+          <div>
+            <div class="stat-number">100%</div>
+            <div class="stat-label">Source-backed recommendations</div>
           </div>
-          <div class="pipeline-step">
-            <p class="step-tag">Source check</p>
-            <h3>Verify against sources</h3>
-            <p>Each candidate is cross-referenced with booking platforms, review sites, and local guides.</p>
-            <div class="status-line"><span class="status-dot"></span> Auto-verified</div>
+          <div>
+            <div class="stat-number">&lt;48h</div>
+            <div class="stat-label">Average freshness window</div>
           </div>
-          <div class="pipeline-step">
-            <p class="step-tag">Freshness</p>
-            <h3>Timestamp verification</h3>
-            <p>Every source gets a freshness stamp. If data is stale, it's flagged and re-checked.</p>
-            <div class="status-line"><span class="status-dot warn"></span> Continuous</div>
+          <div>
+            <div class="stat-number">5</div>
+            <div class="stat-label">Verification checks per pick</div>
           </div>
-          <div class="pipeline-step">
-            <p class="step-tag">Output</p>
-            <h3>Matched, reasoned plan</h3>
-            <p>Final picks include why they fit your trip. Full transparency, no black box.</p>
-            <div class="status-line"><span class="status-dot"></span> Delivered</div>
+          <div>
+            <div class="stat-number">0</div>
+            <div class="stat-label">Unsourced recommendations</div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- ═══ PROBLEMS TABLE: Structured problem → solution ═══ -->
-    <section class="problems-section">
-      <div class="problems-inner">
-        <p class="eyebrow">Problem analysis</p>
-        <h2 class="section-title">Three failures in travel planning — and how we fix each.</h2>
-        <div class="problems-table">
-          <div class="problem-row">
-            <div>
-              <h3>30 tabs, zero confidence</h3>
-              <p>Cross-referencing blogs, reviews, and OTAs because nothing is reliable on its own.</p>
+      <!-- ═══ VERIFICATION PIPELINE: How the system works ═══ -->
+      <section class="pipeline-section">
+        <div class="pipeline-inner">
+          <p class="eyebrow">Verification pipeline</p>
+          <h2 class="section-title">Every pick goes through four checks.</h2>
+          <div class="pipeline-grid">
+            <div class="pipeline-step">
+              <p class="step-tag">Input</p>
+              <h3>Define preferences</h3>
+              <p>Companions, days, budget, pace, priorities — real inputs, not vague filters.</p>
+              <div class="status-line"><span class="status-dot"></span> User-provided</div>
             </div>
-            <div>
-              <h3>Pre-verified sources</h3>
-              <p>Every recommendation links to its source. You don't have to verify — we already did.</p>
+            <div class="pipeline-step">
+              <p class="step-tag">Source check</p>
+              <h3>Verify against sources</h3>
+              <p>
+                Each candidate is cross-referenced with booking platforms, review sites, and local
+                guides.
+              </p>
+              <div class="status-line"><span class="status-dot"></span> Auto-verified</div>
             </div>
-            <div><span class="solution-tag source">Source verification</span></div>
-          </div>
-          <div class="problem-row">
-            <div>
-              <h3>Stale and fake reviews</h3>
-              <p>Hotels praised 18 months ago may have changed hands. No platform shows freshness dates.</p>
+            <div class="pipeline-step">
+              <p class="step-tag">Freshness</p>
+              <h3>Timestamp verification</h3>
+              <p>
+                Every source gets a freshness stamp. If data is stale, it's flagged and re-checked.
+              </p>
+              <div class="status-line"><span class="status-dot warn"></span> Continuous</div>
             </div>
-            <div>
-              <h3>Timestamped freshness</h3>
-              <p>Every pick shows when it was last checked. Stale data is flagged, not hidden.</p>
+            <div class="pipeline-step">
+              <p class="step-tag">Output</p>
+              <h3>Matched, reasoned plan</h3>
+              <p>Final picks include why they fit your trip. Full transparency, no black box.</p>
+              <div class="status-line"><span class="status-dot"></span> Delivered</div>
             </div>
-            <div><span class="solution-tag fresh">Freshness checks</span></div>
-          </div>
-          <div class="problem-row">
-            <div>
-              <h3>Generic, not personal</h3>
-              <p>"Top 10" lists ignore your pace, budget, and vibe. Noise instead of signal.</p>
-            </div>
-            <div>
-              <h3>Preference-matched output</h3>
-              <p>Your inputs shape every recommendation. Each pick explains why it fits your trip.</p>
-            </div>
-            <div><span class="solution-tag match">Preference matching</span></div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- CTA -->
-    <section class="cta-section" id="demo">
-      <h2>Test the verification system</h2>
-      <p>Try the Barcelona demo — real data, real sources, real freshness stamps.</p>
-      <a href="../index.html#demo" class="btn-primary">Try the demo</a>
-    </section>
+      <!-- ═══ PROBLEMS TABLE: Structured problem → solution ═══ -->
+      <section class="problems-section">
+        <div class="problems-inner">
+          <p class="eyebrow">Problem analysis</p>
+          <h2 class="section-title">Three failures in travel planning — and how we fix each.</h2>
+          <div class="problems-table">
+            <div class="problem-row">
+              <div>
+                <h3>30 tabs, zero confidence</h3>
+                <p>
+                  Cross-referencing blogs, reviews, and OTAs because nothing is reliable on its own.
+                </p>
+              </div>
+              <div>
+                <h3>Pre-verified sources</h3>
+                <p>
+                  Every recommendation links to its source. You don't have to verify — we already
+                  did.
+                </p>
+              </div>
+              <div><span class="solution-tag source">Source verification</span></div>
+            </div>
+            <div class="problem-row">
+              <div>
+                <h3>Stale and fake reviews</h3>
+                <p>
+                  Hotels praised 18 months ago may have changed hands. No platform shows freshness
+                  dates.
+                </p>
+              </div>
+              <div>
+                <h3>Timestamped freshness</h3>
+                <p>Every pick shows when it was last checked. Stale data is flagged, not hidden.</p>
+              </div>
+              <div><span class="solution-tag fresh">Freshness checks</span></div>
+            </div>
+            <div class="problem-row">
+              <div>
+                <h3>Generic, not personal</h3>
+                <p>"Top 10" lists ignore your pace, budget, and vibe. Noise instead of signal.</p>
+              </div>
+              <div>
+                <h3>Preference-matched output</h3>
+                <p>
+                  Your inputs shape every recommendation. Each pick explains why it fits your trip.
+                </p>
+              </div>
+              <div><span class="solution-tag match">Preference matching</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-    <footer class="site-footer">
-      Hostliday · Barcelona Specialist · Trust-First Planning · Demo Version
-    </footer>
-  </main>
-</body>
+      <!-- CTA -->
+      <section class="cta-section" id="demo">
+        <h2>Test the verification system</h2>
+        <p>Try the Barcelona demo — real data, real sources, real freshness stamps.</p>
+        <a href="../index.html#demo" class="btn-primary">Try the demo</a>
+      </section>
+
+      <footer class="site-footer">
+        Hostliday · Barcelona Specialist · Trust-First Planning · Demo Version
+      </footer>
+    </main>
+  </body>
 </html>

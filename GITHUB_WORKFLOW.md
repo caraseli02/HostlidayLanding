@@ -11,13 +11,14 @@
 
 **Trunk-based development (simple):**
 
-| Branch | Purpose |
-|--------|---------|
-| `main` | Production-ready code. Protected. |
+| Branch   | Purpose                                       |
+| -------- | --------------------------------------------- |
+| `main`   | Production-ready code. Protected.             |
 | `feat/*` | Feature branches (e.g. `feat/cta-refinement`) |
-| `fix/*` | Bug fixes |
+| `fix/*`  | Bug fixes                                     |
 
 **Rules:**
+
 - All changes go through feature branches → PR → `main`
 - Direct push to `main` is disabled (GitHub setting)
 - Feature branches are deleted after merge
@@ -28,12 +29,14 @@
 Navigate to **Settings → General** in the GitHub repo:
 
 ### Branch Protection (main)
+
 - ✅ Require a pull request before merging
 - ✅ Require approvals (1 reviewer — fine to bypass for solo work)
 - ✅ Require status checks to pass (once CI is set up)
 - ✅ Require linear history (clean merge commits)
 
 ### General
+
 - ✅ Automatically delete head branches
 - ✅ Allow squash merging (preferred) + merge commits
 - ❌ Do not allow rebase merging (keeps it simple)
@@ -72,6 +75,7 @@ jobs:
 ```
 
 **What it does:**
+
 - Installs deps, builds, and runs checks on every PR and push to main
 - Catches build errors and lint issues before they land
 
@@ -122,16 +126,19 @@ jobs:
 ```
 
 **Setup steps:**
+
 1. Go to **Settings → Pages**
 2. Source: **GitHub Actions**
 3. Push the workflow file — deploys automatically on merge to `main`
 
 **Alternative options** (if custom domain needed):
+
 - **Cloudflare Pages** — free, automatic, custom domains, fast CDN
 - **Vercel** — free tier, auto-deploys from GitHub, preview URLs per PR
 - **Netlify** — similar to Vercel, good for static sites
 
 ### Custom Domain (optional)
+
 1. Add `CNAME` file to `dist/` via Vite config:
    ```ts
    // vite.config.ts
@@ -139,8 +146,10 @@ jobs:
      // ...existing config
      build: {
        rollupOptions: {
-         output: { /* existing */ }
-       }
+         output: {
+           /* existing */
+         },
+       },
      },
      // Serve CNAME from public/
    });

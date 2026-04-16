@@ -36,9 +36,9 @@
             <p class="eyebrow">Barcelona specialist</p>
             <h1>Trip planning backed by visible verification.</h1>
             <p class="hero-sub">
-              Hostliday turns Barcelona planning into a trust system. Every recommendation ships with
-              source links, freshness timestamps, verification state, and match reasoning, so you can
-              inspect the plan before you trust it.
+              Hostliday turns Barcelona planning into a trust system. Every recommendation ships
+              with source links, freshness timestamps, verification state, and match reasoning, so
+              you can inspect the plan before you trust it.
             </p>
             <div class="hero-actions">
               <a href="#demo" class="btn-primary">Try the demo</a>
@@ -99,25 +99,37 @@
             <article class="pipeline-step">
               <p class="step-tag">Step 1</p>
               <h3>Collect the real planning inputs</h3>
-              <p>Trip shape, budget, pace, vibe, and priorities define the search space before recommendations appear.</p>
+              <p>
+                Trip shape, budget, pace, vibe, and priorities define the search space before
+                recommendations appear.
+              </p>
               <div class="status-line"><span class="status-dot"></span> Structured input</div>
             </article>
             <article class="pipeline-step">
               <p class="step-tag">Step 2</p>
               <h3>Cross-check candidate recommendations</h3>
-              <p>Hotels and activities are evaluated against live sources instead of being presented as unsupported suggestions.</p>
+              <p>
+                Hotels and activities are evaluated against live sources instead of being presented
+                as unsupported suggestions.
+              </p>
               <div class="status-line"><span class="status-dot"></span> Source-linked</div>
             </article>
             <article class="pipeline-step">
               <p class="step-tag">Step 3</p>
               <h3>Assign confidence and freshness</h3>
-              <p>Each recommendation gets a visible state, timestamp, and clear handling when confidence drops.</p>
+              <p>
+                Each recommendation gets a visible state, timestamp, and clear handling when
+                confidence drops.
+              </p>
               <div class="status-line"><span class="status-dot warn"></span> Freshness-aware</div>
             </article>
             <article class="pipeline-step">
               <p class="step-tag">Step 4</p>
               <h3>Deliver a paced, explainable plan</h3>
-              <p>The output combines verified stays with a day-by-day itinerary that explains why each choice belongs.</p>
+              <p>
+                The output combines verified stays with a day-by-day itinerary that explains why
+                each choice belongs.
+              </p>
               <div class="status-line"><span class="status-dot"></span> Reasoned output</div>
             </article>
           </div>
@@ -158,7 +170,10 @@
               <p class="eyebrow">System demo</p>
               <h2 class="section-title">Test the planner, then inspect the output yourself.</h2>
             </div>
-            <p class="demo-kicker">This is a working prototype for Barcelona-only trip planning. The form stays structured so the recommendations can stay explainable.</p>
+            <p class="demo-kicker">
+              This is a working prototype for Barcelona-only trip planning. The form stays
+              structured so the recommendations can stay explainable.
+            </p>
           </div>
 
           <div class="app-shell" id="appShell">
@@ -225,10 +240,21 @@
                   <fieldset class="field-row field-row-gap">
                     <legend>Stay vibe</legend>
                     <div class="chip-group" id="vibeGroup">
-                      <label><input type="radio" name="vibeTag" value="intimate boutique" required /> Intimate boutique</label>
-                      <label><input type="radio" name="vibeTag" value="luxury spa" /> Luxury spa</label>
-                      <label><input type="radio" name="vibeTag" value="scenic rooftop" /> Scenic rooftop</label>
-                      <label><input type="radio" name="vibeTag" value="quiet old-town charm" /> Quiet old-town charm</label>
+                      <label
+                        ><input type="radio" name="vibeTag" value="intimate boutique" required />
+                        Intimate boutique</label
+                      >
+                      <label
+                        ><input type="radio" name="vibeTag" value="luxury spa" /> Luxury spa</label
+                      >
+                      <label
+                        ><input type="radio" name="vibeTag" value="scenic rooftop" /> Scenic
+                        rooftop</label
+                      >
+                      <label
+                        ><input type="radio" name="vibeTag" value="quiet old-town charm" /> Quiet
+                        old-town charm</label
+                      >
                     </div>
                   </fieldset>
 
@@ -236,24 +262,41 @@
                     <legend>Focus priorities (choose up to 2)</legend>
                     <div class="chip-group" id="priorityGroup">
                       <label><input type="checkbox" name="priority" value="food" /> Food</label>
-                      <label><input type="checkbox" name="priority" value="culture" /> Culture</label>
-                      <label><input type="checkbox" name="priority" value="architecture" /> Architecture</label>
-                      <label><input type="checkbox" name="priority" value="nightlife" /> Nightlife</label>
-                      <label><input type="checkbox" name="priority" value="wellness" /> Wellness</label>
+                      <label
+                        ><input type="checkbox" name="priority" value="culture" /> Culture</label
+                      >
+                      <label
+                        ><input type="checkbox" name="priority" value="architecture" />
+                        Architecture</label
+                      >
+                      <label
+                        ><input type="checkbox" name="priority" value="nightlife" />
+                        Nightlife</label
+                      >
+                      <label
+                        ><input type="checkbox" name="priority" value="wellness" /> Wellness</label
+                      >
                     </div>
                   </fieldset>
                 </div>
 
                 <div class="cta-row">
                   <button type="submit" class="btn-primary btn-full">Try the demo</button>
-                  <p class="validation-copy" id="formValidation" role="alert" aria-live="polite"></p>
+                  <p
+                    class="validation-copy"
+                    id="formValidation"
+                    role="alert"
+                    aria-live="polite"
+                  ></p>
                 </div>
               </form>
             </section>
 
             <section class="screen" id="screenResults" aria-labelledby="resultsTitle" hidden>
               <div class="results-head">
-                <button type="button" class="btn-ghost" id="editTripButton">← Edit trip inputs</button>
+                <button type="button" class="btn-ghost" id="editTripButton">
+                  ← Edit trip inputs
+                </button>
                 <div>
                   <p class="eyebrow">Generated plan</p>
                   <h2 id="resultsTitle">Your verified Barcelona plan</h2>
@@ -285,7 +328,9 @@
 
       <footer class="site-footer">
         <div class="footer-inner">
-          <p class="footer-note">Hostliday · Barcelona-only verified trip planning · Source-backed demo</p>
+          <p class="footer-note">
+            Hostliday · Barcelona-only verified trip planning · Source-backed demo
+          </p>
         </div>
       </footer>
     </main>
@@ -317,6 +362,6 @@
       </article>
     </template>
 
-    <script type="module" src="/src/main.js"></script>
+    <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

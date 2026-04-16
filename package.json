@@ -7,9 +7,14 @@
     "dev": "vp dev",
     "build": "vp build",
     "preview": "vp preview",
-    "check": "vp check"
+    "check": "vp fmt --check && vp lint && tsc --noEmit",
+    "typecheck": "tsc --noEmit",
+    "lint": "vp lint",
+    "fmt": "vp fmt",
+    "fmt:check": "vp fmt --check"
   },
   "devDependencies": {
+    "typescript": "^5.8.0",
     "vite": "catalog:",
     "vite-plus": "catalog:"
   },

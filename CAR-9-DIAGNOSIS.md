@@ -21,18 +21,23 @@ Before proposing improvements, here's what the strategy missed across all concep
 ## Diagnosis — Why Concepts Still Miss Production Quality
 
 ### 1. Trust is claimed, not demonstrated
+
 All concepts describe verification ("source-backed," "100% verified") but never show a verification badge in context above the fold. The verification UI is buried inside the demo form.
 
 ### 2. The wedge is described, not demonstrated
+
 Every concept leads with headline + subhead + CTA — same as any SaaS page. None lead with the product's distinctive visual language (verification badges, freshness stamps).
 
 ### 3. Page architecture doesn't solve real conversion objections
+
 The real objection: "I've seen AI travel planners before and they're all the same." No concept addresses this head-on.
 
 ### 4. Generic AI-startup feel, not premium travel
+
 Text-heavy, card-heavy, no Barcelona specificity, no warmth. The brandbook says "premium, warm, refined" — the concepts say "startup with a red CTA."
 
 ### 5. Demo is a separate destination, not part of the story
+
 All concepts link to the demo instead of embedding it in the narrative flow.
 
 ---
@@ -62,6 +67,7 @@ All concepts link to the demo instead of embedding it in the narrative flow.
 6. **Footer:** Barcelona neighborhoods as atmosphere
 
 ### What changed from CAR-9 Run 1:
+
 - Added explicit objection handling ("Why not just Google it?")
 - Named alternatives directly (Google, ChatGPT)
 - Added credibility section with metrics and founder statement
@@ -83,6 +89,7 @@ All concepts link to the demo instead of embedding it in the narrative flow.
 **What to test:** Ship, measure click-through on "Try the demo," and watch if visitors interact with the proof card. If they do, the wedge is working. If they don't, the proof card isn't compelling enough and needs real product screenshots instead of HTML mockups.
 
 **Next iteration should consider:**
+
 - Replace HTML proof card with actual product screenshot
 - Add real testimonials once users exist
 - A/B test the objection section headline

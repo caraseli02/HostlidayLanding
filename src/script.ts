@@ -1,18 +1,57 @@
-const form = document.getElementById("tripForm");
-const daysReadout = document.getElementById("daysReadout");
-const daysInput = document.getElementById("tripDays");
-const validationNode = document.getElementById("formValidation");
-const screenInput = document.getElementById("screenInput");
-const screenResults = document.getElementById("screenResults");
-const editTripButton = document.getElementById("editTripButton");
-const resultsSubtitle = document.getElementById("resultsSubtitle");
-const hotelList = document.getElementById("hotelList");
-const itineraryList = document.getElementById("itineraryList");
+type HotelStatus = "verified today" | "verified within 7 days" | "stale" | "unverified";
+type Pace = "slow" | "balanced" | "packed";
+type Budget = "value" | "comfort" | "premium" | "luxury";
+type IconicIntensity = "low" | "medium" | "high";
+type ActivityCategory = "culture" | "food" | "architecture" | "nightlife" | "wellness";
+type VibeTag = "scenic rooftop" | "intimate boutique" | "luxury spa" | "quiet old-town charm";
 
-const hotelTemplate = document.getElementById("hotelCardTemplate");
-const dayTemplate = document.getElementById("dayCardTemplate");
+interface Hotel {
+  name: string;
+  neighborhood: string;
+  vibe: VibeTag[];
+  budgets: Budget[];
+  paces: Pace[];
+  status: HotelStatus;
+  why: string;
+  freshness: string;
+  source: string;
+  sourceUrl: string;
+  booking: string;
+}
 
-const HOTEL_DATA = [
+interface TripPayload {
+  useCase: string;
+  budget: Budget;
+  pace: Pace;
+  iconic: IconicIntensity;
+  vibe: VibeTag;
+  days: number;
+  priorities: ActivityCategory[];
+}
+
+interface ItineraryDay {
+  dayNumber: number;
+  context: string;
+  blocks: string[];
+}
+
+type FormResult = { valid: false; error: string } | { valid: true; data: TripPayload };
+
+const form = document.getElementById("tripForm") as HTMLFormElement;
+const daysReadout = document.getElementById("daysReadout")!;
+const daysInput = document.getElementById("tripDays") as HTMLInputElement;
+const validationNode = document.getElementById("formValidation")!;
+const screenInput = document.getElementById("screenInput")!;
+const screenResults = document.getElementById("screenResults")!;
+const editTripButton = document.getElementById("editTripButton")!;
+const resultsSubtitle = document.getElementById("resultsSubtitle")!;
+const hotelList = document.getElementById("hotelList")!;
+const itineraryList = document.getElementById("itineraryList")!;
+
+const hotelTemplate = document.getElementById("hotelCardTemplate") as HTMLTemplateElement;
+const dayTemplate = document.getElementById("dayCardTemplate") as HTMLTemplateElement;
+
+const HOTEL_DATA: Hotel[] = [
   {
     name: "Hotel Neri Relais",
     neighborhood: "Gothic Quarter",
@@ -24,7 +63,7 @@ const HOTEL_DATA = [
     freshness: "Checked 3 hours ago",
     source: "hotelneri.com",
     sourceUrl: "https://www.hotelneri.com/",
-    booking: "https://www.booking.com/"
+    booking: "https://www.booking.com/",
   },
   {
     name: "H10 Casa Mimosa",
@@ -37,7 +76,7 @@ const HOTEL_DATA = [
     freshness: "Checked 2 days ago",
     source: "h10hotels.com",
     sourceUrl: "https://www.h10hotels.com/",
-    booking: "https://www.booking.com/"
+    booking: "https://www.booking.com/",
   },
   {
     name: "Yurbban Passage Hotel & Spa",
@@ -50,7 +89,7 @@ const HOTEL_DATA = [
     freshness: "Checked 5 days ago",
     source: "yurbbanpassage.com",
     sourceUrl: "https://www.yurbbanpassage.com/",
-    booking: "https://www.booking.com/"
+    booking: "https://www.booking.com/",
   },
   {
     name: "Room Mate Carla",
@@ -63,7 +102,7 @@ const HOTEL_DATA = [
     freshness: "Checked 12 days ago",
     source: "room-matehotels.com",
     sourceUrl: "https://room-matehotels.com/",
-    booking: "https://www.booking.com/"
+    booking: "https://www.booking.com/",
   },
   {
     name: "Hotel Rec Barcelona",
@@ -76,39 +115,35 @@ const HOTEL_DATA = [
     freshness: "Not verified",
     source: "hotelrecbarcelona.com",
     sourceUrl: "https://www.hotelrecbarcelona.com/",
-    booking: "https://www.booking.com/"
-  }
+    booking: "https://www.booking.com/",
+  },
 ];
 
-const ACTIVITY_LIBRARY = {
+const ACTIVITY_LIBRARY: Record<ActivityCategory, string[]> = {
   culture: [
     "Picasso Museum timed entry",
     "Roman wall and Gothic lanes walk",
-    "Catalan music venue evening"
+    "Catalan music venue evening",
   ],
   food: [
     "Market tasting block in El Born",
     "Long lunch with local tapas route",
-    "Chef-led dinner in Eixample"
+    "Chef-led dinner in Eixample",
   ],
   architecture: [
     "Sagrada Familia reserved slot",
     "Modernisme route: Casa Batlló + Passeig de Gràcia",
-    "Sunset Bunkers del Carmel viewpoint"
+    "Sunset Bunkers del Carmel viewpoint",
   ],
   nightlife: [
     "Cocktail bar cluster in Gràcia",
     "Rooftop live set near the waterfront",
-    "Late-night vermouth stop"
+    "Late-night vermouth stop",
   ],
-  wellness: [
-    "Spa recovery block",
-    "Beachfront sunrise walk",
-    "Mindful pause in Ciutadella Park"
-  ]
+  wellness: ["Spa recovery block", "Beachfront sunrise walk", "Mindful pause in Ciutadella Park"],
 };
 
-const MEAL_BLOCKS = ["Lunch anchor", "Dinner anchor"];
+const MEAL_BLOCKS = ["Lunch anchor", "Dinner anchor"] as const;
 
 daysInput.addEventListener("input", () => {
   daysReadout.textContent = daysInput.value;
@@ -118,7 +153,7 @@ editTripButton.addEventListener("click", () => {
   showScreen("input");
 });
 
-form.addEventListener("submit", (event) => {
+form.addEventListener("submit", (event: SubmitEvent) => {
   event.preventDefault();
   const payload = readForm();
   if (!payload.valid) {
@@ -131,7 +166,7 @@ form.addEventListener("submit", (event) => {
   showScreen("results");
 });
 
-function showScreen(target) {
+function showScreen(target: "input" | "results"): void {
   if (target === "results") {
     screenInput.hidden = true;
     screenInput.classList.remove("screen-active");
@@ -153,110 +188,120 @@ function showScreen(target) {
   }, 220);
 }
 
-function readForm() {
+function readForm(): FormResult {
   const data = new FormData(form);
-  const selectedPriorities = data.getAll("priority");
+  const selectedPriorities = data.getAll("priority") as ActivityCategory[];
 
   if (selectedPriorities.length > 2) {
     return {
       valid: false,
-      error: "Select up to 2 priorities so the plan remains focused and trustworthy."
+      error: "Select up to 2 priorities so the plan remains focused and trustworthy.",
     };
   }
 
-  const useCase = data.get("tripUseCase");
-  const budget = data.get("tripBudget");
-  const pace = data.get("tripPace");
-  const iconic = data.get("iconicIntensity");
-  const vibe = data.get("vibeTag");
+  const useCase = data.get("tripUseCase") as string | null;
+  const budget = data.get("tripBudget") as Budget | null;
+  const pace = data.get("tripPace") as Pace | null;
+  const iconic = data.get("iconicIntensity") as IconicIntensity | null;
+  const vibe = data.get("vibeTag") as VibeTag | null;
   const days = Number(data.get("tripDays"));
 
   if (!useCase || !budget || !pace || !iconic || !vibe || !days) {
     return {
       valid: false,
-      error: "Complete all required fields to generate a constrained Barcelona plan."
+      error: "Complete all required fields to generate a constrained Barcelona plan.",
     };
   }
 
   return {
     valid: true,
-    data: { useCase, budget, pace, iconic, vibe, days, priorities: selectedPriorities }
+    data: { useCase, budget, pace, iconic, vibe, days, priorities: selectedPriorities },
   };
 }
 
-function renderResults(data) {
-  const prioritiesLabel = data.priorities.length ? data.priorities.join(" + ") : "general highlights";
+function renderResults(data: TripPayload): void {
+  const prioritiesLabel = data.priorities.length
+    ? data.priorities.join(" + ")
+    : "general highlights";
   resultsSubtitle.textContent = `${capitalize(data.days + "-day")} ${labelForUseCase(
-    data.useCase
+    data.useCase,
   )} · ${data.vibe} tone · ${data.pace} pace · ${data.iconic} iconic intensity · ${prioritiesLabel} focus`;
 
   const hotels = buildHotels(data);
   const itinerary = buildItinerary(data);
 
-  renderHotels(hotels, data);
+  renderHotels(hotels);
   renderItinerary(itinerary);
 }
 
-function buildHotels(data) {
+function buildHotels(data: TripPayload): Hotel[] {
   const directMatches = HOTEL_DATA.filter(
     (hotel) =>
-      hotel.vibe.includes(data.vibe) && hotel.budgets.includes(data.budget) && hotel.paces.includes(data.pace)
+      hotel.vibe.includes(data.vibe) &&
+      hotel.budgets.includes(data.budget) &&
+      hotel.paces.includes(data.pace),
   );
   const relaxedMatches = HOTEL_DATA.filter(
-    (hotel) => hotel.vibe.includes(data.vibe) && hotel.budgets.includes(data.budget)
+    (hotel) => hotel.vibe.includes(data.vibe) && hotel.budgets.includes(data.budget),
   );
   const fallback = HOTEL_DATA.filter((hotel) => hotel.budgets.includes(data.budget));
   const candidatePool = uniqueByName([...directMatches, ...relaxedMatches, ...fallback]);
   return candidatePool.slice(0, 4);
 }
 
-function buildItinerary(data) {
-  const priorityPool = data.priorities.length ? data.priorities : ["culture", "architecture"];
+function buildItinerary(data: TripPayload): ItineraryDay[] {
+  const priorityPool = data.priorities.length
+    ? data.priorities
+    : (["culture", "architecture"] as ActivityCategory[]);
   const paceBlocks = data.pace === "slow" ? 2 : data.pace === "balanced" ? 3 : 4;
 
   return Array.from({ length: data.days }).map((_, index) => {
     const dayNumber = index + 1;
-    const focusedPriority = priorityPool[index % priorityPool.length];
+    const focusedPriority = priorityPool[index % priorityPool.length]!;
     const activities = pickActivityBlock(focusedPriority, paceBlocks, data.iconic);
     return {
       dayNumber,
       context: dayContext(dayNumber, data),
-      blocks: [...activities, ...MEAL_BLOCKS]
+      blocks: [...activities, ...MEAL_BLOCKS],
     };
   });
 }
 
-function pickActivityBlock(priority, count, iconic) {
+function pickActivityBlock(
+  priority: ActivityCategory,
+  count: number,
+  iconic: IconicIntensity,
+): string[] {
   const base = [...(ACTIVITY_LIBRARY[priority] || ACTIVITY_LIBRARY.culture)];
-  const iconicExtra = {
+  const iconicExtra: Record<IconicIntensity, string[]> = {
     low: [],
     medium: ["One iconic anchor slot"],
-    high: ["Two iconic anchor slots with timed entries"]
+    high: ["Two iconic anchor slots with timed entries"],
   };
-  return [...base.slice(0, count), ...(iconicExtra[iconic] || [])].slice(0, 4);
+  return [...base.slice(0, count), ...iconicExtra[iconic]].slice(0, 4);
 }
 
-function dayContext(dayNumber, data) {
-  const mode = {
+function dayContext(dayNumber: number, data: TripPayload): string {
+  const mode: Record<string, string> = {
     romantic: "romantic cadence",
     friends: "group momentum",
     family: "family-friendly timing",
-    solo: "solo discovery rhythm"
+    solo: "solo discovery rhythm",
   };
   return `Day ${dayNumber}: ${mode[data.useCase] || "city-break flow"} · max 45 min legs unless flagged`;
 }
 
-function renderHotels(hotels, data) {
+function renderHotels(hotels: Hotel[]): void {
   hotelList.innerHTML = "";
 
   hotels.forEach((hotel) => {
-    const fragment = hotelTemplate.content.cloneNode(true);
-    const titleNode = fragment.querySelector("h4");
-    const statusNode = fragment.querySelector(".status-pill");
-    const matchReasonNode = fragment.querySelector(".hotel-match-reason");
-    const metaNode = fragment.querySelector(".hotel-meta");
-    const freshnessNode = fragment.querySelector(".hotel-freshness");
-    const sourceNode = fragment.querySelector(".hotel-source");
+    const fragment = hotelTemplate.content.cloneNode(true) as DocumentFragment;
+    const titleNode = fragment.querySelector("h4")!;
+    const statusNode = fragment.querySelector(".status-pill")!;
+    const matchReasonNode = fragment.querySelector(".hotel-match-reason")!;
+    const metaNode = fragment.querySelector(".hotel-meta")!;
+    const freshnessNode = fragment.querySelector(".hotel-freshness")!;
+    const sourceNode = fragment.querySelector(".hotel-source")!;
     const links = fragment.querySelectorAll("a");
 
     titleNode.textContent = hotel.name;
@@ -264,24 +309,24 @@ function renderHotels(hotels, data) {
     statusNode.classList.add(`status-${hotel.status.replaceAll(" ", "-")}`);
     matchReasonNode.textContent = hotel.why;
     metaNode.textContent = `${hotel.neighborhood} · vibe fit: ${hotel.vibe.join(" / ")}`;
-    freshnessNode.textContent = `🕐 ${hotel.freshness}`;
-    sourceNode.textContent = `📎 ${hotel.source}`;
+    freshnessNode.textContent = `\u{1F550} ${hotel.freshness}`;
+    sourceNode.textContent = `\u{1F4CE} ${hotel.source}`;
 
-    links[0].href = hotel.sourceUrl;
-    links[1].href = hotel.booking;
+    links[0]!.href = hotel.sourceUrl;
+    links[1]!.href = hotel.booking;
 
     hotelList.appendChild(fragment);
   });
 }
 
-function renderItinerary(days) {
+function renderItinerary(days: ItineraryDay[]): void {
   itineraryList.innerHTML = "";
 
   days.forEach((day) => {
-    const fragment = dayTemplate.content.cloneNode(true);
-    const titleNode = fragment.querySelector("h4");
-    const contextNode = fragment.querySelector(".day-context");
-    const listNode = fragment.querySelector(".activity-list");
+    const fragment = dayTemplate.content.cloneNode(true) as DocumentFragment;
+    const titleNode = fragment.querySelector("h4")!;
+    const contextNode = fragment.querySelector(".day-context")!;
+    const listNode = fragment.querySelector(".activity-list")!;
 
     titleNode.textContent = `Day ${day.dayNumber}`;
     contextNode.textContent = day.context;
@@ -296,8 +341,8 @@ function renderItinerary(days) {
   });
 }
 
-function uniqueByName(items) {
-  const seen = new Set();
+function uniqueByName(items: Hotel[]): Hotel[] {
+  const seen = new Set<string>();
   return items.filter((item) => {
     if (seen.has(item.name)) return false;
     seen.add(item.name);
@@ -305,16 +350,16 @@ function uniqueByName(items) {
   });
 }
 
-function labelForUseCase(value) {
-  const map = {
+function labelForUseCase(value: string): string {
+  const map: Record<string, string> = {
     romantic: "romantic escape",
     friends: "friends weekend",
     family: "family break",
-    solo: "solo culture trip"
+    solo: "solo culture trip",
   };
   return map[value] || "city break";
 }
 
-function capitalize(input) {
+function capitalize(input: string): string {
   return input.charAt(0).toUpperCase() + input.slice(1);
 }
