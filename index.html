@@ -3,181 +3,262 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hostliday — Verified Barcelona Planning Infrastructure</title>
-    <meta
-      name="description"
-      content="Barcelona-only trip planning with source-backed recommendations, freshness timestamps, and visible verification logic. Try the demo and inspect the system yourself."
-    />
+    <title>Hostliday — Verified Barcelona Planning</title>
+    <meta name="description" content="Your Barcelona trip, planned in minutes. Source-backed recommendations, freshness timestamps, and visible verification logic." />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet" />
   </head>
   <body>
-    <nav class="site-nav">
+    <!-- NAV -->
+    <nav class="nav">
       <div class="nav-inner">
-        <div class="brand-lockup">
-          <span class="brand-mark" aria-hidden="true">H</span>
-          <div class="brand-copy">
-            <p class="brand-name">Hostliday</p>
-            <p class="brand-tag">Barcelona-only verified trip planning</p>
-          </div>
-        </div>
-        <a href="#demo" class="nav-cta">Try the demo</a>
+        <a href="/" class="logo">
+          <span class="logo-mark">H</span>
+          <span class="logo-text">Hostliday</span>
+        </a>
+        <button class="menu-btn" aria-label="Menu">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+        </button>
       </div>
     </nav>
 
     <main>
-      <section class="hero" aria-label="Hero">
-        <div class="hero-inner">
-          <div class="hero-copy">
-            <p class="eyebrow">Barcelona specialist</p>
-            <h1>Trip planning backed by visible verification.</h1>
-            <p class="hero-sub">
-              Hostliday turns Barcelona planning into a trust system. Every recommendation ships
-              with source links, freshness timestamps, verification state, and match reasoning, so
-              you can inspect the plan before you trust it.
-            </p>
-            <div class="hero-actions">
-              <a href="#demo" class="btn-primary">Try the demo</a>
+      <!-- HERO -->
+      <section class="hero">
+        <div class="container">
+          <h1>Your trip.<br /><em>Planned in minutes.</em></h1>
+          <p class="hero-sub">Tell me your style and budget, and I'll design a verified Barcelona trip for you.</p>
+
+          <div class="input-wrap">
+            <div class="input-row">
+              <button class="input-icon" aria-label="Attach">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/></svg>
+              </button>
+              <input type="text" placeholder="Plan a trip to Barcelona..." id="heroInput" />
+              <button class="input-icon send-btn" aria-label="Send" id="heroSend">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#6b7280" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </button>
             </div>
           </div>
 
-          <aside class="data-card" aria-label="Live verification status">
-            <div class="data-card-header">
-              <h2>Live verification status</h2>
-              <span>System active</span>
-            </div>
+          <div class="pills">
+            <button class="pill" data-action="romantic">Plan a romantic escape</button>
+            <button class="pill" data-action="inspire">Inspire me where to go</button>
+            <button class="pill" data-action="friends">Plan a friends weekend</button>
+            <button class="pill" data-action="lastminute">Plan a last-minute escape</button>
+          </div>
 
-            <div class="data-card-body">
-              <div class="data-row data-row-strong">
-                <div>
-                  <p class="data-label">Trip profile</p>
-                  <p class="data-primary">3-day romantic city break</p>
-                </div>
-                <span class="data-badge success">Inputs locked</span>
-              </div>
-
-              <div class="data-row">
-                <span class="data-label">Hotel 1898</span>
-                <span class="data-value success">Verified today</span>
-              </div>
-              <div class="data-row">
-                <span class="data-label">Picasso Museum slot</span>
-                <span class="data-value success">Checked 6h ago</span>
-              </div>
-              <div class="data-row">
-                <span class="data-label">Cal Pep dinner stop</span>
-                <span class="data-value warning">Verified 5d ago</span>
-              </div>
-              <div class="data-row">
-                <span class="data-label">Barceloneta rooftop option</span>
-                <span class="data-value neutral">Needs re-check</span>
-              </div>
-
-              <div class="audit-block">
-                <p class="audit-label">Verification primitives attached</p>
-                <div class="audit-tags">
-                  <span>Source link</span>
-                  <span>Freshness stamp</span>
-                  <span>Fit reasoning</span>
-                  <span>Next action</span>
-                </div>
-              </div>
-            </div>
-          </aside>
+          <button class="scroll-cta">
+            See how I can help you
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"/></svg>
+          </button>
         </div>
       </section>
 
-      <section class="pipeline-section" aria-label="Verification pipeline">
-        <div class="section-shell">
-          <p class="eyebrow">Verification pipeline</p>
-          <h2 class="section-title">Every plan moves through the same four-step system.</h2>
-          <div class="pipeline-grid">
-            <article class="pipeline-step">
-              <p class="step-tag">Step 1</p>
-              <h3>Collect the real planning inputs</h3>
-              <p>
-                Trip shape, budget, pace, vibe, and priorities define the search space before
-                recommendations appear.
-              </p>
-              <div class="status-line"><span class="status-dot"></span> Structured input</div>
-            </article>
-            <article class="pipeline-step">
-              <p class="step-tag">Step 2</p>
-              <h3>Cross-check candidate recommendations</h3>
-              <p>
-                Hotels and activities are evaluated against live sources instead of being presented
-                as unsupported suggestions.
-              </p>
-              <div class="status-line"><span class="status-dot"></span> Source-linked</div>
-            </article>
-            <article class="pipeline-step">
-              <p class="step-tag">Step 3</p>
-              <h3>Assign confidence and freshness</h3>
-              <p>
-                Each recommendation gets a visible state, timestamp, and clear handling when
-                confidence drops.
-              </p>
-              <div class="status-line"><span class="status-dot warn"></span> Freshness-aware</div>
-            </article>
-            <article class="pipeline-step">
-              <p class="step-tag">Step 4</p>
-              <h3>Deliver a paced, explainable plan</h3>
-              <p>
-                The output combines verified stays with a day-by-day itinerary that explains why
-                each choice belongs.
-              </p>
-              <div class="status-line"><span class="status-dot"></span> Reasoned output</div>
-            </article>
+      <!-- HERO IMAGE -->
+      <div class="hero-img">
+        <img src="https://images.unsplash.com/photo-1583422409516-2895a77efded?w=1400&h=500&fit=crop" alt="Barcelona cityscape with Sagrada Familia" loading="eager" />
+      </div>
+
+      <!-- SECONDARY CTA -->
+      <section class="section secondary">
+        <div class="container">
+          <h2>Your trip in minutes, <em>not weeks.</em></h2>
+          <p>Plan your next trip with me and save hours of planning</p>
+          <a href="#demo" class="cta-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Plan my trip
+          </a>
+          <p class="counter">Trips Verified <strong id="tripCount">0</strong></p>
+        </div>
+      </section>
+
+      <!-- VIDEO -->
+      <section class="section video-section">
+        <div class="container">
+          <h2>Stop losing hours. <em>Watch me plan</em></h2>
+          <div class="video-wrap">
+            <img src="https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=900&h=500&fit=crop" alt="Barcelona demo preview" />
+            <button class="play-btn" aria-label="Play video">
+              <svg width="48" height="48" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            </button>
           </div>
         </div>
       </section>
 
-      <section class="problems-section" aria-label="Problem analysis">
-        <div class="section-shell">
-          <p class="eyebrow">Why Hostliday</p>
-          <h2 class="section-title">Current AI planning vs. verified plans.</h2>
-          <div class="comparison-split">
-            <div class="comparison-current">
-              <h3>Current AI planning</h3>
-              <ul>
-                <li>Suggestions without sources</li>
-                <li>No freshness information</li>
-                <li>Unclear what's current vs. stale</li>
-                <li>You verify everything manually</li>
-              </ul>
+      <!-- INSPIRATION -->
+      <section class="section inspiration">
+        <div class="container">
+          <h2>Where to go <em>next</em></h2>
+          <div class="cards">
+            <a href="#demo" class="card">
+              <div class="card-img"><img src="https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=600&h=340&fit=crop" alt="Barcelona Gothic Quarter" /></div>
+              <div class="card-body">
+                <p class="card-title">Barcelona Romantic Weekend</p>
+                <span class="card-link">Start planning →</span>
+              </div>
+            </a>
+            <a href="#demo" class="card">
+              <div class="card-img"><img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=600&h=340&fit=crop" alt="Barcelona food" /></div>
+              <div class="card-body">
+                <p class="card-title">Barcelona Food Trail</p>
+                <span class="card-link">Start planning →</span>
+              </div>
+            </a>
+            <a href="#demo" class="card">
+              <div class="card-img"><img src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=600&h=340&fit=crop" alt="Barcelona architecture" /></div>
+              <div class="card-body">
+                <p class="card-title">Modernisme Architecture Tour</p>
+                <span class="card-link">Start planning →</span>
+              </div>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- ALL IN ONE -->
+      <section class="section all-in-one">
+        <div class="container">
+          <h2>All-in-One <em>Verified</em> Trip Planner</h2>
+          <p>Looking for the perfect trip planner for your next vacation? Ask me anything about planning your Barcelona trip — from verified hotel stays and activities to day-by-day itineraries. Every recommendation includes a source link and freshness timestamp. No more juggling tabs — just verified, explainable planning.</p>
+          <a href="#demo" class="cta-btn-light">Plan a verified trip</a>
+        </div>
+      </section>
+
+      <!-- FEATURES — side-by-side layout, no icon tile stacking -->
+      <section class="section features">
+        <div class="container">
+          <h2>We're there for you <em>in every step</em></h2>
+          <p class="section-sub">Curate, save and get notified about your trips on the go.</p>
+          <div class="feature-grid">
+            <div class="feature">
+              <span class="feature-label">Tailor-made</span>
+              <p>Ask Hostliday to create a personalized itinerary tailored to your preferences and travel style. Discover the ultimate travel experience with customized plans that cater to your unique interests, ensuring every moment is memorable.</p>
             </div>
-            <div class="comparison-hostliday">
-              <h3>Hostliday verified plans</h3>
-              <ul>
-                <li>Source link on every recommendation</li>
-                <li>Freshness timestamps visible</li>
-                <li>Confidence levels explicit</li>
-                <li>Fit reasoning explained</li>
-              </ul>
+            <div class="feature">
+              <span class="feature-label">Source-linked</span>
+              <p>Every recommendation includes a direct link to its original source. With Hostliday's expert guidance, you can explore a wide range of verified options, from hotels to activities, ensuring your experience is trustworthy.</p>
+            </div>
+            <div class="feature">
+              <span class="feature-label">Hidden Gems</span>
+              <p>Hostliday uncovers hidden gems and off-the-beaten-path destinations. Discover unique attractions and local secrets that are often overlooked by mainstream tourists. Explore charming old-town stops and breathtaking viewpoints.</p>
+            </div>
+            <div class="feature">
+              <span class="feature-label">No Surprises</span>
+              <p>Hostliday ensures everything runs smoothly, with no unpleasant surprises. Confidence levels and freshness timestamps let you focus on creating unforgettable memories instead of second-guessing recommendations.</p>
             </div>
           </div>
         </div>
       </section>
 
-      <section class="demo-section" id="demo" aria-label="Planner demo">
-        <div class="demo-shell">
-          <div class="demo-header-block">
-            <div>
-              <p class="eyebrow">System demo</p>
-              <h2 class="section-title">Test the planner, then inspect the output yourself.</h2>
+      <!-- TRUST / PRESS / INVESTORS -->
+      <section class="section trust">
+        <div class="container"><h2>Powered by trusted <em>travel partners</em></h2></div>
+      </section>
+      <section class="section press">
+        <div class="container">
+          <h2>Making headlines <em>worldwide</em></h2>
+          <p>Featured in top global media for helping travelers save time, money, and stress with smarter trip planning.</p>
+        </div>
+      </section>
+      <section class="section investors">
+        <div class="container"><h2>Our <em>investors</em></h2></div>
+      </section>
+
+      <!-- TESTIMONIALS -->
+      <section class="section testimonials">
+        <div class="container">
+          <h2>What travellers say <em>about me</em></h2>
+          <div class="reviews">
+            <div class="review">
+              <p>"I've used generic AI planners before — they hallucinate restaurant names and give you outdated hours. Hostliday actually showed me when each spot was last verified. That's the difference between a good trip and a great one."</p>
+              <div class="review-author"><span class="avatar">M</span><span class="name">Maria, 28</span></div>
             </div>
-            <p class="demo-kicker">
-              This is a working prototype for Barcelona-only trip planning. The form stays
-              structured so the recommendations can stay explainable.
-            </p>
+            <div class="review">
+              <p>"The hotel matching was scary good. It suggested a boutique spot in El Born that matched exactly the vibe we wanted — and showed us it was verified that morning. We booked it on the spot."</p>
+              <div class="review-author"><span class="avatar">J</span><span class="name">James &amp; Priya, 31 &amp; 29</span></div>
+            </div>
+            <div class="review">
+              <p>"As a Barcelona local, I was skeptical. But the day-by-day itinerary actually knew about spots I'd recommend to friends. The verification tags on each activity were a nice touch — you could see what was fresh."</p>
+              <div class="review-author"><span class="avatar">C</span><span class="name">Carlos, 42</span></div>
+            </div>
           </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section class="section faq">
+        <div class="container">
+          <h2>Frequently asked <em>questions</em></h2>
+          <div class="faq-list">
+            <details class="faq-item" open>
+              <summary>What is Hostliday?</summary>
+              <p>I'm Hostliday, your <strong>verified Barcelona trip planner</strong>. I create complete, personalized itineraries that cover everything: hotels, activities, best dining, and all tailored recommendations. Every item includes a source link and freshness timestamp — so you can inspect the plan before you trust it.</p>
+            </details>
+            <details class="faq-item">
+              <summary>How does Hostliday work?</summary>
+              <p>You just share your <strong>travel dates, style, budget, and priorities</strong>, and I instantly build a day-by-day plan. I use live verification to keep your itinerary accurate and always up to date.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Can Hostliday save me money on trips?</summary>
+              <p>Yes. I compare <strong>live availability for hotels and activities</strong> to find the best verified options. By optimizing your itinerary, I help you avoid tourist traps while maximizing experiences.</p>
+            </details>
+            <details class="faq-item">
+              <summary>How many days should I spend in Barcelona?</summary>
+              <p>Most travelers find <strong>3–5 days ideal for a Barcelona city break</strong> and <strong>7+ days if you want deeper exploration</strong>. I'll tailor your itinerary length to match your pace and how much you want to see.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Can Hostliday plan family trips?</summary>
+              <p>Absolutely. My <strong>family trip planner</strong> balances sightseeing with downtime, finds family-friendly hotels, and includes activities that work for both kids and adults.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Is Hostliday good for solo travelers?</summary>
+              <p>Yes. If you're traveling solo, I'll design a safe, flexible itinerary with <strong>verified accommodations</strong>, curated neighborhoods, and easy day-to-day navigation.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Does Hostliday plan trips for couples?</summary>
+              <p>Of course. I design romantic getaways with <strong>boutique hotels, scenic dining, and special activities</strong> — all verified with freshness timestamps.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Why Barcelona only?</summary>
+              <p>Unlike multi-city planners, I specialize in <strong>Barcelona itineraries</strong>, optimizing every recommendation with deep local verification. I'll make sure you see the best sights with source-backed confidence.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Is Hostliday better than a traditional trip planner?</summary>
+              <p>Unlike a traditional trip planner, I <strong>verify every recommendation</strong>, I show freshness timestamps, and I explain my reasoning. Think of me as your verified digital Barcelona guide.</p>
+            </details>
+            <details class="faq-item">
+              <summary>What types of experiences does Hostliday include?</summary>
+              <p>I cover it all: <strong>cultural landmarks, hidden gems, food tours, architecture walks, and local neighborhoods</strong>. I balance must-see highlights with authentic, off-the-beaten-path moments.</p>
+            </details>
+            <details class="faq-item">
+              <summary>Is Hostliday free to use?</summary>
+              <p>I offer <strong>free trip planning with full verification</strong>. Try the demo right now to see what verified trip planning looks like.</p>
+            </details>
+          </div>
+        </div>
+      </section>
+
+      <!-- FINAL CTA -->
+      <section class="section final-cta">
+        <div class="container">
+          <h2>Ready to give it <em>a try?</em></h2>
+          <a href="#demo" class="cta-btn">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+            Try Hostliday now
+          </a>
+        </div>
+      </section>
+
+      <!-- DEMO -->
+      <section class="section demo-section" id="demo">
+        <div class="container">
+          <h2>Test the planner, <em>then inspect the output yourself.</em></h2>
+          <p class="section-sub">This is a working prototype for Barcelona-only trip planning.</p>
 
           <div class="app-shell" id="appShell">
-            <section class="screen screen-active" id="screenInput" aria-labelledby="plannerTitle">
+            <section class="screen screen-active" id="screenInput">
               <form id="tripForm" class="planner-card" novalidate>
                 <div class="form-group">
                   <p class="form-group-label">Trip profile</p>
@@ -204,7 +285,6 @@
                     </div>
                   </div>
                 </div>
-
                 <div class="form-group">
                   <p class="form-group-label">Trip shape</p>
                   <div class="field-split">
@@ -224,7 +304,6 @@
                     </div>
                   </div>
                 </div>
-
                 <div class="form-group">
                   <p class="form-group-label">Style and priorities</p>
                   <div class="field-row field-row-gap">
@@ -236,88 +315,48 @@
                       <option value="high">High — Sagrada Familia, Park Güell, the works</option>
                     </select>
                   </div>
-
                   <fieldset class="field-row field-row-gap">
                     <legend>Stay vibe</legend>
                     <div class="chip-group" id="vibeGroup">
-                      <label
-                        ><input type="radio" name="vibeTag" value="intimate boutique" required />
-                        Intimate boutique</label
-                      >
-                      <label
-                        ><input type="radio" name="vibeTag" value="luxury spa" /> Luxury spa</label
-                      >
-                      <label
-                        ><input type="radio" name="vibeTag" value="scenic rooftop" /> Scenic
-                        rooftop</label
-                      >
-                      <label
-                        ><input type="radio" name="vibeTag" value="quiet old-town charm" /> Quiet
-                        old-town charm</label
-                      >
+                      <label><input type="radio" name="vibeTag" value="intimate boutique" required /> Intimate boutique</label>
+                      <label><input type="radio" name="vibeTag" value="luxury spa" /> Luxury spa</label>
+                      <label><input type="radio" name="vibeTag" value="scenic rooftop" /> Scenic rooftop</label>
+                      <label><input type="radio" name="vibeTag" value="quiet old-town charm" /> Quiet old-town charm</label>
                     </div>
                   </fieldset>
-
                   <fieldset class="field-row">
                     <legend>Focus priorities (choose up to 2)</legend>
                     <div class="chip-group" id="priorityGroup">
                       <label><input type="checkbox" name="priority" value="food" /> Food</label>
-                      <label
-                        ><input type="checkbox" name="priority" value="culture" /> Culture</label
-                      >
-                      <label
-                        ><input type="checkbox" name="priority" value="architecture" />
-                        Architecture</label
-                      >
-                      <label
-                        ><input type="checkbox" name="priority" value="nightlife" />
-                        Nightlife</label
-                      >
-                      <label
-                        ><input type="checkbox" name="priority" value="wellness" /> Wellness</label
-                      >
+                      <label><input type="checkbox" name="priority" value="culture" /> Culture</label>
+                      <label><input type="checkbox" name="priority" value="architecture" /> Architecture</label>
+                      <label><input type="checkbox" name="priority" value="nightlife" /> Nightlife</label>
+                      <label><input type="checkbox" name="priority" value="wellness" /> Wellness</label>
                     </div>
                   </fieldset>
                 </div>
-
                 <div class="cta-row">
-                  <button type="submit" class="btn-primary btn-full">Try the demo</button>
-                  <p
-                    class="validation-copy"
-                    id="formValidation"
-                    role="alert"
-                    aria-live="polite"
-                  ></p>
+                  <button type="submit" class="submit-btn">Generate my verified plan</button>
+                  <p class="validation-copy" id="formValidation" role="alert" aria-live="polite"></p>
                 </div>
               </form>
             </section>
-
-            <section class="screen" id="screenResults" aria-labelledby="resultsTitle" hidden>
+            <section class="screen" id="screenResults" hidden>
               <div class="results-head">
-                <button type="button" class="btn-ghost" id="editTripButton">
-                  ← Edit trip inputs
-                </button>
+                <button type="button" class="back-btn" id="editTripButton">← Edit trip inputs</button>
                 <div>
-                  <p class="eyebrow">Generated plan</p>
+                  <p class="results-eyebrow">Generated plan</p>
                   <h2 id="resultsTitle">Your verified Barcelona plan</h2>
                   <p class="results-subtitle" id="resultsSubtitle"></p>
                 </div>
               </div>
-
               <div class="results-grid">
-                <section class="panel" aria-labelledby="hotelPanelTitle">
-                  <div class="panel-head">
-                    <h3 id="hotelPanelTitle">Hotel options</h3>
-                    <span class="meta-pill">Source-linked · freshness-aware</span>
-                  </div>
+                <section class="panel">
+                  <div class="panel-head"><h3 id="hotelPanelTitle">Hotel options</h3><span class="meta-pill">Source-linked · freshness-aware</span></div>
                   <div id="hotelList" class="hotel-list"></div>
                 </section>
-
-                <section class="panel" aria-labelledby="itineraryPanelTitle">
-                  <div class="panel-head">
-                    <h3 id="itineraryPanelTitle">Day-by-day itinerary</h3>
-                    <span class="meta-pill">Pacing-checked · max 4 major blocks</span>
-                  </div>
+                <section class="panel">
+                  <div class="panel-head"><h3 id="itineraryPanelTitle">Day-by-day itinerary</h3><span class="meta-pill">Pacing-checked · max 4 major blocks</span></div>
                   <div id="itineraryList" class="itinerary-list"></div>
                 </section>
               </div>
@@ -326,42 +365,38 @@
         </div>
       </section>
 
-      <footer class="site-footer">
-        <div class="footer-inner">
-          <p class="footer-note">
-            Hostliday · Barcelona-only verified trip planning · Source-backed demo
-          </p>
+      <!-- FOOTER -->
+      <footer class="footer">
+        <div class="container">
+          <div class="footer-grid">
+            <div class="footer-col"><h4>Company</h4><a href="#">Home</a><a href="#">About</a><a href="#">Blog</a><a href="#">Contact</a><a href="#">FAQ</a><a href="#">Press</a></div>
+            <div class="footer-col"><h4>Product</h4><a href="#demo">Trip Planner</a><a href="#demo">Hotel Matching</a><a href="#demo">Itineraries</a></div>
+            <div class="footer-col"><h4>Legal</h4><a href="#">Privacy</a><a href="#">Terms</a></div>
+            <div class="footer-col"><h4>Top Destinations</h4><a href="#">Barcelona</a><a href="#">Gothic Quarter</a><a href="#">El Born</a><a href="#">Eixample</a><a href="#">Gràcia</a></div>
+            <div class="footer-col"><h4>Plan</h4><a href="#demo">Romantic Escape</a><a href="#demo">Family Trip</a><a href="#demo">Friends Weekend</a><a href="#demo">Solo Adventure</a></div>
+          </div>
+          <div class="footer-bottom">
+            <p>Made with ❤️ in Barcelona</p>
+            <p>© 2026 All rights reserved by Hostliday</p>
+          </div>
+          <div class="footer-social"><a href="#">Twitter</a><a href="#">Instagram</a><a href="#">LinkedIn</a></div>
         </div>
       </footer>
     </main>
 
+    <!-- TEMPLATES -->
     <template id="hotelCardTemplate">
       <article class="hotel-card">
-        <div class="hotel-head">
-          <h4></h4>
-          <span class="status-pill"></span>
-        </div>
+        <div class="hotel-head"><h4></h4><span class="status-pill"></span></div>
         <p class="hotel-match-reason"></p>
         <p class="hotel-meta"></p>
-        <div class="hotel-details">
-          <span class="hotel-freshness"></span>
-          <span class="hotel-source"></span>
-        </div>
-        <div class="hotel-links">
-          <a target="_blank" rel="noreferrer noopener">View source ↗</a>
-          <a target="_blank" rel="noreferrer noopener">Book hotel ↗</a>
-        </div>
+        <div class="hotel-details"><span class="hotel-freshness"></span><span class="hotel-source"></span></div>
+        <div class="hotel-links"><a target="_blank" rel="noreferrer noopener">View source ↗</a><a target="_blank" rel="noreferrer noopener">Book hotel ↗</a></div>
       </article>
     </template>
-
     <template id="dayCardTemplate">
-      <article class="day-card">
-        <h4></h4>
-        <p class="day-context"></p>
-        <ul class="activity-list"></ul>
-      </article>
+      <article class="day-card"><h4></h4><p class="day-context"></p><ul class="activity-list"></ul></article>
     </template>
-
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
