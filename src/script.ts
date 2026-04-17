@@ -1,3 +1,5 @@
+import { showScreen, capitalize } from "./lib/transitions";
+
 type HotelStatus = "verified today" | "verified within 7 days" | "stale" | "unverified";
 type Pace = "slow" | "balanced" | "packed";
 type Budget = "value" | "comfort" | "premium" | "luxury";
@@ -150,7 +152,7 @@ daysInput.addEventListener("input", () => {
 });
 
 editTripButton.addEventListener("click", () => {
-  showScreen("input");
+  showScreen("input", screenInput, screenResults);
 });
 
 form.addEventListener("submit", (event: SubmitEvent) => {
@@ -163,30 +165,8 @@ form.addEventListener("submit", (event: SubmitEvent) => {
 
   validationNode.textContent = "";
   renderResults(payload.data);
-  showScreen("results");
+  showScreen("results", screenInput, screenResults);
 });
-
-function showScreen(target: "input" | "results"): void {
-  if (target === "results") {
-    screenInput.hidden = true;
-    screenInput.classList.remove("screen-active");
-
-    screenResults.hidden = false;
-    requestAnimationFrame(() => {
-      screenResults.classList.add("screen-active");
-    });
-    return;
-  }
-
-  screenResults.classList.remove("screen-active");
-  setTimeout(() => {
-    screenResults.hidden = true;
-    screenInput.hidden = false;
-    requestAnimationFrame(() => {
-      screenInput.classList.add("screen-active");
-    });
-  }, 220);
-}
 
 function readForm(): FormResult {
   const data = new FormData(form);
@@ -358,10 +338,6 @@ function labelForUseCase(value: string): string {
     solo: "solo culture trip",
   };
   return map[value] || "city break";
-}
-
-function capitalize(input: string): string {
-  return input.charAt(0).toUpperCase() + input.slice(1);
 }
 
 export {};

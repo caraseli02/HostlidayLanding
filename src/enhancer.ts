@@ -1,3 +1,13 @@
+import { showScreen, capitalize } from "./lib/transitions";
+
+const VALID_FOCUS_AREAS = new Set<string>([
+  "culture",
+  "food",
+  "architecture",
+  "nightlife",
+  "wellness",
+]);
+
 type FocusArea = "culture" | "food" | "architecture" | "nightlife" | "wellness";
 type NeighborhoodKey =
   | "gothic"
@@ -616,12 +626,13 @@ const restaurantList = document.getElementById("restaurantList")!;
 const gemList = document.getElementById("gemList")!;
 const altPanel = document.getElementById("altPanel")!;
 const altContent = document.getElementById("altContent")!;
+const altTemplate = document.getElementById("altSuggestionTemplate") as HTMLTemplateElement;
 
 const activityTemplate = document.getElementById("activityCardTemplate") as HTMLTemplateElement;
 const restaurantTemplate = document.getElementById("restaurantCardTemplate") as HTMLTemplateElement;
 const gemTemplate = document.getElementById("gemCardTemplate") as HTMLTemplateElement;
 
-editButton.addEventListener("click", () => showScreen("input"));
+editButton.addEventListener("click", () => showScreen("input", screenInput, screenResults));
 
 form.addEventListener("submit", (event: SubmitEvent) => {
   event.preventDefault();
@@ -632,29 +643,15 @@ form.addEventListener("submit", (event: SubmitEvent) => {
   }
   validationNode.textContent = "";
   renderResults(result.data);
-  showScreen("results");
+  showScreen("results", screenInput, screenResults);
 });
-
-function showScreen(target: "input" | "results"): void {
-  if (target === "results") {
-    screenInput.hidden = true;
-    screenInput.classList.remove("screen-active");
-    screenResults.hidden = false;
-    requestAnimationFrame(() => screenResults.classList.add("screen-active"));
-    return;
-  }
-  screenResults.classList.remove("screen-active");
-  setTimeout(() => {
-    screenResults.hidden = true;
-    screenInput.hidden = false;
-    requestAnimationFrame(() => screenInput.classList.add("screen-active"));
-  }, 220);
-}
 
 function readForm(): FormResult {
   const data = new FormData(form);
   const neighborhood = data.get("neighborhood") as NeighborhoodKey | null;
-  const focuses = data.getAll("focus") as FocusArea[];
+  const focuses = data
+    .getAll("focus")
+    .filter((v): v is FocusArea => typeof v === "string" && VALID_FOCUS_AREAS.has(v));
 
   if (!neighborhood) {
     return { valid: false, error: "Select your hotel neighborhood to get started." };
@@ -697,11 +694,10 @@ function renderActivities(activities: Activity[]): void {
   for (const act of activities) {
     const fragment = activityTemplate.content.cloneNode(true) as DocumentFragment;
     const title = fragment.querySelector("h4")!;
-    const walkBadge = fragment.querySelector(".bg-emerald-50")!;
-    const why = fragment.querySelector("p.mt-2")!;
-    const metaDiv = fragment.querySelector(".flex.flex-wrap")!;
-    const category = metaDiv.querySelector("span:first-child")!;
-    const source = metaDiv.querySelector("span:last-child")!;
+    const walkBadge = fragment.querySelector("[data-walk-badge]")!;
+    const why = fragment.querySelector("[data-why]")!;
+    const category = fragment.querySelector("[data-category]")!;
+    const source = fragment.querySelector("[data-source]")!;
 
     title.textContent = act.name;
     walkBadge.textContent = act.walkTime;
@@ -718,11 +714,10 @@ function renderRestaurants(restaurants: Restaurant[]): void {
   for (const rest of restaurants) {
     const fragment = restaurantTemplate.content.cloneNode(true) as DocumentFragment;
     const title = fragment.querySelector("h4")!;
-    const walkBadge = fragment.querySelector(".bg-emerald-50")!;
-    const why = fragment.querySelector("p.mt-2")!;
-    const metaDiv = fragment.querySelector(".flex.flex-wrap")!;
-    const cuisine = metaDiv.querySelector("span:first-child")!;
-    const price = metaDiv.querySelector("span:last-child")!;
+    const walkBadge = fragment.querySelector("[data-walk-badge]")!;
+    const why = fragment.querySelector("[data-why]")!;
+    const cuisine = fragment.querySelector("[data-category]")!;
+    const price = fragment.querySelector("[data-source]")!;
 
     title.textContent = rest.name;
     walkBadge.textContent = rest.walkTime;
@@ -739,7 +734,7 @@ function renderGems(gems: HiddenGem[]): void {
   for (const gem of gems) {
     const fragment = gemTemplate.content.cloneNode(true) as DocumentFragment;
     const title = fragment.querySelector("h4")!;
-    const why = fragment.querySelector("p.mt-2")!;
+    const why = fragment.querySelector("[data-why]")!;
 
     title.textContent = gem.name;
     why.textContent = gem.why;
@@ -748,6 +743,15 @@ function renderGems(gems: HiddenGem[]): void {
   }
 }
 
+/**
+ * Shows an alternative hotel suggestion when the user's selected focuses
+ * don't align well with their chosen neighborhood.
+ *
+ * Edge case: when no focuses are selected (data.focuses is empty), the panel
+ * is hidden because we can't determine a mismatch — "general highlights" mode
+ * is always valid for any neighborhood. The panel only appears when there is
+ * a clear reason to suggest a different base (e.g. culture focus + barceloneta).
+ */
 function renderAltSuggestion(data: EnhancerPayload): void {
   const suggestions = ALT_HOTEL_SUGGESTIONS[data.neighborhood];
   if (!suggestions || !suggestions.length) {
@@ -769,17 +773,16 @@ function renderAltSuggestion(data: EnhancerPayload): void {
 
   const suggestion = suggestions[0]!;
   altPanel.hidden = false;
-  altContent.innerHTML = `
-    <div class="py-1">
-      <p class="text-base font-bold text-on-surface font-display">${suggestion.hotel}</p>
-      <p class="text-xs font-semibold text-tertiary mt-0.5">${suggestion.neighborhood}</p>
-      <p class="mt-2 text-sm text-on-surface/60 leading-relaxed">${suggestion.reason}</p>
-    </div>
-  `;
-}
+  const fragment = altTemplate.content.cloneNode(true) as DocumentFragment;
+  const hotel = fragment.querySelector("[data-alt-hotel]")!;
+  const neighborhood = fragment.querySelector("[data-alt-neighborhood]")!;
+  const reason = fragment.querySelector("[data-alt-reason]")!;
 
-function capitalize(input: string): string {
-  return input.charAt(0).toUpperCase() + input.slice(1);
+  hotel.textContent = suggestion.hotel;
+  neighborhood.textContent = suggestion.neighborhood;
+  reason.textContent = suggestion.reason;
+
+  altContent.replaceChildren(fragment);
 }
 
 export {};
