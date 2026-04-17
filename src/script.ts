@@ -18,19 +18,19 @@ interface ItineraryDay {
 
 type FormResult = { valid: false; error: string } | { valid: true; data: TripPayload };
 
-const form = document.getElementById("tripForm") as HTMLFormElement;
-const daysReadout = document.getElementById("daysReadout")!;
-const daysInput = document.getElementById("tripDays") as HTMLInputElement;
-const validationNode = document.getElementById("formValidation")!;
-const screenInput = document.getElementById("screenInput")!;
-const screenResults = document.getElementById("screenResults")!;
-const editTripButton = document.getElementById("editTripButton")!;
-const resultsSubtitle = document.getElementById("resultsSubtitle")!;
-const hotelList = document.getElementById("hotelList")!;
-const itineraryList = document.getElementById("itineraryList")!;
+const form = document.getElementById("tripForm") as HTMLFormElement | null;
+const daysReadout = document.getElementById("daysReadout");
+const daysInput = document.getElementById("tripDays") as HTMLInputElement | null;
+const validationNode = document.getElementById("formValidation");
+const screenInput = document.getElementById("screenInput");
+const screenResults = document.getElementById("screenResults");
+const editTripButton = document.getElementById("editTripButton");
+const resultsSubtitle = document.getElementById("resultsSubtitle");
+const hotelList = document.getElementById("hotelList");
+const itineraryList = document.getElementById("itineraryList");
 
-const hotelTemplate = document.getElementById("hotelCardTemplate") as HTMLTemplateElement;
-const dayTemplate = document.getElementById("dayCardTemplate") as HTMLTemplateElement;
+const hotelTemplate = document.getElementById("hotelCardTemplate") as HTMLTemplateElement | null;
+const dayTemplate = document.getElementById("dayCardTemplate") as HTMLTemplateElement | null;
 
 // Hotels imported from src/data/hotels.ts — expanded to cover all 7 neighborhoods
 const HOTEL_DATA = HOTELS;
@@ -63,30 +63,67 @@ const ACTIVITY_LIBRARY: Record<Category, string[]> = {
 
 const MEAL_LABELS = MEAL_BLOCKS.map((m) => m.label);
 
-daysInput.addEventListener("input", () => {
-  daysReadout.textContent = daysInput.value;
-});
+if (
+  form &&
+  daysReadout &&
+  daysInput &&
+  validationNode &&
+  screenInput &&
+  screenResults &&
+  editTripButton &&
+  resultsSubtitle &&
+  hotelList &&
+  itineraryList &&
+  hotelTemplate &&
+  dayTemplate
+) {
+  daysInput.addEventListener("input", () => {
+    daysReadout.textContent = daysInput.value;
+  });
 
-editTripButton.addEventListener("click", () => {
-  showScreen("input", screenInput, screenResults);
-});
+  editTripButton.addEventListener("click", () => {
+    showScreen("input");
+  });
 
-form.addEventListener("submit", (event: SubmitEvent) => {
-  event.preventDefault();
-  const payload = readForm();
-  if (!payload.valid) {
-    validationNode.textContent = payload.error;
+  form.addEventListener("submit", (event: SubmitEvent) => {
+    event.preventDefault();
+    const payload = readForm();
+    if (!payload.valid) {
+      validationNode.textContent = payload.error;
+      return;
+    }
+
+    validationNode.textContent = "";
+    renderResults(payload.data);
+    showScreen("results");
+  });
+}
+
+function showScreen(target: "input" | "results"): void {
+  if (target === "results") {
+    screenInput!.hidden = true;
+    screenInput!.classList.remove("screen-active");
+
+    screenResults!.hidden = false;
+    requestAnimationFrame(() => {
+      screenResults!.classList.add("screen-active");
+    });
     return;
   }
 
-  validationNode.textContent = "";
-  renderResults(payload.data);
-  showScreen("results", screenInput, screenResults);
-});
+  screenResults!.classList.remove("screen-active");
+  setTimeout(() => {
+    screenResults!.hidden = true;
+    screenInput!.hidden = false;
+    requestAnimationFrame(() => {
+      screenInput!.classList.add("screen-active");
+    });
+  }, 220);
+}
 
 function readForm(): FormResult {
-  const data = new FormData(form);
-  const selectedPriorities = data.getAll("priority") as Category[];
+  const data = new FormData(form!);
+  const selectedPriorities = data.getAll("priority") as ActivityCategory[];
 
   if (selectedPriorities.length > 2) {
     return {
@@ -119,7 +156,7 @@ function renderResults(data: TripPayload): void {
   const prioritiesLabel = data.priorities.length
     ? data.priorities.join(" + ")
     : "general highlights";
-  resultsSubtitle.textContent = `${capitalize(data.days + "-day")} ${labelForUseCase(
+  resultsSubtitle!.textContent = `${capitalize(data.days + "-day")} ${labelForUseCase(
     data.useCase,
   )} · ${data.vibe} tone · ${data.pace} pace · ${data.iconic} iconic intensity · ${prioritiesLabel} focus`;
 
@@ -182,10 +219,10 @@ function dayContext(dayNumber: number, data: TripPayload): string {
 }
 
 function renderHotels(hotels: Hotel[]): void {
-  hotelList.innerHTML = "";
+  hotelList!.innerHTML = "";
 
   hotels.forEach((hotel) => {
-    const fragment = hotelTemplate.content.cloneNode(true) as DocumentFragment;
+    const fragment = hotelTemplate!.content.cloneNode(true) as DocumentFragment;
     const titleNode = fragment.querySelector("h4")!;
     const statusNode = fragment.querySelector(".status-pill")!;
     const matchReasonNode = fragment.querySelector(".hotel-match-reason")!;
@@ -205,15 +242,15 @@ function renderHotels(hotels: Hotel[]): void {
     links[0]!.href = hotel.sourceUrl;
     links[1]!.href = hotel.booking;
 
-    hotelList.appendChild(fragment);
+    hotelList!.appendChild(fragment);
   });
 }
 
 function renderItinerary(days: ItineraryDay[]): void {
-  itineraryList.innerHTML = "";
+  itineraryList!.innerHTML = "";
 
   days.forEach((day) => {
-    const fragment = dayTemplate.content.cloneNode(true) as DocumentFragment;
+    const fragment = dayTemplate!.content.cloneNode(true) as DocumentFragment;
     const titleNode = fragment.querySelector("h4")!;
     const contextNode = fragment.querySelector(".day-context")!;
     const listNode = fragment.querySelector(".activity-list")!;
@@ -227,7 +264,7 @@ function renderItinerary(days: ItineraryDay[]): void {
       listNode.appendChild(li);
     });
 
-    itineraryList.appendChild(fragment);
+    itineraryList!.appendChild(fragment);
   });
 }
 
