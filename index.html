@@ -1,367 +1,784 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hostliday — Verified Barcelona Planning Infrastructure</title>
-    <meta
-      name="description"
-      content="Barcelona-only trip planning with source-backed recommendations, freshness timestamps, and visible verification logic. Try the demo and inspect the system yourself."
+<!DOCTYPE html>
+<html class="light" lang="en" style="color-scheme: light;">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Hostliday | Experiences, adventures, and stays.</title>
+<meta name="description" content="Hostliday is your personal digital concierge, crafting bespoke itineraries and finding hidden gems in seconds. Plan your perfect trip in minutes, not weeks."/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@300;400;500;700;900&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+  tailwind.config = {
+    darkMode: "media",
+    theme: {
+      extend: {
+        colors: {
+          "surface-container-low": "#eff4ff",
+          "surface-dim": "#cbdbf5",
+          "outline-variant": "#e1bec2",
+          "surface-container": "#e5eeff",
+          "on-primary-container": "#5a0021",
+          "background": "#f8f9ff",
+          "secondary-fixed": "#eaddff",
+          "on-error": "#ffffff",
+          "on-surface-variant": "#a3a2a2",
+          "primary": "#be0000",
+          "inverse-primary": "#ffb2be",
+          "on-error-container": "#93000a",
+          "on-primary-fixed-variant": "#900039",
+          "on-tertiary-container": "#002d41",
+          "surface-tint": "#be0000",
+          "tertiary-fixed-dim": "#7cd0ff",
+          "on-secondary-fixed": "#211143",
+          "on-tertiary-fixed-variant": "#004c69",
+          "on-secondary-fixed-variant": "#4e3e71",
+          "error": "#ba1a1a",
+          "primary-fixed": "#ffd9de",
+          "outline": "#8d6f74",
+          "on-tertiary-fixed": "#001e2c",
+          "surface-container-high": "#dce9ff",
+          "primary-fixed-dim": "#ffb2be",
+          "primary-container": "#ff4e7e",
+          "on-surface": "#0b1c30",
+          "surface-bright": "#f8f9ff",
+          "on-primary-fixed": "#3f0015",
+          "surface-variant": "#d3e4fe",
+          "secondary": "#66558b",
+          "inverse-surface": "#213145",
+          "tertiary-container": "#189bd0",
+          "secondary-fixed-dim": "#d1bdfa",
+          "inverse-on-surface": "#eaf1ff",
+          "error-container": "#ffdad6",
+          "on-primary": "#ffffff",
+          "secondary-container": "#d6c2ff",
+          "on-tertiary": "#ffffff",
+          "surface": "#f8f9ff",
+          "tertiary": "#00658b",
+          "on-secondary": "#ffffff",
+          "tertiary-fixed": "#c4e7ff",
+          "surface-container-lowest": "#ffffff",
+          "on-secondary-container": "#5e4d82",
+          "on-background": "#0b1c30",
+          "surface-container-highest": "#d3e4fe"
+        },
+        borderRadius: {
+          "DEFAULT": "1rem",
+          "lg": "2rem",
+          "xl": "3rem",
+          "full": "9999px"
+        },
+        fontFamily: {
+          "display": ["Montserrat", "sans-serif"],
+          "headline": ["Montserrat", "sans-serif"],
+          "body": ["Inter", "sans-serif"],
+          "label": ["Inter", "sans-serif"]
+        }
+      }
+    }
+  }
+</script>
+<style>
+  body { font-family: 'Inter', sans-serif; background-color: #f8f9ff; color: #0b1c30; }
+  h1, h2, h3, h4, h5, h6 { font-family: 'Montserrat', sans-serif; }
+
+  /* Focus ring - never remove */
+  a:focus-visible, button:focus-visible {
+    outline: 2px solid #be0000;
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
+  input:focus-visible { outline: none; }
+  .search-wrap:focus-within {
+    outline: 2px solid #be0000;
+    outline-offset: 2px;
+    border-radius: 12px;
+  }
+
+  /* Waitlist modal */
+  #waitlist-modal {
+    position: fixed; inset: 0; z-index: 1000;
+    display: none;
+    align-items: center; justify-content: center;
+    background: rgba(11,28,48,0.6);
+    backdrop-filter: blur(8px);
+  }
+  #waitlist-modal.open { display: flex; }
+  #waitlist-modal .modal-card {
+    background: #fff;
+    border-radius: 24px;
+    padding: 48px;
+    max-width: 460px;
+    width: 90%;
+    box-shadow: 0 25px 60px rgba(0,0,0,0.25);
+    position: relative;
+    animation: slideUp 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  }
+  @keyframes slideUp {
+    from { opacity: 0; transform: translateY(24px) scale(0.97); }
+    to   { opacity: 1; transform: translateY(0) scale(1); }
+  }
+  #waitlist-modal .modal-close {
+    position: absolute; top: 16px; right: 16px;
+    background: none; border: none; cursor: pointer;
+    color: #8d6f74; font-size: 24px; line-height: 1;
+    padding: 8px;
+  }
+  /* Planning animation */
+  .planning-dots span {
+    display: inline-block;
+    width: 6px; height: 6px;
+    border-radius: 50%;
+    background: #be0000;
+    margin: 0 2px;
+    animation: pulse 1.2s infinite;
+  }
+  .planning-dots span:nth-child(2) { animation-delay: 0.2s; }
+  .planning-dots span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes pulse {
+    0%, 80%, 100% { transform: scale(0.6); opacity: 0.4; }
+    40% { transform: scale(1); opacity: 1; }
+  }
+
+  /* FAQ chevron animation */
+  .faq-chevron { transition: transform 0.3s ease; }
+  .faq-btn.is-open .faq-chevron { transform: rotate(180deg); }
+</style>
+</head>
+<body class="bg-surface text-on-surface selection:bg-primary/20">
+
+<!-- Skip link -->
+<a href="#main" class="sr-only focus:not-sr-only focus:absolute focus:p-4 focus:bg-surface focus:text-on-surface focus:z-50 focus:rounded">Skip to main content</a>
+
+<!-- Waitlist Modal -->
+<div id="waitlist-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+  <div class="modal-card">
+    <button class="modal-close" id="modal-close-btn" aria-label="Close">
+      <span class="material-symbols-outlined" aria-hidden="true">close</span>
+    </button>
+    <div id="modal-planning" class="text-center mb-6 hidden">
+      <div class="planning-dots mb-4 text-2xl">
+        <span></span><span></span><span></span>
+      </div>
+      <p class="text-sm text-on-surface/60 font-medium">Finding the best experiences for you…</p>
+    </div>
+    <div id="modal-form">
+      <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
+        <span class="material-symbols-outlined text-primary text-3xl" aria-hidden="true">flight_takeoff</span>
+      </div>
+      <h2 id="modal-title" class="text-2xl font-extrabold mb-2 font-display">You're early — perfect.</h2>
+      <p class="text-on-surface/60 mb-8 leading-relaxed">Hostliday is in private beta. Leave your email and we'll give you early access — plus a free itinerary on day one.</p>
+      <label for="waitlist-email" class="block text-sm font-bold mb-2">Your email address</label>
+      <input id="waitlist-email" type="email" autocomplete="email" placeholder="you@example.com"
+        class="w-full border border-surface-container-high rounded-xl px-4 py-3 mb-4 text-base focus:outline-none focus:ring-2 focus:ring-primary/40"/>
+      <div id="modal-destination" class="text-xs text-on-surface/40 mb-4 font-medium"></div>
+      <button id="waitlist-submit" type="button"
+        class="w-full bg-primary text-white font-bold py-4 rounded-xl hover:bg-primary/90 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2">
+        Get Early Access →
+      </button>
+      <p class="text-xs text-center text-on-surface/40 mt-4">No spam. Unsubscribe anytime.</p>
+    </div>
+    <div id="modal-success" class="text-center hidden">
+      <div class="w-16 h-16 rounded-full bg-emerald-50 flex items-center justify-center mx-auto mb-6">
+        <span class="material-symbols-outlined text-emerald-500 text-3xl" style="font-variation-settings:'FILL' 1;" aria-hidden="true">check_circle</span>
+      </div>
+      <h2 class="text-2xl font-extrabold mb-2 font-display">You're on the list!</h2>
+      <p class="text-on-surface/60">We'll be in touch when your spot opens up. In the meantime, explore the destinations below.</p>
+      <button onclick="closeWaitlist()" class="mt-8 bg-surface-container text-primary font-bold px-8 py-3 rounded-xl hover:bg-surface-container-high transition-colors">
+        Explore Destinations
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- TopNavBar -->
+<nav aria-label="Main navigation" class="fixed top-0 w-full z-50" style="background:rgba(248,249,255,0.88);backdrop-filter:blur(16px);border-bottom:1px solid rgba(225,190,194,0.15);">
+  <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+    <div class="text-2xl font-bold tracking-tighter text-on-surface font-display">Hostliday</div>
+    <div class="hidden md:flex gap-8 items-center font-medium tracking-tight">
+      <a class="text-primary font-bold border-b-2 border-primary pb-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded" href="#destinations">Destinations</a>
+      <a class="text-on-surface/80 hover:text-primary transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded" href="#planner">Itineraries</a>
+      <a class="text-on-surface/80 hover:text-primary transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded" href="#faq">Journal</a>
+      <a class="text-on-surface/80 hover:text-primary transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded" href="#planner">Concierge</a>
+    </div>
+    <div class="flex items-center gap-6">
+      <label class="hidden lg:flex items-center bg-surface-container-low px-4 py-2 rounded-full search-wrap cursor-text">
+        <span class="material-symbols-outlined text-on-surface/40 mr-2" aria-hidden="true">search</span>
+        <span class="sr-only">Search destinations</span>
+        <input class="bg-transparent border-none outline-none text-sm w-48" name="nav_search" autocomplete="off" placeholder="Search destinations…" type="search"/>
+      </label>
+      <button onclick="openWaitlist()"
+        class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-bold hover:scale-95 duration-200 transition-[transform,background-color] shadow-lg shadow-primary/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+        Sign In
+      </button>
+    </div>
+  </div>
+</nav>
+
+<main id="main" style="scroll-margin-top:80px;">
+
+  <!-- ─── HERO — Full-bleed cinematic ─── -->
+  <section class="relative min-h-[92vh] flex items-end overflow-hidden" aria-label="Hero">
+    <!-- Background image — full bleed -->
+    <img
+      class="absolute inset-0 w-full h-full object-cover object-center"
+      fetchpriority="high"
+      width="1440" height="960"
+      alt="Scenic view of a tranquil mountain lake with a small wooden boat on the water during sunset"
+      src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGhaxpwozIReAyoLeuFDaSdLPAbxq3E0FLI2FCSYb2VCF_TGFBrMGmxphNJJhBIGJB2Zs_rkMV22mH2YmMjybBr5SYaxV1nyxn_QQE2QApMkBc9X89oGNFn3oaMm6Sh710gAxPuLA1awxhvT_1JgZ1Rlo0JEGe5cmMsOYvE7sFC4Vj4ou47ynN0_wJLTKERRKrH7CyXU0EcihVYbSogJYxAjJwWyGWSpVW-NZd2z6HIHj0sLWNT3LVRHqNyDsemq1IvCb7GEeEINU"
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <body>
-    <nav class="site-nav">
-      <div class="nav-inner">
-        <div class="brand-lockup">
-          <span class="brand-mark" aria-hidden="true">H</span>
-          <div class="brand-copy">
-            <p class="brand-name">Hostliday</p>
-            <p class="brand-tag">Barcelona-only verified trip planning</p>
+    <!-- Layered gradient: dark bottom for text legibility, gentle left vignette -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/10" aria-hidden="true"></div>
+    <div class="absolute inset-0 bg-gradient-to-r from-black/25 to-transparent" aria-hidden="true"></div>
+
+    <!-- Hero content anchored to bottom-left -->
+    <div class="relative z-10 w-full max-w-7xl mx-auto px-8 pb-20">
+      <div class="max-w-3xl">
+        <span class="inline-block px-4 py-1.5 bg-white/15 backdrop-blur-sm text-white font-bold text-xs tracking-widest uppercase rounded-full mb-6 border border-white/20">
+          Experiences, adventures, and stays.
+        </span>
+        <h1 class="text-6xl md:text-8xl font-extrabold tracking-tight mb-8 leading-[1.0] text-white font-display text-balance">
+          Your trip.<br/>Planned in minutes.
+        </h1>
+        <p class="text-white/75 max-w-lg mb-10 text-lg leading-relaxed">
+          Your personal digital concierge, crafting bespoke itineraries and finding hidden gems — in seconds.
+        </p>
+        <!-- Search bar -->
+        <div class="flex items-center bg-white p-2 rounded-xl shadow-2xl max-w-xl mb-10 search-wrap">
+          <span class="material-symbols-outlined ml-4 text-primary" aria-hidden="true">explore</span>
+          <label for="hero-search" class="sr-only">Where do you want to go?</label>
+          <input id="hero-search"
+            class="w-full border-none outline-none bg-transparent py-4 text-base font-medium placeholder:text-on-surface/30"
+            placeholder="Where do you want to go?"
+            type="text"
+            autocomplete="off"/>
+          <button
+            onclick="openWaitlist()"
+            class="bg-primary text-white px-8 py-4 rounded-lg font-bold hover:bg-primary/90 active:scale-95 transition-all duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2">
+            Plan Now
+          </button>
+        </div>
+        <!-- Social proof -->
+        <div class="flex gap-4 items-center">
+          <div class="flex -space-x-3" aria-hidden="true">
+            <img class="w-10 h-10 rounded-full border-2 border-white/40 object-cover" width="40" height="40" alt="" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuRh00cScozfME5MxlDpPEpQdamVG7UAk5jcG7yFDXoV9_bA37nh4wZIjyEu2VP68_cSqfNxDOBiR6fdjiAPdKVRggFOx0SPnWcFT8s4S06BcKQlDiOJECOAVnvYQp412UA6KWStHOajdZ1YhM9ZITsZlv9cKCjzKeEvc38Z8raJiaYT7jpgSJ-urPIQdJTqRjmH0LMZYs-DrgjyXNmJxGjtFoJINgIPRHxlylVmy2DLt4Az33LuGFOi_Z6jozXCABqmAs-KoTjso"/>
+            <img class="w-10 h-10 rounded-full border-2 border-white/40 object-cover" width="40" height="40" alt="" src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPdj8I7kQIJMf60MewihZSCPjWgP4MasUesytX1m_hkqjXANL94D8LsXmGahNAMZxkHxSot2odeX9QSA8iro3ncigDWx2PxlE6KAEEf9OvO1M8Rd2bMpOU5fIkZKn_7iI_3UBWSZ9-xXZzUm89x8fqklN5Ld8S6CmWCFNmQDFIpS3QRWj46ofi_3XVfLkxQMLSzSzNoVh7cK2v733MMPIUNafwN1zWPPJ4xrtvhtl06AQRt9AKTX25OtfT5B9x52WIwzwWpjrf1XQ"/>
+            <img class="w-10 h-10 rounded-full border-2 border-white/40 object-cover" width="40" height="40" alt="" src="https://lh3.googleusercontent.com/aida-public/AB6AXuACR9t3VkVRJxunSwtfAajGIch0pa2wJezy-k5hFAX2owYmnvEH-yY8qR5o_EJDRWO-PeGP89QD0YMu6smzdTa-G0xlZzax9_6nFXOUjGRpWP1E3KOSF67UFZBlihmQljMhrFCsL3fY0DqEGhxvnYC8JjliD48na7PxulvFkjxPmfsKDnqmozf_-wBi5rszDowmmRjV_lS193UJOaHRW3kgc4japZS_UGs5_iKs2fnFYAP4TI0mGi5a6K3cL85JLgs844FDzRYxvlo"/>
+          </div>
+          <p class="text-sm font-medium text-white/70">Trusted by <span class="text-white font-bold">50,000+</span> travelers worldwide</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Floating live booking notification — bottom right, not tilted -->
+    <div class="hidden md:flex absolute bottom-20 right-12 bg-white/95 backdrop-blur-sm items-center gap-4 p-5 rounded-2xl shadow-2xl border border-white/60 max-w-xs" aria-hidden="true">
+      <img class="w-12 h-12 rounded-xl object-cover shrink-0" width="48" height="48" alt=""
+        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDd5OLFivmiI2od8iVTr-Oz1rRMvVqSMha45e3VtXqrwPmpasV6iu67CXGtoHrcK7YGwHDeIlyWcEN4zy5zHlCDDgAp03GZ-BUIOimkmzyMLRnhPii9wS7f27fnBMB55ispg8uAH3U5cTZhQ--DeBR2ceZhF-BEEmw1v7gdZIot4ZNopr93dzPdBcoDz-EYTGU6r5jtZ9nEmlHKfFEVeVCQMX72hkWnneUF4Ymi5CBPfO-b5SeSW1AYkGx8T1kQBPYTCjPz1BGI7x8"/>
+      <div>
+        <p class="text-xs text-on-surface/50 font-medium">Just booked via Hostliday</p>
+        <p class="font-bold text-sm text-on-surface">Amalfi Coast, 7 Days</p>
+        <p class="text-primary font-bold text-xs">AI-planned · $1,250</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partner Logos -->
+  <section class="py-12 bg-surface-container-low/30 overflow-hidden">
+    <div class="max-w-7xl mx-auto px-8">
+      <p class="text-center text-xs font-bold uppercase tracking-[0.2em] text-on-surface/40 mb-10">As seen on</p>
+      <div class="flex flex-wrap justify-center gap-12 md:gap-20 opacity-30 grayscale items-center" aria-label="Press mentions">
+        <span class="text-2xl font-black italic" aria-label="Traveler magazine">Traveler</span>
+        <span class="text-2xl font-black" aria-label="Forbes">Forbes</span>
+        <span class="text-2xl font-black" aria-label="Vogue">VOGUE</span>
+        <span class="text-2xl font-black uppercase" aria-label="Bloomberg">Bloomberg</span>
+        <span class="text-2xl font-black tracking-tighter" aria-label="TechCrunch">techcrunch</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- Destination Bento Grid -->
+  <section id="destinations" class="pt-32 pb-16 px-8 max-w-7xl mx-auto">
+    <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
+      <div class="max-w-xl">
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 font-display">Where to go next</h2>
+        <p class="text-on-surface/60 leading-relaxed">Hand-picked destinations curated by our AI engine and verified by local travel experts.</p>
+      </div>
+      <button onclick="openWaitlist()"
+        class="bg-surface-container-highest text-primary font-bold px-8 py-4 rounded-full flex items-center gap-2 hover:bg-surface-container-high transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2">
+        Explore All Destinations <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+      </button>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:min-h-[700px]">
+      <!-- Large card -->
+      <button onclick="openWaitlist()" class="text-left md:col-span-8 relative rounded-lg overflow-hidden group cursor-pointer h-[400px] md:h-full">
+        <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy"
+          alt="Scenic narrow canal in Venice with classic gondolas and historic colourful buildings"
+          src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyMxAIvSSIymRudsFy8jDO1fVQrUDTT8302N4IDS5uEKuTlQrqVtNlKkenr9yfoCMCrnWofqmvuBWneiW35d4djvKjKC--gvUMGtBDYevyCDYHzCM5qamwPMxncFIGik5rvoevtAmXZ51qPiUU3WGo1u9nzxfoxXIIPC3kLBRNn8ArTk7fEn4JI8XksVLhWDCdTcC4hDU7AgSkGzR6x-k--MnwxVNpnHi1ZSYBwu_T98X-DpcGr6C40SUM7MUr1guulxpkf9FIbrY"/>
+        <div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent" aria-hidden="true"></div>
+        <div class="absolute bottom-10 left-10">
+          <span class="text-white/60 font-bold uppercase tracking-widest text-xs mb-2 block">Italy</span>
+          <h3 class="text-3xl font-bold text-white mb-4 font-display">The Romantic Venice</h3>
+          <p class="text-white/80 max-w-sm mb-6">Experience the magic of the canals, private boat tours, and hidden wine bars.</p>
+          <div class="flex gap-4">
+            <span class="bg-white/20 backdrop-blur-md text-white px-4 py-2 rounded-full text-xs font-bold">5 Days</span>
+            <span class="bg-white/20 backdrop-blur-md text-white px-4 py-2 rounded-full text-xs font-bold">$$$</span>
           </div>
         </div>
-        <a href="#demo" class="nav-cta">Try the demo</a>
+      </button>
+      <!-- Side cards -->
+      <div class="md:col-span-4 grid grid-rows-2 gap-8 h-[600px] md:h-full">
+        <button onclick="openWaitlist()" class="text-left relative rounded-lg overflow-hidden group cursor-pointer">
+          <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy"
+            alt="Luxurious beachfront resort with infinity pool overlooking the turquoise ocean in Bali"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdNe3Mx-f2jH6cRIb3ZTBhOZsET1j1LTdQRpenGabJX6fKdWMxYsEN3qWJploKZ7O3g-201X9qIVT_6BP9g96YppHCgKEJdhddqQ0nwpU0KNn0qKXcP_zKYDQbPqN7JiTf_jVboQxYvZmLFdACq8peOrZGWC6TEkI-QRcbyTN5I6V7lV6cUWgrKMOopyBw-rY3l62yeBFxICsSg9m8KkVQ6N4BgJKA27zjneSM3C4Ecnxex7id6n-IERqqSkjvFYbDcJy6VwqmkJ4"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent" aria-hidden="true"></div>
+          <div class="absolute bottom-6 left-6">
+            <h3 class="text-xl font-bold text-white font-display">Bali Retreat</h3>
+          </div>
+        </button>
+        <button onclick="openWaitlist()" class="text-left relative rounded-lg overflow-hidden group cursor-pointer">
+          <img class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110" loading="lazy"
+            alt="Futuristic skyline of Dubai at dusk with the Burj Khalifa towering over brightly lit skyscrapers"
+            src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbfgohl3opquQea70qgn1ZxrGabOTlZAaDYMZFd00aTlF5hzooP7rMGjlCcM6WRVU77-ZhCGkSOL8a8gYgRy7_80pAso1fTrRHt7rNMxHXqWAZ3iy0wkahE1xZjjJWhhwbHn8gBqDsrA2RZ0lSNsbXCwsxBgn19DzBXyZdOEcC6iQOSq4knomfeyPQjHwQhpAXHkFgxrpgOeOv_xj3WsWM1TYO7ip6XG9P8W7BZyG127KiPiib294efTbYdKOOB3vXtN9UYJQq-ekg"/>
+          <div class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent" aria-hidden="true"></div>
+          <div class="absolute bottom-6 left-6">
+            <h3 class="text-xl font-bold text-white font-display">Desert Luxury Dubai</h3>
+          </div>
+        </button>
+      </div>
+    </div>
+  </section>
+
+  <!-- All-in-One Planner Section -->
+  <section id="planner" class="py-32 bg-surface-container-low">
+    <div class="max-w-7xl mx-auto px-8 grid md:grid-cols-2 gap-20 items-center">
+      <div>
+        <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-8 leading-tight font-display">All-in-One AI Trip Planner</h2>
+        <p class="text-on-surface/70 text-lg mb-12 leading-relaxed">Stop jumping between 20 tabs. Hostliday connects everything you need—from flights to dinner reservations—in one seamless conversation.</p>
+        <div class="space-y-8">
+          <div class="flex gap-6">
+            <div class="w-14 h-14 shrink-0 rounded-2xl bg-primary/10 flex items-center justify-center" aria-hidden="true">
+              <span class="material-symbols-outlined text-primary text-3xl">auto_fix_high</span>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold mb-2 font-display">Tailor-made Itineraries</h3>
+              <p class="text-on-surface/60">Every suggestion is personalized to your interests, budget, and travel style.</p>
+            </div>
+          </div>
+          <div class="flex gap-6">
+            <div class="w-14 h-14 shrink-0 rounded-2xl bg-tertiary/10 flex items-center justify-center" aria-hidden="true">
+              <span class="material-symbols-outlined text-tertiary text-3xl">savings</span>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold mb-2 font-display">Cheaper &amp; Faster</h3>
+              <p class="text-on-surface/60">We find exclusive rates and optimize routes to save you both time and money.</p>
+            </div>
+          </div>
+          <div class="flex gap-6">
+            <div class="w-14 h-14 shrink-0 rounded-2xl bg-secondary/10 flex items-center justify-center" aria-hidden="true">
+              <span class="material-symbols-outlined text-secondary text-3xl">chat</span>
+            </div>
+            <div>
+              <h3 class="text-xl font-bold mb-2 font-display">24/7 Digital Concierge</h3>
+              <p class="text-on-surface/60">Change plans on the go. Just message Hostliday and we'll handle the rest instantly.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Chat mockup -->
+      <div class="relative">
+        <div class="absolute inset-0 bg-surface-container-highest/60 rounded-full scale-90 blur-3xl opacity-50" aria-hidden="true"></div>
+        <div class="relative bg-surface-container-lowest p-6 rounded-lg shadow-2xl border border-outline-variant/10"
+          role="presentation" aria-label="Hostliday AI chat demo">
+          <div class="flex items-center gap-4 border-b border-surface-container-low pb-4 mb-6">
+            <div class="w-10 h-10 rounded-full bg-primary flex items-center justify-center" aria-hidden="true">
+              <span class="material-symbols-outlined text-on-primary text-xl" style="font-variation-settings:'FILL' 1;">colors_spark</span>
+            </div>
+            <div>
+              <p class="text-sm font-bold">Hostliday AI</p>
+              <p class="text-[10px] text-primary font-bold uppercase tracking-widest">Active Now</p>
+            </div>
+          </div>
+          <div class="space-y-6" aria-label="Example AI conversation">
+            <div class="flex gap-3">
+              <div class="bg-surface-container-low p-4 rounded-2xl rounded-tl-none text-sm max-w-[80%]">
+                I've found a secret rooftop bar in Rome with views of the Pantheon. Would you like me to book a table for 8 PM?
+              </div>
+            </div>
+            <div class="flex gap-3 flex-row-reverse">
+              <div class="bg-primary text-on-primary p-4 rounded-2xl rounded-tr-none text-sm max-w-[80%]">
+                That sounds perfect! Is it within walking distance of our hotel?
+              </div>
+            </div>
+            <div class="flex gap-3">
+              <div class="bg-surface-container-low p-4 rounded-2xl rounded-tl-none text-sm max-w-[80%]">
+                Yes, it's just a 6-minute stroll. I've sent the walking route to your phone. 🍸
+              </div>
+            </div>
+          </div>
+          <div class="mt-8 flex gap-2">
+            <div class="bg-surface-container text-on-surface/40 text-xs px-4 py-3 rounded-full flex-1" aria-hidden="true">Ask Hostliday anything…</div>
+            <button aria-label="Send message"
+              class="bg-primary text-on-primary w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary/90 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+              <span class="material-symbols-outlined" aria-hidden="true">send</span>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Testimonials - Cardless Asymmetrical Layout -->
+  <section class="py-16 px-8 max-w-7xl mx-auto border-t border-surface-container-low">
+    <div class="grid lg:grid-cols-[1fr_2fr] gap-16 md:gap-24 items-start">
+      <div class="sticky top-32">
+        <h2 class="text-4xl font-extrabold mb-4 font-display">Travelers love Hostliday</h2>
+        <p class="text-on-surface/60 font-medium">Verified feedback from real trips planned entirely by our AI.</p>
+        <div class="mt-8 flex gap-1 text-primary" aria-label="5 out of 5 stars average">
+          <span class="material-symbols-outlined text-2xl" style="font-variation-settings:'FILL' 1;" aria-hidden="true">star</span>
+          <span class="material-symbols-outlined text-2xl" style="font-variation-settings:'FILL' 1;" aria-hidden="true">star</span>
+          <span class="material-symbols-outlined text-2xl" style="font-variation-settings:'FILL' 1;" aria-hidden="true">star</span>
+          <span class="material-symbols-outlined text-2xl" style="font-variation-settings:'FILL' 1;" aria-hidden="true">star</span>
+          <span class="material-symbols-outlined text-2xl" style="font-variation-settings:'FILL' 1;" aria-hidden="true">star</span>
+        </div>
+      </div>
+      <div class="flex flex-col gap-16 md:gap-24">
+        <article class="flex flex-col group relative pl-8">
+          <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-primary/20 group-hover:bg-primary transition-colors"></div>
+          <blockquote class="text-2xl md:text-3xl font-display font-medium text-on-surface leading-tight mb-8">
+            "Planned my entire honeymoon in 10 minutes. The hotel suggestions were spot on and the itinerary flowed perfectly. Hostliday is a game-changer!"
+          </blockquote>
+          <div class="flex items-center gap-4">
+            <img class="w-14 h-14 rounded-full object-cover shadow-sm bg-surface-container-low" loading="lazy"
+              alt="Portrait of Sarah Jenkins, verified traveler from London"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuDd5OLFivmiI2od8iVTr-Oz1rRMvVqSMha45e3VtXqrwPmpasV6iu67CXGtoHrcK7YGwHDeIlyWcEN4zy5zHlCDDgAp03GZ-BUIOimkmzyMLRnhPii9wS7f27fnBMB55ispg8uAH3U5cTZhQ--DeBR2ceZhF-BEEmw1v7gdZIot4ZNopr93dzPdBcoDz-EYTGU6r5jtZ9nEmlHKfFEVeVCQMX72hkWnneUF4Ymi5CBPfO-b5SeSW1AYkGx8T1kQBPYTCjPz1BGI7x8"/>
+            <div>
+              <p class="font-bold text-lg">Sarah Jenkins</p>
+              <p class="text-sm text-on-surface/50 font-medium">Verified Traveler · London</p>
+            </div>
+          </div>
+        </article>
+        
+        <article class="flex flex-col group relative pl-8">
+          <div class="absolute left-0 top-0 bottom-0 w-[2px] bg-primary/20 group-hover:bg-primary transition-colors"></div>
+          <blockquote class="text-2xl md:text-3xl font-display font-medium text-on-surface leading-tight mb-8">
+            "I travel for business constantly. Hostliday handles my logistics and dining better than any human assistant I've ever had. Truly impressive."
+          </blockquote>
+          <div class="flex items-center gap-4">
+            <img class="w-14 h-14 rounded-full object-cover shadow-sm bg-surface-container-low" loading="lazy"
+              alt="Portrait of Michael Chen, Global Operations VP"
+              src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOZRsXUgg9jno5kjooZ63RA1cV2sjayIv5v08yXarovYL2CywIDyXpayZIh_ulIAvER0nVsuy3PPJbrNhhyYJQzKzuBJHkiDYrqcwLE-WMxz8xfu__UbKD9NZ-_zprv0NOovgm4X8EKvYJL-W4RPe5peiw_Q8Z-_vCpvFWAiqd6f4AzkKCdTCH4INfHM8yVwSQyHdsQrNCq_WpsqAMW9FBa1eW4mNa1dZIIK1zNsxvW7Ec_vRC2IwwP9c3DVoACSFRhy4RCkSves4"/>
+            <div>
+              <p class="font-bold text-lg">Michael Chen</p>
+              <p class="text-sm text-on-surface/50 font-medium">Global Operations VP</p>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- Investor/Team Section - Asymmetric Layout -->
+  <section class="py-32 bg-on-surface text-surface">
+    <div class="max-w-7xl mx-auto px-8 grid md:grid-cols-[1fr_2fr] gap-16 md:gap-24 items-center">
+      <div class="max-w-sm">
+        <h2 class="text-4xl md:text-5xl font-extrabold mb-6 font-display leading-tight">Backed by the best</h2>
+        <p class="text-surface/60 text-lg">Our team and investors come from the world's most innovative travel and tech companies.</p>
+      </div>
+      <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
+        <div>
+          <img class="w-16 h-16 rounded-full mb-4 object-cover" loading="lazy"
+            alt="Professional portrait of Alex Morano, CEO" src="https://lh3.googleusercontent.com/aida-public/AB6AXuADTEsOm9zyMXbT1Sa_HimIJShi4kAUFmmeSRmBfzaqC5GfNoPFF5jMcCHj2slqnALhNDaXZ0uo4NGLS4pF_bUWvKtCf0tjIMcAFHzc6OWNIhhXeLCT24RkX59XKoQh0WLYSUubOk9TejuQQURRR1VPETvj-7reKg1XK6vCz1KoMEJ8pkQgs4XR4u1lPlF2GSSgZehrWkRgoUUc57o0sb85JXzRG50ncQ6uxFjPsCMb5Cbi_lkoV8By1BBUzNP6JGFAOxdG46JgcyM"/>
+          <p class="font-bold text-sm text-surface">Alex Morano</p>
+          <p class="text-xs text-surface/50 font-medium mt-1">CEO · Ex-Booking.com</p>
+        </div>
+        <div>
+          <img class="w-16 h-16 rounded-full mb-4 object-cover" loading="lazy"
+            alt="Portrait of Diana Park, CTO" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqh8Wdmfi2LFQHA7yE_xvHO8X5hmXJWegYcUgBwiiYNhDoWpotwyLjU_JYg_fh9M_N0D256laRp4G1zJS8_yXpl8zr0cBisduvGVZD0m4IfTQuO0toWpcrYfsXzN4bHVstsZY8UhZIz1rNq5ZHdAvSLGUk-ZTquLmwUFqe61-EP-l53zAuFMRBYmxSRoqJud_xCKuWmwDZDSHlJbNd0AX6mI1ttETYbHNh8vR8ModX-xudp8Z5UzN72qE9a6SQPnRpGEjGjBH1QXE"/>
+          <p class="font-bold text-sm text-surface">Diana Park</p>
+          <p class="text-xs text-surface/50 font-medium mt-1">CTO · Ex-Google AI</p>
+        </div>
+        <div>
+          <div class="w-16 h-16 rounded-full bg-white/10 mb-4 flex items-center justify-center border border-white/10" aria-hidden="true">
+            <span class="font-black italic text-surface text-lg">SV</span>
+          </div>
+          <p class="font-bold text-sm text-surface">SoftValley</p>
+          <p class="text-xs text-surface/50 font-medium mt-1">Series A Investor</p>
+        </div>
+        <div>
+          <div class="w-16 h-16 rounded-full bg-white/10 mb-4 flex items-center justify-center border border-white/10" aria-hidden="true">
+            <span class="font-black text-surface text-lg">TC</span>
+          </div>
+          <p class="font-bold text-sm text-surface">TravelCorp</p>
+          <p class="text-xs text-surface/50 font-medium mt-1">Strategic Partner</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="py-24 px-8 max-w-4xl mx-auto">
+    <h2 class="text-3xl font-extrabold mb-12 text-center font-display">Frequently Asked Questions</h2>
+    <div class="space-y-4" role="list">
+
+      <div role="listitem">
+        <button id="faq-1-btn" aria-expanded="false" aria-controls="faq-1-answer"
+          class="faq-btn w-full text-left bg-surface-container-low rounded-lg p-6 cursor-pointer hover:bg-surface-container transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2">
+          <div class="flex justify-between items-center">
+            <h3 class="font-bold text-on-surface text-base">How does Hostliday's AI actually work?</h3>
+            <span class="material-symbols-outlined text-primary faq-chevron" aria-hidden="true">expand_more</span>
+          </div>
+        </button>
+        <div id="faq-1-answer" role="region" aria-labelledby="faq-1-btn" hidden
+          class="px-6 pb-6 pt-2 bg-surface-container-low rounded-b-lg text-on-surface/70 text-sm leading-relaxed -mt-2">
+          Hostliday uses a combination of large language models and a proprietary travel knowledge graph to match your preferences with curated destinations, accommodation options, and activity suggestions — all in real time.
+        </div>
+      </div>
+
+      <div role="listitem">
+        <button id="faq-2-btn" aria-expanded="false" aria-controls="faq-2-answer"
+          class="faq-btn w-full text-left bg-surface-container-low rounded-lg p-6 cursor-pointer hover:bg-surface-container transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2">
+          <div class="flex justify-between items-center">
+            <h3 class="font-bold text-on-surface text-base">Can I book flights and hotels through Hostliday?</h3>
+            <span class="material-symbols-outlined text-primary faq-chevron" aria-hidden="true">expand_more</span>
+          </div>
+        </button>
+        <div id="faq-2-answer" role="region" aria-labelledby="faq-2-btn" hidden
+          class="px-6 pb-6 pt-2 bg-surface-container-low rounded-b-lg text-on-surface/70 text-sm leading-relaxed -mt-2">
+          Yes. Hostliday integrates with major booking platforms so you can complete hotel and flight reservations without leaving the conversation. We're adding direct booking for restaurants, tours, and transfers.
+        </div>
+      </div>
+
+      <div role="listitem">
+        <button id="faq-3-btn" aria-expanded="false" aria-controls="faq-3-answer"
+          class="faq-btn w-full text-left bg-surface-container-low rounded-lg p-6 cursor-pointer hover:bg-surface-container transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2">
+          <div class="flex justify-between items-center">
+            <h3 class="font-bold text-on-surface text-base">Is there a mobile app available?</h3>
+            <span class="material-symbols-outlined text-primary faq-chevron" aria-hidden="true">expand_more</span>
+          </div>
+        </button>
+        <div id="faq-3-answer" role="region" aria-labelledby="faq-3-btn" hidden
+          class="px-6 pb-6 pt-2 bg-surface-container-low rounded-b-lg text-on-surface/70 text-sm leading-relaxed -mt-2">
+          Our iOS app is in beta. Android follows shortly after. Sign up for early access and we'll send you an invite when your spot is ready.
+        </div>
+      </div>
+
+      <div role="listitem">
+        <button id="faq-4-btn" aria-expanded="false" aria-controls="faq-4-answer"
+          class="faq-btn w-full text-left bg-surface-container-low rounded-lg p-6 cursor-pointer hover:bg-surface-container transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2">
+          <div class="flex justify-between items-center">
+            <h3 class="font-bold text-on-surface text-base">What if I need to change my itinerary?</h3>
+            <span class="material-symbols-outlined text-primary faq-chevron" aria-hidden="true">expand_more</span>
+          </div>
+        </button>
+        <div id="faq-4-answer" role="region" aria-labelledby="faq-4-btn" hidden
+          class="px-6 pb-6 pt-2 bg-surface-container-low rounded-b-lg text-on-surface/70 text-sm leading-relaxed -mt-2">
+          Changes are easy — just message Hostliday like you'd message a friend. Tell us what you want to adjust and we'll re-optimize the full itinerary around your new requirements instantly.
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Final CTA -->
+  <section class="py-24 px-8 mb-24">
+    <div class="max-w-7xl mx-auto bg-primary rounded-[3rem] p-12 md:p-24 text-center relative overflow-hidden"
+      style="background:linear-gradient(120deg,#da0000 0%,#810000 100%);">
+      <div class="absolute inset-0 opacity-10"
+        style="background-image:radial-gradient(circle at 2px 2px,white 1px,transparent 0);background-size:40px 40px;" aria-hidden="true"></div>
+      <div class="relative z-10">
+        <h2 class="text-4xl md:text-6xl font-extrabold text-white mb-8 font-display">Ready to give it a try?</h2>
+        <p class="text-white/80 text-lg mb-12 max-w-xl mx-auto">Join thousands of travelers who are planning smarter, faster, and better with Hostliday.</p>
+        <div class="flex flex-col md:flex-row justify-center gap-6">
+          <button onclick="openWaitlist()"
+            class="bg-white text-primary px-10 py-5 rounded-full font-bold text-xl hover:scale-105 transition-transform shadow-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2">
+            Get Early Access →
+          </button>
+          <a href="#faq"
+            class="inline-block bg-white/15 backdrop-blur-md text-white border border-white/30 px-10 py-5 rounded-full font-bold text-xl hover:bg-white/25 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2">
+            Read the FAQ
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="bg-surface-container-low w-full rounded-t-[3rem]">
+  <div class="flex flex-col md:flex-row justify-between items-start px-12 py-16 w-full max-w-7xl mx-auto gap-12">
+    <div class="max-w-xs">
+      <div class="text-xl font-black text-on-surface mb-6 font-display">Hostliday</div>
+      <p class="text-on-surface/60 text-sm leading-relaxed mb-8">The next generation travel concierge, powered by proprietary AI to make world exploration effortless.</p>
+      <div class="flex gap-4">
+        <a class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
+          href="#" aria-label="Hostliday on the web (coming soon)"><span class="material-symbols-outlined" aria-hidden="true">public</span></a>
+        <a class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
+          href="#" aria-label="Hostliday on Instagram (coming soon)"><span class="material-symbols-outlined" aria-hidden="true">photo_camera</span></a>
+        <a class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
+          href="#" aria-label="Hostliday on X / Twitter (coming soon)"><span class="material-symbols-outlined" aria-hidden="true">alternate_email</span></a>
+      </div>
+    </div>
+    <nav aria-label="Footer navigation">
+      <div class="grid grid-cols-2 md:grid-cols-3 gap-12">
+        <div>
+          <h3 class="font-bold mb-6 text-base">Product</h3>
+          <ul class="space-y-4 text-on-surface/60 text-sm">
+            <li><a class="hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded" href="#planner">Features</a></li>
+            <li><a class="hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded" href="#planner">Itineraries</a></li>
+            <li><a class="hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded" href="#planner">Concierge</a></li>
+            <li><span class="text-on-surface/40" aria-label="Pricing — coming soon">Pricing <span class="text-xs">(coming soon)</span></span></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="font-bold mb-6 text-base">Company</h3>
+          <ul class="space-y-4 text-on-surface/60 text-sm">
+            <li><a class="hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded" href="#">Press Kit</a></li>
+            <li><a class="hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded" href="#">Careers</a></li>
+            <li><a class="hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded" href="#">Blog</a></li>
+            <li><a class="hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded" href="#">Contact Us</a></li>
+          </ul>
+        </div>
+        <div class="col-span-2 md:col-span-1">
+          <h3 class="font-bold mb-6 text-base">Legal</h3>
+          <ul class="space-y-4 text-on-surface/60 text-sm">
+            <li>
+              <button onclick="openWaitlist()" class="hover:underline hover:text-primary transition-all duration-300 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded">
+                Privacy Policy <span class="text-[10px] text-on-surface/30">(pre-launch)</span>
+              </button>
+            </li>
+            <li>
+              <button onclick="openWaitlist()" class="hover:underline hover:text-primary transition-all duration-300 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded">
+                Terms of Service <span class="text-[10px] text-on-surface/30">(pre-launch)</span>
+              </button>
+            </li>
+          </ul>
+        </div>
       </div>
     </nav>
+  </div>
+  <div class="border-t border-surface-container-high/50 max-w-7xl mx-auto px-12 py-8 flex flex-col md:flex-row justify-between items-center gap-4">
+    <p class="text-on-surface/60 text-xs">© 2025 Hostliday AI. Experiences, adventures, and stays.</p>
+    <div class="flex gap-4">
+      <img alt="Download on the App Store" class="h-8"
+        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsr0aahSPkhZX86wyYgtz6YNKiBkKWBnCLcsGZ0kUZOCEzmvvLoGoWdhs5ogNvv05XAfSOf7NsZF9MyTxyyMWiKSyDK5iNoKUZZsb5icDZACxEvJfFVBrUhRX_9KKtLppZfLfoynTNGj-5F-b8dqv6Cnz89FG4Qy5zSZJnQ2YRLBqRsgTtlVFVZt-oOYvmV1pC_5a0EvZ5Xmb9EQJEwe33PHnE8OqxJ3I9ciXWBA4TI0mGi5a6K3cL85JLgs844FDzRYxvlo"/>
+      <img alt="Get it on Google Play" class="h-8"
+        src="https://lh3.googleusercontent.com/aida-public/AB6AXuCveLSZW_hxL4JHcim_jCR_lMEk_aBbLjtdUKqk-sVxIYBw7ILnxj_UJkYOjamrNXy-s9yPW8Xrn2dnQtxRQeu_fAB0U35aluq7KcQO5Xirpl221kT-cwWBytsHFY_ru9zOyF3rrvvUKXaPFoXzLoEs_hohimpRY2ZdSiX-nizZYqZ0W27MrYnn6wjP-Nue6DHJR0uISvZdYGAoDBYmT_IGA7y2lQN7bFld5MAalKb8cSCAM_Q6X_Ks099_fLO3FnTSKzJYvRSTh6I"/>
+    </div>
+  </div>
+</footer>
 
-    <main>
-      <section class="hero" aria-label="Hero">
-        <div class="hero-inner">
-          <div class="hero-copy">
-            <p class="eyebrow">Barcelona specialist</p>
-            <h1>Trip planning backed by visible verification.</h1>
-            <p class="hero-sub">
-              Hostliday turns Barcelona planning into a trust system. Every recommendation ships
-              with source links, freshness timestamps, verification state, and match reasoning, so
-              you can inspect the plan before you trust it.
-            </p>
-            <div class="hero-actions">
-              <a href="#demo" class="btn-primary">Try the demo</a>
-            </div>
-          </div>
+<!-- ─── Scripts ─── -->
+<script>
+  /* ── Waitlist Modal ── */
+  function openWaitlist(destination) {
+    var modal = document.getElementById('waitlist-modal');
+    // Show planning animation briefly
+    var planning = document.getElementById('modal-planning');
+    var form = document.getElementById('modal-form');
+    var destNote = document.getElementById('modal-destination');
 
-          <aside class="data-card" aria-label="Live verification status">
-            <div class="data-card-header">
-              <h2>Live verification status</h2>
-              <span>System active</span>
-            </div>
+    if (destination) {
+      destNote.textContent = 'Planning your trip to: ' + destination;
+    } else {
+      destNote.textContent = '';
+    }
 
-            <div class="data-card-body">
-              <div class="data-row data-row-strong">
-                <div>
-                  <p class="data-label">Trip profile</p>
-                  <p class="data-primary">3-day romantic city break</p>
-                </div>
-                <span class="data-badge success">Inputs locked</span>
-              </div>
+    // Show planning dots for 1.2s then show form
+    planning.classList.remove('hidden');
+    form.classList.add('hidden');
+    modal.classList.add('open');
+    document.body.style.overflow = 'hidden';
 
-              <div class="data-row">
-                <span class="data-label">Hotel 1898</span>
-                <span class="data-value success">Verified today</span>
-              </div>
-              <div class="data-row">
-                <span class="data-label">Picasso Museum slot</span>
-                <span class="data-value success">Checked 6h ago</span>
-              </div>
-              <div class="data-row">
-                <span class="data-label">Cal Pep dinner stop</span>
-                <span class="data-value warning">Verified 5d ago</span>
-              </div>
-              <div class="data-row">
-                <span class="data-label">Barceloneta rooftop option</span>
-                <span class="data-value neutral">Needs re-check</span>
-              </div>
+    setTimeout(function() {
+      planning.classList.add('hidden');
+      form.classList.remove('hidden');
+    }, 1200);
+  }
 
-              <div class="audit-block">
-                <p class="audit-label">Verification primitives attached</p>
-                <div class="audit-tags">
-                  <span>Source link</span>
-                  <span>Freshness stamp</span>
-                  <span>Fit reasoning</span>
-                  <span>Next action</span>
-                </div>
-              </div>
-            </div>
-          </aside>
-        </div>
-      </section>
+  function closeWaitlist() {
+    var modal = document.getElementById('waitlist-modal');
+    modal.classList.remove('open');
+    document.body.style.overflow = '';
+    // Reset for next open
+    setTimeout(function() {
+      document.getElementById('modal-form').classList.remove('hidden');
+      document.getElementById('modal-success').classList.add('hidden');
+      document.getElementById('modal-planning').classList.add('hidden');
+      document.getElementById('waitlist-email').value = '';
+    }, 300);
+  }
 
-      <section class="pipeline-section" aria-label="Verification pipeline">
-        <div class="section-shell">
-          <p class="eyebrow">Verification pipeline</p>
-          <h2 class="section-title">Every plan moves through the same four-step system.</h2>
-          <div class="pipeline-grid">
-            <article class="pipeline-step">
-              <p class="step-tag">Step 1</p>
-              <h3>Collect the real planning inputs</h3>
-              <p>
-                Trip shape, budget, pace, vibe, and priorities define the search space before
-                recommendations appear.
-              </p>
-              <div class="status-line"><span class="status-dot"></span> Structured input</div>
-            </article>
-            <article class="pipeline-step">
-              <p class="step-tag">Step 2</p>
-              <h3>Cross-check candidate recommendations</h3>
-              <p>
-                Hotels and activities are evaluated against live sources instead of being presented
-                as unsupported suggestions.
-              </p>
-              <div class="status-line"><span class="status-dot"></span> Source-linked</div>
-            </article>
-            <article class="pipeline-step">
-              <p class="step-tag">Step 3</p>
-              <h3>Assign confidence and freshness</h3>
-              <p>
-                Each recommendation gets a visible state, timestamp, and clear handling when
-                confidence drops.
-              </p>
-              <div class="status-line"><span class="status-dot warn"></span> Freshness-aware</div>
-            </article>
-            <article class="pipeline-step">
-              <p class="step-tag">Step 4</p>
-              <h3>Deliver a paced, explainable plan</h3>
-              <p>
-                The output combines verified stays with a day-by-day itinerary that explains why
-                each choice belongs.
-              </p>
-              <div class="status-line"><span class="status-dot"></span> Reasoned output</div>
-            </article>
-          </div>
-        </div>
-      </section>
+  document.getElementById('modal-close-btn').addEventListener('click', closeWaitlist);
 
-      <section class="problems-section" aria-label="Problem analysis">
-        <div class="section-shell">
-          <p class="eyebrow">Why Hostliday</p>
-          <h2 class="section-title">Current AI planning vs. verified plans.</h2>
-          <div class="comparison-split">
-            <div class="comparison-current">
-              <h3>Current AI planning</h3>
-              <ul>
-                <li>Suggestions without sources</li>
-                <li>No freshness information</li>
-                <li>Unclear what's current vs. stale</li>
-                <li>You verify everything manually</li>
-              </ul>
-            </div>
-            <div class="comparison-hostliday">
-              <h3>Hostliday verified plans</h3>
-              <ul>
-                <li>Source link on every recommendation</li>
-                <li>Freshness timestamps visible</li>
-                <li>Confidence levels explicit</li>
-                <li>Fit reasoning explained</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-      </section>
+  // Close on backdrop click
+  document.getElementById('waitlist-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeWaitlist();
+  });
 
-      <section class="demo-section" id="demo" aria-label="Planner demo">
-        <div class="demo-shell">
-          <div class="demo-header-block">
-            <div>
-              <p class="eyebrow">System demo</p>
-              <h2 class="section-title">Test the planner, then inspect the output yourself.</h2>
-            </div>
-            <p class="demo-kicker">
-              This is a working prototype for Barcelona-only trip planning. The form stays
-              structured so the recommendations can stay explainable.
-            </p>
-          </div>
+  // Close on Escape
+  document.addEventListener('keydown', function(e) {
+    if (e.key === 'Escape') closeWaitlist();
+  });
 
-          <div class="app-shell" id="appShell">
-            <section class="screen screen-active" id="screenInput" aria-labelledby="plannerTitle">
-              <form id="tripForm" class="planner-card" novalidate>
-                <div class="form-group">
-                  <p class="form-group-label">Trip profile</p>
-                  <div class="field-split">
-                    <div class="field-row">
-                      <label for="tripUseCase">Use case</label>
-                      <select id="tripUseCase" name="tripUseCase" required>
-                        <option value="">Choose one</option>
-                        <option value="romantic">Romantic escape</option>
-                        <option value="friends">Friends weekend</option>
-                        <option value="family">Family trip</option>
-                        <option value="solo">Solo culture reset</option>
-                      </select>
-                    </div>
-                    <div class="field-row">
-                      <label for="tripBudget">Budget band</label>
-                      <select id="tripBudget" name="tripBudget" required>
-                        <option value="">Select budget</option>
-                        <option value="value">Value-minded</option>
-                        <option value="comfort">Comfort</option>
-                        <option value="premium">Premium</option>
-                        <option value="luxury">Luxury</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
+  // Submit handler
+  document.getElementById('waitlist-submit').addEventListener('click', function() {
+    var email = document.getElementById('waitlist-email').value.trim();
+    if (!email || !email.includes('@')) {
+      document.getElementById('waitlist-email').focus();
+      document.getElementById('waitlist-email').style.borderColor = '#be0000';
+      return;
+    }
+    document.getElementById('modal-form').classList.add('hidden');
+    document.getElementById('modal-success').classList.remove('hidden');
+  });
 
-                <div class="form-group">
-                  <p class="form-group-label">Trip shape</p>
-                  <div class="field-split">
-                    <div class="field-row">
-                      <label for="tripDays">Trip length</label>
-                      <input id="tripDays" name="tripDays" type="range" min="1" max="7" value="3" />
-                      <div class="range-readout"><span id="daysReadout">3</span> days</div>
-                    </div>
-                    <div class="field-row">
-                      <label for="tripPace">Pace</label>
-                      <select id="tripPace" name="tripPace" required>
-                        <option value="">Select pace</option>
-                        <option value="slow">Slow — savor each stop</option>
-                        <option value="balanced">Balanced — see plenty, rest enough</option>
-                        <option value="packed">Packed — maximum coverage</option>
-                      </select>
-                    </div>
-                  </div>
-                </div>
+  // Hero search → open modal with destination
+  document.getElementById('hero-search').addEventListener('keydown', function(e) {
+    if (e.key === 'Enter' && this.value.trim()) {
+      openWaitlist(this.value.trim());
+    }
+  });
 
-                <div class="form-group">
-                  <p class="form-group-label">Style and priorities</p>
-                  <div class="field-row field-row-gap">
-                    <label for="iconicIntensity">How many iconic sites?</label>
-                    <select id="iconicIntensity" name="iconicIntensity" required>
-                      <option value="">Choose intensity</option>
-                      <option value="low">Low — skip the tourist traps</option>
-                      <option value="medium">Medium — hit the must-sees, skip the rest</option>
-                      <option value="high">High — Sagrada Familia, Park Güell, the works</option>
-                    </select>
-                  </div>
+  /* ── FAQ Accordion ── */
+  (function() {
+    var faqs = [
+      { btn: 'faq-1-btn', answer: 'faq-1-answer' },
+      { btn: 'faq-2-btn', answer: 'faq-2-answer' },
+      { btn: 'faq-3-btn', answer: 'faq-3-answer' },
+      { btn: 'faq-4-btn', answer: 'faq-4-answer' },
+    ];
 
-                  <fieldset class="field-row field-row-gap">
-                    <legend>Stay vibe</legend>
-                    <div class="chip-group" id="vibeGroup">
-                      <label
-                        ><input type="radio" name="vibeTag" value="intimate boutique" required />
-                        Intimate boutique</label
-                      >
-                      <label
-                        ><input type="radio" name="vibeTag" value="luxury spa" /> Luxury spa</label
-                      >
-                      <label
-                        ><input type="radio" name="vibeTag" value="scenic rooftop" /> Scenic
-                        rooftop</label
-                      >
-                      <label
-                        ><input type="radio" name="vibeTag" value="quiet old-town charm" /> Quiet
-                        old-town charm</label
-                      >
-                    </div>
-                  </fieldset>
+    faqs.forEach(function(item) {
+      var btn = document.getElementById(item.btn);
+      var answer = document.getElementById(item.answer);
+      if (!btn || !answer) return;
 
-                  <fieldset class="field-row">
-                    <legend>Focus priorities (choose up to 2)</legend>
-                    <div class="chip-group" id="priorityGroup">
-                      <label><input type="checkbox" name="priority" value="food" /> Food</label>
-                      <label
-                        ><input type="checkbox" name="priority" value="culture" /> Culture</label
-                      >
-                      <label
-                        ><input type="checkbox" name="priority" value="architecture" />
-                        Architecture</label
-                      >
-                      <label
-                        ><input type="checkbox" name="priority" value="nightlife" />
-                        Nightlife</label
-                      >
-                      <label
-                        ><input type="checkbox" name="priority" value="wellness" /> Wellness</label
-                      >
-                    </div>
-                  </fieldset>
-                </div>
+      btn.addEventListener('click', function() {
+        var isExpanded = btn.getAttribute('aria-expanded') === 'true';
+        // Collapse all
+        faqs.forEach(function(other) {
+          var ob = document.getElementById(other.btn);
+          var oa = document.getElementById(other.answer);
+          if (ob && oa) {
+            ob.setAttribute('aria-expanded', 'false');
+            ob.classList.remove('is-open');
+            oa.hidden = true;
+          }
+        });
+        // Toggle clicked
+        if (!isExpanded) {
+          btn.setAttribute('aria-expanded', 'true');
+          btn.classList.add('is-open');
+          answer.hidden = false;
+        }
+      });
+    });
+  })();
+</script>
 
-                <div class="cta-row">
-                  <button type="submit" class="btn-primary btn-full">Try the demo</button>
-                  <p
-                    class="validation-copy"
-                    id="formValidation"
-                    role="alert"
-                    aria-live="polite"
-                  ></p>
-                </div>
-              </form>
-            </section>
-
-            <section class="screen" id="screenResults" aria-labelledby="resultsTitle" hidden>
-              <div class="results-head">
-                <button type="button" class="btn-ghost" id="editTripButton">
-                  ← Edit trip inputs
-                </button>
-                <div>
-                  <p class="eyebrow">Generated plan</p>
-                  <h2 id="resultsTitle">Your verified Barcelona plan</h2>
-                  <p class="results-subtitle" id="resultsSubtitle"></p>
-                </div>
-              </div>
-
-              <div class="results-grid">
-                <section class="panel" aria-labelledby="hotelPanelTitle">
-                  <div class="panel-head">
-                    <h3 id="hotelPanelTitle">Hotel options</h3>
-                    <span class="meta-pill">Source-linked · freshness-aware</span>
-                  </div>
-                  <div id="hotelList" class="hotel-list"></div>
-                </section>
-
-                <section class="panel" aria-labelledby="itineraryPanelTitle">
-                  <div class="panel-head">
-                    <h3 id="itineraryPanelTitle">Day-by-day itinerary</h3>
-                    <span class="meta-pill">Pacing-checked · max 4 major blocks</span>
-                  </div>
-                  <div id="itineraryList" class="itinerary-list"></div>
-                </section>
-              </div>
-            </section>
-          </div>
-        </div>
-      </section>
-
-      <footer class="site-footer">
-        <div class="footer-inner">
-          <p class="footer-note">
-            Hostliday · Barcelona-only verified trip planning · Source-backed demo
-          </p>
-        </div>
-      </footer>
-    </main>
-
-    <template id="hotelCardTemplate">
-      <article class="hotel-card">
-        <div class="hotel-head">
-          <h4></h4>
-          <span class="status-pill"></span>
-        </div>
-        <p class="hotel-match-reason"></p>
-        <p class="hotel-meta"></p>
-        <div class="hotel-details">
-          <span class="hotel-freshness"></span>
-          <span class="hotel-source"></span>
-        </div>
-        <div class="hotel-links">
-          <a target="_blank" rel="noreferrer noopener">View source ↗</a>
-          <a target="_blank" rel="noreferrer noopener">Book hotel ↗</a>
-        </div>
-      </article>
-    </template>
-
-    <template id="dayCardTemplate">
-      <article class="day-card">
-        <h4></h4>
-        <p class="day-context"></p>
-        <ul class="activity-list"></ul>
-      </article>
-    </template>
-
-    <script type="module" src="/src/main.ts"></script>
-  </body>
+<!-- Vite entry -->
+<script type="module" src="/src/main.ts"></script>
+</body>
 </html>
