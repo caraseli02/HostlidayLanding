@@ -697,10 +697,11 @@ function renderActivities(activities: Activity[]): void {
   for (const act of activities) {
     const fragment = activityTemplate.content.cloneNode(true) as DocumentFragment;
     const title = fragment.querySelector("h4")!;
-    const walkBadge = fragment.querySelector(".walk-badge")!;
-    const why = fragment.querySelector(".result-card-why")!;
-    const category = fragment.querySelector(".result-card-category")!;
-    const source = fragment.querySelector(".result-card-source")!;
+    const walkBadge = fragment.querySelector(".bg-emerald-50")!;
+    const why = fragment.querySelector("p.mt-2")!;
+    const metaDiv = fragment.querySelector(".flex.flex-wrap")!;
+    const category = metaDiv.querySelector("span:first-child")!;
+    const source = metaDiv.querySelector("span:last-child")!;
 
     title.textContent = act.name;
     walkBadge.textContent = act.walkTime;
@@ -717,10 +718,11 @@ function renderRestaurants(restaurants: Restaurant[]): void {
   for (const rest of restaurants) {
     const fragment = restaurantTemplate.content.cloneNode(true) as DocumentFragment;
     const title = fragment.querySelector("h4")!;
-    const walkBadge = fragment.querySelector(".walk-badge")!;
-    const why = fragment.querySelector(".result-card-why")!;
-    const cuisine = fragment.querySelector(".result-card-cuisine")!;
-    const price = fragment.querySelector(".result-card-price")!;
+    const walkBadge = fragment.querySelector(".bg-emerald-50")!;
+    const why = fragment.querySelector("p.mt-2")!;
+    const metaDiv = fragment.querySelector(".flex.flex-wrap")!;
+    const cuisine = metaDiv.querySelector("span:first-child")!;
+    const price = metaDiv.querySelector("span:last-child")!;
 
     title.textContent = rest.name;
     walkBadge.textContent = rest.walkTime;
@@ -737,7 +739,7 @@ function renderGems(gems: HiddenGem[]): void {
   for (const gem of gems) {
     const fragment = gemTemplate.content.cloneNode(true) as DocumentFragment;
     const title = fragment.querySelector("h4")!;
-    const why = fragment.querySelector(".result-card-why")!;
+    const why = fragment.querySelector("p.mt-2")!;
 
     title.textContent = gem.name;
     why.textContent = gem.why;
@@ -768,10 +770,10 @@ function renderAltSuggestion(data: EnhancerPayload): void {
   const suggestion = suggestions[0]!;
   altPanel.hidden = false;
   altContent.innerHTML = `
-    <div class="alt-suggestion">
-      <p class="alt-hotel-name">${suggestion.hotel}</p>
-      <p class="alt-neighborhood">${suggestion.neighborhood}</p>
-      <p class="alt-reason">${suggestion.reason}</p>
+    <div class="py-1">
+      <p class="text-base font-bold text-on-surface font-display">${suggestion.hotel}</p>
+      <p class="text-xs font-semibold text-tertiary mt-0.5">${suggestion.neighborhood}</p>
+      <p class="mt-2 text-sm text-on-surface/60 leading-relaxed">${suggestion.reason}</p>
     </div>
   `;
 }

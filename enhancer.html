@@ -1,161 +1,450 @@
 <!doctype html>
-<html lang="en">
+<html class="light" lang="en" style="color-scheme: light">
   <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Hostliday — Trip Enhancer</title>
+    <meta charset="utf-8" />
+    <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+    <title>Hostliday | Trip Enhancer</title>
     <meta
       name="description"
       content="Already booked your Barcelona hotel? Get walkable activity picks, local restaurant recommendations, and hidden gems curated for your neighborhood."
     />
-    <link rel="icon" href="/favicon.ico" />
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@300;400;500;700;900&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+      rel="stylesheet"
+    />
+    <script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "media",
+        theme: {
+          extend: {
+            colors: {
+              "surface-container-low": "#eff4ff",
+              "surface-dim": "#cbdbf5",
+              "outline-variant": "#e1bec2",
+              "surface-container": "#e5eeff",
+              "on-primary-container": "#5a0021",
+              background: "#f8f9ff",
+              "secondary-fixed": "#eaddff",
+              "on-error": "#ffffff",
+              "on-surface-variant": "#a3a2a2",
+              primary: "#be0000",
+              "inverse-primary": "#ffb2be",
+              "on-error-container": "#93000a",
+              "on-primary-fixed-variant": "#900039",
+              "on-tertiary-container": "#002d41",
+              "surface-tint": "#be0000",
+              "tertiary-fixed-dim": "#7cd0ff",
+              "on-secondary-fixed": "#211143",
+              "on-tertiary-fixed-variant": "#004c69",
+              "on-secondary-fixed-variant": "#4e3e71",
+              error: "#ba1a1a",
+              "primary-fixed": "#ffd9de",
+              outline: "#8d6f74",
+              "on-tertiary-fixed": "#001e2c",
+              "surface-container-high": "#dce9ff",
+              "primary-fixed-dim": "#ffb2be",
+              "primary-container": "#ff4e7e",
+              "on-surface": "#0b1c30",
+              "surface-bright": "#f8f9ff",
+              "on-primary-fixed": "#3f0015",
+              "surface-variant": "#d3e4fe",
+              secondary: "#66558b",
+              "inverse-surface": "#213145",
+              "tertiary-container": "#189bd0",
+              "secondary-fixed-dim": "#d1bdfa",
+              "inverse-on-surface": "#eaf1ff",
+              "error-container": "#ffdad6",
+              "on-primary": "#ffffff",
+              "secondary-container": "#d6c2ff",
+              "on-tertiary": "#ffffff",
+              surface: "#f8f9ff",
+              tertiary: "#00658b",
+              "on-secondary": "#ffffff",
+              "tertiary-fixed": "#c4e7ff",
+              "surface-container-lowest": "#ffffff",
+              "on-secondary-container": "#5e4d82",
+              "on-background": "#0b1c30",
+              "surface-container-highest": "#d3e4fe",
+            },
+            borderRadius: {
+              DEFAULT: "1rem",
+              lg: "2rem",
+              xl: "3rem",
+              full: "9999px",
+            },
+            fontFamily: {
+              display: ["Montserrat", "sans-serif"],
+              headline: ["Montserrat", "sans-serif"],
+              body: ["Inter", "sans-serif"],
+              label: ["Inter", "sans-serif"],
+            },
+          },
+        },
+      };
+    </script>
+    <style>
+      body {
+        font-family: "Inter", sans-serif;
+        background-color: #f8f9ff;
+        color: #0b1c30;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      h5,
+      h6 {
+        font-family: "Montserrat", sans-serif;
+      }
+
+      /* Focus ring - never remove */
+      a:focus-visible,
+      button:focus-visible {
+        outline: 2px solid #be0000;
+        outline-offset: 3px;
+        border-radius: 6px;
+      }
+      input:focus-visible,
+      select:focus-visible {
+        outline: none;
+      }
+      .search-wrap:focus-within {
+        outline: 2px solid #be0000;
+        outline-offset: 2px;
+        border-radius: 12px;
+      }
+    </style>
   </head>
-  <body>
-    <nav class="site-nav">
-      <div class="nav-inner">
-        <a href="/" class="brand-lockup">
-          <span class="brand-mark" aria-hidden="true">H</span>
-          <div class="brand-copy">
-            <p class="brand-name">Hostliday</p>
-            <p class="brand-tag">Trip enhancer</p>
-          </div>
-        </a>
-        <a href="/" class="nav-cta">Full planner</a>
+  <body class="bg-surface text-on-surface selection:bg-primary/20">
+    <!-- Skip link -->
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:p-4 focus:bg-surface focus:text-on-surface focus:z-50 focus:rounded"
+      >Skip to main content</a
+    >
+
+    <!-- TopNavBar -->
+    <nav
+      aria-label="Main navigation"
+      class="fixed top-0 w-full z-50"
+      style="
+        background: rgba(248, 249, 255, 0.88);
+        backdrop-filter: blur(16px);
+        border-bottom: 1px solid rgba(225, 190, 194, 0.15);
+      "
+    >
+      <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
+        <a href="/" class="text-2xl font-bold tracking-tighter text-on-surface font-display"
+          >Hostliday</a
+        >
+        <div class="hidden md:flex gap-8 items-center font-medium tracking-tight">
+          <a
+            class="text-primary font-bold border-b-2 border-primary pb-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
+            href="#destinations"
+            >Destinations</a
+          >
+          <a
+            class="text-on-surface/80 hover:text-primary transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
+            href="#planner"
+            >Itineraries</a
+          >
+          <a
+            class="text-on-surface/80 hover:text-primary transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
+            href="#faq"
+            >Journal</a
+          >
+          <a
+            class="text-on-surface/80 hover:text-primary transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
+            href="#planner"
+            >Concierge</a
+          >
+        </div>
+        <div class="flex items-center gap-6">
+          <label
+            class="hidden lg:flex items-center bg-surface-container-low px-4 py-2 rounded-full search-wrap cursor-text"
+          >
+            <span class="material-symbols-outlined text-on-surface/40 mr-2" aria-hidden="true"
+              >search</span
+            >
+            <span class="sr-only">Search destinations</span>
+            <input
+              class="bg-transparent border-none outline-none text-sm w-48"
+              name="nav_search"
+              autocomplete="off"
+              placeholder="Search destinations..."
+              type="search"
+            />
+          </label>
+          <button
+            class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-bold hover:scale-95 duration-200 transition-[transform,background-color] shadow-lg shadow-primary/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          >
+            Sign In
+          </button>
+        </div>
       </div>
     </nav>
 
-    <main>
-      <section class="enhancer-hero" aria-label="Trip enhancer">
-        <div class="enhancer-hero-inner">
-          <div class="enhancer-hero-copy">
-            <p class="eyebrow">Trip enhancer</p>
-            <h1>Already booked? Make the most of where you're staying.</h1>
-            <p class="enhancer-hero-sub">
-              Tell us your hotel neighborhood and what matters to you. We'll show walkable
-              activities, local restaurants, and hidden gems — all source-backed with freshness
-              timestamps.
-            </p>
-          </div>
+    <main id="main" style="scroll-margin-top: 80px">
+      <!-- ─── Hero ─── -->
+      <section class="pt-32 pb-16 px-8 bg-surface-container-low/30" aria-label="Trip enhancer">
+        <div class="max-w-3xl mx-auto text-center">
+          <span
+            class="inline-block px-4 py-1.5 bg-primary/10 text-primary font-bold text-xs tracking-widest uppercase rounded-full mb-6 border border-primary/20"
+          >
+            Trip Enhancer
+          </span>
+          <h1
+            class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6 leading-tight font-display text-on-surface"
+          >
+            Already booked? Make the most of where you're staying.
+          </h1>
+          <p class="text-on-surface/60 text-lg leading-relaxed max-w-xl mx-auto">
+            Tell us your hotel neighborhood and what matters to you. We'll show walkable activities,
+            local restaurants, and hidden gems &mdash; all source-backed with freshness timestamps.
+          </p>
         </div>
       </section>
 
-      <section class="enhancer-section" aria-label="Enhance your trip">
-        <div class="enhancer-shell">
-          <div class="app-shell" id="appShell">
+      <!-- ─── Enhancer Form & Results ─── -->
+      <section class="py-16 px-8" aria-label="Enhance your trip">
+        <div class="max-w-5xl mx-auto">
+          <div
+            class="bg-surface-container-lowest rounded-lg shadow-xl border border-surface-container-high/50 p-8 md:p-12"
+          >
+            <!-- Input Screen -->
             <section class="screen screen-active" id="screenInput" aria-labelledby="enhancerTitle">
-              <form id="enhancerForm" class="planner-card" novalidate>
-                <div class="form-group">
-                  <p class="form-group-label">Where you're staying</p>
-                  <div class="field-split">
-                    <div class="field-row">
-                      <label for="neighborhood">Neighborhood</label>
-                      <select id="neighborhood" name="neighborhood" required>
+              <form id="enhancerForm" novalidate>
+                <div class="mb-8 pb-8 border-b border-surface-container-high/50">
+                  <p class="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-4">
+                    Where you're staying
+                  </p>
+                  <div class="grid md:grid-cols-2 gap-4">
+                    <div class="space-y-2">
+                      <label for="neighborhood" class="block text-sm font-semibold text-on-surface"
+                        >Neighborhood</label
+                      >
+                      <select
+                        id="neighborhood"
+                        name="neighborhood"
+                        required
+                        class="w-full border border-surface-container-high rounded-lg px-4 py-3 text-base text-on-surface bg-surface-container-lowest appearance-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40"
+                      >
                         <option value="">Pick your area</option>
-                        <option value="gothic">Gothic Quarter (Barri Gòtic)</option>
+                        <option value="gothic">Gothic Quarter (Barri G&ograve;tic)</option>
                         <option value="eixample">Eixample</option>
                         <option value="born">El Born / La Ribera</option>
-                        <option value="gracia">Gràcia</option>
+                        <option value="gracia">Gr&agrave;cia</option>
                         <option value="barceloneta">Barceloneta</option>
                         <option value="raval">El Raval</option>
                         <option value="sant-pere">Sant Pere / Arc de Triomf</option>
                       </select>
                     </div>
-                    <div class="field-row">
-                      <label for="hotelName"
-                        >Hotel name <span class="optional-tag">optional</span></label
-                      >
+                    <div class="space-y-2">
+                      <label for="hotelName" class="block text-sm font-semibold text-on-surface">
+                        Hotel name
+                        <span class="text-xs font-medium text-on-surface/40 italic">optional</span>
+                      </label>
                       <input
                         id="hotelName"
                         name="hotelName"
                         type="text"
                         placeholder="e.g. Hotel 1898"
                         autocomplete="off"
+                        class="w-full border border-surface-container-high rounded-lg px-4 py-3 text-base text-on-surface bg-surface-container-lowest focus:ring-2 focus:ring-primary/40 focus:border-primary/40"
                       />
                     </div>
                   </div>
                 </div>
 
-                <div class="form-group">
-                  <p class="form-group-label">What matters most</p>
-                  <fieldset class="field-row field-row-gap">
-                    <legend>Focus areas (pick up to 2)</legend>
-                    <div class="chip-group">
-                      <label><input type="checkbox" name="focus" value="culture" /> Culture</label>
-                      <label><input type="checkbox" name="focus" value="food" /> Food</label>
+                <div class="mb-8">
+                  <p class="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-4">
+                    What matters most
+                  </p>
+                  <fieldset>
+                    <legend class="sr-only">Focus areas (pick up to 2)</legend>
+                    <div class="flex flex-wrap gap-3">
                       <label
-                        ><input type="checkbox" name="focus" value="architecture" />
-                        Architecture</label
+                        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-surface-container-high bg-surface-container-lowest text-sm font-medium cursor-pointer has-[:checked]:border-primary/30 has-[:checked]:bg-primary/5 has-[:checked]:text-primary transition-colors"
                       >
+                        <input type="checkbox" name="focus" value="culture" class="sr-only" />
+                        Culture
+                      </label>
                       <label
-                        ><input type="checkbox" name="focus" value="nightlife" /> Nightlife</label
+                        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-surface-container-high bg-surface-container-lowest text-sm font-medium cursor-pointer has-[:checked]:border-primary/30 has-[:checked]:bg-primary/5 has-[:checked]:text-primary transition-colors"
                       >
+                        <input type="checkbox" name="focus" value="food" class="sr-only" /> Food
+                      </label>
                       <label
-                        ><input type="checkbox" name="focus" value="wellness" /> Wellness</label
+                        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-surface-container-high bg-surface-container-lowest text-sm font-medium cursor-pointer has-[:checked]:border-primary/30 has-[:checked]:bg-primary/5 has-[:checked]:text-primary transition-colors"
                       >
+                        <input type="checkbox" name="focus" value="architecture" class="sr-only" />
+                        Architecture
+                      </label>
+                      <label
+                        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-surface-container-high bg-surface-container-lowest text-sm font-medium cursor-pointer has-[:checked]:border-primary/30 has-[:checked]:bg-primary/5 has-[:checked]:text-primary transition-colors"
+                      >
+                        <input type="checkbox" name="focus" value="nightlife" class="sr-only" />
+                        Nightlife
+                      </label>
+                      <label
+                        class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-surface-container-high bg-surface-container-lowest text-sm font-medium cursor-pointer has-[:checked]:border-primary/30 has-[:checked]:bg-primary/5 has-[:checked]:text-primary transition-colors"
+                      >
+                        <input type="checkbox" name="focus" value="wellness" class="sr-only" />
+                        Wellness
+                      </label>
                     </div>
                   </fieldset>
                 </div>
 
-                <div class="cta-row">
-                  <button type="submit" class="btn-primary btn-full">Enhance my trip</button>
+                <div class="space-y-2">
+                  <button
+                    type="submit"
+                    class="w-full bg-primary text-white font-bold py-4 rounded-full text-base hover:bg-primary/90 transition-colors shadow-lg shadow-primary/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                  >
+                    Enhance my trip
+                  </button>
                   <p
-                    class="validation-copy"
                     id="formValidation"
                     role="alert"
                     aria-live="polite"
+                    class="text-sm font-semibold text-error min-h-[1.1rem]"
                   ></p>
                 </div>
               </form>
             </section>
 
+            <!-- Results Screen -->
             <section class="screen" id="screenResults" aria-labelledby="resultsTitle" hidden>
-              <div class="results-head">
-                <button type="button" class="btn-ghost" id="editButton">
-                  &larr; Change inputs
+              <div class="flex flex-col md:flex-row justify-between items-start gap-4 mb-8">
+                <button
+                  type="button"
+                  id="editButton"
+                  class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-surface-container-high bg-surface-container-lowest text-sm font-bold text-on-surface hover:bg-surface-container-low transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+                >
+                  <span class="material-symbols-outlined text-base" aria-hidden="true"
+                    >arrow_back</span
+                  >
+                  Change inputs
                 </button>
                 <div>
-                  <p class="eyebrow">Your enhancement plan</p>
-                  <h2 id="resultsTitle">What's walkable from your hotel</h2>
-                  <p class="results-subtitle" id="resultsSubtitle"></p>
+                  <p class="text-xs font-bold uppercase tracking-[0.15em] text-primary mb-2">
+                    Your enhancement plan
+                  </p>
+                  <h2
+                    id="resultsTitle"
+                    class="text-2xl md:text-3xl font-extrabold tracking-tight font-display text-on-surface"
+                  >
+                    What's walkable from your hotel
+                  </h2>
+                  <p
+                    class="text-on-surface/60 text-sm mt-2 leading-relaxed"
+                    id="resultsSubtitle"
+                  ></p>
                 </div>
               </div>
 
-              <div class="results-grid">
-                <section class="panel" aria-labelledby="walkPanelTitle">
-                  <div class="panel-head">
-                    <h3 id="walkPanelTitle">Walkable picks</h3>
-                    <span class="meta-pill">Source-linked &middot; freshness-aware</span>
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-8">
+                <!-- Walkable picks -->
+                <section
+                  class="bg-surface-container-low/50 rounded-lg border border-surface-container-high/50 p-6"
+                  aria-labelledby="walkPanelTitle"
+                >
+                  <div
+                    class="flex justify-between items-center gap-4 pb-4 mb-4 border-b border-surface-container-high/50"
+                  >
+                    <h3
+                      id="walkPanelTitle"
+                      class="text-base font-bold text-on-surface font-display flex items-center gap-2"
+                    >
+                      <span class="material-symbols-outlined text-primary" aria-hidden="true"
+                        >directions_walk</span
+                      >
+                      Walkable picks
+                    </h3>
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-on-surface/40"
+                      >Source-linked &middot; freshness-aware</span
+                    >
                   </div>
-                  <div id="activityList" class="activity-card-list"></div>
+                  <div id="activityList" class="space-y-3"></div>
                 </section>
 
-                <section class="panel" aria-labelledby="eatPanelTitle">
-                  <div class="panel-head">
-                    <h3 id="eatPanelTitle">Local eats</h3>
-                    <span class="meta-pill">Walking distance &middot; curated</span>
+                <!-- Local eats -->
+                <section
+                  class="bg-surface-container-low/50 rounded-lg border border-surface-container-high/50 p-6"
+                  aria-labelledby="eatPanelTitle"
+                >
+                  <div
+                    class="flex justify-between items-center gap-4 pb-4 mb-4 border-b border-surface-container-high/50"
+                  >
+                    <h3
+                      id="eatPanelTitle"
+                      class="text-base font-bold text-on-surface font-display flex items-center gap-2"
+                    >
+                      <span class="material-symbols-outlined text-primary" aria-hidden="true"
+                        >restaurant</span
+                      >
+                      Local eats
+                    </h3>
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-on-surface/40"
+                      >Walking distance &middot; curated</span
+                    >
                   </div>
-                  <div id="restaurantList" class="restaurant-card-list"></div>
+                  <div id="restaurantList" class="space-y-3"></div>
                 </section>
               </div>
 
-              <div class="results-secondary-grid" id="secondaryGrid">
-                <section class="panel" aria-labelledby="gemPanelTitle">
-                  <div class="panel-head">
-                    <h3 id="gemPanelTitle">Hidden gems</h3>
-                    <span class="meta-pill">Locals-only picks</span>
+              <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mt-6" id="secondaryGrid">
+                <!-- Hidden gems -->
+                <section
+                  class="bg-surface-container-low/50 rounded-lg border border-surface-container-high/50 p-6"
+                  aria-labelledby="gemPanelTitle"
+                >
+                  <div
+                    class="flex justify-between items-center gap-4 pb-4 mb-4 border-b border-surface-container-high/50"
+                  >
+                    <h3
+                      id="gemPanelTitle"
+                      class="text-base font-bold text-on-surface font-display flex items-center gap-2"
+                    >
+                      <span class="material-symbols-outlined text-primary" aria-hidden="true"
+                        >diamond</span
+                      >
+                      Hidden gems
+                    </h3>
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-on-surface/40"
+                      >Locals-only picks</span
+                    >
                   </div>
-                  <div id="gemList" class="gem-card-list"></div>
+                  <div id="gemList" class="space-y-3"></div>
                 </section>
 
+                <!-- Alt suggestion -->
                 <section
-                  class="panel panel-alt"
+                  class="bg-surface-container-low/50 rounded-lg border border-amber-400/50 p-6"
                   id="altPanel"
                   aria-labelledby="altPanelTitle"
                   hidden
                 >
-                  <div class="panel-head">
-                    <h3 id="altPanelTitle">A better base?</h3>
-                    <span class="meta-pill">Only when there's a clear reason</span>
+                  <div
+                    class="flex justify-between items-center gap-4 pb-4 mb-4 border-b border-surface-container-high/50"
+                  >
+                    <h3
+                      id="altPanelTitle"
+                      class="text-base font-bold text-on-surface font-display flex items-center gap-2"
+                    >
+                      <span class="material-symbols-outlined text-amber-500" aria-hidden="true"
+                        >hotel</span
+                      >
+                      A better base?
+                    </h3>
+                    <span class="text-[10px] font-bold uppercase tracking-widest text-on-surface/40"
+                      >Only when there's a clear reason</span
+                    >
                   </div>
                   <div id="altContent"></div>
                 </section>
@@ -164,51 +453,188 @@
           </div>
         </div>
       </section>
-
-      <footer class="site-footer">
-        <div class="footer-inner">
-          <p class="footer-note">
-            Hostliday &middot; Barcelona-only verified trip planning &middot; Trip enhancer MVP
-          </p>
-        </div>
-      </footer>
     </main>
 
+    <!-- Templates -->
     <template id="activityCardTemplate">
-      <article class="result-card">
-        <div class="result-card-head">
-          <h4></h4>
-          <span class="walk-badge"></span>
+      <article
+        class="bg-surface-container-lowest rounded-lg border border-surface-container-high/50 p-5"
+      >
+        <div class="flex justify-between items-start gap-3">
+          <h4 class="text-base font-bold text-on-surface font-display"></h4>
+          <span
+            class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700"
+          ></span>
         </div>
-        <p class="result-card-why"></p>
-        <div class="result-card-meta">
-          <span class="result-card-category"></span>
-          <span class="result-card-source"></span>
+        <p class="mt-2 text-sm text-on-surface/60 leading-relaxed"></p>
+        <div class="flex flex-wrap gap-3 mt-2">
+          <span
+            class="text-xs font-semibold text-tertiary bg-tertiary/10 px-3 py-1 rounded-full"
+          ></span>
+          <span class="text-xs font-semibold text-on-surface/70"></span>
         </div>
       </article>
     </template>
 
     <template id="restaurantCardTemplate">
-      <article class="result-card">
-        <div class="result-card-head">
-          <h4></h4>
-          <span class="walk-badge"></span>
+      <article
+        class="bg-surface-container-lowest rounded-lg border border-surface-container-high/50 p-5"
+      >
+        <div class="flex justify-between items-start gap-3">
+          <h4 class="text-base font-bold text-on-surface font-display"></h4>
+          <span
+            class="inline-flex items-center px-3 py-1 rounded-full text-xs font-bold bg-emerald-50 text-emerald-700"
+          ></span>
         </div>
-        <p class="result-card-why"></p>
-        <div class="result-card-meta">
-          <span class="result-card-cuisine"></span>
-          <span class="result-card-price"></span>
+        <p class="mt-2 text-sm text-on-surface/60 leading-relaxed"></p>
+        <div class="flex flex-wrap gap-3 mt-2">
+          <span
+            class="text-xs font-semibold text-tertiary bg-tertiary/10 px-3 py-1 rounded-full"
+          ></span>
+          <span class="text-xs font-bold text-emerald-700"></span>
         </div>
       </article>
     </template>
 
     <template id="gemCardTemplate">
-      <article class="result-card result-card-gem">
-        <h4></h4>
-        <p class="result-card-why"></p>
+      <article
+        class="bg-surface-container-lowest rounded-lg border border-surface-container-high/50 p-5 border-l-[3px] border-l-amber-500"
+      >
+        <h4 class="text-base font-bold text-on-surface font-display"></h4>
+        <p class="mt-2 text-sm text-on-surface/60 leading-relaxed"></p>
       </article>
     </template>
 
+    <!-- Footer -->
+    <footer class="bg-surface-container-low w-full rounded-t-[3rem]">
+      <div
+        class="flex flex-col md:flex-row justify-between items-start px-12 py-16 w-full max-w-7xl mx-auto gap-12"
+      >
+        <div class="max-w-xs">
+          <div class="text-xl font-black text-on-surface mb-6 font-display">Hostliday</div>
+          <p class="text-on-surface/60 text-sm leading-relaxed mb-8">
+            The next generation travel concierge, powered by proprietary AI to make world
+            exploration effortless.
+          </p>
+          <div class="flex gap-4">
+            <a
+              class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
+              href="#"
+              aria-label="Hostliday on the web (coming soon)"
+              ><span class="material-symbols-outlined" aria-hidden="true">public</span></a
+            >
+            <a
+              class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
+              href="#"
+              aria-label="Hostliday on Instagram (coming soon)"
+              ><span class="material-symbols-outlined" aria-hidden="true">photo_camera</span></a
+            >
+            <a
+              class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
+              href="#"
+              aria-label="Hostliday on X / Twitter (coming soon)"
+              ><span class="material-symbols-outlined" aria-hidden="true">alternate_email</span></a
+            >
+          </div>
+        </div>
+        <nav aria-label="Footer navigation">
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-12">
+            <div>
+              <h3 class="font-bold mb-6 text-base">Product</h3>
+              <ul class="space-y-4 text-on-surface/60 text-sm">
+                <li>
+                  <a
+                    class="hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
+                    href="#planner"
+                    >Features</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
+                    href="#planner"
+                    >Itineraries</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
+                    href="#planner"
+                    >Concierge</a
+                  >
+                </li>
+                <li>
+                  <span class="text-on-surface/40" aria-label="Pricing — coming soon"
+                    >Pricing <span class="text-xs">(coming soon)</span></span
+                  >
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h3 class="font-bold mb-6 text-base">Company</h3>
+              <ul class="space-y-4 text-on-surface/60 text-sm">
+                <li>
+                  <a
+                    class="hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
+                    href="#"
+                    >Press Kit</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
+                    href="#"
+                    >Careers</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
+                    href="#"
+                    >Blog</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
+                    href="#"
+                    >Contact Us</a
+                  >
+                </li>
+              </ul>
+            </div>
+            <div class="col-span-2 md:col-span-1">
+              <h3 class="font-bold mb-6 text-base">Legal</h3>
+              <ul class="space-y-4 text-on-surface/60 text-sm">
+                <li>
+                  <a
+                    class="hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
+                    href="#"
+                    >Privacy Policy</a
+                  >
+                </li>
+                <li>
+                  <a
+                    class="hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
+                    href="#"
+                    >Terms of Service</a
+                  >
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
+      </div>
+      <div
+        class="border-t border-surface-container-high/50 max-w-7xl mx-auto px-12 py-8 flex flex-col md:flex-row justify-between items-center gap-4"
+      >
+        <p class="text-on-surface/60 text-xs">
+          &copy; 2025 Hostliday AI. Experiences, adventures, and stays.
+        </p>
+      </div>
+    </footer>
+
+    <!-- Vite entry -->
     <script type="module" src="/src/enhancer-main.ts"></script>
   </body>
 </html>
