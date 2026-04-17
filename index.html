@@ -206,6 +206,69 @@
       .destination-card {
         isolation: isolate;
       }
+      .destination-skyline {
+        background:
+          radial-gradient(circle at 72% 18%, rgba(255, 205, 120, 0.95), transparent 18%),
+          linear-gradient(180deg, rgba(120, 205, 255, 0.96) 0%, rgba(41, 108, 170, 0.82) 48%, rgba(8, 24, 46, 0.98) 100%);
+      }
+      .destination-skyline::before {
+        content: "";
+        position: absolute;
+        inset: auto 0 0;
+        height: 30%;
+        background:
+          linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent 36%),
+          linear-gradient(180deg, rgba(10, 24, 42, 0), rgba(10, 24, 42, 0.8));
+        opacity: 0.9;
+      }
+      .skyline-bars {
+        position: absolute;
+        inset: auto 0 0;
+        display: flex;
+        align-items: flex-end;
+        gap: 0.5rem;
+        height: 58%;
+        padding: 0 1.25rem 1.25rem;
+        opacity: 0.92;
+      }
+      .skyline-bars span {
+        flex: 1;
+        border-radius: 0.85rem 0.85rem 0 0;
+        background: linear-gradient(180deg, rgba(8, 24, 46, 0.12), rgba(8, 24, 46, 0.95));
+        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
+      }
+      .skyline-bars span:nth-child(1) {
+        max-width: 1rem;
+        height: 38%;
+      }
+      .skyline-bars span:nth-child(2) {
+        max-width: 1.35rem;
+        height: 48%;
+      }
+      .skyline-bars span:nth-child(3) {
+        max-width: 1.6rem;
+        height: 88%;
+      }
+      .skyline-bars span:nth-child(4) {
+        max-width: 1.4rem;
+        height: 60%;
+      }
+      .skyline-bars span:nth-child(5) {
+        max-width: 1.75rem;
+        height: 74%;
+      }
+      .skyline-bars span:nth-child(6) {
+        max-width: 1.15rem;
+        height: 52%;
+      }
+      .skyline-bars span:nth-child(7) {
+        max-width: 0.95rem;
+        height: 44%;
+      }
+      .skyline-bars span:nth-child(8) {
+        max-width: 1.35rem;
+        height: 66%;
+      }
       .destination-media {
         transition-duration: 900ms;
         transition-property: transform, filter;
@@ -350,6 +413,47 @@
       }
       .faq-btn.is-open .faq-chevron {
         transform: rotate(180deg);
+      }
+      .store-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.85rem;
+        min-width: 12.5rem;
+        padding: 0.75rem 1rem;
+        border-radius: 999px;
+        background: rgba(255, 255, 255, 0.85);
+        border: 1px solid rgba(11, 28, 48, 0.08);
+        box-shadow: 0 18px 36px rgba(11, 28, 48, 0.08);
+        color: var(--hostliday-ink);
+      }
+      .store-badge__icon {
+        width: 2.25rem;
+        height: 2.25rem;
+        border-radius: 999px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: rgba(190, 0, 0, 0.08);
+        color: var(--hostliday-red);
+        flex-shrink: 0;
+      }
+      .store-badge__copy {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        line-height: 1.1;
+      }
+      .store-badge__eyebrow {
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: rgba(11, 28, 48, 0.44);
+      }
+      .store-badge__label {
+        font-size: 0.9rem;
+        font-weight: 800;
+        margin-top: 0.18rem;
       }
 
       @media (prefers-reduced-motion: no-preference) {
@@ -762,17 +866,26 @@
               style="--reveal-delay: 160ms"
               class="destination-card motion-surface text-left relative rounded-lg overflow-hidden group cursor-pointer"
             >
-              <img
-                class="destination-media w-full h-full object-cover"
-                loading="lazy"
-                alt="Futuristic skyline of Dubai at dusk with the Burj Khalifa towering over brightly lit skyscrapers"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuAbfgohl3opquQea70qgn1ZxrGabOTlZAaDYMZFd00aTlF5hzooP7rMGjlCcM6WRVU77-ZhCGkSOL8a8gYgRy7_80pAso1fTrRHt7rNMxHXqWAZ3iy0wkahE1xZjjJWhhwbHn8gBqDsrA2RZ0lSNsbXCwsxBgn19DzBXyZdOEcC6iQOSq4knomfeyPQjHwQhpAXHkFgxrpgOeOv_xj3WsWM1TYO7ip6XG9P8W7BZyG127KiPiib294efTbYdKOOB3vXtN9UYJQq-ekg"
-              />
+              <div class="destination-media destination-skyline absolute inset-0" aria-hidden="true">
+                <div class="skyline-bars" aria-hidden="true">
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                  <span></span>
+                </div>
+              </div>
               <div
                 class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent"
                 aria-hidden="true"
               ></div>
               <div class="destination-copy absolute bottom-6 left-6">
+                <span class="text-white/70 font-bold uppercase tracking-[0.22em] text-[11px] mb-2 block"
+                  >UAE</span
+                >
                 <h3 class="text-xl font-bold text-white font-display">Desert Luxury Dubai</h3>
               </div>
             </button>
@@ -1373,16 +1486,24 @@
           © 2025 Hostliday AI. Experiences, adventures, and stays.
         </p>
         <div class="flex gap-4">
-          <img
-            alt="Download on the App Store"
-            class="h-8"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDsr0aahSPkhZX86wyYgtz6YNKiBkKWBnCLcsGZ0kUZOCEzmvvLoGoWdhs5ogNvv05XAfSOf7NsZF9MyTxyyMWiKSyDK5iNoKUZZsb5icDZACxEvJfFVBrUhRX_9KKtLppZfLfoynTNGj-5F-b8dqv6Cnz89FG4Qy5zSZJnQ2YRLBqRsgTtlVFVZt-oOYvmV1pC_5a0EvZ5Xmb9EQJEwe33PHnE8OqxJ3I9ciXWBA4TI0mGi5a6K3cL85JLgs844FDzRYxvlo"
-          />
-          <img
-            alt="Get it on Google Play"
-            class="h-8"
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuCveLSZW_hxL4JHcim_jCR_lMEk_aBbLjtdUKqk-sVxIYBw7ILnxj_UJkYOjamrNXy-s9yPW8Xrn2dnQtxRQeu_fAB0U35aluq7KcQO5Xirpl221kT-cwWBytsHFY_ru9zOyF3rrvvUKXaPFoXzLoEs_hohimpRY2ZdSiX-nizZYqZ0W27MrYnn6wjP-Nue6DHJR0uISvZdYGAoDBYmT_IGA7y2lQN7bFld5MAalKb8cSCAM_Q6X_Ks099_fLO3FnTSKzJYvRSTh6I"
-          />
+          <button onclick="openWaitlist()" class="store-badge cta-lift cta-press text-left">
+            <span class="store-badge__icon material-symbols-outlined" aria-hidden="true"
+              >phone_iphone</span
+            >
+            <span class="store-badge__copy">
+              <span class="store-badge__eyebrow">Prelaunch</span>
+              <span class="store-badge__label">iOS app waitlist</span>
+            </span>
+          </button>
+          <button onclick="openWaitlist()" class="store-badge cta-lift cta-press text-left">
+            <span class="store-badge__icon material-symbols-outlined" aria-hidden="true"
+              >android</span
+            >
+            <span class="store-badge__copy">
+              <span class="store-badge__eyebrow">Prelaunch</span>
+              <span class="store-badge__label">Android beta updates</span>
+            </span>
+          </button>
         </div>
       </div>
     </footer>
