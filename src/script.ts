@@ -1,35 +1,14 @@
 import { showScreen, capitalize } from "./lib/transitions";
-
-type HotelStatus = "verified today" | "verified within 7 days" | "stale" | "unverified";
-type Pace = "slow" | "balanced" | "packed";
-type Budget = "value" | "comfort" | "premium" | "luxury";
-type IconicIntensity = "low" | "medium" | "high";
-type ActivityCategory = "culture" | "food" | "architecture" | "nightlife" | "wellness";
-type VibeTag = "scenic rooftop" | "intimate boutique" | "luxury spa" | "quiet old-town charm";
-
-interface Hotel {
-  name: string;
-  neighborhood: string;
-  vibe: VibeTag[];
-  budgets: Budget[];
-  paces: Pace[];
-  status: HotelStatus;
-  why: string;
-  freshness: string;
-  source: string;
-  sourceUrl: string;
-  booking: string;
-}
-
-interface TripPayload {
-  useCase: string;
-  budget: Budget;
-  pace: Pace;
-  iconic: IconicIntensity;
-  vibe: VibeTag;
-  days: number;
-  priorities: ActivityCategory[];
-}
+import { HOTELS, MEAL_BLOCKS, DAY_CONTEXT_TEMPLATES, DEFAULT_DAY_CONTEXT, MAX_LEG_MINUTES } from "./data";
+import type {
+  Hotel,
+  Pace,
+  Budget,
+  VibeTag,
+  Category,
+  IconicIntensity,
+  TripPayload,
+} from "./data";
 
 interface ItineraryDay {
   dayNumber: number;
@@ -53,75 +32,12 @@ const itineraryList = document.getElementById("itineraryList")!;
 const hotelTemplate = document.getElementById("hotelCardTemplate") as HTMLTemplateElement;
 const dayTemplate = document.getElementById("dayCardTemplate") as HTMLTemplateElement;
 
-const HOTEL_DATA: Hotel[] = [
-  {
-    name: "Hotel Neri Relais",
-    neighborhood: "Gothic Quarter",
-    vibe: ["intimate boutique", "quiet old-town charm"],
-    budgets: ["premium", "luxury"],
-    paces: ["slow", "balanced"],
-    status: "verified today",
-    why: "Hidden courtyards and walkable old-town lanes make this ideal for low-friction evenings.",
-    freshness: "Checked 3 hours ago",
-    source: "hotelneri.com",
-    sourceUrl: "https://www.hotelneri.com/",
-    booking: "https://www.booking.com/",
-  },
-  {
-    name: "H10 Casa Mimosa",
-    neighborhood: "Eixample",
-    vibe: ["scenic rooftop", "intimate boutique"],
-    budgets: ["comfort", "premium"],
-    paces: ["balanced", "packed"],
-    status: "verified within 7 days",
-    why: "Strong rooftop and central routing reduce travel dead-time across major architecture stops.",
-    freshness: "Checked 2 days ago",
-    source: "h10hotels.com",
-    sourceUrl: "https://www.h10hotels.com/",
-    booking: "https://www.booking.com/",
-  },
-  {
-    name: "Yurbban Passage Hotel & Spa",
-    neighborhood: "El Born",
-    vibe: ["luxury spa", "scenic rooftop"],
-    budgets: ["premium", "luxury"],
-    paces: ["slow", "balanced"],
-    status: "verified within 7 days",
-    why: "Spa-first reset with strong El Born placement for evening food routes and shorter transfers.",
-    freshness: "Checked 5 days ago",
-    source: "yurbbanpassage.com",
-    sourceUrl: "https://www.yurbbanpassage.com/",
-    booking: "https://www.booking.com/",
-  },
-  {
-    name: "Room Mate Carla",
-    neighborhood: "Eixample",
-    vibe: ["scenic rooftop"],
-    budgets: ["value", "comfort"],
-    paces: ["packed", "balanced"],
-    status: "stale",
-    why: "Good value location near transit and architecture routes, but recent amenity data needs re-check.",
-    freshness: "Checked 12 days ago",
-    source: "room-matehotels.com",
-    sourceUrl: "https://room-matehotels.com/",
-    booking: "https://www.booking.com/",
-  },
-  {
-    name: "Hotel Rec Barcelona",
-    neighborhood: "Arc de Triomf",
-    vibe: ["quiet old-town charm", "intimate boutique"],
-    budgets: ["value", "comfort"],
-    paces: ["slow", "balanced"],
-    status: "unverified",
-    why: "Promising fit for calmer pacing and old-town access, but live verification was not confirmed.",
-    freshness: "Not verified",
-    source: "hotelrecbarcelona.com",
-    sourceUrl: "https://www.hotelrecbarcelona.com/",
-    booking: "https://www.booking.com/",
-  },
-];
+// Hotels imported from src/data/hotels.ts — expanded to cover all 7 neighborhoods
+const HOTEL_DATA = HOTELS;
 
-const ACTIVITY_LIBRARY: Record<ActivityCategory, string[]> = {
+// Activity library uses string labels for the landing page demo.
+// The plan generator (future) will use rich Activity data from src/data/neighborhoods.ts.
+const ACTIVITY_LIBRARY: Record<Category, string[]> = {
   culture: [
     "Picasso Museum timed entry",
     "Roman wall and Gothic lanes walk",
@@ -145,7 +61,7 @@ const ACTIVITY_LIBRARY: Record<ActivityCategory, string[]> = {
   wellness: ["Spa recovery block", "Beachfront sunrise walk", "Mindful pause in Ciutadella Park"],
 };
 
-const MEAL_BLOCKS = ["Lunch anchor", "Dinner anchor"] as const;
+const MEAL_LABELS = MEAL_BLOCKS.map((m) => m.label);
 
 daysInput.addEventListener("input", () => {
   daysReadout.textContent = daysInput.value;
@@ -170,7 +86,7 @@ form.addEventListener("submit", (event: SubmitEvent) => {
 
 function readForm(): FormResult {
   const data = new FormData(form);
-  const selectedPriorities = data.getAll("priority") as ActivityCategory[];
+  const selectedPriorities = data.getAll("priority") as Category[];
 
   if (selectedPriorities.length > 2) {
     return {
@@ -232,7 +148,7 @@ function buildHotels(data: TripPayload): Hotel[] {
 function buildItinerary(data: TripPayload): ItineraryDay[] {
   const priorityPool = data.priorities.length
     ? data.priorities
-    : (["culture", "architecture"] as ActivityCategory[]);
+    : (["culture", "architecture"] as Category[]);
   const paceBlocks = data.pace === "slow" ? 2 : data.pace === "balanced" ? 3 : 4;
 
   return Array.from({ length: data.days }).map((_, index) => {
@@ -242,13 +158,13 @@ function buildItinerary(data: TripPayload): ItineraryDay[] {
     return {
       dayNumber,
       context: dayContext(dayNumber, data),
-      blocks: [...activities, ...MEAL_BLOCKS],
+      blocks: [...activities, ...MEAL_LABELS],
     };
   });
 }
 
 function pickActivityBlock(
-  priority: ActivityCategory,
+  priority: Category,
   count: number,
   iconic: IconicIntensity,
 ): string[] {
@@ -262,13 +178,7 @@ function pickActivityBlock(
 }
 
 function dayContext(dayNumber: number, data: TripPayload): string {
-  const mode: Record<string, string> = {
-    romantic: "romantic cadence",
-    friends: "group momentum",
-    family: "family-friendly timing",
-    solo: "solo discovery rhythm",
-  };
-  return `Day ${dayNumber}: ${mode[data.useCase] || "city-break flow"} · max 45 min legs unless flagged`;
+  return `Day ${dayNumber}: ${DAY_CONTEXT_TEMPLATES[data.useCase] || DEFAULT_DAY_CONTEXT} · max ${MAX_LEG_MINUTES} min legs unless flagged`;
 }
 
 function renderHotels(hotels: Hotel[]): void {
