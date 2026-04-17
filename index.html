@@ -352,7 +352,12 @@
       .destination-skyline {
         background:
           radial-gradient(circle at 72% 18%, rgba(255, 205, 120, 0.95), transparent 18%),
-          linear-gradient(180deg, rgba(120, 205, 255, 0.96) 0%, rgba(41, 108, 170, 0.82) 48%, rgba(8, 24, 46, 0.98) 100%);
+          linear-gradient(
+            180deg,
+            rgba(120, 205, 255, 0.96) 0%,
+            rgba(41, 108, 170, 0.82) 48%,
+            rgba(8, 24, 46, 0.98) 100%
+          );
       }
       .destination-skyline::before {
         content: "";
@@ -806,14 +811,23 @@
           style="
             background:
               radial-gradient(circle at 26% 24%, rgba(218, 0, 0, 0.2), transparent 26%),
-              linear-gradient(90deg, rgba(7, 17, 29, 0.44) 0%, rgba(7, 17, 29, 0.16) 42%, rgba(7, 17, 29, 0) 100%);
+              linear-gradient(
+                90deg,
+                rgba(7, 17, 29, 0.44) 0%,
+                rgba(7, 17, 29, 0.16) 42%,
+                rgba(7, 17, 29, 0) 100%
+              );
           "
           aria-hidden="true"
         ></div>
 
         <!-- Hero content -->
-        <div class="relative z-10 w-full max-w-7xl mx-auto px-8 py-10 md:py-20 min-h-[calc(100svh-4rem)] md:min-h-[94vh] grid items-end">
-          <div class="grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.72fr)] lg:items-end">
+        <div
+          class="relative z-10 w-full max-w-7xl mx-auto px-8 py-10 md:py-20 min-h-[calc(100svh-4rem)] md:min-h-[94vh] grid items-end"
+        >
+          <div
+            class="grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.72fr)] lg:items-end"
+          >
             <div class="max-w-3xl">
               <div data-hero-reveal style="--reveal-delay: 70ms" class="hero-kicker mb-6 md:mb-8">
                 Private beta for travelers who plan with taste
@@ -830,7 +844,9 @@
                 and local notes. Leave your email and we&apos;ll send yours as private beta opens.
               </p>
               <div data-hero-reveal style="--reveal-delay: 310ms">
-                <label for="hero-search" class="hero-form-label">Start with a city, coast, or country</label>
+                <label for="hero-search" class="hero-form-label"
+                  >Start with a city, coast, or country</label
+                >
                 <div class="hero-form-shell search-wrap mb-4">
                   <div class="flex flex-col gap-2 md:flex-row md:items-center">
                     <div class="flex items-center gap-3 min-w-0 px-4">
@@ -870,7 +886,9 @@
                   <strong>Sample trip brief</strong>
                   <span>Amalfi Coast / 6 nights</span>
                 </div>
-                <span class="hero-ledger-title">Quieter mornings. Longer tables. One clean route.</span>
+                <span class="hero-ledger-title"
+                  >Quieter mornings. Longer tables. One clean route.</span
+                >
                 <p class="hero-ledger-copy">
                   A sharper first pass through the coast: fewer hotel swaps, human-paced days, and
                   enough space for the places worth lingering in.
@@ -880,21 +898,30 @@
                     <div class="hero-ledger-day">Day 1</div>
                     <div>
                       <h3>Atrani arrival</h3>
-                      <p>Check in above the square, swim before dinner, then keep the first night local.</p>
+                      <p>
+                        Check in above the square, swim before dinner, then keep the first night
+                        local.
+                      </p>
                     </div>
                   </div>
                   <div class="hero-ledger-stop">
                     <div class="hero-ledger-day">Day 3</div>
                     <div>
                       <h3>Boat day, no rush</h3>
-                      <p>Short private charter, two swim coves, and lunch booked after the crowds clear.</p>
+                      <p>
+                        Short private charter, two swim coves, and lunch booked after the crowds
+                        clear.
+                      </p>
                     </div>
                   </div>
                   <div class="hero-ledger-stop">
                     <div class="hero-ledger-day">Day 6</div>
                     <div>
                       <h3>Final night in Ravello</h3>
-                      <p>Move uphill for the view, slower pacing, and a last dinner that feels chosen.</p>
+                      <p>
+                        Move uphill for the view, slower pacing, and a last dinner that feels
+                        chosen.
+                      </p>
                     </div>
                   </div>
                 </div>
@@ -1018,7 +1045,10 @@
               style="--reveal-delay: 160ms"
               class="destination-card motion-surface text-left relative rounded-lg overflow-hidden group cursor-pointer"
             >
-              <div class="destination-media destination-skyline absolute inset-0" aria-hidden="true">
+              <div
+                class="destination-media destination-skyline absolute inset-0"
+                aria-hidden="true"
+              >
                 <div class="skyline-bars" aria-hidden="true">
                   <span></span>
                   <span></span>
@@ -1035,7 +1065,8 @@
                 aria-hidden="true"
               ></div>
               <div class="destination-copy absolute bottom-6 left-6">
-                <span class="text-white/70 font-bold uppercase tracking-[0.22em] text-[11px] mb-2 block"
+                <span
+                  class="text-white/70 font-bold uppercase tracking-[0.22em] text-[11px] mb-2 block"
                   >UAE</span
                 >
                 <h3 class="text-xl font-bold text-white font-display">Desert Luxury Dubai</h3>

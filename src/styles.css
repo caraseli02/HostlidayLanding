@@ -55,7 +55,10 @@ body {
 }
 
 /* Display font for headings */
-h1, h2, .section-title, .hero-copy h1 {
+h1,
+h2,
+.section-title,
+.hero-copy h1 {
   font-family: "Syne", "Bricolage Grotesque", sans-serif;
 }
 

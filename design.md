@@ -13,6 +13,7 @@ The visual identifier of Hostliday is an **imagotype**, which means it is compos
 - **Imagotype**: The combination of the Isotype and Logotype.
 
 ### Usage Rules:
+
 - **Buffer Area**: Respecting the clear space around the logo is vital to preserve the brand's impact, value, and readability.
 - **Minimum Size**: To maintain legibility, the logo must never be reproduced smaller than **0.5 In**.
 
@@ -21,21 +22,24 @@ The visual identifier of Hostliday is an **imagotype**, which means it is compos
 The corporate colors are central to Hostliday's brand recognition.
 
 ### Primary Colors
+
 - **Hostliday Gradient**: `#DA0000` to `#810000` (Applied with a **120°** or **90°** degree inclination).
 - **Primary Red**: `#BE0000`
 - **Black**: `#000000`
 
 ### Neutral Colors
+
 - **Dark Gray**: `#A3A2A2`
 - **Light Gray**: `#E1DFDD`
 
 ## 3. Typography
 
-The recommended font family for the corporate image is **Inter**. It is utilized across all internal communication, signage, and external communication. Inter was chosen for its clarity, straightforward style, and exceptional readability. 
+The recommended font family for the corporate image is **Inter**. It is utilized across all internal communication, signage, and external communication. Inter was chosen for its clarity, straightforward style, and exceptional readability.
 
 A secondary font option, **Montserrat**, is also approved for specific brand applications.
 
 ### Supported Font Weights:
+
 - Light
 - Regular
 - Medium
