@@ -178,6 +178,149 @@
         line-height: 1;
         flex-shrink: 0;
       }
+      .hero-kicker {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.9rem;
+        color: rgba(248, 249, 255, 0.72);
+        font-size: 0.72rem;
+        font-weight: 700;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+      }
+      .hero-kicker::before {
+        content: "";
+        width: 3.5rem;
+        height: 1px;
+        background: rgba(248, 249, 255, 0.38);
+      }
+      .hero-summary {
+        max-width: 32rem;
+        color: rgba(248, 249, 255, 0.76);
+        font-size: 1.03rem;
+        line-height: 1.75;
+      }
+      .hero-form-shell {
+        width: min(100%, 36rem);
+        padding: 0.5rem;
+        border-radius: 1.65rem;
+        background: rgba(248, 249, 255, 0.96);
+        border: 1px solid rgba(248, 249, 255, 0.32);
+        box-shadow: 0 28px 48px rgba(7, 17, 29, 0.28);
+      }
+      .hero-form-label {
+        display: block;
+        margin-bottom: 0.75rem;
+        color: rgba(248, 249, 255, 0.86);
+        font-size: 0.82rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+      .hero-form-note {
+        max-width: 32rem;
+        color: rgba(248, 249, 255, 0.66);
+        font-size: 0.92rem;
+        line-height: 1.6;
+      }
+      .hero-ledger {
+        padding: 1.5rem;
+        border: 1px solid rgba(248, 249, 255, 0.16);
+        border-radius: 2rem;
+        background:
+          linear-gradient(180deg, rgba(248, 249, 255, 0.97), rgba(241, 245, 255, 0.88)),
+          rgba(248, 249, 255, 0.95);
+        box-shadow: 0 30px 60px rgba(7, 17, 29, 0.24);
+        color: var(--hostliday-ink);
+      }
+      .hero-ledger-meta {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 1rem;
+        padding-bottom: 1rem;
+        border-bottom: 1px solid rgba(11, 28, 48, 0.1);
+      }
+      .hero-ledger-meta strong {
+        font-family: "Montserrat", sans-serif;
+        font-size: 0.82rem;
+        font-weight: 800;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+      }
+      .hero-ledger-meta span {
+        color: rgba(11, 28, 48, 0.54);
+        font-size: 0.8rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+      }
+      .hero-ledger-title {
+        display: block;
+        margin-top: 1.25rem;
+        font-family: "Montserrat", sans-serif;
+        font-size: clamp(1.9rem, 2.8vw, 2.8rem);
+        font-weight: 800;
+        line-height: 0.98;
+        letter-spacing: -0.05em;
+      }
+      .hero-ledger-copy {
+        margin-top: 1rem;
+        max-width: 24rem;
+        color: rgba(11, 28, 48, 0.72);
+        font-size: 0.98rem;
+        line-height: 1.72;
+      }
+      .hero-ledger-route {
+        display: grid;
+        gap: 0.85rem;
+        margin-top: 1.75rem;
+      }
+      .hero-ledger-stop {
+        display: grid;
+        grid-template-columns: 4rem minmax(0, 1fr);
+        gap: 1rem;
+        padding-top: 0.85rem;
+        border-top: 1px solid rgba(11, 28, 48, 0.08);
+      }
+      .hero-ledger-stop:first-child {
+        padding-top: 0;
+        border-top: none;
+      }
+      .hero-ledger-day {
+        color: rgba(11, 28, 48, 0.44);
+        font-size: 0.75rem;
+        font-weight: 700;
+        letter-spacing: 0.14em;
+        text-transform: uppercase;
+      }
+      .hero-ledger-stop h3 {
+        font-family: "Montserrat", sans-serif;
+        font-size: 1rem;
+        font-weight: 700;
+        line-height: 1.25;
+      }
+      .hero-ledger-stop p {
+        margin-top: 0.28rem;
+        color: rgba(11, 28, 48, 0.66);
+        font-size: 0.88rem;
+        line-height: 1.55;
+      }
+      .hero-ledger-footer {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        margin-top: 1.5rem;
+        padding-top: 1rem;
+        border-top: 1px solid rgba(11, 28, 48, 0.1);
+        color: rgba(11, 28, 48, 0.6);
+        font-size: 0.85rem;
+      }
+      .hero-ledger-footer strong {
+        color: var(--hostliday-red);
+        font-weight: 800;
+      }
       .motion-surface,
       .cta-lift,
       .destination-media,
@@ -285,9 +428,6 @@
       }
       .destination-card:hover .destination-copy {
         transform: translateY(-6px);
-      }
-      .hero-chip {
-        will-change: transform;
       }
       .faq-answer {
         display: grid;
@@ -397,15 +537,6 @@
           opacity: 1;
         }
       }
-      @keyframes drift {
-        0%,
-        100% {
-          transform: translate3d(0, 0, 0);
-        }
-        50% {
-          transform: translate3d(0, -10px, 0);
-        }
-      }
 
       /* FAQ chevron animation */
       .faq-chevron {
@@ -454,12 +585,6 @@
         font-size: 0.9rem;
         font-weight: 800;
         margin-top: 0.18rem;
-      }
-
-      @media (prefers-reduced-motion: no-preference) {
-        .hero-chip {
-          animation: drift 5.8s var(--ease-out-quart) infinite;
-        }
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -634,7 +759,7 @@
     <main id="main" style="scroll-margin-top: 80px">
       <!-- ─── HERO — Full-bleed cinematic ─── -->
       <section
-        class="relative min-h-[100svh] md:min-h-[92vh] pt-16 md:pt-0 flex items-end overflow-hidden"
+        class="relative min-h-[100svh] md:min-h-[94vh] pt-16 md:pt-0 overflow-hidden"
         aria-label="Hero"
       >
         <!-- Background image — full bleed -->
@@ -655,106 +780,109 @@
           class="absolute inset-0 bg-gradient-to-r from-black/25 to-transparent"
           aria-hidden="true"
         ></div>
-
-        <!-- Hero content anchored to bottom-left -->
-        <div class="relative z-10 w-full max-w-7xl mx-auto px-8 pb-16 md:pb-20">
-          <div class="max-w-3xl">
-            <span
-              data-hero-reveal
-              style="--reveal-delay: 70ms"
-              class="inline-block px-4 py-1.5 bg-white/15 backdrop-blur-sm text-white font-bold text-xs tracking-widest uppercase rounded-full mb-6 border border-white/20"
-            >
-              Experiences, adventures, and stays.
-            </span>
-            <h1
-              data-hero-reveal
-              style="--reveal-delay: 150ms"
-              class="text-6xl md:text-8xl font-extrabold tracking-tight mb-8 leading-[1.0] text-white font-display text-balance"
-            >
-              Your trip.<br />Planned in minutes.
-            </h1>
-            <p
-              data-hero-reveal
-              style="--reveal-delay: 230ms"
-              class="text-white/75 max-w-lg mb-10 text-lg leading-relaxed"
-            >
-              Your personal digital concierge, crafting bespoke itineraries and finding hidden gems
-              — in seconds.
-            </p>
-            <!-- Search bar -->
-            <div
-              data-hero-reveal
-              style="--reveal-delay: 310ms"
-              class="motion-surface flex items-center bg-white p-2 rounded-xl shadow-2xl max-w-xl mb-10 search-wrap"
-            >
-              <span class="material-symbols-outlined ml-4 text-primary" aria-hidden="true"
-                >explore</span
-              >
-              <label for="hero-search" class="sr-only">Where do you want to go?</label>
-              <input
-                id="hero-search"
-                class="w-full border-none outline-none bg-transparent py-4 text-base font-medium placeholder:text-on-surface/30"
-                placeholder="Where do you want to go?"
-                type="text"
-                autocomplete="off"
-              />
-              <button
-                onclick="openWaitlist(document.getElementById('hero-search').value.trim())"
-                class="cta-lift cta-press bg-primary text-white px-8 py-4 rounded-lg font-bold hover:bg-primary/90 transition-all duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
-              >
-                Plan Now
-              </button>
-            </div>
-            <!-- Social proof -->
-            <div data-hero-reveal style="--reveal-delay: 390ms" class="flex gap-4 items-center">
-              <div class="flex -space-x-3" aria-hidden="true">
-                <img
-                  class="w-10 h-10 rounded-full border-2 border-white/40 object-cover"
-                  width="40"
-                  height="40"
-                  alt=""
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCuRh00cScozfME5MxlDpPEpQdamVG7UAk5jcG7yFDXoV9_bA37nh4wZIjyEu2VP68_cSqfNxDOBiR6fdjiAPdKVRggFOx0SPnWcFT8s4S06BcKQlDiOJECOAVnvYQp412UA6KWStHOajdZ1YhM9ZITsZlv9cKCjzKeEvc38Z8raJiaYT7jpgSJ-urPIQdJTqRjmH0LMZYs-DrgjyXNmJxGjtFoJINgIPRHxlylVmy2DLt4Az33LuGFOi_Z6jozXCABqmAs-KoTjso"
-                />
-                <img
-                  class="w-10 h-10 rounded-full border-2 border-white/40 object-cover"
-                  width="40"
-                  height="40"
-                  alt=""
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuCPdj8I7kQIJMf60MewihZSCPjWgP4MasUesytX1m_hkqjXANL94D8LsXmGahNAMZxkHxSot2odeX9QSA8iro3ncigDWx2PxlE6KAEEf9OvO1M8Rd2bMpOU5fIkZKn_7iI_3UBWSZ9-xXZzUm89x8fqklN5Ld8S6CmWCFNmQDFIpS3QRWj46ofi_3XVfLkxQMLSzSzNoVh7cK2v733MMPIUNafwN1zWPPJ4xrtvhtl06AQRt9AKTX25OtfT5B9x52WIwzwWpjrf1XQ"
-                />
-                <img
-                  class="w-10 h-10 rounded-full border-2 border-white/40 object-cover"
-                  width="40"
-                  height="40"
-                  alt=""
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuACR9t3VkVRJxunSwtfAajGIch0pa2wJezy-k5hFAX2owYmnvEH-yY8qR5o_EJDRWO-PeGP89QD0YMu6smzdTa-G0xlZzax9_6nFXOUjGRpWP1E3KOSF67UFZBlihmQljMhrFCsL3fY0DqEGhxvnYC8JjliD48na7PxulvFkjxPmfsKDnqmozf_-wBi5rszDowmmRjV_lS193UJOaHRW3kgc4japZS_UGs5_iKs2fnFYAP4TI0mGi5a6K3cL85JLgs844FDzRYxvlo"
-                />
-              </div>
-              <p class="text-sm font-medium text-white/70">
-                Trusted by <span class="text-white font-bold">50,000+</span> travelers worldwide
-              </p>
-            </div>
-          </div>
-        </div>
-
-        <!-- Floating live booking notification — bottom right, not tilted -->
         <div
-          data-hero-reveal
-          style="--reveal-delay: 520ms; --reveal-offset: 30px"
-          class="hero-chip motion-surface hidden md:flex absolute bottom-20 right-12 bg-white/95 backdrop-blur-sm items-center gap-4 p-5 rounded-2xl shadow-2xl border border-white/60 max-w-xs"
+          class="absolute inset-0 opacity-90"
+          style="
+            background:
+              radial-gradient(circle at 26% 24%, rgba(218, 0, 0, 0.2), transparent 26%),
+              linear-gradient(90deg, rgba(7, 17, 29, 0.44) 0%, rgba(7, 17, 29, 0.16) 42%, rgba(7, 17, 29, 0) 100%);
+          "
           aria-hidden="true"
-        >
-          <img
-            class="w-12 h-12 rounded-xl object-cover shrink-0"
-            width="48"
-            height="48"
-            alt=""
-            src="https://lh3.googleusercontent.com/aida-public/AB6AXuDd5OLFivmiI2od8iVTr-Oz1rRMvVqSMha45e3VtXqrwPmpasV6iu67CXGtoHrcK7YGwHDeIlyWcEN4zy5zHlCDDgAp03GZ-BUIOimkmzyMLRnhPii9wS7f27fnBMB55ispg8uAH3U5cTZhQ--DeBR2ceZhF-BEEmw1v7gdZIot4ZNopr93dzPdBcoDz-EYTGU6r5jtZ9nEmlHKfFEVeVCQMX72hkWnneUF4Ymi5CBPfO-b5SeSW1AYkGx8T1kQBPYTCjPz1BGI7x8"
-          />
-          <div data-reveal>
-            <p class="text-xs text-on-surface/50 font-medium">Just booked via Hostliday</p>
-            <p class="font-bold text-sm text-on-surface">Amalfi Coast, 7 Days</p>
-            <p class="text-primary font-bold text-xs">AI-planned · $1,250</p>
+        ></div>
+
+        <!-- Hero content -->
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-8 py-10 md:py-20 min-h-[calc(100svh-4rem)] md:min-h-[94vh] grid items-end">
+          <div class="grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.72fr)] lg:items-end">
+            <div class="max-w-3xl">
+              <div data-hero-reveal style="--reveal-delay: 70ms" class="hero-kicker mb-6 md:mb-8">
+                Private beta for travelers who plan with taste
+              </div>
+              <h1
+                data-hero-reveal
+                style="--reveal-delay: 150ms"
+                class="text-[clamp(3.45rem,14.6vw,5.5rem)] md:text-[clamp(5rem,8vw,7.6rem)] font-black tracking-[-0.07em] mb-6 md:mb-8 leading-[0.9] text-white font-display max-w-[9ch]"
+              >
+                Name the place.<br />We&apos;ll shape the trip.
+              </h1>
+              <p data-hero-reveal style="--reveal-delay: 230ms" class="hero-summary mb-8 md:mb-10">
+                Turn a city, coast, or country into a considered travel brief with stays, pacing,
+                and local notes. Leave your email and we&apos;ll send yours as private beta opens.
+              </p>
+              <div data-hero-reveal style="--reveal-delay: 310ms">
+                <label for="hero-search" class="hero-form-label">Start with a city, coast, or country</label>
+                <div class="hero-form-shell search-wrap mb-4">
+                  <div class="flex flex-col gap-2 md:flex-row md:items-center">
+                    <div class="flex items-center gap-3 min-w-0 px-4">
+                      <span class="material-symbols-outlined text-primary" aria-hidden="true"
+                        >explore</span
+                      >
+                      <input
+                        id="hero-search"
+                        class="w-full min-w-0 border-none outline-none bg-transparent py-3.5 text-base font-medium placeholder:text-on-surface/35"
+                        placeholder="Kyoto, Amalfi Coast, Patagonia…"
+                        type="text"
+                        autocomplete="off"
+                      />
+                    </div>
+                    <button
+                      onclick="openWaitlist(document.getElementById('hero-search').value.trim())"
+                      class="cta-lift cta-press bg-primary text-white px-7 md:px-8 py-4 rounded-[1.2rem] font-bold hover:bg-primary/90 transition-all duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2 shrink-0 w-full md:w-auto"
+                    >
+                      Request brief
+                    </button>
+                  </div>
+                </div>
+                <p class="hero-form-note">
+                  Private beta. We&apos;ll hold your destination and email your first trip brief
+                  when your spot opens. Trusted by <span class="text-white font-bold">50,000+</span>
+                  travelers already planning ahead.
+                </p>
+              </div>
+            </div>
+            <aside
+              data-hero-reveal
+              style="--reveal-delay: 390ms; --reveal-offset: 30px"
+              class="hidden lg:block"
+            >
+              <div class="hero-ledger">
+                <div class="hero-ledger-meta">
+                  <strong>Sample trip brief</strong>
+                  <span>Amalfi Coast / 6 nights</span>
+                </div>
+                <span class="hero-ledger-title">Quieter mornings. Longer tables. One clean route.</span>
+                <p class="hero-ledger-copy">
+                  A sharper first pass through the coast: fewer hotel swaps, human-paced days, and
+                  enough space for the places worth lingering in.
+                </p>
+                <div class="hero-ledger-route">
+                  <div class="hero-ledger-stop">
+                    <div class="hero-ledger-day">Day 1</div>
+                    <div>
+                      <h3>Atrani arrival</h3>
+                      <p>Check in above the square, swim before dinner, then keep the first night local.</p>
+                    </div>
+                  </div>
+                  <div class="hero-ledger-stop">
+                    <div class="hero-ledger-day">Day 3</div>
+                    <div>
+                      <h3>Boat day, no rush</h3>
+                      <p>Short private charter, two swim coves, and lunch booked after the crowds clear.</p>
+                    </div>
+                  </div>
+                  <div class="hero-ledger-stop">
+                    <div class="hero-ledger-day">Day 6</div>
+                    <div>
+                      <h3>Final night in Ravello</h3>
+                      <p>Move uphill for the view, slower pacing, and a last dinner that feels chosen.</p>
+                    </div>
+                  </div>
+                </div>
+                <div class="hero-ledger-footer">
+                  <span>Stays, pacing, and local notes in one brief.</span>
+                  <strong>Editor&apos;s cut</strong>
+                </div>
+              </div>
+            </aside>
           </div>
         </div>
       </section>
