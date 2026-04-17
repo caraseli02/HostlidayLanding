@@ -1,0 +1,214 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hostliday — Trip Enhancer</title>
+    <meta
+      name="description"
+      content="Already booked your Barcelona hotel? Get walkable activity picks, local restaurant recommendations, and hidden gems curated for your neighborhood."
+    />
+    <link rel="icon" href="/favicon.ico" />
+  </head>
+  <body>
+    <nav class="site-nav">
+      <div class="nav-inner">
+        <a href="/" class="brand-lockup">
+          <span class="brand-mark" aria-hidden="true">H</span>
+          <div class="brand-copy">
+            <p class="brand-name">Hostliday</p>
+            <p class="brand-tag">Trip enhancer</p>
+          </div>
+        </a>
+        <a href="/" class="nav-cta">Full planner</a>
+      </div>
+    </nav>
+
+    <main>
+      <section class="enhancer-hero" aria-label="Trip enhancer">
+        <div class="enhancer-hero-inner">
+          <div class="enhancer-hero-copy">
+            <p class="eyebrow">Trip enhancer</p>
+            <h1>Already booked? Make the most of where you're staying.</h1>
+            <p class="enhancer-hero-sub">
+              Tell us your hotel neighborhood and what matters to you. We'll show walkable
+              activities, local restaurants, and hidden gems — all source-backed with freshness
+              timestamps.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="enhancer-section" aria-label="Enhance your trip">
+        <div class="enhancer-shell">
+          <div class="app-shell" id="appShell">
+            <section class="screen screen-active" id="screenInput" aria-labelledby="enhancerTitle">
+              <form id="enhancerForm" class="planner-card" novalidate>
+                <div class="form-group">
+                  <p class="form-group-label">Where you're staying</p>
+                  <div class="field-split">
+                    <div class="field-row">
+                      <label for="neighborhood">Neighborhood</label>
+                      <select id="neighborhood" name="neighborhood" required>
+                        <option value="">Pick your area</option>
+                        <option value="gothic">Gothic Quarter (Barri Gòtic)</option>
+                        <option value="eixample">Eixample</option>
+                        <option value="born">El Born / La Ribera</option>
+                        <option value="gracia">Gràcia</option>
+                        <option value="barceloneta">Barceloneta</option>
+                        <option value="raval">El Raval</option>
+                        <option value="sant-pere">Sant Pere / Arc de Triomf</option>
+                      </select>
+                    </div>
+                    <div class="field-row">
+                      <label for="hotelName"
+                        >Hotel name <span class="optional-tag">optional</span></label
+                      >
+                      <input
+                        id="hotelName"
+                        name="hotelName"
+                        type="text"
+                        placeholder="e.g. Hotel 1898"
+                        autocomplete="off"
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                <div class="form-group">
+                  <p class="form-group-label">What matters most</p>
+                  <fieldset class="field-row field-row-gap">
+                    <legend>Focus areas (pick up to 2)</legend>
+                    <div class="chip-group">
+                      <label><input type="checkbox" name="focus" value="culture" /> Culture</label>
+                      <label><input type="checkbox" name="focus" value="food" /> Food</label>
+                      <label
+                        ><input type="checkbox" name="focus" value="architecture" />
+                        Architecture</label
+                      >
+                      <label
+                        ><input type="checkbox" name="focus" value="nightlife" /> Nightlife</label
+                      >
+                      <label
+                        ><input type="checkbox" name="focus" value="wellness" /> Wellness</label
+                      >
+                    </div>
+                  </fieldset>
+                </div>
+
+                <div class="cta-row">
+                  <button type="submit" class="btn-primary btn-full">Enhance my trip</button>
+                  <p
+                    class="validation-copy"
+                    id="formValidation"
+                    role="alert"
+                    aria-live="polite"
+                  ></p>
+                </div>
+              </form>
+            </section>
+
+            <section class="screen" id="screenResults" aria-labelledby="resultsTitle" hidden>
+              <div class="results-head">
+                <button type="button" class="btn-ghost" id="editButton">
+                  &larr; Change inputs
+                </button>
+                <div>
+                  <p class="eyebrow">Your enhancement plan</p>
+                  <h2 id="resultsTitle">What's walkable from your hotel</h2>
+                  <p class="results-subtitle" id="resultsSubtitle"></p>
+                </div>
+              </div>
+
+              <div class="results-grid">
+                <section class="panel" aria-labelledby="walkPanelTitle">
+                  <div class="panel-head">
+                    <h3 id="walkPanelTitle">Walkable picks</h3>
+                    <span class="meta-pill">Source-linked &middot; freshness-aware</span>
+                  </div>
+                  <div id="activityList" class="activity-card-list"></div>
+                </section>
+
+                <section class="panel" aria-labelledby="eatPanelTitle">
+                  <div class="panel-head">
+                    <h3 id="eatPanelTitle">Local eats</h3>
+                    <span class="meta-pill">Walking distance &middot; curated</span>
+                  </div>
+                  <div id="restaurantList" class="restaurant-card-list"></div>
+                </section>
+              </div>
+
+              <div class="results-secondary-grid" id="secondaryGrid">
+                <section class="panel" aria-labelledby="gemPanelTitle">
+                  <div class="panel-head">
+                    <h3 id="gemPanelTitle">Hidden gems</h3>
+                    <span class="meta-pill">Locals-only picks</span>
+                  </div>
+                  <div id="gemList" class="gem-card-list"></div>
+                </section>
+
+                <section
+                  class="panel panel-alt"
+                  id="altPanel"
+                  aria-labelledby="altPanelTitle"
+                  hidden
+                >
+                  <div class="panel-head">
+                    <h3 id="altPanelTitle">A better base?</h3>
+                    <span class="meta-pill">Only when there's a clear reason</span>
+                  </div>
+                  <div id="altContent"></div>
+                </section>
+              </div>
+            </section>
+          </div>
+        </div>
+      </section>
+
+      <footer class="site-footer">
+        <div class="footer-inner">
+          <p class="footer-note">
+            Hostliday &middot; Barcelona-only verified trip planning &middot; Trip enhancer MVP
+          </p>
+        </div>
+      </footer>
+    </main>
+
+    <template id="activityCardTemplate">
+      <article class="result-card">
+        <div class="result-card-head">
+          <h4></h4>
+          <span class="walk-badge"></span>
+        </div>
+        <p class="result-card-why"></p>
+        <div class="result-card-meta">
+          <span class="result-card-category"></span>
+          <span class="result-card-source"></span>
+        </div>
+      </article>
+    </template>
+
+    <template id="restaurantCardTemplate">
+      <article class="result-card">
+        <div class="result-card-head">
+          <h4></h4>
+          <span class="walk-badge"></span>
+        </div>
+        <p class="result-card-why"></p>
+        <div class="result-card-meta">
+          <span class="result-card-cuisine"></span>
+          <span class="result-card-price"></span>
+        </div>
+      </article>
+    </template>
+
+    <template id="gemCardTemplate">
+      <article class="result-card result-card-gem">
+        <h4></h4>
+        <p class="result-card-why"></p>
+      </article>
+    </template>
+
+    <script type="module" src="/src/enhancer-main.ts"></script>
+  </body>
+</html>
