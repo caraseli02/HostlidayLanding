@@ -68,7 +68,11 @@ export interface NeighborhoodProfile {
 export type HotelStatus = "verified today" | "verified within 7 days" | "stale" | "unverified";
 export type Budget = "value" | "comfort" | "premium" | "luxury";
 export type Pace = "slow" | "balanced" | "packed";
-export type VibeTag = "scenic rooftop" | "intimate boutique" | "luxury spa" | "quiet old-town charm";
+export type VibeTag =
+  | "scenic rooftop"
+  | "intimate boutique"
+  | "luxury spa"
+  | "quiet old-town charm";
 
 export interface Hotel {
   name: string;

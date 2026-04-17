@@ -1,14 +1,12 @@
 import { showScreen, capitalize } from "./lib/transitions";
-import { HOTELS, MEAL_BLOCKS, DAY_CONTEXT_TEMPLATES, DEFAULT_DAY_CONTEXT, MAX_LEG_MINUTES } from "./data";
-import type {
-  Hotel,
-  Pace,
-  Budget,
-  VibeTag,
-  Category,
-  IconicIntensity,
-  TripPayload,
+import {
+  HOTELS,
+  MEAL_BLOCKS,
+  DAY_CONTEXT_TEMPLATES,
+  DEFAULT_DAY_CONTEXT,
+  MAX_LEG_MINUTES,
 } from "./data";
+import type { Hotel, Pace, Budget, VibeTag, Category, IconicIntensity, TripPayload } from "./data";
 
 interface ItineraryDay {
   dayNumber: number;
@@ -82,7 +80,7 @@ if (
   });
 
   editTripButton.addEventListener("click", () => {
-    showScreen("input");
+    showScreen("input", screenInput, screenResults);
   });
 
   form.addEventListener("submit", (event: SubmitEvent) => {
@@ -95,35 +93,13 @@ if (
 
     validationNode.textContent = "";
     renderResults(payload.data);
-    showScreen("results");
+    showScreen("results", screenInput, screenResults);
   });
-}
-
-function showScreen(target: "input" | "results"): void {
-  if (target === "results") {
-    screenInput!.hidden = true;
-    screenInput!.classList.remove("screen-active");
-
-    screenResults!.hidden = false;
-    requestAnimationFrame(() => {
-      screenResults!.classList.add("screen-active");
-    });
-    return;
-  }
-
-  screenResults!.classList.remove("screen-active");
-  setTimeout(() => {
-    screenResults!.hidden = true;
-    screenInput!.hidden = false;
-    requestAnimationFrame(() => {
-      screenInput!.classList.add("screen-active");
-    });
-  }, 220);
 }
 
 function readForm(): FormResult {
   const data = new FormData(form!);
-  const selectedPriorities = data.getAll("priority") as ActivityCategory[];
+  const selectedPriorities = data.getAll("priority") as Category[];
 
   if (selectedPriorities.length > 2) {
     return {
@@ -200,11 +176,7 @@ function buildItinerary(data: TripPayload): ItineraryDay[] {
   });
 }
 
-function pickActivityBlock(
-  priority: Category,
-  count: number,
-  iconic: IconicIntensity,
-): string[] {
+function pickActivityBlock(priority: Category, count: number, iconic: IconicIntensity): string[] {
   const base = [...(ACTIVITY_LIBRARY[priority] || ACTIVITY_LIBRARY.culture)];
   const iconicExtra: Record<IconicIntensity, string[]> = {
     low: [],

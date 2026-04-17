@@ -1,10 +1,4 @@
-import type {
-  NeighborhoodProfile,
-  Activity,
-  Restaurant,
-  HiddenGem,
-  AltHotelSuggestion,
-} from "./types";
+import type { NeighborhoodProfile, AltHotelSuggestion } from "./types";
 
 export const NEIGHBORHOODS: NeighborhoodProfile[] = [
   {

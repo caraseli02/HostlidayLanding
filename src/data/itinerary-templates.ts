@@ -21,7 +21,10 @@ export const PACE_BLOCKS: Record<string, number> = {
 };
 
 // ── Activity blocks per time slot, by pace ───────────────
-export const PACE_SLOT_DISTRIBUTION: Record<string, { morning: number; afternoon: number; evening: number }> = {
+export const PACE_SLOT_DISTRIBUTION: Record<
+  string,
+  { morning: number; afternoon: number; evening: number }
+> = {
   slow: { morning: 1, afternoon: 1, evening: 0 },
   balanced: { morning: 1, afternoon: 1, evening: 1 },
   packed: { morning: 2, afternoon: 1, evening: 1 },

@@ -1,16 +1,11 @@
 import { showScreen, capitalize } from "./lib/transitions";
-import {
-  NEIGHBORHOODS,
-  ALT_HOTEL_SUGGESTIONS,
-  VALID_CATEGORIES,
-} from "./data";
+import { NEIGHBORHOODS, ALT_HOTEL_SUGGESTIONS, VALID_CATEGORIES } from "./data";
 import type {
   Category,
   NeighborhoodKey,
   Activity,
   Restaurant,
   HiddenGem,
-  NeighborhoodProfile,
   EnhancerPayload,
 } from "./data";
 

@@ -4,7 +4,14 @@
  */
 export { NEIGHBORHOODS, ALT_HOTEL_SUGGESTIONS } from "./neighborhoods";
 export { HOTELS } from "./hotels";
-export { MEAL_BLOCKS, PACE_BLOCKS, PACE_SLOT_DISTRIBUTION, DAY_CONTEXT_TEMPLATES, DEFAULT_DAY_CONTEXT, MAX_LEG_MINUTES } from "./itinerary-templates";
+export {
+  MEAL_BLOCKS,
+  PACE_BLOCKS,
+  PACE_SLOT_DISTRIBUTION,
+  DAY_CONTEXT_TEMPLATES,
+  DEFAULT_DAY_CONTEXT,
+  MAX_LEG_MINUTES,
+} from "./itinerary-templates";
 
 export type {
   Category,
