@@ -131,7 +131,6 @@
       p {
         text-wrap: pretty;
       }
-      #destinations,
       #planner,
       #faq {
         scroll-margin-top: 96px;
@@ -736,8 +735,8 @@
         <div class="hidden md:flex gap-8 items-center font-medium tracking-tight">
           <a
             class="nav-link text-primary font-bold border-b-2 border-primary pb-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
-            href="#destinations"
-            >Destinations</a
+            href="#planner"
+            >How it works</a
           >
           <a
             class="nav-link text-on-surface/80 hover:text-primary transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
@@ -871,8 +870,7 @@
                 </div>
                 <p class="hero-form-note">
                   Private beta. We&apos;ll hold your destination and email your first trip brief
-                  when your spot opens. Trusted by <span class="text-white font-bold">50,000+</span>
-                  travelers already planning ahead.
+                  when your spot opens.
                 </p>
               </div>
             </div>
@@ -934,148 +932,6 @@
           </div>
         </div>
       </section>
-
-      <!-- Partner Logos -->
-      <section class="py-12 bg-surface-container-low/30 overflow-hidden">
-        <div class="max-w-7xl mx-auto px-8">
-          <p
-            class="text-center text-xs font-bold uppercase tracking-[0.2em] text-on-surface/40 mb-10"
-          >
-            As seen on
-          </p>
-          <div
-            class="flex flex-wrap justify-center gap-12 md:gap-20 opacity-30 grayscale items-center"
-            aria-label="Press mentions"
-          >
-            <span class="text-2xl font-black italic" aria-label="Traveler magazine">Traveler</span>
-            <span class="text-2xl font-black" aria-label="Forbes">Forbes</span>
-            <span class="text-2xl font-black" aria-label="Vogue">VOGUE</span>
-            <span class="text-2xl font-black uppercase" aria-label="Bloomberg">Bloomberg</span>
-            <span class="text-2xl font-black tracking-tighter" aria-label="TechCrunch"
-              >techcrunch</span
-            >
-          </div>
-        </div>
-      </section>
-
-      <!-- Destination Bento Grid -->
-      <section id="destinations" class="pt-32 pb-16 px-8 max-w-7xl mx-auto scroll-mt-32">
-        <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-8">
-          <div class="max-w-xl" data-reveal>
-            <h2 class="text-4xl md:text-5xl font-extrabold tracking-tight mb-4 font-display">
-              Where to go next
-            </h2>
-            <p class="text-on-surface/60 leading-relaxed">
-              Hand-picked destinations curated by our AI engine and verified by local travel
-              experts.
-            </p>
-          </div>
-          <button
-            onclick="openWaitlist()"
-            data-reveal
-            style="--reveal-delay: 100ms"
-            class="cta-lift cta-press bg-surface-container-highest text-primary font-bold px-8 py-4 rounded-full flex items-center gap-2 hover:bg-surface-container-high transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
-          >
-            Explore All Destinations
-            <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
-          </button>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 md:min-h-[700px]">
-          <!-- Large card -->
-          <button
-            onclick="openWaitlist()"
-            data-reveal
-            class="destination-card motion-surface text-left md:col-span-8 relative rounded-lg overflow-hidden group cursor-pointer h-[400px] md:h-full"
-          >
-            <img
-              class="destination-media w-full h-full object-cover"
-              loading="lazy"
-              alt="Scenic narrow canal in Venice with classic gondolas and historic colourful buildings"
-              src="https://lh3.googleusercontent.com/aida-public/AB6AXuCyMxAIvSSIymRudsFy8jDO1fVQrUDTT8302N4IDS5uEKuTlQrqVtNlKkenr9yfoCMCrnWofqmvuBWneiW35d4djvKjKC--gvUMGtBDYevyCDYHzCM5qamwPMxncFIGik5rvoevtAmXZ51qPiUU3WGo1u9nzxfoxXIIPC3kLBRNn8ArTk7fEn4JI8XksVLhWDCdTcC4hDU7AgSkGzR6x-k--MnwxVNpnHi1ZSYBwu_T98X-DpcGr6C40SUM7MUr1guulxpkf9FIbrY"
-            />
-            <div
-              class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent"
-              aria-hidden="true"
-            ></div>
-            <div class="destination-copy absolute bottom-10 left-10">
-              <span class="text-white/60 font-bold uppercase tracking-widest text-xs mb-2 block"
-                >Italy</span
-              >
-              <h3 class="text-3xl font-bold text-white mb-4 font-display">The Romantic Venice</h3>
-              <p class="text-white/80 max-w-sm mb-6">
-                Experience the magic of the canals, private boat tours, and hidden wine bars.
-              </p>
-              <div class="flex gap-4">
-                <span
-                  class="bg-white/20 backdrop-blur-md text-white px-4 py-2 rounded-full text-xs font-bold"
-                  >5 Days</span
-                >
-                <span
-                  class="bg-white/20 backdrop-blur-md text-white px-4 py-2 rounded-full text-xs font-bold"
-                  >$$$</span
-                >
-              </div>
-            </div>
-          </button>
-          <!-- Side cards -->
-          <div class="md:col-span-4 grid grid-rows-2 gap-8 h-[600px] md:h-full">
-            <button
-              onclick="openWaitlist()"
-              data-reveal
-              style="--reveal-delay: 90ms"
-              class="destination-card motion-surface text-left relative rounded-lg overflow-hidden group cursor-pointer"
-            >
-              <img
-                class="destination-media w-full h-full object-cover"
-                loading="lazy"
-                alt="Luxurious beachfront resort with infinity pool overlooking the turquoise ocean in Bali"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuCdNe3Mx-f2jH6cRIb3ZTBhOZsET1j1LTdQRpenGabJX6fKdWMxYsEN3qWJploKZ7O3g-201X9qIVT_6BP9g96YppHCgKEJdhddqQ0nwpU0KNn0qKXcP_zKYDQbPqN7JiTf_jVboQxYvZmLFdACq8peOrZGWC6TEkI-QRcbyTN5I6V7lV6cUWgrKMOopyBw-rY3l62yeBFxICsSg9m8KkVQ6N4BgJKA27zjneSM3C4Ecnxex7id6n-IERqqSkjvFYbDcJy6VwqmkJ4"
-              />
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent"
-                aria-hidden="true"
-              ></div>
-              <div class="destination-copy absolute bottom-6 left-6">
-                <h3 class="text-xl font-bold text-white font-display">Bali Retreat</h3>
-              </div>
-            </button>
-            <button
-              onclick="openWaitlist()"
-              data-reveal
-              style="--reveal-delay: 160ms"
-              class="destination-card motion-surface text-left relative rounded-lg overflow-hidden group cursor-pointer"
-            >
-              <div
-                class="destination-media destination-skyline absolute inset-0"
-                aria-hidden="true"
-              >
-                <div class="skyline-bars" aria-hidden="true">
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                  <span></span>
-                </div>
-              </div>
-              <div
-                class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent"
-                aria-hidden="true"
-              ></div>
-              <div class="destination-copy absolute bottom-6 left-6">
-                <span
-                  class="text-white/70 font-bold uppercase tracking-[0.22em] text-[11px] mb-2 block"
-                  >UAE</span
-                >
-                <h3 class="text-xl font-bold text-white font-display">Desert Luxury Dubai</h3>
-              </div>
-            </button>
-          </div>
-        </div>
-      </section>
-
       <!-- All-in-One Planner Section -->
       <section id="planner" class="py-32 bg-surface-container-low scroll-mt-32">
         <div class="max-w-7xl mx-auto px-8 grid md:grid-cols-2 gap-20 items-center">
@@ -1208,106 +1064,6 @@
       </section>
 
       <!-- Testimonials - Cardless Asymmetrical Layout -->
-      <section class="py-16 px-8 max-w-7xl mx-auto border-t border-surface-container-low">
-        <div class="grid lg:grid-cols-[1fr_2fr] gap-16 md:gap-24 items-start">
-          <div class="sticky top-32" data-reveal>
-            <h2 class="text-4xl font-extrabold mb-4 font-display">Travelers love Hostliday</h2>
-            <p class="text-on-surface/60 font-medium">
-              Verified feedback from real trips planned entirely by our AI.
-            </p>
-            <div class="mt-8 flex gap-1 text-primary" aria-label="5 out of 5 stars average">
-              <span
-                class="material-symbols-outlined text-2xl"
-                style="font-variation-settings: &quot;FILL&quot; 1"
-                aria-hidden="true"
-                >star</span
-              >
-              <span
-                class="material-symbols-outlined text-2xl"
-                style="font-variation-settings: &quot;FILL&quot; 1"
-                aria-hidden="true"
-                >star</span
-              >
-              <span
-                class="material-symbols-outlined text-2xl"
-                style="font-variation-settings: &quot;FILL&quot; 1"
-                aria-hidden="true"
-                >star</span
-              >
-              <span
-                class="material-symbols-outlined text-2xl"
-                style="font-variation-settings: &quot;FILL&quot; 1"
-                aria-hidden="true"
-                >star</span
-              >
-              <span
-                class="material-symbols-outlined text-2xl"
-                style="font-variation-settings: &quot;FILL&quot; 1"
-                aria-hidden="true"
-                >star</span
-              >
-            </div>
-          </div>
-          <div class="flex flex-col gap-16 md:gap-24">
-            <article
-              data-reveal
-              style="--reveal-delay: 80ms"
-              class="motion-surface flex flex-col gap-8 rounded-[2rem] bg-surface-container-low/55 p-8"
-            >
-              <div class="flex items-start gap-5">
-                <span class="quote-marker" aria-hidden="true">“</span>
-                <blockquote
-                  class="text-2xl md:text-3xl font-display font-medium text-on-surface leading-tight"
-                >
-                  Planned my entire honeymoon in 10 minutes. The hotel suggestions were spot on and
-                  the itinerary flowed perfectly.
-                </blockquote>
-              </div>
-              <div class="flex items-center gap-4">
-                <img
-                  class="w-14 h-14 rounded-full object-cover shadow-sm bg-surface-container-low"
-                  loading="lazy"
-                  alt="Portrait of Sarah Jenkins, verified traveler from London"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuDd5OLFivmiI2od8iVTr-Oz1rRMvVqSMha45e3VtXqrwPmpasV6iu67CXGtoHrcK7YGwHDeIlyWcEN4zy5zHlCDDgAp03GZ-BUIOimkmzyMLRnhPii9wS7f27fnBMB55ispg8uAH3U5cTZhQ--DeBR2ceZhF-BEEmw1v7gdZIot4ZNopr93dzPdBcoDz-EYTGU6r5jtZ9nEmlHKfFEVeVCQMX72hkWnneUF4Ymi5CBPfO-b5SeSW1AYkGx8T1kQBPYTCjPz1BGI7x8"
-                />
-                <div>
-                  <p class="font-bold text-lg">Sarah Jenkins</p>
-                  <p class="text-sm text-on-surface/50 font-medium">Verified Traveler · London</p>
-                </div>
-              </div>
-            </article>
-
-            <article
-              data-reveal
-              style="--reveal-delay: 160ms"
-              class="motion-surface flex flex-col gap-8 rounded-[2rem] bg-white/70 p-8 shadow-[0_20px_50px_rgba(11,28,48,0.06)]"
-            >
-              <div class="flex items-start gap-5">
-                <span class="quote-marker" aria-hidden="true">“</span>
-                <blockquote
-                  class="text-2xl md:text-3xl font-display font-medium text-on-surface leading-tight"
-                >
-                  I travel for business constantly. Hostliday handles my logistics and dining better
-                  than any assistant I’ve used before.
-                </blockquote>
-              </div>
-              <div class="flex items-center gap-4">
-                <img
-                  class="w-14 h-14 rounded-full object-cover shadow-sm bg-surface-container-low"
-                  loading="lazy"
-                  alt="Portrait of Michael Chen, Global Operations VP"
-                  src="https://lh3.googleusercontent.com/aida-public/AB6AXuAOZRsXUgg9jno5kjooZ63RA1cV2sjayIv5v08yXarovYL2CywIDyXpayZIh_ulIAvER0nVsuy3PPJbrNhhyYJQzKzuBJHkiDYrqcwLE-WMxz8xfu__UbKD9NZ-_zprv0NOovgm4X8EKvYJL-W4RPe5peiw_Q8Z-_vCpvFWAiqd6f4AzkKCdTCH4INfHM8yVwSQyHdsQrNCq_WpsqAMW9FBa1eW4mNa1dZIIK1zNsxvW7Ec_vRC2IwwP9c3DVoACSFRhy4RCkSves4"
-                />
-                <div>
-                  <p class="font-bold text-lg">Michael Chen</p>
-                  <p class="text-sm text-on-surface/50 font-medium">Global Operations VP</p>
-                </div>
-              </div>
-            </article>
-          </div>
-        </div>
-      </section>
-
       <!-- Investor/Team Section - Asymmetric Layout -->
       <section class="py-32 bg-on-surface text-surface">
         <div
