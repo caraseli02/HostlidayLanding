@@ -3,16 +3,16 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Hostliday | Barcelona trip planning, done right.</title>
+    <title>Hostliday | Barcelona trips planned with verified hotel data</title>
     <meta
       name="description"
-      content="Plan your Barcelona trip with pace-matched hotel recommendations, neighborhood guides, and day-by-day itineraries. No guesswork."
+      content="Plan your Barcelona trip with Hostliday. Every hotel recommendation comes with a source, a freshness check, and a reason why."
     />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=Instrument+Serif:ital@0;1&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Instrument+Serif:ital@0;1&display=swap"
       rel="stylesheet"
     />
     <link
@@ -52,8 +52,6 @@
               "primary-fixed-dim": "#ffb2be",
               "primary-container": "#ff4e7e",
               "on-surface": "#0b1c30",
-              "surface-bright": "#f8f9ff",
-              "on-primary-fixed": "#3f0015",
               "surface-variant": "#d3e4fe",
               secondary: "#66558b",
               "inverse-surface": "#213145",
@@ -73,25 +71,16 @@
               "on-background": "#0b1c30",
               "surface-container-highest": "#d3e4fe",
             },
-            borderRadius: {
-              DEFAULT: "1rem",
-              lg: "2rem",
-              xl: "3rem",
-              full: "9999px",
-            },
+            borderRadius: { DEFAULT: "1rem", lg: "2rem", xl: "3rem", full: "9999px" },
             fontFamily: {
-              display: ['"Instrument Serif"', "serif"],
-              headline: ['"Instrument Serif"', "serif"],
-              body: ['"DM Sans"', "sans-serif"],
-              label: ['"DM Sans"', "sans-serif"],
-              sans: ['"DM Sans"', "sans-serif"],
+              display: ["Instrument Serif", "serif"],
+              headline: ["DM Sans", "sans-serif"],
+              body: ["DM Sans", "sans-serif"],
+              label: ["DM Sans", "sans-serif"],
             },
           },
         },
       };
-    </script>
-    <script>
-      document.documentElement.classList.add("js-motion");
     </script>
     <style>
       :root {
@@ -103,11 +92,8 @@
         --duration-fast: 160ms;
         --duration-medium: 260ms;
         --duration-slow: 520ms;
-        --ease-out-quart: cubic-bezier(0.25, 1, 0.5, 1);
-        --ease-out-quint: cubic-bezier(0.22, 1, 0.36, 1);
         --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
       }
-
       html {
         scroll-behavior: smooth;
       }
@@ -132,22 +118,19 @@
       p {
         text-wrap: pretty;
       }
-      #faq {
+      #planner,
+      #faq,
+      #neighborhoods {
         scroll-margin-top: 96px;
       }
-
-      /* Focus ring */
       a:focus-visible,
       button:focus-visible {
         outline: 2px solid var(--hostliday-red);
         outline-offset: 3px;
         border-radius: 6px;
       }
-
       .motion-surface,
-      .cta-lift,
-      .faq-btn,
-      .faq-answer {
+      .cta-lift {
         transition-timing-function: var(--ease-out-expo);
       }
       .motion-surface {
@@ -168,172 +151,58 @@
       .cta-press:active {
         transform: translateY(0) scale(0.98);
       }
-
-      /* FAQ */
-      .faq-answer {
-        display: grid;
-        grid-template-rows: 0fr;
+      [data-reveal],
+      [data-hero-reveal] {
         opacity: 0;
-        transition-duration: 360ms;
-        transition-property: grid-template-rows, opacity, margin-top;
-        margin-top: 0;
-      }
-      .faq-answer.is-open {
-        grid-template-rows: 1fr;
-        opacity: 1;
-        margin-top: 0.5rem;
-      }
-      .faq-answer > div {
-        overflow: hidden;
-      }
-      .faq-btn.is-open {
-        background-color: rgba(229, 238, 255, 0.92);
-      }
-
-      /* Reveal animations */
-      .js-motion [data-hero-reveal],
-      .js-motion [data-reveal] {
-        opacity: 0;
-        transform: translateY(var(--reveal-offset, 24px)) scale(var(--reveal-scale, 1));
+        transform: translateY(24px);
         transition:
           opacity var(--duration-slow) var(--ease-out-expo),
           transform var(--duration-slow) var(--ease-out-expo);
         transition-delay: var(--reveal-delay, 0ms);
       }
-      .js-motion body.motion-ready [data-hero-reveal],
-      .js-motion [data-reveal].is-visible {
+      [data-reveal].is-visible,
+      [data-hero-reveal].is-visible {
         opacity: 1;
-        transform: translateY(0) scale(1);
+        transform: translateY(0);
       }
-
-      /* FAQ chevron */
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height var(--duration-medium) var(--ease-out-expo);
+      }
+      .faq-answer.is-open {
+        max-height: 200px;
+      }
       .faq-chevron {
-        transition: transform 0.3s var(--ease-out-expo);
+        transition: transform var(--duration-fast) var(--ease-out-expo);
       }
       .faq-btn.is-open .faq-chevron {
         transform: rotate(180deg);
       }
-
-      /* Trust badges */
-      .trust-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.35rem;
-        padding: 0.25rem 0.65rem;
-        border-radius: 999px;
-        font-size: 0.72rem;
-        font-weight: 600;
-        letter-spacing: 0.02em;
-      }
-      .trust-badge--verified {
-        background: rgba(34, 197, 94, 0.1);
-        color: #16a34a;
-      }
-      .trust-badge--fresh {
-        background: rgba(11, 28, 48, 0.06);
-        color: rgba(11, 28, 48, 0.6);
-      }
-
-      /* Nav & footer links */
-      .nav-link {
-        display: inline-flex;
-        align-items: center;
-        min-height: 2.75rem;
-        min-width: 2.75rem;
-        padding-inline: 0.45rem;
-      }
-      .footer-link {
-        display: inline-flex;
-        align-items: center;
-        min-height: 2.75rem;
-        min-width: 2.75rem;
-        padding-inline: 0.45rem;
-      }
-      .footer-social {
-        width: 2.75rem;
-        height: 2.75rem;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      /* Hotel card in hero */
-      .hero-hotel-card {
-        background: rgba(248, 249, 255, 0.97);
-        border: 1px solid rgba(11, 28, 48, 0.06);
-        border-radius: 1.25rem;
-        padding: 1.25rem;
-        box-shadow: 0 8px 24px rgba(11, 28, 48, 0.08);
-        transition:
-          transform var(--duration-medium) var(--ease-out-expo),
-          box-shadow var(--duration-medium) var(--ease-out-expo);
-      }
-      .hero-hotel-card:hover {
-        transform: translateY(-4px);
-        box-shadow: 0 16px 32px rgba(11, 28, 48, 0.12);
-      }
-
-      /* Neighborhood card */
       .neighborhood-card {
-        background: var(--hostliday-surface);
-        border: 1px solid rgba(11, 28, 48, 0.06);
-        border-radius: 1.5rem;
-        padding: 1.75rem;
-        transition:
-          transform var(--duration-medium) var(--ease-out-expo),
-          box-shadow var(--duration-medium) var(--ease-out-expo),
-          border-color var(--duration-medium) var(--ease-out-expo);
+        isolation: isolate;
       }
-      .neighborhood-card:hover {
-        transform: translateY(-6px);
-        box-shadow: 0 20px 40px rgba(11, 28, 48, 0.1);
-        border-color: rgba(190, 0, 0, 0.15);
+      .neighborhood-card img {
+        transition: transform var(--duration-slow) var(--ease-out-expo);
       }
-
-      /* Step number */
-      .step-number {
-        width: 3rem;
-        height: 3rem;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 999px;
-        font-family: "Instrument Serif", serif;
-        font-size: 1.25rem;
-        font-weight: 400;
-        font-style: italic;
-        flex-shrink: 0;
+      .neighborhood-card:hover img {
+        transform: scale(1.05);
       }
-
-      @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
+      @keyframes pulse-dot {
+        0%,
+        100% {
+          opacity: 1;
         }
-        *,
-        *::before,
-        *::after {
-          animation-duration: 0.01ms !important;
-          animation-iteration-count: 1 !important;
-          transition-duration: 0.01ms !important;
-          scroll-behavior: auto !important;
+        50% {
+          opacity: 0.4;
         }
-        .js-motion [data-hero-reveal],
-        .js-motion [data-reveal] {
-          opacity: 1 !important;
-          transform: none !important;
-        }
+      }
+      .trust-pulse {
+        animation: pulse-dot 2s ease-in-out infinite;
       }
     </style>
   </head>
-  <body class="bg-surface text-on-surface selection:bg-primary/20">
-    <!-- Skip link -->
-    <a
-      href="#main"
-      class="sr-only focus:not-sr-only focus:absolute focus:p-4 focus:bg-surface focus:text-on-surface focus:z-50 focus:rounded"
-      >Skip to main content</a
-    >
-
-    <!-- TopNavBar -->
+  <body class="antialiased">
     <nav
       aria-label="Main navigation"
       class="fixed top-0 w-full z-50"
@@ -344,395 +213,564 @@
       "
     >
       <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
-        <a
-          href="/"
-          class="text-2xl font-bold tracking-tighter text-on-surface font-display"
-          aria-label="Hostliday home"
-        >
+        <div class="text-2xl font-bold tracking-tighter text-on-surface font-display">
           Hostliday
-        </a>
+        </div>
         <div class="hidden md:flex gap-8 items-center font-medium tracking-tight">
           <a
-            class="nav-link text-on-surface/80 hover:text-primary transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
-            href="#how-it-works"
-            >How it works</a
-          >
-          <a
-            class="nav-link text-on-surface/80 hover:text-primary transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
+            class="nav-link text-on-surface/80 hover:text-primary transition-colors"
             href="#neighborhoods"
             >Neighborhoods</a
           >
           <a
-            class="nav-link text-on-surface/80 hover:text-primary transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
-            href="#faq"
+            class="nav-link text-on-surface/80 hover:text-primary transition-colors"
+            href="#planner"
+            >How It Works</a
+          >
+          <a class="nav-link text-on-surface/80 hover:text-primary transition-colors" href="#faq"
             >FAQ</a
           >
         </div>
         <a
-          href="/enhancer.html"
-          class="cta-lift cta-press bg-primary text-on-primary px-6 py-2.5 rounded-full font-bold duration-200 transition-[transform,background-color] shadow-lg shadow-primary/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          href="/enhancer"
+          class="cta-lift cta-press bg-primary text-on-primary px-6 py-2.5 rounded-full font-bold shadow-lg shadow-primary/20"
+          >Plan your Barcelona trip</a
         >
-          Plan your trip
-        </a>
       </div>
     </nav>
 
     <main id="main" style="scroll-margin-top: 80px">
-      <!-- ─── HERO — Trust-first ─── -->
+      <!-- HERO — Cinematic Barcelona -->
       <section
-        class="relative min-h-[100svh] md:min-h-[94vh] pt-24 md:pt-0 overflow-hidden flex items-center"
+        class="relative min-h-[100svh] md:min-h-[94vh] pt-16 md:pt-0 overflow-hidden"
         aria-label="Hero"
       >
-        <!-- Subtle background -->
+        <img
+          class="absolute inset-0 w-full h-full object-cover object-center"
+          fetchpriority="high"
+          width="1440"
+          height="960"
+          alt=""
+          src="https://images.unsplash.com/photo-1583422409516-2895a77efded?w=1920&h=1080&fit=crop&q=85"
+        />
         <div
-          class="absolute inset-0"
-          style="
-            background:
-              radial-gradient(ellipse at 20% 50%, rgba(190, 0, 0, 0.04), transparent 50%),
-              radial-gradient(ellipse at 80% 20%, rgba(120, 180, 255, 0.06), transparent 40%),
-              var(--hostliday-surface);
-          "
+          class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/10"
+          aria-hidden="true"
+        ></div>
+        <div
+          class="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent"
           aria-hidden="true"
         ></div>
 
-        <!-- Hero content -->
-        <div class="relative z-10 w-full max-w-7xl mx-auto px-8 py-16 md:py-20">
-          <div class="max-w-3xl mb-12 md:mb-16">
-            <div data-hero-reveal style="--reveal-delay: 70ms" class="mb-6 md:mb-8">
-              <span class="trust-badge trust-badge--verified">
-                <span class="material-symbols-outlined" style="font-size: 14px" aria-hidden="true"
-                  >verified</span
+        <div
+          class="relative z-10 w-full max-w-7xl mx-auto px-8 py-10 md:py-20 min-h-[calc(100svh-4rem)] md:min-h-[94vh] grid items-end"
+        >
+          <div class="grid gap-10 lg:grid-cols-[minmax(0,1.1fr)_minmax(320px,0.7fr)] lg:items-end">
+            <div class="max-w-3xl">
+              <div data-hero-reveal style="--reveal-delay: 70ms" class="mb-6 md:mb-8">
+                <div
+                  class="inline-flex items-center gap-3 bg-white/15 backdrop-blur-md border border-white/20 rounded-full px-5 py-2.5"
                 >
-                Barcelona, curated right
-              </span>
-            </div>
-            <h1
-              data-hero-reveal
-              style="--reveal-delay: 150ms"
-              class="text-[clamp(2.8rem,8vw,5rem)] md:text-[clamp(3.5rem,6vw,6rem)] tracking-[-0.04em] mb-6 md:mb-8 leading-[0.92] text-on-surface max-w-[12ch]"
-            >
-              A trip that fits <em>how</em> you travel.
-            </h1>
-            <p
-              data-hero-reveal
-              style="--reveal-delay: 230ms"
-              class="text-on-surface/70 text-lg md:text-xl mb-10 md:mb-12 leading-relaxed max-w-xl"
-            >
-              Hotels matched to your pace and vibe, with a day-by-day plan built around how you
-              actually like to explore. Not just where you stay.
-            </p>
-            <div data-hero-reveal style="--reveal-delay: 310ms">
-              <a
-                href="/enhancer.html"
-                class="cta-lift cta-press inline-block bg-primary text-white px-10 py-5 rounded-full font-bold text-lg shadow-xl shadow-primary/20 hover:bg-primary/90 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
+                  <span
+                    class="w-2.5 h-2.5 rounded-full bg-green-400 trust-pulse"
+                    aria-hidden="true"
+                  ></span>
+                  <span class="text-sm font-semibold text-white/80"
+                    >Hotel data verified today in Barcelona</span
+                  >
+                  <span class="material-symbols-outlined text-green-400 text-lg" aria-hidden="true"
+                    >verified</span
+                  >
+                </div>
+              </div>
+              <h1
+                data-hero-reveal
+                style="--reveal-delay: 150ms"
+                class="text-[clamp(3rem,10vw,5rem)] md:text-[clamp(3.5rem,7vw,6.5rem)] font-normal tracking-[-0.02em] mb-6 md:mb-8 leading-[0.95] text-white max-w-[12ch]"
               >
-                Plan your Barcelona trip
-              </a>
-            </div>
-          </div>
-
-          <!-- Hotel proof cards -->
-          <div
-            data-hero-reveal
-            style="--reveal-delay: 390ms; --reveal-offset: 30px"
-            class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl"
-          >
-            <div class="hero-hotel-card">
-              <div class="flex items-center gap-2 mb-2">
-                <span class="trust-badge trust-badge--verified">
-                  <span class="material-symbols-outlined" style="font-size: 12px" aria-hidden="true"
+                A Barcelona trip that actually fits how you&nbsp;travel
+              </h1>
+              <p
+                data-hero-reveal
+                style="--reveal-delay: 230ms"
+                class="max-w-xl text-white/75 text-lg md:text-xl leading-relaxed mb-8 md:mb-10"
+              >
+                Every hotel recommendation comes with a source, a freshness check, and a reason why.
+                No more guessing.
+              </p>
+              <div
+                data-hero-reveal
+                style="--reveal-delay: 310ms"
+                class="flex flex-col sm:flex-row gap-4"
+              >
+                <a
+                  href="/enhancer"
+                  class="cta-lift cta-press bg-primary text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-primary/90 inline-flex items-center justify-center gap-2 shadow-xl shadow-primary/30"
+                >
+                  Plan your Barcelona trip
+                  <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+                </a>
+                <a
+                  href="#planner"
+                  class="cta-lift bg-white/15 backdrop-blur-md text-white border border-white/30 px-8 py-4 rounded-full font-bold text-lg hover:bg-white/25 inline-flex items-center justify-center gap-2"
+                >
+                  See how it works
+                </a>
+              </div>
+              <div
+                data-hero-reveal
+                style="--reveal-delay: 390ms"
+                class="mt-10 flex flex-wrap gap-6 text-sm text-white/55 font-medium"
+              >
+                <div class="flex items-center gap-2">
+                  <span
+                    class="material-symbols-outlined text-primary text-base"
+                    style="font-variation-settings: &quot;FILL&quot; 1"
+                    aria-hidden="true"
                     >check_circle</span
                   >
-                  Verified
-                </span>
-                <span class="trust-badge trust-badge--fresh">Gothic Quarter</span>
-              </div>
-              <h3 class="font-sans text-base font-bold mb-1">Hotel Neri Relais</h3>
-              <p class="text-on-surface/60 text-sm leading-relaxed mb-2">
-                Hidden courtyards and walkable lanes. Ideal for slow evenings.
-              </p>
-              <p class="text-xs text-on-surface/40">Source: hotelneri.com</p>
-            </div>
-            <div class="hero-hotel-card">
-              <div class="flex items-center gap-2 mb-2">
-                <span class="trust-badge trust-badge--verified">
-                  <span class="material-symbols-outlined" style="font-size: 12px" aria-hidden="true"
+                  Source URLs on every hotel
+                </div>
+                <div class="flex items-center gap-2">
+                  <span
+                    class="material-symbols-outlined text-primary text-base"
+                    style="font-variation-settings: &quot;FILL&quot; 1"
+                    aria-hidden="true"
                     >check_circle</span
                   >
-                  Verified
-                </span>
-                <span class="trust-badge trust-badge--fresh">Eixample</span>
-              </div>
-              <h3 class="font-sans text-base font-bold mb-1">H10 Casa Mimosa</h3>
-              <p class="text-on-surface/60 text-sm leading-relaxed mb-2">
-                Strong rooftop and central routing. Less dead-time between stops.
-              </p>
-              <p class="text-xs text-on-surface/40">Source: h10hotels.com</p>
-            </div>
-            <div class="hero-hotel-card">
-              <div class="flex items-center gap-2 mb-2">
-                <span class="trust-badge trust-badge--verified">
-                  <span class="material-symbols-outlined" style="font-size: 12px" aria-hidden="true"
+                  Freshness timestamps
+                </div>
+                <div class="flex items-center gap-2">
+                  <span
+                    class="material-symbols-outlined text-primary text-base"
+                    style="font-variation-settings: &quot;FILL&quot; 1"
+                    aria-hidden="true"
                     >check_circle</span
                   >
-                  Verified
-                </span>
-                <span class="trust-badge trust-badge--fresh">El Born</span>
+                  Pace-matched itineraries
+                </div>
               </div>
-              <h3 class="font-sans text-base font-bold mb-1">Yurbban Passage</h3>
-              <p class="text-on-surface/60 text-sm leading-relaxed mb-2">
-                Spa-first reset. Strong El Born placement for evening food routes.
-              </p>
-              <p class="text-xs text-on-surface/40">Source: yurbbanpassage.com</p>
             </div>
+            <aside
+              data-hero-reveal
+              style="--reveal-delay: 390ms; --reveal-offset: 30px"
+              class="hidden lg:block"
+            >
+              <div
+                class="p-6 border border-white/15 rounded-[2rem] bg-gradient-to-b from-white/95 to-white/85 backdrop-blur-sm shadow-[0_30px_60px_rgba(0,0,0,0.25)]"
+                style="color: var(--hostliday-ink)"
+              >
+                <div
+                  class="flex items-baseline justify-between gap-4 pb-4 border-b border-black/10"
+                >
+                  <strong
+                    class="text-xs font-extrabold tracking-[0.18em] uppercase"
+                    style="font-family: &quot;DM Sans&quot;, sans-serif"
+                    >Sample trip brief</strong
+                  >
+                  <span class="text-xs text-on-surface/50 font-bold tracking-wider uppercase"
+                    >Barcelona / 5 nights</span
+                  >
+                </div>
+                <span
+                  class="block mt-5 text-[clamp(1.6rem,2.5vw,2.2rem)] font-normal leading-[1] tracking-tight"
+                  style="font-family: &quot;Instrument Serif&quot;, serif"
+                  >Slower mornings. Longer tables. One clean route through the city.</span
+                >
+                <p class="mt-4 max-w-xs text-sm text-on-surface/60 leading-relaxed">
+                  A first pass through Barcelona: fewer hotel swaps, human-paced days, and enough
+                  space for the places worth lingering in.
+                </p>
+                <div class="grid gap-3 mt-6">
+                  <div
+                    class="grid grid-cols-[4rem_minmax(0,1fr)] gap-4 pt-3 border-t border-black/8"
+                  >
+                    <div class="text-xs font-bold tracking-wider uppercase text-on-surface/40">
+                      Day 1
+                    </div>
+                    <div>
+                      <h3
+                        class="font-bold text-sm"
+                        style="font-family: &quot;DM Sans&quot;, sans-serif"
+                      >
+                        Gothic Quarter arrival
+                      </h3>
+                      <p class="text-xs text-on-surface/50 mt-0.5">
+                        Check in above the Plaça, wander Roman walls before dinner, keep the first
+                        night local.
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="grid grid-cols-[4rem_minmax(0,1fr)] gap-4 pt-3 border-t border-black/8"
+                  >
+                    <div class="text-xs font-bold tracking-wider uppercase text-on-surface/40">
+                      Day 3
+                    </div>
+                    <div>
+                      <h3
+                        class="font-bold text-sm"
+                        style="font-family: &quot;DM Sans&quot;, sans-serif"
+                      >
+                        Gràcia & Park Güell
+                      </h3>
+                      <p class="text-xs text-on-surface/50 mt-0.5">
+                        Neighborhood coffee crawl, then the park before the crowds. Evening in
+                        plaza-side tapas.
+                      </p>
+                    </div>
+                  </div>
+                  <div
+                    class="grid grid-cols-[4rem_minmax(0,1fr)] gap-4 pt-3 border-t border-black/8"
+                  >
+                    <div class="text-xs font-bold tracking-wider uppercase text-on-surface/40">
+                      Day 5
+                    </div>
+                    <div>
+                      <h3
+                        class="font-bold text-sm"
+                        style="font-family: &quot;DM Sans&quot;, sans-serif"
+                      >
+                        Barceloneta sunset
+                      </h3>
+                      <p class="text-xs text-on-surface/50 mt-0.5">
+                        Beach morning, seafood lunch, last night dinner with a view of the port.
+                      </p>
+                    </div>
+                  </div>
+                </div>
+                <div
+                  class="flex items-center justify-between gap-4 mt-6 pt-4 border-t border-black/10 text-sm text-on-surface/50"
+                >
+                  <span>Stays, pacing, and local notes in one brief.</span>
+                  <strong class="text-primary font-extrabold">Editor's cut</strong>
+                </div>
+              </div>
+            </aside>
           </div>
         </div>
       </section>
-
-      <!-- ─── HOW IT WORKS ─── -->
-      <section id="how-it-works" class="py-24 md:py-32 px-8 max-w-5xl mx-auto scroll-mt-32">
-        <h2 data-reveal class="text-3xl md:text-4xl tracking-tight mb-16 text-center">
-          Three steps to a trip that fits
-        </h2>
-        <div class="grid md:grid-cols-3 gap-12 md:gap-8">
-          <div data-reveal style="--reveal-delay: 70ms">
-            <div class="step-number bg-primary/10 text-primary mb-6">1</div>
-            <h3 class="font-sans text-xl font-bold mb-3">Pick your pace and vibe</h3>
-            <p class="text-on-surface/60 leading-relaxed">
-              Slow mornings or packed days? Rooftop bars or hidden courtyards? Tell us how you
-              travel, not just where.
-            </p>
-          </div>
-          <div data-reveal style="--reveal-delay: 140ms">
-            <div class="step-number bg-tertiary/10 text-tertiary mb-6">2</div>
-            <h3 class="font-sans text-xl font-bold mb-3">Get matched hotels with reasoning</h3>
-            <p class="text-on-surface/60 leading-relaxed">
-              Every hotel comes with a why: pace-matched, vibe-filtered, and sourced from real
-              listings. Not sponsored, not random.
-            </p>
-          </div>
-          <div data-reveal style="--reveal-delay: 210ms">
-            <div class="step-number bg-secondary/10 text-secondary mb-6">3</div>
-            <h3 class="font-sans text-xl font-bold mb-3">Build your day-by-day plan</h3>
-            <p class="text-on-surface/60 leading-relaxed">
-              Activities, restaurants, and hidden gems organized by neighborhood. One coherent trip,
-              not a list of bookmarks.
-            </p>
-          </div>
-        </div>
-        <div class="text-center mt-12" data-reveal style="--reveal-delay: 280ms">
-          <a
-            href="/enhancer.html"
-            class="cta-lift cta-press inline-block bg-primary text-white px-8 py-4 rounded-full font-bold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
-          >
-            Try it for Barcelona
-          </a>
-        </div>
-      </section>
-
-      <!-- ─── NEIGHBORHOODS ─── -->
-      <section id="neighborhoods" class="py-24 md:py-32 bg-surface-container-low scroll-mt-32">
-        <div class="max-w-7xl mx-auto px-8">
-          <h2 data-reveal class="text-3xl md:text-4xl tracking-tight mb-4 text-center">
-            Seven neighborhoods, one city
+      <!-- NEIGHBORHOODS -->
+      <section id="neighborhoods" class="pt-24 pb-16 px-8 max-w-7xl mx-auto scroll-mt-32">
+        <div class="max-w-xl mb-16" data-reveal>
+          <h2 class="text-4xl md:text-5xl font-normal tracking-tight mb-4">
+            Explore Barcelona by neighborhood
           </h2>
-          <p
+          <p class="text-on-surface/60 leading-relaxed">
+            Each area has its own character. We match you to the right one based on how you like to
+            travel.
+          </p>
+        </div>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          <a
+            href="/enhancer?neighborhood=gothic"
+            data-reveal
+            class="neighborhood-card motion-surface relative rounded-2xl overflow-hidden group h-[320px] block"
+          >
+            <img
+              class="w-full h-full object-cover"
+              loading="lazy"
+              alt="Medieval streets of Barcelona's Gothic Quarter"
+              src="https://images.unsplash.com/photo-1583422409516-2895a77efded?w=600&h=400&fit=crop&q=80"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent"
+              aria-hidden="true"
+            ></div>
+            <div class="absolute bottom-6 left-6 right-6">
+              <span class="text-white/60 font-bold uppercase tracking-widest text-[10px] block mb-1"
+                >Medieval heart</span
+              >
+              <h3 class="text-xl font-bold text-white mb-1">Gothic Quarter</h3>
+              <p class="text-white/70 text-sm">Winding streets, hidden plazas, Roman ruins</p>
+            </div>
+          </a>
+          <a
+            href="/enhancer?neighborhood=eixample"
             data-reveal
             style="--reveal-delay: 70ms"
-            class="text-on-surface/60 text-center mb-16 max-w-xl mx-auto leading-relaxed"
+            class="neighborhood-card motion-surface relative rounded-2xl overflow-hidden group h-[320px] block"
           >
-            Each with its own rhythm, food scene, and hotel personality. Pick one to start, or let
-            the enhancer match you.
-          </p>
-          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            <a
-              href="/enhancer.html"
-              data-reveal
-              style="--reveal-delay: 70ms"
-              class="neighborhood-card motion-surface group"
-            >
-              <h3
-                class="font-sans text-lg font-bold mb-2 group-hover:text-primary transition-colors"
+            <img
+              class="w-full h-full object-cover"
+              loading="lazy"
+              alt="Modernist architecture on Passeig de Gràcia"
+              src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=600&h=400&fit=crop&q=80"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent"
+              aria-hidden="true"
+            ></div>
+            <div class="absolute bottom-6 left-6 right-6">
+              <span class="text-white/60 font-bold uppercase tracking-widest text-[10px] block mb-1"
+                >Modernist grid</span
               >
-                Gothic Quarter
-              </h3>
-              <p class="text-on-surface/60 text-sm leading-relaxed mb-3">
-                Medieval lanes, hidden plazas, centuries of layered history.
-              </p>
-              <div class="flex gap-2 flex-wrap">
-                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
-                  >Culture</span
-                >
-                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
-                  >Food</span
-                >
-                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
-                  >Architecture</span
-                >
-              </div>
-            </a>
-            <a
-              href="/enhancer.html"
-              data-reveal
-              style="--reveal-delay: 140ms"
-              class="neighborhood-card motion-surface group"
-            >
-              <h3
-                class="font-sans text-lg font-bold mb-2 group-hover:text-primary transition-colors"
+              <h3 class="text-xl font-bold text-white mb-1">Eixample</h3>
+              <p class="text-white/70 text-sm">Gaudí masterpieces, upscale dining, grid layout</p>
+            </div>
+          </a>
+          <a
+            href="/enhancer?neighborhood=barceloneta"
+            data-reveal
+            style="--reveal-delay: 140ms"
+            class="neighborhood-card motion-surface relative rounded-2xl overflow-hidden group h-[320px] block"
+          >
+            <img
+              class="w-full h-full object-cover"
+              loading="lazy"
+              alt="Sandy beach at Barceloneta with city skyline"
+              src="https://images.unsplash.com/photo-1532339142463-fd0fac8e08c2?w=600&h=400&fit=crop&q=80"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent"
+              aria-hidden="true"
+            ></div>
+            <div class="absolute bottom-6 left-6 right-6">
+              <span class="text-white/60 font-bold uppercase tracking-widest text-[10px] block mb-1"
+                >Beach & seafood</span
               >
-                Eixample
-              </h3>
-              <p class="text-on-surface/60 text-sm leading-relaxed mb-3">
-                Grid layouts, Gaudi masterpieces, and the city's best Modernista architecture.
-              </p>
-              <div class="flex gap-2 flex-wrap">
-                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
-                  >Architecture</span
-                >
-                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
-                  >Culture</span
-                >
-              </div>
-            </a>
-            <a
-              href="/enhancer.html"
-              data-reveal
-              style="--reveal-delay: 210ms"
-              class="neighborhood-card motion-surface group"
-            >
-              <h3
-                class="font-sans text-lg font-bold mb-2 group-hover:text-primary transition-colors"
+              <h3 class="text-xl font-bold text-white mb-1">Barceloneta</h3>
+              <p class="text-white/70 text-sm">Sandy beach, fresh seafood, seaside promenade</p>
+            </div>
+          </a>
+          <a
+            href="/enhancer?neighborhood=gracia"
+            data-reveal
+            style="--reveal-delay: 210ms"
+            class="neighborhood-card motion-surface relative rounded-2xl overflow-hidden group h-[320px] block"
+          >
+            <img
+              class="w-full h-full object-cover"
+              loading="lazy"
+              alt="Vibrant Plaça del Sol in Gràcia"
+              src="https://images.unsplash.com/photo-1564221710304-0b37c8b9d729?w=600&h=400&fit=crop&q=80"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent"
+              aria-hidden="true"
+            ></div>
+            <div class="absolute bottom-6 left-6 right-6">
+              <span class="text-white/60 font-bold uppercase tracking-widest text-[10px] block mb-1"
+                >Village vibes</span
               >
-                El Born
-              </h3>
-              <p class="text-on-surface/60 text-sm leading-relaxed mb-3">
-                Gallery-dense, food-forward. Evening routes write themselves.
-              </p>
-              <div class="flex gap-2 flex-wrap">
-                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
-                  >Food</span
-                >
-                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
-                  >Nightlife</span
-                >
-                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
-                  >Wellness</span
-                >
-              </div>
-            </a>
-            <a
-              href="/enhancer.html"
-              data-reveal
-              style="--reveal-delay: 280ms"
-              class="neighborhood-card motion-surface group"
-            >
-              <h3
-                class="font-sans text-lg font-bold mb-2 group-hover:text-primary transition-colors"
+              <h3 class="text-xl font-bold text-white mb-1">Gràcia</h3>
+              <p class="text-white/70 text-sm">Plaza life, indie shops, local atmosphere</p>
+            </div>
+          </a>
+          <a
+            href="/enhancer?neighborhood=born"
+            data-reveal
+            style="--reveal-delay: 280ms"
+            class="neighborhood-card motion-surface relative rounded-2xl overflow-hidden group h-[320px] block"
+          >
+            <img
+              class="w-full h-full object-cover"
+              loading="lazy"
+              alt="Trendy boutiques in El Born"
+              src="https://images.unsplash.com/photo-1562883676-8c7feb83f09b?w=600&h=400&fit=crop&q=80"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent"
+              aria-hidden="true"
+            ></div>
+            <div class="absolute bottom-6 left-6 right-6">
+              <span class="text-white/60 font-bold uppercase tracking-widest text-[10px] block mb-1"
+                >Creative quarter</span
               >
-                Barceloneta
-              </h3>
-              <p class="text-on-surface/60 text-sm leading-relaxed mb-3">
-                Beach, seafood, and sunset walks. The city's maritime soul.
-              </p>
-              <div class="flex gap-2 flex-wrap">
-                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
-                  >Food</span
-                >
-                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
-                  >Wellness</span
-                >
-              </div>
-            </a>
-            <a
-              href="/enhancer.html"
-              data-reveal
-              style="--reveal-delay: 70ms"
-              class="neighborhood-card motion-surface group"
-            >
-              <h3
-                class="font-sans text-lg font-bold mb-2 group-hover:text-primary transition-colors"
+              <h3 class="text-xl font-bold text-white mb-1">El Born</h3>
+              <p class="text-white/70 text-sm">Art galleries, cocktail bars, Santa Maria del Mar</p>
+            </div>
+          </a>
+          <a
+            href="/enhancer?neighborhood=raval"
+            data-reveal
+            style="--reveal-delay: 350ms"
+            class="neighborhood-card motion-surface relative rounded-2xl overflow-hidden group h-[320px] block"
+          >
+            <img
+              class="w-full h-full object-cover"
+              loading="lazy"
+              alt="Street art and culture in El Raval"
+              src="https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=600&h=400&fit=crop&q=80"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent"
+              aria-hidden="true"
+            ></div>
+            <div class="absolute bottom-6 left-6 right-6">
+              <span class="text-white/60 font-bold uppercase tracking-widest text-[10px] block mb-1"
+                >Raw & real</span
               >
-                Gracia
-              </h3>
-              <p class="text-on-surface/60 text-sm leading-relaxed mb-3">
-                Village feel inside the city. Plazas, independent shops, slow mornings.
-              </p>
-              <div class="flex gap-2 flex-wrap">
-                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
-                  >Food</span
-                >
-                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
-                  >Culture</span
-                >
-              </div>
-            </a>
-            <a
-              href="/enhancer.html"
-              data-reveal
-              style="--reveal-delay: 140ms"
-              class="neighborhood-card motion-surface group"
-            >
-              <h3
-                class="font-sans text-lg font-bold mb-2 group-hover:text-primary transition-colors"
+              <h3 class="text-xl font-bold text-white mb-1">El Raval</h3>
+              <p class="text-white/70 text-sm">Street art, global food, MACBA museum</p>
+            </div>
+          </a>
+          <a
+            href="/enhancer?neighborhood=poblenou"
+            data-reveal
+            style="--reveal-delay: 420ms"
+            class="neighborhood-card motion-surface relative rounded-2xl overflow-hidden group h-[320px] block"
+          >
+            <img
+              class="w-full h-full object-cover"
+              loading="lazy"
+              alt="Converted factories in Poblenou"
+              src="https://images.unsplash.com/photo-1560969184-10fe8719e047?w=600&h=400&fit=crop&q=80"
+            />
+            <div
+              class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent"
+              aria-hidden="true"
+            ></div>
+            <div class="absolute bottom-6 left-6 right-6">
+              <span class="text-white/60 font-bold uppercase tracking-widest text-[10px] block mb-1"
+                >Tech & creative</span
               >
-                Raval
-              </h3>
-              <p class="text-on-surface/60 text-sm leading-relaxed mb-3">
-                Raw edge, world food, contemporary art. The city's creative pulse.
-              </p>
-              <div class="flex gap-2 flex-wrap">
-                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
-                  >Culture</span
-                >
-                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
-                  >Food</span
-                >
-                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
-                  >Nightlife</span
-                >
-              </div>
-            </a>
+              <h3 class="text-xl font-bold text-white mb-1">Poblenou</h3>
+              <p class="text-white/70 text-sm">Converted factories, beach proximity, startup hub</p>
+            </div>
+          </a>
+          <div
+            data-reveal
+            style="--reveal-delay: 490ms"
+            class="flex items-center justify-center h-[320px]"
+          >
             <a
-              href="/enhancer.html"
-              data-reveal
-              style="--reveal-delay: 210ms"
-              class="neighborhood-card motion-surface group"
+              href="/enhancer"
+              class="cta-lift cta-press bg-primary text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-primary/90 inline-flex items-center gap-2 shadow-xl shadow-primary/20"
             >
-              <h3
-                class="font-sans text-lg font-bold mb-2 group-hover:text-primary transition-colors"
-              >
-                Poble Sec
-              </h3>
-              <p class="text-on-surface/60 text-sm leading-relaxed mb-3">
-                Tapas crawl territory with Montjuic views. Understated and local.
-              </p>
-              <div class="flex gap-2 flex-wrap">
-                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
-                  >Food</span
-                >
-                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
-                  >Nightlife</span
-                >
-              </div>
+              Start planning
+              <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
             </a>
           </div>
         </div>
       </section>
 
-      <!-- FAQ Section -->
+      <!-- HOW IT WORKS -->
+      <section id="planner" class="py-32 bg-surface-container-low scroll-mt-32">
+        <div class="max-w-7xl mx-auto px-8">
+          <div class="max-w-xl mb-16" data-reveal>
+            <h2 class="text-4xl md:text-5xl font-normal tracking-tight mb-4">
+              How Hostliday is different
+            </h2>
+            <p class="text-on-surface/70 text-lg leading-relaxed">
+              We don't just suggest hotels. We tell you <em>why</em> — with sources you can verify
+              yourself.
+            </p>
+          </div>
+          <div class="grid md:grid-cols-3 gap-12">
+            <div data-reveal class="flex flex-col gap-4">
+              <div
+                class="w-14 h-14 shrink-0 rounded-2xl bg-primary/10 flex items-center justify-center"
+                aria-hidden="true"
+              >
+                <span class="material-symbols-outlined text-primary text-3xl">verified</span>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-2">Every hotel has a source</h3>
+                <p class="text-on-surface/60">
+                  We show you where each recommendation comes from — with a direct link to verify it
+                  yourself. No black-box picks.
+                </p>
+              </div>
+            </div>
+            <div data-reveal style="--reveal-delay: 100ms" class="flex flex-col gap-4">
+              <div
+                class="w-14 h-14 shrink-0 rounded-2xl bg-tertiary/10 flex items-center justify-center"
+                aria-hidden="true"
+              >
+                <span class="material-symbols-outlined text-tertiary text-3xl">schedule</span>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-2">Freshness you can see</h3>
+                <p class="text-on-surface/60">
+                  Every data point has a timestamp. You'll know exactly when it was last checked —
+                  not "updated recently."
+                </p>
+              </div>
+            </div>
+            <div data-reveal style="--reveal-delay: 200ms" class="flex flex-col gap-4">
+              <div
+                class="w-14 h-14 shrink-0 rounded-2xl bg-secondary/10 flex items-center justify-center"
+                aria-hidden="true"
+              >
+                <span class="material-symbols-outlined text-secondary text-3xl">route</span>
+              </div>
+              <div>
+                <h3 class="text-xl font-bold mb-2">Pace-matched, not packed</h3>
+                <p class="text-on-surface/60">
+                  Itineraries built around how you actually travel — not a checklist of tourist
+                  traps. Slow mornings included.
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            data-reveal
+            style="--reveal-delay: 300ms"
+            class="mt-16 bg-white rounded-2xl p-8 md:p-10 shadow-sm border border-surface-container-highest max-w-2xl"
+          >
+            <p class="text-xs font-bold uppercase tracking-widest text-on-surface/40 mb-4">
+              Example recommendation
+            </p>
+            <div class="flex items-start gap-4 mb-4">
+              <div
+                class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0"
+              >
+                <span class="material-symbols-outlined text-primary">hotel</span>
+              </div>
+              <div>
+                <h4 class="font-bold text-lg">Hotel 1898</h4>
+                <p class="text-on-surface/50 text-sm">La Rambla · Eixample-adjacent</p>
+              </div>
+            </div>
+            <p class="text-on-surface/70 text-sm leading-relaxed mb-4">
+              Recommended for rooftop pool access and central location without Rambla noise. The
+              rooftop is the real draw — sunset views over the city with a cocktail in hand.
+            </p>
+            <div class="flex flex-wrap gap-3 text-xs">
+              <span
+                class="inline-flex items-center gap-1 bg-green-50 text-green-700 px-3 py-1.5 rounded-full font-semibold"
+              >
+                <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> Verified 2h ago
+              </span>
+              <span
+                class="inline-flex items-center gap-1 bg-surface-container-low px-3 py-1.5 rounded-full font-semibold text-on-surface/50"
+              >
+                <span class="material-symbols-outlined text-sm">link</span> Source: booking.com
+              </span>
+              <span
+                class="inline-flex items-center gap-1 bg-surface-container-low px-3 py-1.5 rounded-full font-semibold text-on-surface/50"
+              >
+                Why: rooftop + quiet
+              </span>
+            </div>
+          </div>
+          <div class="mt-12 text-center">
+            <a
+              href="/enhancer"
+              class="cta-lift cta-press bg-primary text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-primary/90 inline-flex items-center gap-2 shadow-xl shadow-primary/20"
+            >
+              Try it for your trip
+              <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- FAQ -->
       <section id="faq" class="py-24 px-8 max-w-4xl mx-auto scroll-mt-32">
-        <h2 class="text-3xl tracking-tight mb-12 text-center">Frequently Asked Questions</h2>
+        <h2 class="text-3xl font-normal mb-12 text-center">Frequently Asked Questions</h2>
         <div class="space-y-4" role="list">
           <div role="listitem" data-reveal>
             <button
               id="faq-1-btn"
               aria-expanded="false"
               aria-controls="faq-1-answer"
-              class="faq-btn w-full text-left bg-surface-container-low rounded-lg p-6 cursor-pointer hover:bg-surface-container transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
+              class="faq-btn w-full text-left bg-surface-container-low rounded-lg p-6 cursor-pointer hover:bg-surface-container transition-colors"
             >
               <div class="flex justify-between items-center">
-                <h3 class="font-sans font-bold text-on-surface text-base">
-                  How does Hostliday match hotels to my trip?
+                <h3 class="font-bold text-on-surface text-base">
+                  What does "verified hotel data" mean?
                 </h3>
                 <span class="material-symbols-outlined text-primary faq-chevron" aria-hidden="true"
                   >expand_more</span
@@ -747,22 +785,23 @@
               class="faq-answer px-6 pb-6 pt-2 bg-surface-container-low rounded-b-lg text-on-surface/70 text-sm leading-relaxed -mt-2"
             >
               <div>
-                Every hotel is filtered by your pace (slow, balanced, packed), budget range, and
-                vibe preference. You see why each one was recommended, plus the source listing so
-                you can verify yourself. No sponsored results.
+                Every hotel recommendation includes a direct source URL (like Booking.com or the
+                hotel's own site), a timestamp showing when the data was last checked, and a written
+                explanation of why we're recommending it. You can verify everything yourself.
               </div>
             </div>
           </div>
-
           <div role="listitem" data-reveal style="--reveal-delay: 70ms">
             <button
               id="faq-2-btn"
               aria-expanded="false"
               aria-controls="faq-2-answer"
-              class="faq-btn w-full text-left bg-surface-container-low rounded-lg p-6 cursor-pointer hover:bg-surface-container transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
+              class="faq-btn w-full text-left bg-surface-container-low rounded-lg p-6 cursor-pointer hover:bg-surface-container transition-colors"
             >
               <div class="flex justify-between items-center">
-                <h3 class="font-sans font-bold text-on-surface text-base">Why Barcelona only?</h3>
+                <h3 class="font-bold text-on-surface text-base">
+                  Is Hostliday only for Barcelona?
+                </h3>
                 <span class="material-symbols-outlined text-primary faq-chevron" aria-hidden="true"
                   >expand_more</span
                 >
@@ -776,22 +815,21 @@
               class="faq-answer px-6 pb-6 pt-2 bg-surface-container-low rounded-b-lg text-on-surface/70 text-sm leading-relaxed -mt-2"
             >
               <div>
-                We'd rather get one city right than do ten cities poorly. Barcelona has the density,
-                the food culture, and the hotel variety to make this approach sing. More cities are
-                coming, but only when we can match this depth.
+                Right now, yes. We're focused on making Barcelona incredibly good before expanding.
+                This means every recommendation is deeply vetted by people who actually know the
+                city.
               </div>
             </div>
           </div>
-
           <div role="listitem" data-reveal style="--reveal-delay: 140ms">
             <button
               id="faq-3-btn"
               aria-expanded="false"
               aria-controls="faq-3-answer"
-              class="faq-btn w-full text-left bg-surface-container-low rounded-lg p-6 cursor-pointer hover:bg-surface-container transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
+              class="faq-btn w-full text-left bg-surface-container-low rounded-lg p-6 cursor-pointer hover:bg-surface-container transition-colors"
             >
               <div class="flex justify-between items-center">
-                <h3 class="font-sans font-bold text-on-surface text-base">Is this free?</h3>
+                <h3 class="font-bold text-on-surface text-base">Is it free?</h3>
                 <span class="material-symbols-outlined text-primary faq-chevron" aria-hidden="true"
                   >expand_more</span
                 >
@@ -805,23 +843,22 @@
               class="faq-answer px-6 pb-6 pt-2 bg-surface-container-low rounded-b-lg text-on-surface/70 text-sm leading-relaxed -mt-2"
             >
               <div>
-                Yes. The trip enhancer, hotel recommendations, and neighborhood guides are all free.
-                We earn a referral fee when you book through partner links, which never affects what
-                we recommend.
+                Yes, the trip planner is free to use. We're building the best Barcelona trip tool
+                first, and we'll figure out the business model once we know travelers actually love
+                it.
               </div>
             </div>
           </div>
-
           <div role="listitem" data-reveal style="--reveal-delay: 210ms">
             <button
               id="faq-4-btn"
               aria-expanded="false"
               aria-controls="faq-4-answer"
-              class="faq-btn w-full text-left bg-surface-container-low rounded-lg p-6 cursor-pointer hover:bg-surface-container transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
+              class="faq-btn w-full text-left bg-surface-container-low rounded-lg p-6 cursor-pointer hover:bg-surface-container transition-colors"
             >
               <div class="flex justify-between items-center">
-                <h3 class="font-sans font-bold text-on-surface text-base">
-                  What does "verified" mean?
+                <h3 class="font-bold text-on-surface text-base">
+                  How is this different from ChatGPT or Google?
                 </h3>
                 <span class="material-symbols-outlined text-primary faq-chevron" aria-hidden="true"
                   >expand_more</span
@@ -836,9 +873,9 @@
               class="faq-answer px-6 pb-6 pt-2 bg-surface-container-low rounded-b-lg text-on-surface/70 text-sm leading-relaxed -mt-2"
             >
               <div>
-                We manually check each hotel listing against its source (the hotel's own site or a
-                major booking platform). We note the last verification date and link to the source
-                so you can confirm yourself. No black box.
+                ChatGPT can suggest hotels, but it can't tell you when it last verified the info or
+                link to the source. Google shows prices but doesn't explain why a hotel fits your
+                travel style. We do both: verified data with a reason attached to every pick.
               </div>
             </div>
           </div>
@@ -846,85 +883,61 @@
       </section>
     </main>
 
-    <!-- Footer -->
     <footer class="bg-surface-container-low w-full rounded-t-[3rem]">
       <div
         class="flex flex-col md:flex-row justify-between items-start px-12 py-16 w-full max-w-7xl mx-auto gap-12"
       >
         <div class="max-w-xs">
-          <a
-            href="/"
-            class="text-xl font-bold text-on-surface mb-6 block"
-            style="font-family: &quot;Instrument Serif&quot;, serif"
-            >Hostliday</a
-          >
-          <p class="text-on-surface/60 text-sm leading-relaxed mb-8">
-            Trip planning built around how you travel, not just where. Currently serving Barcelona.
+          <div class="text-xl font-bold text-on-surface mb-6 font-display">Hostliday</div>
+          <p class="text-on-surface/60 text-sm leading-relaxed">
+            Barcelona hotel recommendations with verified sources, freshness timestamps, and reasons
+            why.
           </p>
-          <div class="flex gap-4">
-            <a
-              class="footer-social rounded-full bg-surface-container-high text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
-              href="#"
-              aria-label="Hostliday on the web (coming soon)"
-              rel="noopener noreferrer"
-              ><span class="material-symbols-outlined" aria-hidden="true">public</span></a
-            >
-            <a
-              class="footer-social rounded-full bg-surface-container-high text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
-              href="#"
-              aria-label="Hostliday on Instagram (coming soon)"
-              rel="noopener noreferrer"
-              ><span class="material-symbols-outlined" aria-hidden="true">photo_camera</span></a
-            >
-          </div>
         </div>
         <nav aria-label="Footer navigation">
-          <div class="grid grid-cols-2 gap-12">
+          <div class="grid grid-cols-2 md:grid-cols-3 gap-12">
             <div>
-              <h3 class="font-sans font-bold mb-6 text-base">Product</h3>
+              <h3 class="font-bold mb-6 text-base">Product</h3>
               <ul class="space-y-4 text-on-surface/60 text-sm">
                 <li>
-                  <a
-                    class="footer-link hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
-                    href="/enhancer.html"
-                    rel="noopener noreferrer"
-                    >Trip Enhancer</a
+                  <a class="hover:underline hover:text-primary transition-all" href="/enhancer"
+                    >Trip Planner</a
                   >
                 </li>
                 <li>
-                  <a
-                    class="footer-link hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
-                    href="#neighborhoods"
+                  <a class="hover:underline hover:text-primary transition-all" href="#neighborhoods"
                     >Neighborhoods</a
                   >
                 </li>
                 <li>
-                  <a
-                    class="footer-link hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
-                    href="#how-it-works"
-                    >How it works</a
+                  <a class="hover:underline hover:text-primary transition-all" href="#planner"
+                    >How It Works</a
                   >
                 </li>
               </ul>
             </div>
             <div>
-              <h3 class="font-sans font-bold mb-6 text-base">Company</h3>
+              <h3 class="font-bold mb-6 text-base">Company</h3>
               <ul class="space-y-4 text-on-surface/60 text-sm">
                 <li>
-                  <a
-                    class="footer-link hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
-                    href="#faq"
-                    >FAQ</a
+                  <a class="hover:underline hover:text-primary transition-all" href="#">About</a>
+                </li>
+                <li>
+                  <a class="hover:underline hover:text-primary transition-all" href="#">Contact</a>
+                </li>
+              </ul>
+            </div>
+            <div class="col-span-2 md:col-span-1">
+              <h3 class="font-bold mb-6 text-base">Legal</h3>
+              <ul class="space-y-4 text-on-surface/60 text-sm">
+                <li>
+                  <a class="hover:underline hover:text-primary transition-all" href="#"
+                    >Privacy Policy</a
                   >
                 </li>
                 <li>
-                  <span class="footer-link text-on-surface/40" aria-label="Press kit — coming soon"
-                    >Press Kit <span class="text-xs">(coming soon)</span></span
-                  >
-                </li>
-                <li>
-                  <span class="footer-link text-on-surface/40" aria-label="Blog — coming soon"
-                    >Blog <span class="text-xs">(coming soon)</span></span
+                  <a class="hover:underline hover:text-primary transition-all" href="#"
+                    >Terms of Service</a
                   >
                 </li>
               </ul>
@@ -933,50 +946,42 @@
         </nav>
       </div>
       <div
-        class="border-t border-surface-container-high/50 max-w-7xl mx-auto px-12 py-8 flex flex-col md:flex-row justify-between items-center gap-4"
+        class="border-t border-surface-container-high/50 max-w-7xl mx-auto px-12 py-8 flex justify-center"
       >
         <p class="text-on-surface/60 text-xs">
-          &copy; 2025 Hostliday. Barcelona trip planning, done right.
+          &copy; 2025 Hostliday AI. Barcelona trips, planned with care.
         </p>
       </div>
     </footer>
 
-    <!-- ─── Scripts ─── -->
     <script>
-      /* ── Scroll reveal ── */
       if (
         window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
         !("IntersectionObserver" in window)
       ) {
         document.body.classList.add("motion-ready");
-        document.querySelectorAll("[data-reveal]").forEach(function (element) {
-          element.classList.add("is-visible");
+        document.querySelectorAll("[data-reveal], [data-hero-reveal]").forEach(function (el) {
+          el.classList.add("is-visible");
         });
       } else {
         requestAnimationFrame(function () {
           document.body.classList.add("motion-ready");
         });
-
-        var revealObserver = new IntersectionObserver(
+        var obs = new IntersectionObserver(
           function (entries) {
-            entries.forEach(function (entry) {
-              if (!entry.isIntersecting) return;
-              entry.target.classList.add("is-visible");
-              revealObserver.unobserve(entry.target);
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                e.target.classList.add("is-visible");
+                obs.unobserve(e.target);
+              }
             });
           },
-          {
-            threshold: 0.18,
-            rootMargin: "0px 0px -10% 0px",
-          },
+          { threshold: 0.18, rootMargin: "0px 0px -10% 0px" },
         );
-
-        document.querySelectorAll("[data-reveal]").forEach(function (element) {
-          revealObserver.observe(element);
+        document.querySelectorAll("[data-reveal], [data-hero-reveal]").forEach(function (el) {
+          obs.observe(el);
         });
       }
-
-      /* ── FAQ Accordion ── */
       (function () {
         var faqs = [
           { btn: "faq-1-btn", answer: "faq-1-answer" },
@@ -984,17 +989,15 @@
           { btn: "faq-3-btn", answer: "faq-3-answer" },
           { btn: "faq-4-btn", answer: "faq-4-answer" },
         ];
-
         faqs.forEach(function (item) {
-          var btn = document.getElementById(item.btn);
-          var answer = document.getElementById(item.answer);
+          var btn = document.getElementById(item.btn),
+            answer = document.getElementById(item.answer);
           if (!btn || !answer) return;
-
           btn.addEventListener("click", function () {
             var isExpanded = btn.getAttribute("aria-expanded") === "true";
-            faqs.forEach(function (other) {
-              var ob = document.getElementById(other.btn);
-              var oa = document.getElementById(other.answer);
+            faqs.forEach(function (o) {
+              var ob = document.getElementById(o.btn),
+                oa = document.getElementById(o.answer);
               if (ob && oa) {
                 ob.setAttribute("aria-expanded", "false");
                 ob.classList.remove("is-open");
@@ -1012,8 +1015,6 @@
         });
       })();
     </script>
-
-    <!-- Vite entry -->
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>
