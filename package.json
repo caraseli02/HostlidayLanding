@@ -14,6 +14,8 @@
     "fmt:check": "vp fmt --check"
   },
   "devDependencies": {
+    "@tailwindcss/vite": "^4.2.2",
+    "tailwindcss": "^4.2.2",
     "typescript": "^5.8.0",
     "vite": "catalog:",
     "vite-plus": "catalog:"

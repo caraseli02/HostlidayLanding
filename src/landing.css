@@ -1,0 +1,150 @@
+@import "./tailwind.css";
+
+/* ═══════════════════════════════════════════
+   Custom CSS (extracted from inline <style>)
+   ═══════════════════════════════════════════ */
+:root {
+  --hostliday-ink: #0b1c30;
+  --hostliday-red: #be0000;
+  --hostliday-surface: #f8f9ff;
+  --hostliday-outline: rgba(225, 190, 194, 0.5);
+  --hostliday-shadow: 0 24px 64px rgba(11, 28, 48, 0.16);
+  --duration-fast: 160ms;
+  --duration-medium: 260ms;
+  --duration-slow: 520ms;
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: "DM Sans", sans-serif;
+  background:
+    radial-gradient(circle at top, rgba(190, 0, 0, 0.06), transparent 30%),
+    var(--hostliday-surface);
+  color: var(--hostliday-ink);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Instrument Serif", serif;
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
+
+#planner,
+#faq,
+#neighborhoods {
+  scroll-margin-top: 96px;
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--hostliday-red);
+  outline-offset: 3px;
+  border-radius: 6px;
+}
+
+/* ── Motion ── */
+.motion-surface,
+.cta-lift {
+  transition-timing-function: var(--ease-out-expo);
+}
+
+.motion-surface {
+  transition-duration: var(--duration-medium);
+  transition-property: transform, box-shadow, border-color, background-color;
+}
+
+.motion-surface:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 40px rgba(11, 28, 48, 0.12);
+}
+
+.cta-lift {
+  transition-duration: var(--duration-fast);
+  transition-property: transform, box-shadow, background-color, color;
+}
+
+.cta-lift:hover {
+  transform: translateY(-3px);
+}
+
+.cta-press:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* ── Reveal animations ── */
+[data-reveal],
+[data-hero-reveal] {
+  opacity: 0;
+  transform: translateY(24px);
+  transition:
+    opacity var(--duration-slow) var(--ease-out-expo),
+    transform var(--duration-slow) var(--ease-out-expo);
+  transition-delay: var(--reveal-delay, 0ms);
+}
+
+[data-reveal].is-visible,
+[data-hero-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ── FAQ ── */
+.faq-answer {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--duration-medium) var(--ease-out-expo);
+}
+
+.faq-answer.is-open {
+  max-height: 200px;
+}
+
+.faq-chevron {
+  transition: transform var(--duration-fast) var(--ease-out-expo);
+}
+
+.faq-btn.is-open .faq-chevron {
+  transform: rotate(180deg);
+}
+
+/* ── Neighborhood cards ── */
+.neighborhood-card {
+  isolation: isolate;
+}
+
+.neighborhood-card img {
+  transition: transform var(--duration-slow) var(--ease-out-expo);
+}
+
+.neighborhood-card:hover img {
+  transform: scale(1.05);
+}
+
+/* ── Trust indicator ── */
+@keyframes pulse-dot {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.4;
+  }
+}
+
+.trust-pulse {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
