@@ -4,11 +4,11 @@
    Custom CSS (extracted from inline <style>)
    ═══════════════════════════════════════════ */
 :root {
-  --hostliday-ink: #0b1c30;
-  --hostliday-red: #be0000;
-  --hostliday-surface: #f8f9ff;
-  --hostliday-outline: rgba(225, 190, 194, 0.5);
-  --hostliday-shadow: 0 24px 64px rgba(11, 28, 48, 0.16);
+  --hostliday-ink: oklch(0.2235 0.0100 30);
+  --hostliday-red: oklch(0.5033 0.2065 29.23);
+  --hostliday-surface: oklch(0.9831 0.0080 30);
+  --hostliday-outline: color-mix(in oklch, oklch(0.8328 0.0403 10.21) 50%, transparent);
+  --hostliday-shadow: 0 24px 64px color-mix(in oklch, oklch(0.2235 0.0100 30) 16%, transparent);
   --duration-fast: 160ms;
   --duration-medium: 260ms;
   --duration-slow: 520ms;
@@ -20,9 +20,9 @@ html {
 }
 
 body {
-  font-family: "DM Sans", sans-serif;
+  font-family: "Nunito", sans-serif;
   background:
-    radial-gradient(circle at top, rgba(190, 0, 0, 0.06), transparent 30%), var(--hostliday-surface);
+    radial-gradient(circle at top, color-mix(in oklch, oklch(0.5033 0.2065 29.23) 6%, transparent), transparent 30%), var(--hostliday-surface);
   color: var(--hostliday-ink);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -34,12 +34,46 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Instrument Serif", serif;
+  font-family: "Syne", sans-serif;
+  font-weight: 700;
   text-wrap: balance;
 }
 
+/* ── Modular type scale (1.25 ratio) ── */
+h1 {
+  font-size: clamp(3rem, 5vw + 1rem, 5rem);
+  line-height: 0.95;
+  letter-spacing: -0.02em;
+}
+h2 {
+  font-size: clamp(2rem, 3vw + 0.5rem, 3.125rem);
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+}
+h3 {
+  font-size: clamp(1.25rem, 1.5vw + 0.5rem, 1.5625rem);
+  line-height: 1.2;
+}
+h4 {
+  font-size: 1.25rem;
+  line-height: 1.25;
+}
 p {
+  font-size: 1rem;
+  line-height: 1.6;
   text-wrap: pretty;
+}
+.text-caption {
+  font-size: 0.8rem;
+  line-height: 1.4;
+  letter-spacing: 0.02em;
+}
+.text-label {
+  font-size: 0.875rem;
+  line-height: 1.4;
+  font-weight: 600;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
 #planner,
@@ -68,7 +102,7 @@ button:focus-visible {
 
 .motion-surface:hover {
   transform: translateY(-6px);
-  box-shadow: 0 24px 40px rgba(11, 28, 48, 0.12);
+  box-shadow: 0 24px 40px color-mix(in oklch, oklch(0.2235 0.0100 30) 12%, transparent);
 }
 
 .cta-lift {
@@ -146,4 +180,30 @@ button:focus-visible {
 
 .trust-pulse {
   animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* ── Reduced motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .motion-surface,
+  .cta-lift {
+    transition: none;
+  }
+  .motion-surface:hover {
+    transform: none;
+  }
+  .cta-lift:hover {
+    transform: none;
+  }
+  [data-reveal],
+  [data-hero-reveal] {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+  .neighborhood-card img {
+    transition: none;
+  }
+  .trust-pulse {
+    animation: none;
+  }
 }

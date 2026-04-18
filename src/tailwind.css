@@ -4,52 +4,68 @@
    Tailwind v4 theme — shared by landing + enhancer
    ═══════════════════════════════════════════ */
 @theme {
-  /* ── Colors ── */
-  --color-primary: #be0000;
-  --color-primary-container: #ff4e7e;
-  --color-primary-fixed: #ffd9de;
-  --color-primary-fixed-dim: #ffb2be;
-  --color-inverse-primary: #ffb2be;
-  --color-on-primary: #ffffff;
-  --color-on-primary-container: #5a0021;
-  --color-on-primary-fixed-variant: #900039;
-  --color-secondary: #66558b;
-  --color-secondary-container: #d6c2ff;
-  --color-secondary-fixed: #eaddff;
-  --color-secondary-fixed-dim: #d1bdfa;
-  --color-on-secondary: #ffffff;
-  --color-on-secondary-container: #5e4d82;
-  --color-on-secondary-fixed: #211143;
-  --color-on-secondary-fixed-variant: #4e3e71;
-  --color-tertiary: #00658b;
-  --color-tertiary-container: #189bd0;
-  --color-tertiary-fixed: #c4e7ff;
-  --color-tertiary-fixed-dim: #7cd0ff;
-  --color-on-tertiary: #ffffff;
-  --color-on-tertiary-container: #002d41;
-  --color-on-tertiary-fixed: #001e2c;
-  --color-on-tertiary-fixed-variant: #004c69;
-  --color-error: #ba1a1a;
-  --color-error-container: #ffdad6;
-  --color-on-error: #ffffff;
-  --color-on-error-container: #93000a;
-  --color-background: #f8f9ff;
-  --color-surface: #f8f9ff;
-  --color-surface-variant: #d3e4fe;
-  --color-surface-container-lowest: #ffffff;
-  --color-surface-container-low: #eff4ff;
-  --color-surface-container: #e5eeff;
-  --color-surface-container-high: #dce9ff;
-  --color-surface-container-highest: #d3e4fe;
-  --color-surface-dim: #cbdbf5;
-  --color-surface-tint: #be0000;
-  --color-on-surface: #0b1c30;
-  --color-on-surface-variant: #a3a2a2;
-  --color-on-background: #0b1c30;
-  --color-outline: #8d6f74;
-  --color-outline-variant: #e1bec2;
-  --color-inverse-surface: #213145;
-  --color-inverse-on-surface: #eaf1ff;
+  /* ── Colors (OKLCH — perceptually uniform) ── */
+
+  /* Primary — deep red, Barcelona warmth */
+  --color-primary: oklch(0.5033 0.2065 29.23);
+  --color-primary-container: oklch(0.6834 0.2137 8.75);
+  --color-primary-fixed: oklch(0.9185 0.0428 9.00);
+  --color-primary-fixed-dim: oklch(0.8396 0.0909 8.93);
+  --color-inverse-primary: oklch(0.8396 0.0909 8.93);
+  --color-on-primary: oklch(0.9939 0.0030 30);
+  --color-on-primary-container: oklch(0.2993 0.1198 8.81);
+  --color-on-primary-fixed-variant: oklch(0.4181 0.1673 9.02);
+
+  /* Secondary — muted purple */
+  --color-secondary: oklch(0.4894 0.0864 297.6);
+  --color-secondary-container: oklch(0.8511 0.0862 299.6);
+  --color-secondary-fixed: oklch(0.9183 0.0477 302.8);
+  --color-secondary-fixed-dim: oklch(0.8356 0.0865 299.5);
+  --color-on-secondary: oklch(0.9939 0.0030 30);
+  --color-on-secondary-container: oklch(0.4607 0.0860 297.7);
+  --color-on-secondary-fixed: oklch(0.2340 0.0893 292.9);
+  --color-on-secondary-fixed-variant: oklch(0.4047 0.0849 296.9);
+
+  /* Tertiary — deep blue */
+  --color-tertiary: oklch(0.4768 0.0987 233.1);
+  --color-tertiary-container: oklch(0.6493 0.1287 232.8);
+  --color-tertiary-fixed: oklch(0.9105 0.0493 238.1);
+  --color-tertiary-fixed-dim: oklch(0.8218 0.1053 234.6);
+  --color-on-tertiary: oklch(0.9939 0.0030 30);
+  --color-on-tertiary-container: oklch(0.2799 0.0584 233.8);
+  --color-on-tertiary-fixed: oklch(0.2208 0.0451 232.1);
+  --color-on-tertiary-fixed-variant: oklch(0.3915 0.0803 232.5);
+
+  /* Error — warm red */
+  --color-error: oklch(0.5060 0.1927 27.70);
+  --color-error-container: oklch(0.9183 0.0418 25.23);
+  --color-on-error: oklch(0.9939 0.0030 30);
+  --color-on-error-container: oklch(0.4171 0.1702 27.38);
+
+  /* Surface palette — tinted neutrals (hue shifted to primary warmth ~30) */
+  --color-background: oklch(0.9831 0.0080 30);
+  --color-surface: oklch(0.9831 0.0080 30);
+  --color-surface-variant: oklch(0.9143 0.0400 30);
+  --color-surface-container-lowest: oklch(0.9958 0.0030 30);
+  --color-surface-container-low: oklch(0.9666 0.0157 30);
+  --color-surface-container: oklch(0.9474 0.0249 30);
+  --color-surface-container-high: oklch(0.9310 0.0330 30);
+  --color-surface-container-highest: oklch(0.9143 0.0400 30);
+  --color-surface-dim: oklch(0.8875 0.0398 30);
+  --color-surface-tint: oklch(0.5033 0.2065 29.23);
+
+  /* On-surface — dark warm neutral (tinted, never pure black) */
+  --color-on-surface: oklch(0.2235 0.0100 30);
+  --color-on-surface-variant: oklch(0.7131 0.0100 30);
+  --color-on-background: oklch(0.2235 0.0100 30);
+
+  /* Outline — warm-tinted gray */
+  --color-outline: oklch(0.5725 0.0386 7.17);
+  --color-outline-variant: oklch(0.8328 0.0403 10.21);
+
+  /* Inverse */
+  --color-inverse-surface: oklch(0.3087 0.0100 30);
+  --color-inverse-on-surface: oklch(0.9570 0.0203 30);
 
   /* ── Border Radius ── */
   --radius-DEFAULT: 1rem;
@@ -58,8 +74,8 @@
   --radius-full: 9999px;
 
   /* ── Fonts ── */
-  --font-display: "Instrument Serif", serif;
-  --font-headline: "DM Sans", sans-serif;
-  --font-body: "DM Sans", sans-serif;
-  --font-label: "DM Sans", sans-serif;
+  --font-display: "Syne", sans-serif;
+  --font-headline: "Nunito", sans-serif;
+  --font-body: "Nunito", sans-serif;
+  --font-label: "Nunito", sans-serif;
 }

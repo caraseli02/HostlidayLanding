@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link
-      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Instrument+Serif:ital@0;1&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Syne:wght@700;800&family=Nunito:wght@400;500;600;700&display=swap"
       rel="stylesheet"
     />
     <link
@@ -30,9 +30,9 @@
       aria-label="Main navigation"
       class="fixed top-0 w-full z-50"
       style="
-        background: rgba(248, 249, 255, 0.88);
+        background: color-mix(in oklch, oklch(0.9831 0.0080 30) 88%, transparent);
         backdrop-filter: blur(16px);
-        border-bottom: 1px solid rgba(225, 190, 194, 0.15);
+        border-bottom: 1px solid color-mix(in oklch, oklch(0.8328 0.0403 10.21) 15%, transparent);
       "
     >
       <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
@@ -109,7 +109,7 @@
               <h1
                 data-hero-reveal
                 style="--reveal-delay: 150ms"
-                class="text-[clamp(3rem,10vw,5rem)] md:text-[clamp(3.5rem,7vw,6.5rem)] font-normal tracking-[-0.02em] mb-6 md:mb-8 leading-[0.95] text-white max-w-[12ch]"
+                class="font-extrabold tracking-[-0.02em] mb-6 md:mb-8 leading-[0.95] text-white max-w-[12ch]"
               >
                 A Barcelona trip that actually fits how you&nbsp;travel
               </h1>
@@ -180,15 +180,15 @@
               class="hidden lg:block"
             >
               <div
-                class="p-6 border border-white/15 rounded-[2rem] bg-gradient-to-b from-white/95 to-white/85 backdrop-blur-sm shadow-[0_30px_60px_rgba(0,0,0,0.25)]"
-                style="color: var(--hostliday-ink)"
+                class="p-6 border border-white/15 rounded-[2rem] bg-gradient-to-b from-white/95 to-white/85 backdrop-blur-sm"
+                style="color: var(--hostliday-ink); box-shadow: var(--hostliday-shadow)"
               >
                 <div
-                  class="flex items-baseline justify-between gap-4 pb-4 border-b border-black/10"
+                  class="flex items-baseline justify-between gap-4 pb-4 border-b border-on-surface/10"
                 >
                   <strong
                     class="text-xs font-extrabold tracking-[0.18em] uppercase"
-                    style="font-family: &quot;DM Sans&quot;, sans-serif"
+                    style="font-family: 'Nunito', sans-serif"
                     >Sample trip brief</strong
                   >
                   <span class="text-xs text-on-surface/50 font-bold tracking-wider uppercase"
@@ -197,7 +197,7 @@
                 </div>
                 <span
                   class="block mt-5 text-[clamp(1.6rem,2.5vw,2.2rem)] font-normal leading-[1] tracking-tight"
-                  style="font-family: &quot;Instrument Serif&quot;, serif"
+                  style="font-family: 'Syne', sans-serif; font-weight: 700"
                   >Slower mornings. Longer tables. One clean route through the city.</span
                 >
                 <p class="mt-4 max-w-xs text-sm text-on-surface/60 leading-relaxed">
@@ -206,7 +206,7 @@
                 </p>
                 <div class="grid gap-3 mt-6">
                   <div
-                    class="grid grid-cols-[4rem_minmax(0,1fr)] gap-4 pt-3 border-t border-black/8"
+                    class="grid grid-cols-[4rem_minmax(0,1fr)] gap-4 pt-3 border-t border-on-surface/8"
                   >
                     <div class="text-xs font-bold tracking-wider uppercase text-on-surface/40">
                       Day 1
@@ -214,7 +214,7 @@
                     <div>
                       <h3
                         class="font-bold text-sm"
-                        style="font-family: &quot;DM Sans&quot;, sans-serif"
+                        style="font-family: 'Nunito', sans-serif"
                       >
                         Gothic Quarter arrival
                       </h3>
@@ -225,7 +225,7 @@
                     </div>
                   </div>
                   <div
-                    class="grid grid-cols-[4rem_minmax(0,1fr)] gap-4 pt-3 border-t border-black/8"
+                    class="grid grid-cols-[4rem_minmax(0,1fr)] gap-4 pt-3 border-t border-on-surface/8"
                   >
                     <div class="text-xs font-bold tracking-wider uppercase text-on-surface/40">
                       Day 3
@@ -233,7 +233,7 @@
                     <div>
                       <h3
                         class="font-bold text-sm"
-                        style="font-family: &quot;DM Sans&quot;, sans-serif"
+                        style="font-family: 'Nunito', sans-serif"
                       >
                         Gràcia & Park Güell
                       </h3>
@@ -244,7 +244,7 @@
                     </div>
                   </div>
                   <div
-                    class="grid grid-cols-[4rem_minmax(0,1fr)] gap-4 pt-3 border-t border-black/8"
+                    class="grid grid-cols-[4rem_minmax(0,1fr)] gap-4 pt-3 border-t border-on-surface/8"
                   >
                     <div class="text-xs font-bold tracking-wider uppercase text-on-surface/40">
                       Day 5
@@ -252,7 +252,7 @@
                     <div>
                       <h3
                         class="font-bold text-sm"
-                        style="font-family: &quot;DM Sans&quot;, sans-serif"
+                        style="font-family: 'Nunito', sans-serif"
                       >
                         Barceloneta sunset
                       </h3>
@@ -263,7 +263,7 @@
                   </div>
                 </div>
                 <div
-                  class="flex items-center justify-between gap-4 mt-6 pt-4 border-t border-black/10 text-sm text-on-surface/50"
+                  class="flex items-center justify-between gap-4 mt-6 pt-4 border-t border-on-surface/10 text-sm text-on-surface/50"
                 >
                   <span>Stays, pacing, and local notes in one brief.</span>
                   <strong class="text-primary font-extrabold">Editor's cut</strong>
@@ -276,7 +276,7 @@
       <!-- NEIGHBORHOODS -->
       <section id="neighborhoods" class="pt-24 pb-16 px-8 max-w-7xl mx-auto scroll-mt-32">
         <div class="max-w-xl mb-16" data-reveal>
-          <h2 class="text-4xl md:text-5xl font-normal tracking-tight mb-4">
+          <h2 class="font-normal tracking-tight mb-4">
             Explore Barcelona by neighborhood
           </h2>
           <p class="text-on-surface/60 leading-relaxed">
@@ -284,35 +284,47 @@
             travel.
           </p>
         </div>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+
+        <!-- Asymmetric card grid -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[280px]">
+          <!-- FEATURED: Gothic Quarter — spans 2 cols, 2 rows -->
           <a
             href="/enhancer?neighborhood=gothic"
             data-reveal
-            class="neighborhood-card motion-surface relative rounded-2xl overflow-hidden group h-[320px] block"
+            class="neighborhood-card motion-surface relative rounded-2xl overflow-hidden group sm:col-span-2 sm:row-span-2 block"
           >
             <img
               class="w-full h-full object-cover"
               loading="lazy"
               alt="Medieval streets of Barcelona's Gothic Quarter"
-              src="https://images.unsplash.com/photo-1583422409516-2895a77efded?w=600&h=400&fit=crop&q=80"
+              src="https://images.unsplash.com/photo-1583422409516-2895a77efded?w=800&h=600&fit=crop&q=80"
             />
             <div
-              class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent"
+              class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-on-surface/20 to-transparent"
               aria-hidden="true"
             ></div>
-            <div class="absolute bottom-6 left-6 right-6">
-              <span class="text-white/60 font-bold uppercase tracking-widest text-[10px] block mb-1"
-                >Medieval heart</span
+            <div class="absolute bottom-8 left-8 right-8">
+              <span class="text-white/60 font-bold uppercase tracking-widest text-[10px] block mb-2"
+                >Featured · Medieval heart</span
               >
-              <h3 class="text-xl font-bold text-white mb-1">Gothic Quarter</h3>
-              <p class="text-white/70 text-sm">Winding streets, hidden plazas, Roman ruins</p>
+              <h3 class="text-3xl font-bold text-white mb-2">Gothic Quarter</h3>
+              <p class="text-white/70 text-sm max-w-xs leading-relaxed">
+                Winding streets, hidden plazas, and Roman ruins beneath a modern city. The oldest
+                neighborhood in Barcelona — where every alleyway holds a story.
+              </p>
+              <span class="inline-flex items-center gap-2 mt-4 text-white/80 text-sm font-semibold">
+                Explore
+                <span class="material-symbols-outlined text-base" aria-hidden="true">arrow_forward</span>
+              </span>
             </div>
           </a>
+
+          <!-- Row 1, cols 3-4 -->
           <a
             href="/enhancer?neighborhood=eixample"
             data-reveal
             style="--reveal-delay: 70ms"
-            class="neighborhood-card motion-surface relative rounded-2xl overflow-hidden group h-[320px] block"
+            class="neighborhood-card motion-surface relative rounded-2xl overflow-hidden group block"
           >
             <img
               class="w-full h-full object-cover"
@@ -336,7 +348,7 @@
             href="/enhancer?neighborhood=barceloneta"
             data-reveal
             style="--reveal-delay: 140ms"
-            class="neighborhood-card motion-surface relative rounded-2xl overflow-hidden group h-[320px] block"
+            class="neighborhood-card motion-surface relative rounded-2xl overflow-hidden group block"
           >
             <img
               class="w-full h-full object-cover"
@@ -356,11 +368,13 @@
               <p class="text-white/70 text-sm">Sandy beach, fresh seafood, seaside promenade</p>
             </div>
           </a>
+
+          <!-- Row 2, cols 1-2 -->
           <a
             href="/enhancer?neighborhood=gracia"
             data-reveal
             style="--reveal-delay: 210ms"
-            class="neighborhood-card motion-surface relative rounded-2xl overflow-hidden group h-[320px] block"
+            class="neighborhood-card motion-surface relative rounded-2xl overflow-hidden group block"
           >
             <img
               class="w-full h-full object-cover"
@@ -384,7 +398,7 @@
             href="/enhancer?neighborhood=born"
             data-reveal
             style="--reveal-delay: 280ms"
-            class="neighborhood-card motion-surface relative rounded-2xl overflow-hidden group h-[320px] block"
+            class="neighborhood-card motion-surface relative rounded-2xl overflow-hidden group block"
           >
             <img
               class="w-full h-full object-cover"
@@ -404,11 +418,30 @@
               <p class="text-white/70 text-sm">Art galleries, cocktail bars, Santa Maria del Mar</p>
             </div>
           </a>
+
+          <!-- Editorial callout — NOT a card -->
+          <div
+            data-reveal
+            style="--reveal-delay: 350ms"
+            class="sm:col-span-2 flex items-center rounded-2xl bg-surface-container-low p-8 md:p-10"
+          >
+            <blockquote class="max-w-md">
+              <p class="text-lg md:text-xl font-bold text-on-surface leading-snug mb-3">
+                "We narrowed it to seven neighborhoods — because seven is enough when each one is
+                genuinely different."
+              </p>
+              <cite class="text-sm text-on-surface/50 not-italic">
+                — Hostliday curation team, Barcelona
+              </cite>
+            </blockquote>
+          </div>
+
+          <!-- Row 3, cols 3-4 -->
           <a
             href="/enhancer?neighborhood=raval"
             data-reveal
-            style="--reveal-delay: 350ms"
-            class="neighborhood-card motion-surface relative rounded-2xl overflow-hidden group h-[320px] block"
+            style="--reveal-delay: 420ms"
+            class="neighborhood-card motion-surface relative rounded-2xl overflow-hidden group block"
           >
             <img
               class="w-full h-full object-cover"
@@ -431,8 +464,8 @@
           <a
             href="/enhancer?neighborhood=sant-pere"
             data-reveal
-            style="--reveal-delay: 420ms"
-            class="neighborhood-card motion-surface relative rounded-2xl overflow-hidden group h-[320px] block"
+            style="--reveal-delay: 490ms"
+            class="neighborhood-card motion-surface relative rounded-2xl overflow-hidden group block"
           >
             <img
               class="w-full h-full object-cover"
@@ -452,19 +485,18 @@
               <p class="text-white/70 text-sm">Converted factories, beach proximity, startup hub</p>
             </div>
           </a>
-          <div
-            data-reveal
-            style="--reveal-delay: 490ms"
-            class="flex items-center justify-center h-[320px]"
+        </div>
+
+        <!-- CTA — outside grid, asymmetric left-aligned -->
+        <div data-reveal class="mt-12 flex items-center gap-6">
+          <a
+            href="/enhancer"
+            class="cta-lift cta-press bg-primary text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-primary/90 inline-flex items-center gap-2 shadow-xl shadow-primary/20"
           >
-            <a
-              href="/enhancer"
-              class="cta-lift cta-press bg-primary text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-primary/90 inline-flex items-center gap-2 shadow-xl shadow-primary/20"
-            >
-              Start planning
-              <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
-            </a>
-          </div>
+            Start planning
+            <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
+          </a>
+          <span class="text-on-surface/40 text-sm hidden sm:inline">All 7 neighborhoods, matched to your pace.</span>
         </div>
       </section>
 
@@ -472,7 +504,7 @@
       <section id="planner" class="py-32 bg-surface-container-low scroll-mt-32">
         <div class="max-w-7xl mx-auto px-8">
           <div class="max-w-xl mb-16" data-reveal>
-            <h2 class="text-4xl md:text-5xl font-normal tracking-tight mb-4">
+            <h2 class="font-normal tracking-tight mb-4">
               How Hostliday is different
             </h2>
             <p class="text-on-surface/70 text-lg leading-relaxed">
@@ -568,7 +600,7 @@
               </span>
             </div>
           </div>
-          <div class="mt-12 text-center">
+          <div data-reveal style="--reveal-delay: 300ms" class="mt-12">
             <a
               href="/enhancer"
               class="cta-lift cta-press bg-primary text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-primary/90 inline-flex items-center gap-2 shadow-xl shadow-primary/20"
@@ -582,7 +614,7 @@
 
       <!-- FAQ -->
       <section id="faq" class="py-24 px-8 max-w-4xl mx-auto scroll-mt-32">
-        <h2 class="text-3xl font-normal mb-12 text-center">Frequently Asked Questions</h2>
+        <h2 class="font-normal mb-12 text-center">Frequently Asked Questions</h2>
         <div class="space-y-4" role="list">
           <div role="listitem" data-reveal>
             <button
