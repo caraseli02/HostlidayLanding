@@ -3,16 +3,16 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Hostliday | Experiences, adventures, and stays.</title>
+    <title>Hostliday | Barcelona trip planning, done right.</title>
     <meta
       name="description"
-      content="Hostliday is your personal digital concierge, crafting bespoke itineraries and finding hidden gems in seconds. Plan your perfect trip in minutes, not weeks."
+      content="Plan your Barcelona trip with pace-matched hotel recommendations, neighborhood guides, and day-by-day itineraries. No guesswork."
     />
     <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@300;400;500;700;900&display=swap"
+      href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300..700;1,9..40,300..700&family=Instrument+Serif:ital@0;1&display=swap"
       rel="stylesheet"
     />
     <link
@@ -80,10 +80,11 @@
               full: "9999px",
             },
             fontFamily: {
-              display: ["Montserrat", "sans-serif"],
-              headline: ["Montserrat", "sans-serif"],
-              body: ["Inter", "sans-serif"],
-              label: ["Inter", "sans-serif"],
+              display: ['"Instrument Serif"', "serif"],
+              headline: ['"Instrument Serif"', "serif"],
+              body: ['"DM Sans"', "sans-serif"],
+              label: ['"DM Sans"', "sans-serif"],
+              sans: ['"DM Sans"', "sans-serif"],
             },
           },
         },
@@ -111,7 +112,7 @@
         scroll-behavior: smooth;
       }
       body {
-        font-family: "Inter", sans-serif;
+        font-family: "DM Sans", sans-serif;
         background:
           radial-gradient(circle at top, rgba(190, 0, 0, 0.06), transparent 30%),
           var(--hostliday-surface);
@@ -125,204 +126,26 @@
       h4,
       h5,
       h6 {
-        font-family: "Montserrat", sans-serif;
+        font-family: "Instrument Serif", serif;
         text-wrap: balance;
       }
       p {
         text-wrap: pretty;
       }
-      #planner,
       #faq {
         scroll-margin-top: 96px;
       }
 
-      /* Focus ring - never remove */
+      /* Focus ring */
       a:focus-visible,
       button:focus-visible {
         outline: 2px solid var(--hostliday-red);
         outline-offset: 3px;
         border-radius: 6px;
       }
-      input:focus-visible {
-        outline: none;
-      }
-      .search-wrap:focus-within {
-        outline: 2px solid var(--hostliday-red);
-        outline-offset: 2px;
-        border-radius: 12px;
-      }
-      input[aria-invalid="true"] {
-        border-color: var(--hostliday-red) !important;
-        box-shadow: 0 0 0 3px rgba(190, 0, 0, 0.12);
-      }
-      .waitlist-error {
-        min-height: 1.25rem;
-        color: var(--hostliday-red);
-        font-size: 0.75rem;
-        font-weight: 600;
-        margin: -0.5rem 0 0.75rem;
-      }
-      .quote-marker {
-        width: 3.5rem;
-        height: 3.5rem;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 1.5rem;
-        background: rgba(190, 0, 0, 0.08);
-        color: var(--hostliday-red);
-        font-family: "Montserrat", sans-serif;
-        font-size: 2rem;
-        font-weight: 900;
-        line-height: 1;
-        flex-shrink: 0;
-      }
-      .hero-kicker {
-        display: inline-flex;
-        align-items: center;
-        gap: 0.9rem;
-        color: rgba(248, 249, 255, 0.72);
-        font-size: 0.72rem;
-        font-weight: 700;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
-      }
-      .hero-kicker::before {
-        content: "";
-        width: 3.5rem;
-        height: 1px;
-        background: rgba(248, 249, 255, 0.38);
-      }
-      .hero-summary {
-        max-width: 32rem;
-        color: rgba(248, 249, 255, 0.76);
-        font-size: 1.03rem;
-        line-height: 1.75;
-      }
-      .hero-form-shell {
-        width: min(100%, 36rem);
-        padding: 0.5rem;
-        border-radius: 1.65rem;
-        background: rgba(248, 249, 255, 0.96);
-        border: 1px solid rgba(248, 249, 255, 0.32);
-        box-shadow: 0 28px 48px rgba(7, 17, 29, 0.28);
-      }
-      .hero-form-label {
-        display: block;
-        margin-bottom: 0.75rem;
-        color: rgba(248, 249, 255, 0.86);
-        font-size: 0.82rem;
-        font-weight: 700;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-      }
-      .hero-form-note {
-        max-width: 32rem;
-        color: rgba(248, 249, 255, 0.66);
-        font-size: 0.92rem;
-        line-height: 1.6;
-      }
-      .hero-ledger {
-        padding: 1.5rem;
-        border: 1px solid rgba(248, 249, 255, 0.16);
-        border-radius: 2rem;
-        background:
-          linear-gradient(180deg, rgba(248, 249, 255, 0.97), rgba(241, 245, 255, 0.88)),
-          rgba(248, 249, 255, 0.95);
-        box-shadow: 0 30px 60px rgba(7, 17, 29, 0.24);
-        color: var(--hostliday-ink);
-      }
-      .hero-ledger-meta {
-        display: flex;
-        align-items: baseline;
-        justify-content: space-between;
-        gap: 1rem;
-        padding-bottom: 1rem;
-        border-bottom: 1px solid rgba(11, 28, 48, 0.1);
-      }
-      .hero-ledger-meta strong {
-        font-family: "Montserrat", sans-serif;
-        font-size: 0.82rem;
-        font-weight: 800;
-        letter-spacing: 0.18em;
-        text-transform: uppercase;
-      }
-      .hero-ledger-meta span {
-        color: rgba(11, 28, 48, 0.54);
-        font-size: 0.8rem;
-        font-weight: 700;
-        letter-spacing: 0.08em;
-        text-transform: uppercase;
-      }
-      .hero-ledger-title {
-        display: block;
-        margin-top: 1.25rem;
-        font-family: "Montserrat", sans-serif;
-        font-size: clamp(1.9rem, 2.8vw, 2.8rem);
-        font-weight: 800;
-        line-height: 0.98;
-        letter-spacing: -0.05em;
-      }
-      .hero-ledger-copy {
-        margin-top: 1rem;
-        max-width: 24rem;
-        color: rgba(11, 28, 48, 0.72);
-        font-size: 0.98rem;
-        line-height: 1.72;
-      }
-      .hero-ledger-route {
-        display: grid;
-        gap: 0.85rem;
-        margin-top: 1.75rem;
-      }
-      .hero-ledger-stop {
-        display: grid;
-        grid-template-columns: 4rem minmax(0, 1fr);
-        gap: 1rem;
-        padding-top: 0.85rem;
-        border-top: 1px solid rgba(11, 28, 48, 0.08);
-      }
-      .hero-ledger-stop:first-child {
-        padding-top: 0;
-        border-top: none;
-      }
-      .hero-ledger-day {
-        color: rgba(11, 28, 48, 0.44);
-        font-size: 0.75rem;
-        font-weight: 700;
-        letter-spacing: 0.14em;
-        text-transform: uppercase;
-      }
-      .hero-ledger-stop h3 {
-        font-family: "Montserrat", sans-serif;
-        font-size: 1rem;
-        font-weight: 700;
-        line-height: 1.25;
-      }
-      .hero-ledger-stop p {
-        margin-top: 0.28rem;
-        color: rgba(11, 28, 48, 0.66);
-        font-size: 0.88rem;
-        line-height: 1.55;
-      }
-      .hero-ledger-footer {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 1rem;
-        margin-top: 1.5rem;
-        padding-top: 1rem;
-        border-top: 1px solid rgba(11, 28, 48, 0.1);
-        color: rgba(11, 28, 48, 0.6);
-        font-size: 0.85rem;
-      }
-      .hero-ledger-footer strong {
-        color: var(--hostliday-red);
-        font-weight: 800;
-      }
+
       .motion-surface,
       .cta-lift,
-      .destination-media,
       .faq-btn,
       .faq-answer {
         transition-timing-function: var(--ease-out-expo);
@@ -345,94 +168,8 @@
       .cta-press:active {
         transform: translateY(0) scale(0.98);
       }
-      .destination-card {
-        isolation: isolate;
-      }
-      .destination-skyline {
-        background:
-          radial-gradient(circle at 72% 18%, rgba(255, 205, 120, 0.95), transparent 18%),
-          linear-gradient(
-            180deg,
-            rgba(120, 205, 255, 0.96) 0%,
-            rgba(41, 108, 170, 0.82) 48%,
-            rgba(8, 24, 46, 0.98) 100%
-          );
-      }
-      .destination-skyline::before {
-        content: "";
-        position: absolute;
-        inset: auto 0 0;
-        height: 30%;
-        background:
-          linear-gradient(180deg, rgba(255, 255, 255, 0.18), transparent 36%),
-          linear-gradient(180deg, rgba(10, 24, 42, 0), rgba(10, 24, 42, 0.8));
-        opacity: 0.9;
-      }
-      .skyline-bars {
-        position: absolute;
-        inset: auto 0 0;
-        display: flex;
-        align-items: flex-end;
-        gap: 0.5rem;
-        height: 58%;
-        padding: 0 1.25rem 1.25rem;
-        opacity: 0.92;
-      }
-      .skyline-bars span {
-        flex: 1;
-        border-radius: 0.85rem 0.85rem 0 0;
-        background: linear-gradient(180deg, rgba(8, 24, 46, 0.12), rgba(8, 24, 46, 0.95));
-        box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.08);
-      }
-      .skyline-bars span:nth-child(1) {
-        max-width: 1rem;
-        height: 38%;
-      }
-      .skyline-bars span:nth-child(2) {
-        max-width: 1.35rem;
-        height: 48%;
-      }
-      .skyline-bars span:nth-child(3) {
-        max-width: 1.6rem;
-        height: 88%;
-      }
-      .skyline-bars span:nth-child(4) {
-        max-width: 1.4rem;
-        height: 60%;
-      }
-      .skyline-bars span:nth-child(5) {
-        max-width: 1.75rem;
-        height: 74%;
-      }
-      .skyline-bars span:nth-child(6) {
-        max-width: 1.15rem;
-        height: 52%;
-      }
-      .skyline-bars span:nth-child(7) {
-        max-width: 0.95rem;
-        height: 44%;
-      }
-      .skyline-bars span:nth-child(8) {
-        max-width: 1.35rem;
-        height: 66%;
-      }
-      .destination-media {
-        transition-duration: 900ms;
-        transition-property: transform, filter;
-        will-change: transform;
-      }
-      .destination-card:hover .destination-media {
-        transform: scale(1.08);
-        filter: saturate(1.08);
-      }
-      .destination-card .destination-copy {
-        transition:
-          transform var(--duration-medium) var(--ease-out-quint),
-          opacity var(--duration-medium) var(--ease-out-quint);
-      }
-      .destination-card:hover .destination-copy {
-        transform: translateY(-6px);
-      }
+
+      /* FAQ */
       .faq-answer {
         display: grid;
         grid-template-rows: 0fr;
@@ -452,6 +189,8 @@
       .faq-btn.is-open {
         background-color: rgba(229, 238, 255, 0.92);
       }
+
+      /* Reveal animations */
       .js-motion [data-hero-reveal],
       .js-motion [data-reveal] {
         opacity: 0;
@@ -467,129 +206,35 @@
         transform: translateY(0) scale(1);
       }
 
-      /* Waitlist modal */
-      #waitlist-modal {
-        position: fixed;
-        inset: 0;
-        z-index: 1000;
-        display: none;
-        align-items: center;
-        justify-content: center;
-        background: rgba(11, 28, 48, 0.6);
-        backdrop-filter: blur(8px);
-      }
-      #waitlist-modal.open {
-        display: flex;
-      }
-      #waitlist-modal .modal-card {
-        background: #fff;
-        border-radius: 24px;
-        padding: 48px;
-        max-width: 460px;
-        width: 90%;
-        box-shadow: var(--hostliday-shadow);
-        position: relative;
-        animation: slideUp 0.32s var(--ease-out-expo);
-      }
-      @keyframes slideUp {
-        from {
-          opacity: 0;
-          transform: translateY(24px) scale(0.97);
-        }
-        to {
-          opacity: 1;
-          transform: translateY(0) scale(1);
-        }
-      }
-      #waitlist-modal .modal-close {
-        position: absolute;
-        top: 16px;
-        right: 16px;
-        background: none;
-        border: none;
-        cursor: pointer;
-        color: #8d6f74;
-        font-size: 24px;
-        line-height: 1;
-        padding: 8px;
-      }
-      /* Planning animation */
-      .planning-dots span {
-        display: inline-block;
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: #be0000;
-        margin: 0 2px;
-        animation: pulse 1.2s infinite;
-      }
-      .planning-dots span:nth-child(2) {
-        animation-delay: 0.2s;
-      }
-      .planning-dots span:nth-child(3) {
-        animation-delay: 0.4s;
-      }
-      @keyframes pulse {
-        0%,
-        80%,
-        100% {
-          transform: scale(0.6);
-          opacity: 0.4;
-        }
-        40% {
-          transform: scale(1);
-          opacity: 1;
-        }
-      }
-
-      /* FAQ chevron animation */
+      /* FAQ chevron */
       .faq-chevron {
         transition: transform 0.3s var(--ease-out-expo);
       }
       .faq-btn.is-open .faq-chevron {
         transform: rotate(180deg);
       }
-      .store-badge {
+
+      /* Trust badges */
+      .trust-badge {
         display: inline-flex;
         align-items: center;
-        gap: 0.85rem;
-        min-width: 12.5rem;
-        padding: 0.75rem 1rem;
+        gap: 0.35rem;
+        padding: 0.25rem 0.65rem;
         border-radius: 999px;
-        background: rgba(255, 255, 255, 0.85);
-        border: 1px solid rgba(11, 28, 48, 0.08);
-        box-shadow: 0 18px 36px rgba(11, 28, 48, 0.08);
-        color: var(--hostliday-ink);
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
       }
-      .store-badge__icon {
-        width: 2.25rem;
-        height: 2.25rem;
-        border-radius: 999px;
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        background: rgba(190, 0, 0, 0.08);
-        color: var(--hostliday-red);
-        flex-shrink: 0;
+      .trust-badge--verified {
+        background: rgba(34, 197, 94, 0.1);
+        color: #16a34a;
       }
-      .store-badge__copy {
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        line-height: 1.1;
+      .trust-badge--fresh {
+        background: rgba(11, 28, 48, 0.06);
+        color: rgba(11, 28, 48, 0.6);
       }
-      .store-badge__eyebrow {
-        font-size: 0.62rem;
-        font-weight: 700;
-        letter-spacing: 0.12em;
-        text-transform: uppercase;
-        color: rgba(11, 28, 48, 0.44);
-      }
-      .store-badge__label {
-        font-size: 0.9rem;
-        font-weight: 800;
-        margin-top: 0.18rem;
-      }
+
+      /* Nav & footer links */
       .nav-link {
         display: inline-flex;
         align-items: center;
@@ -610,6 +255,54 @@
         display: inline-flex;
         align-items: center;
         justify-content: center;
+      }
+
+      /* Hotel card in hero */
+      .hero-hotel-card {
+        background: rgba(248, 249, 255, 0.97);
+        border: 1px solid rgba(11, 28, 48, 0.06);
+        border-radius: 1.25rem;
+        padding: 1.25rem;
+        box-shadow: 0 8px 24px rgba(11, 28, 48, 0.08);
+        transition:
+          transform var(--duration-medium) var(--ease-out-expo),
+          box-shadow var(--duration-medium) var(--ease-out-expo);
+      }
+      .hero-hotel-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 16px 32px rgba(11, 28, 48, 0.12);
+      }
+
+      /* Neighborhood card */
+      .neighborhood-card {
+        background: var(--hostliday-surface);
+        border: 1px solid rgba(11, 28, 48, 0.06);
+        border-radius: 1.5rem;
+        padding: 1.75rem;
+        transition:
+          transform var(--duration-medium) var(--ease-out-expo),
+          box-shadow var(--duration-medium) var(--ease-out-expo),
+          border-color var(--duration-medium) var(--ease-out-expo);
+      }
+      .neighborhood-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 20px 40px rgba(11, 28, 48, 0.1);
+        border-color: rgba(190, 0, 0, 0.15);
+      }
+
+      /* Step number */
+      .step-number {
+        width: 3rem;
+        height: 3rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 999px;
+        font-family: "Instrument Serif", serif;
+        font-size: 1.25rem;
+        font-weight: 400;
+        font-style: italic;
+        flex-shrink: 0;
       }
 
       @media (prefers-reduced-motion: reduce) {
@@ -640,84 +333,6 @@
       >Skip to main content</a
     >
 
-    <!-- Waitlist Modal -->
-    <div id="waitlist-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
-      <div class="modal-card">
-        <button class="modal-close" id="modal-close-btn" aria-label="Close">
-          <span class="material-symbols-outlined" aria-hidden="true">close</span>
-        </button>
-        <div id="modal-planning" class="text-center mb-6 hidden">
-          <div class="planning-dots mb-4 text-2xl"><span></span><span></span><span></span></div>
-          <p class="text-sm text-on-surface/60 font-medium">
-            Finding the best experiences for you…
-          </p>
-        </div>
-        <div id="modal-form">
-          <div class="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center mb-6">
-            <span class="material-symbols-outlined text-primary text-3xl" aria-hidden="true"
-              >flight_takeoff</span
-            >
-          </div>
-          <h2 id="modal-title" class="text-2xl font-extrabold mb-2 font-display">
-            You're early — perfect.
-          </h2>
-          <p class="text-on-surface/60 mb-8 leading-relaxed">
-            Hostliday is in private beta. Leave your email and we'll give you early access — plus a
-            free itinerary on day one.
-          </p>
-          <label for="waitlist-email" class="block text-sm font-bold mb-2"
-            >Your email address</label
-          >
-          <input
-            id="waitlist-email"
-            type="email"
-            autocomplete="email"
-            placeholder="you@example.com"
-            aria-describedby="waitlist-error modal-destination"
-            aria-invalid="false"
-            class="w-full border border-surface-container-high rounded-xl px-4 py-3 mb-4 text-base focus:outline-none focus:ring-2 focus:ring-primary/40"
-          />
-          <p id="waitlist-error" class="waitlist-error" aria-live="polite"></p>
-          <div
-            id="modal-destination"
-            class="text-xs text-on-surface/40 mb-4 font-medium"
-            aria-live="polite"
-          ></div>
-          <button
-            id="waitlist-submit"
-            type="button"
-            class="w-full bg-primary text-white font-bold py-4 rounded-xl hover:bg-primary/90 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
-          >
-            Get Early Access →
-          </button>
-          <p class="text-xs text-center text-on-surface/40 mt-4">No spam. Unsubscribe anytime.</p>
-        </div>
-        <div id="modal-success" class="text-center hidden">
-          <div
-            class="w-16 h-16 rounded-full bg-emerald-50 flex items-center justify-center mx-auto mb-6"
-          >
-            <span
-              class="material-symbols-outlined text-emerald-500 text-3xl"
-              style="font-variation-settings: &quot;FILL&quot; 1"
-              aria-hidden="true"
-              >check_circle</span
-            >
-          </div>
-          <h2 class="text-2xl font-extrabold mb-2 font-display">You're on the list!</h2>
-          <p class="text-on-surface/60">
-            We'll be in touch when your spot opens up. In the meantime, explore the destinations
-            below.
-          </p>
-          <button
-            onclick="closeWaitlist()"
-            class="mt-8 bg-surface-container text-primary font-bold px-8 py-3 rounded-xl hover:bg-surface-container-high transition-colors"
-          >
-            Explore Destinations
-          </button>
-        </div>
-      </div>
-    </div>
-
     <!-- TopNavBar -->
     <nav
       aria-label="Main navigation"
@@ -729,24 +344,23 @@
       "
     >
       <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
-        <div class="text-2xl font-bold tracking-tighter text-on-surface font-display">
+        <a
+          href="/"
+          class="text-2xl font-bold tracking-tighter text-on-surface font-display"
+          aria-label="Hostliday home"
+        >
           Hostliday
-        </div>
+        </a>
         <div class="hidden md:flex gap-8 items-center font-medium tracking-tight">
           <a
-            class="nav-link text-primary font-bold border-b-2 border-primary pb-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
-            href="#planner"
+            class="nav-link text-on-surface/80 hover:text-primary transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
+            href="#how-it-works"
             >How it works</a
           >
           <a
             class="nav-link text-on-surface/80 hover:text-primary transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
-            href="#planner"
-            >Itineraries</a
-          >
-          <a
-            class="nav-link text-on-surface/80 hover:text-primary transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
-            href="#planner"
-            >How It Works</a
+            href="#neighborhoods"
+            >Neighborhoods</a
           >
           <a
             class="nav-link text-on-surface/80 hover:text-primary transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
@@ -754,380 +368,360 @@
             >FAQ</a
           >
         </div>
-        <div class="flex items-center gap-6">
-          <label
-            class="hidden lg:flex items-center bg-surface-container-low px-4 min-h-[2.75rem] rounded-full search-wrap cursor-text"
-          >
-            <span class="material-symbols-outlined text-on-surface/40 mr-2" aria-hidden="true"
-              >search</span
-            >
-            <span class="sr-only">Search destinations</span>
-            <input
-              id="nav-search"
-              class="bg-transparent border-none outline-none text-sm w-48 min-h-[44px] appearance-none"
-              name="nav_search"
-              autocomplete="off"
-              placeholder="Search destinations…"
-              type="search"
-            />
-          </label>
-          <button
-            onclick="openWaitlist()"
-            class="cta-lift cta-press bg-primary text-on-primary px-6 py-2.5 rounded-full font-bold duration-200 transition-[transform,background-color] shadow-lg shadow-primary/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-          >
-            Join Waitlist
-          </button>
-        </div>
+        <a
+          href="/enhancer.html"
+          class="cta-lift cta-press bg-primary text-on-primary px-6 py-2.5 rounded-full font-bold duration-200 transition-[transform,background-color] shadow-lg shadow-primary/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+        >
+          Plan your trip
+        </a>
       </div>
     </nav>
 
     <main id="main" style="scroll-margin-top: 80px">
-      <!-- ─── HERO — Full-bleed cinematic ─── -->
+      <!-- ─── HERO — Trust-first ─── -->
       <section
-        class="relative min-h-[100svh] md:min-h-[94vh] pt-16 md:pt-0 overflow-hidden"
+        class="relative min-h-[100svh] md:min-h-[94vh] pt-24 md:pt-0 overflow-hidden flex items-center"
         aria-label="Hero"
       >
-        <!-- Background image — full bleed -->
-        <img
-          class="absolute inset-0 w-full h-full object-cover object-center"
-          fetchpriority="high"
-          width="1440"
-          height="960"
-          alt="Scenic view of a tranquil mountain lake with a small wooden boat on the water during sunset"
-          src="https://lh3.googleusercontent.com/aida-public/AB6AXuBGhaxpwozIReAyoLeuFDaSdLPAbxq3E0FLI2FCSYb2VCF_TGFBrMGmxphNJJhBIGJB2Zs_rkMV22mH2YmMjybBr5SYaxV1nyxn_QQE2QApMkBc9X89oGNFn3oaMm6Sh710gAxPuLA1awxhvT_1JgZ1Rlo0JEGe5cmMsOYvE7sFC4Vj4ou47ynN0_wJLTKERRKrH7CyXU0EcihVYbSogJYxAjJwWyGWSpVW-NZd2z6HIHj0sLWNT3LVRHqNyDsemq1IvCb7GEeEINU"
-        />
-        <!-- Layered gradient: dark bottom for text legibility, gentle left vignette -->
+        <!-- Subtle background -->
         <div
-          class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/10"
-          aria-hidden="true"
-        ></div>
-        <div
-          class="absolute inset-0 bg-gradient-to-r from-black/25 to-transparent"
-          aria-hidden="true"
-        ></div>
-        <div
-          class="absolute inset-0 opacity-90"
+          class="absolute inset-0"
           style="
             background:
-              radial-gradient(circle at 26% 24%, rgba(218, 0, 0, 0.2), transparent 26%),
-              linear-gradient(
-                90deg,
-                rgba(7, 17, 29, 0.44) 0%,
-                rgba(7, 17, 29, 0.16) 42%,
-                rgba(7, 17, 29, 0) 100%
-              );
+              radial-gradient(ellipse at 20% 50%, rgba(190, 0, 0, 0.04), transparent 50%),
+              radial-gradient(ellipse at 80% 20%, rgba(120, 180, 255, 0.06), transparent 40%),
+              var(--hostliday-surface);
           "
           aria-hidden="true"
         ></div>
 
         <!-- Hero content -->
-        <div
-          class="relative z-10 w-full max-w-7xl mx-auto px-8 py-10 md:py-20 min-h-[calc(100svh-4rem)] md:min-h-[94vh] grid items-end"
-        >
-          <div
-            class="grid gap-10 lg:grid-cols-[minmax(0,1.05fr)_minmax(320px,0.72fr)] lg:items-end"
-          >
-            <div class="max-w-3xl">
-              <div data-hero-reveal style="--reveal-delay: 70ms" class="hero-kicker mb-6 md:mb-8">
-                Private beta for travelers who plan with taste
-              </div>
-              <h1
-                data-hero-reveal
-                style="--reveal-delay: 150ms"
-                class="text-[clamp(3.45rem,14.6vw,5.5rem)] md:text-[clamp(5rem,8vw,7.6rem)] font-black tracking-[-0.07em] mb-6 md:mb-8 leading-[0.9] text-white font-display max-w-[9ch]"
-              >
-                Name the place.<br />We&apos;ll shape the trip.
-              </h1>
-              <p data-hero-reveal style="--reveal-delay: 230ms" class="hero-summary mb-8 md:mb-10">
-                Turn a city, coast, or country into a considered travel brief with stays, pacing,
-                and local notes. Leave your email and we&apos;ll send yours as private beta opens.
-              </p>
-              <div data-hero-reveal style="--reveal-delay: 310ms">
-                <label for="hero-search" class="hero-form-label"
-                  >Start with a city, coast, or country</label
+        <div class="relative z-10 w-full max-w-7xl mx-auto px-8 py-16 md:py-20">
+          <div class="max-w-3xl mb-12 md:mb-16">
+            <div data-hero-reveal style="--reveal-delay: 70ms" class="mb-6 md:mb-8">
+              <span class="trust-badge trust-badge--verified">
+                <span class="material-symbols-outlined" style="font-size: 14px" aria-hidden="true"
+                  >verified</span
                 >
-                <div class="hero-form-shell search-wrap mb-4">
-                  <div class="flex flex-col gap-2 md:flex-row md:items-center">
-                    <div class="flex items-center gap-3 min-w-0 px-4">
-                      <span class="material-symbols-outlined text-primary" aria-hidden="true"
-                        >explore</span
-                      >
-                      <input
-                        id="hero-search"
-                        class="w-full min-w-0 border-none outline-none bg-transparent py-3.5 text-base font-medium placeholder:text-on-surface/35"
-                        placeholder="Kyoto, Amalfi Coast, Patagonia…"
-                        type="text"
-                        autocomplete="off"
-                      />
-                    </div>
-                    <button
-                      onclick="openWaitlist(document.getElementById('hero-search').value.trim())"
-                      class="cta-lift cta-press bg-primary text-white px-7 md:px-8 py-4 rounded-[1.2rem] font-bold hover:bg-primary/90 transition-all duration-150 focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2 shrink-0 w-full md:w-auto"
-                    >
-                      Request brief
-                    </button>
-                  </div>
-                </div>
-                <p class="hero-form-note">
-                  Private beta. We&apos;ll hold your destination and email your first trip brief
-                  when your spot opens.
-                </p>
-              </div>
+                Barcelona, curated right
+              </span>
             </div>
-            <aside
+            <h1
               data-hero-reveal
-              style="--reveal-delay: 390ms; --reveal-offset: 30px"
-              class="hidden lg:block"
+              style="--reveal-delay: 150ms"
+              class="text-[clamp(2.8rem,8vw,5rem)] md:text-[clamp(3.5rem,6vw,6rem)] tracking-[-0.04em] mb-6 md:mb-8 leading-[0.92] text-on-surface max-w-[12ch]"
             >
-              <div class="hero-ledger">
-                <div class="hero-ledger-meta">
-                  <strong>Sample trip brief</strong>
-                  <span>Amalfi Coast / 6 nights</span>
-                </div>
-                <span class="hero-ledger-title"
-                  >Quieter mornings. Longer tables. One clean route.</span
-                >
-                <p class="hero-ledger-copy">
-                  A sharper first pass through the coast: fewer hotel swaps, human-paced days, and
-                  enough space for the places worth lingering in.
-                </p>
-                <div class="hero-ledger-route">
-                  <div class="hero-ledger-stop">
-                    <div class="hero-ledger-day">Day 1</div>
-                    <div>
-                      <h3>Atrani arrival</h3>
-                      <p>
-                        Check in above the square, swim before dinner, then keep the first night
-                        local.
-                      </p>
-                    </div>
-                  </div>
-                  <div class="hero-ledger-stop">
-                    <div class="hero-ledger-day">Day 3</div>
-                    <div>
-                      <h3>Boat day, no rush</h3>
-                      <p>
-                        Short private charter, two swim coves, and lunch booked after the crowds
-                        clear.
-                      </p>
-                    </div>
-                  </div>
-                  <div class="hero-ledger-stop">
-                    <div class="hero-ledger-day">Day 6</div>
-                    <div>
-                      <h3>Final night in Ravello</h3>
-                      <p>
-                        Move uphill for the view, slower pacing, and a last dinner that feels
-                        chosen.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-                <div class="hero-ledger-footer">
-                  <span>Stays, pacing, and local notes in one brief.</span>
-                  <strong>Editor&apos;s cut</strong>
-                </div>
-              </div>
-            </aside>
-          </div>
-        </div>
-      </section>
-      <!-- All-in-One Planner Section -->
-      <section id="planner" class="py-32 bg-surface-container-low scroll-mt-32">
-        <div class="max-w-7xl mx-auto px-8 grid md:grid-cols-2 gap-20 items-center">
-          <div>
-            <h2
-              class="text-4xl md:text-5xl font-extrabold tracking-tight mb-8 leading-tight font-display"
+              A trip that fits <em>how</em> you travel.
+            </h1>
+            <p
+              data-hero-reveal
+              style="--reveal-delay: 230ms"
+              class="text-on-surface/70 text-lg md:text-xl mb-10 md:mb-12 leading-relaxed max-w-xl"
             >
-              All-in-One AI Trip Planner
-            </h2>
-            <p class="text-on-surface/70 text-lg mb-12 leading-relaxed">
-              Stop jumping between 20 tabs. Hostliday connects everything you need—from flights to
-              dinner reservations—in one seamless conversation.
+              Hotels matched to your pace and vibe, with a day-by-day plan built around how you
+              actually like to explore. Not just where you stay.
             </p>
-            <div class="space-y-8">
-              <div class="flex gap-6">
-                <div
-                  class="w-14 h-14 shrink-0 rounded-2xl bg-primary/10 flex items-center justify-center"
-                  aria-hidden="true"
-                >
-                  <span class="material-symbols-outlined text-primary text-3xl">auto_fix_high</span>
-                </div>
-                <div>
-                  <h3 class="text-xl font-bold mb-2 font-display">Tailor-made Itineraries</h3>
-                  <p class="text-on-surface/60">
-                    Every suggestion is personalized to your interests, budget, and travel style.
-                  </p>
-                </div>
-              </div>
-              <div class="flex gap-6">
-                <div
-                  class="w-14 h-14 shrink-0 rounded-2xl bg-tertiary/10 flex items-center justify-center"
-                  aria-hidden="true"
-                >
-                  <span class="material-symbols-outlined text-tertiary text-3xl">savings</span>
-                </div>
-                <div>
-                  <h3 class="text-xl font-bold mb-2 font-display">Cheaper &amp; Faster</h3>
-                  <p class="text-on-surface/60">
-                    We find exclusive rates and optimize routes to save you both time and money.
-                  </p>
-                </div>
-              </div>
-              <div class="flex gap-6">
-                <div
-                  class="w-14 h-14 shrink-0 rounded-2xl bg-secondary/10 flex items-center justify-center"
-                  aria-hidden="true"
-                >
-                  <span class="material-symbols-outlined text-secondary text-3xl">chat</span>
-                </div>
-                <div>
-                  <h3 class="text-xl font-bold mb-2 font-display">24/7 Digital Concierge</h3>
-                  <p class="text-on-surface/60">
-                    Change plans on the go. Just message Hostliday and we'll handle the rest
-                    instantly.
-                  </p>
-                </div>
-              </div>
+            <div data-hero-reveal style="--reveal-delay: 310ms">
+              <a
+                href="/enhancer.html"
+                class="cta-lift cta-press inline-block bg-primary text-white px-10 py-5 rounded-full font-bold text-lg shadow-xl shadow-primary/20 hover:bg-primary/90 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
+              >
+                Plan your Barcelona trip
+              </a>
             </div>
           </div>
-          <!-- Chat mockup -->
-          <div data-reveal style="--reveal-delay: 120ms" class="relative">
-            <div
-              class="absolute inset-0 bg-surface-container-highest/60 rounded-full scale-90 blur-3xl opacity-50"
-              aria-hidden="true"
-            ></div>
-            <div
-              class="relative bg-surface-container-lowest p-6 rounded-lg shadow-2xl border border-outline-variant/10"
-              role="presentation"
-              aria-label="Hostliday AI chat demo"
-            >
-              <div class="flex items-center gap-4 border-b border-surface-container-low pb-4 mb-6">
-                <div
-                  class="w-10 h-10 rounded-full bg-primary flex items-center justify-center"
-                  aria-hidden="true"
-                >
-                  <span
-                    class="material-symbols-outlined text-on-primary text-xl"
-                    style="font-variation-settings: &quot;FILL&quot; 1"
-                    >colors_spark</span
+
+          <!-- Hotel proof cards -->
+          <div
+            data-hero-reveal
+            style="--reveal-delay: 390ms; --reveal-offset: 30px"
+            class="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-4xl"
+          >
+            <div class="hero-hotel-card">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="trust-badge trust-badge--verified">
+                  <span class="material-symbols-outlined" style="font-size: 12px" aria-hidden="true"
+                    >check_circle</span
                   >
-                </div>
-                <div>
-                  <p class="text-sm font-bold">Hostliday AI</p>
-                  <p class="text-[10px] text-primary font-bold uppercase tracking-widest">
-                    Active Now
-                  </p>
-                </div>
+                  Verified
+                </span>
+                <span class="trust-badge trust-badge--fresh">Gothic Quarter</span>
               </div>
-              <div class="space-y-6" aria-label="Example AI conversation">
-                <div class="flex gap-3">
-                  <div
-                    class="bg-surface-container-low p-4 rounded-2xl rounded-tl-none text-sm max-w-[80%]"
+              <h3 class="font-sans text-base font-bold mb-1">Hotel Neri Relais</h3>
+              <p class="text-on-surface/60 text-sm leading-relaxed mb-2">
+                Hidden courtyards and walkable lanes. Ideal for slow evenings.
+              </p>
+              <p class="text-xs text-on-surface/40">Source: hotelneri.com</p>
+            </div>
+            <div class="hero-hotel-card">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="trust-badge trust-badge--verified">
+                  <span class="material-symbols-outlined" style="font-size: 12px" aria-hidden="true"
+                    >check_circle</span
                   >
-                    I've found a secret rooftop bar in Rome with views of the Pantheon. Would you
-                    like me to book a table for 8 PM?
-                  </div>
-                </div>
-                <div class="flex gap-3 flex-row-reverse">
-                  <div
-                    class="bg-primary text-on-primary p-4 rounded-2xl rounded-tr-none text-sm max-w-[80%]"
-                  >
-                    That sounds perfect! Is it within walking distance of our hotel?
-                  </div>
-                </div>
-                <div class="flex gap-3">
-                  <div
-                    class="bg-surface-container-low p-4 rounded-2xl rounded-tl-none text-sm max-w-[80%]"
-                  >
-                    Yes, it's just a 6-minute stroll. I've sent the walking route to your phone. 🍸
-                  </div>
-                </div>
+                  Verified
+                </span>
+                <span class="trust-badge trust-badge--fresh">Eixample</span>
               </div>
-              <div class="mt-8 flex gap-2">
-                <div
-                  class="bg-surface-container text-on-surface/40 text-xs px-4 py-3 rounded-full flex-1"
-                  aria-hidden="true"
-                >
-                  Ask Hostliday anything…
-                </div>
-                <button
-                  aria-label="Send message"
-                  class="bg-primary text-on-primary w-10 h-10 rounded-full flex items-center justify-center hover:bg-primary/90 transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-                >
-                  <span class="material-symbols-outlined" aria-hidden="true">send</span>
-                </button>
+              <h3 class="font-sans text-base font-bold mb-1">H10 Casa Mimosa</h3>
+              <p class="text-on-surface/60 text-sm leading-relaxed mb-2">
+                Strong rooftop and central routing. Less dead-time between stops.
+              </p>
+              <p class="text-xs text-on-surface/40">Source: h10hotels.com</p>
+            </div>
+            <div class="hero-hotel-card">
+              <div class="flex items-center gap-2 mb-2">
+                <span class="trust-badge trust-badge--verified">
+                  <span class="material-symbols-outlined" style="font-size: 12px" aria-hidden="true"
+                    >check_circle</span
+                  >
+                  Verified
+                </span>
+                <span class="trust-badge trust-badge--fresh">El Born</span>
               </div>
+              <h3 class="font-sans text-base font-bold mb-1">Yurbban Passage</h3>
+              <p class="text-on-surface/60 text-sm leading-relaxed mb-2">
+                Spa-first reset. Strong El Born placement for evening food routes.
+              </p>
+              <p class="text-xs text-on-surface/40">Source: yurbbanpassage.com</p>
             </div>
           </div>
         </div>
       </section>
 
-      <!-- Testimonials - Cardless Asymmetrical Layout -->
-      <!-- Investor/Team Section - Asymmetric Layout -->
-      <section class="py-32 bg-on-surface text-surface">
-        <div
-          class="max-w-7xl mx-auto px-8 grid md:grid-cols-[1fr_2fr] gap-16 md:gap-24 items-center"
-        >
-          <div class="max-w-sm">
-            <h2 class="text-4xl md:text-5xl font-extrabold mb-6 font-display leading-tight">
-              Backed by the best
-            </h2>
-            <p class="text-surface/60 text-lg">
-              Our team and investors come from the world's most innovative travel and tech
-              companies.
+      <!-- ─── HOW IT WORKS ─── -->
+      <section id="how-it-works" class="py-24 md:py-32 px-8 max-w-5xl mx-auto scroll-mt-32">
+        <h2 data-reveal class="text-3xl md:text-4xl tracking-tight mb-16 text-center">
+          Three steps to a trip that fits
+        </h2>
+        <div class="grid md:grid-cols-3 gap-12 md:gap-8">
+          <div data-reveal style="--reveal-delay: 70ms">
+            <div class="step-number bg-primary/10 text-primary mb-6">1</div>
+            <h3 class="font-sans text-xl font-bold mb-3">Pick your pace and vibe</h3>
+            <p class="text-on-surface/60 leading-relaxed">
+              Slow mornings or packed days? Rooftop bars or hidden courtyards? Tell us how you
+              travel, not just where.
             </p>
           </div>
-          <div class="grid grid-cols-2 lg:grid-cols-4 gap-x-8 gap-y-12">
-            <div>
-              <img
-                class="w-16 h-16 rounded-full mb-4 object-cover"
-                loading="lazy"
-                alt="Professional portrait of Alex Morano, CEO"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuADTEsOm9zyMXbT1Sa_HimIJShi4kAUFmmeSRmBfzaqC5GfNoPFF5jMcCHj2slqnALhNDaXZ0uo4NGLS4pF_bUWvKtCf0tjIMcAFHzc6OWNIhhXeLCT24RkX59XKoQh0WLYSUubOk9TejuQQURRR1VPETvj-7reKg1XK6vCz1KoMEJ8pkQgs4XR4u1lPlF2GSSgZehrWkRgoUUc57o0sb85JXzRG50ncQ6uxFjPsCMb5Cbi_lkoV8By1BBUzNP6JGFAOxdG46JgcyM"
-              />
-              <p class="font-bold text-sm text-surface">Alex Morano</p>
-              <p class="text-xs text-surface/50 font-medium mt-1">CEO · Ex-Booking.com</p>
-            </div>
-            <div>
-              <img
-                class="w-16 h-16 rounded-full mb-4 object-cover"
-                loading="lazy"
-                alt="Portrait of Diana Park, CTO"
-                src="https://lh3.googleusercontent.com/aida-public/AB6AXuBqh8Wdmfi2LFQHA7yE_xvHO8X5hmXJWegYcUgBwiiYNhDoWpotwyLjU_JYg_fh9M_N0D256laRp4G1zJS8_yXpl8zr0cBisduvGVZD0m4IfTQuO0toWpcrYfsXzN4bHVstsZY8UhZIz1rNq5ZHdAvSLGUk-ZTquLmwUFqe61-EP-l53zAuFMRBYmxSRoqJud_xCKuWmwDZDSHlJbNd0AX6mI1ttETYbHNh8vR8ModX-xudp8Z5UzN72qE9a6SQPnRpGEjGjBH1QXE"
-              />
-              <p class="font-bold text-sm text-surface">Diana Park</p>
-              <p class="text-xs text-surface/50 font-medium mt-1">CTO · Ex-Google AI</p>
-            </div>
-            <div>
-              <div
-                class="w-16 h-16 rounded-full bg-white/10 mb-4 flex items-center justify-center border border-white/10"
-                aria-hidden="true"
+          <div data-reveal style="--reveal-delay: 140ms">
+            <div class="step-number bg-tertiary/10 text-tertiary mb-6">2</div>
+            <h3 class="font-sans text-xl font-bold mb-3">Get matched hotels with reasoning</h3>
+            <p class="text-on-surface/60 leading-relaxed">
+              Every hotel comes with a why: pace-matched, vibe-filtered, and sourced from real
+              listings. Not sponsored, not random.
+            </p>
+          </div>
+          <div data-reveal style="--reveal-delay: 210ms">
+            <div class="step-number bg-secondary/10 text-secondary mb-6">3</div>
+            <h3 class="font-sans text-xl font-bold mb-3">Build your day-by-day plan</h3>
+            <p class="text-on-surface/60 leading-relaxed">
+              Activities, restaurants, and hidden gems organized by neighborhood. One coherent trip,
+              not a list of bookmarks.
+            </p>
+          </div>
+        </div>
+        <div class="text-center mt-12" data-reveal style="--reveal-delay: 280ms">
+          <a
+            href="/enhancer.html"
+            class="cta-lift cta-press inline-block bg-primary text-white px-8 py-4 rounded-full font-bold shadow-lg shadow-primary/20 hover:bg-primary/90 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
+          >
+            Try it for Barcelona
+          </a>
+        </div>
+      </section>
+
+      <!-- ─── NEIGHBORHOODS ─── -->
+      <section id="neighborhoods" class="py-24 md:py-32 bg-surface-container-low scroll-mt-32">
+        <div class="max-w-7xl mx-auto px-8">
+          <h2 data-reveal class="text-3xl md:text-4xl tracking-tight mb-4 text-center">
+            Seven neighborhoods, one city
+          </h2>
+          <p
+            data-reveal
+            style="--reveal-delay: 70ms"
+            class="text-on-surface/60 text-center mb-16 max-w-xl mx-auto leading-relaxed"
+          >
+            Each with its own rhythm, food scene, and hotel personality. Pick one to start, or let
+            the enhancer match you.
+          </p>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+            <a
+              href="/enhancer.html"
+              data-reveal
+              style="--reveal-delay: 70ms"
+              class="neighborhood-card motion-surface group"
+            >
+              <h3
+                class="font-sans text-lg font-bold mb-2 group-hover:text-primary transition-colors"
               >
-                <span class="font-black italic text-surface text-lg">SV</span>
+                Gothic Quarter
+              </h3>
+              <p class="text-on-surface/60 text-sm leading-relaxed mb-3">
+                Medieval lanes, hidden plazas, centuries of layered history.
+              </p>
+              <div class="flex gap-2 flex-wrap">
+                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
+                  >Culture</span
+                >
+                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
+                  >Food</span
+                >
+                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
+                  >Architecture</span
+                >
               </div>
-              <p class="font-bold text-sm text-surface">SoftValley</p>
-              <p class="text-xs text-surface/50 font-medium mt-1">Series A Investor</p>
-            </div>
-            <div>
-              <div
-                class="w-16 h-16 rounded-full bg-white/10 mb-4 flex items-center justify-center border border-white/10"
-                aria-hidden="true"
+            </a>
+            <a
+              href="/enhancer.html"
+              data-reveal
+              style="--reveal-delay: 140ms"
+              class="neighborhood-card motion-surface group"
+            >
+              <h3
+                class="font-sans text-lg font-bold mb-2 group-hover:text-primary transition-colors"
               >
-                <span class="font-black text-surface text-lg">TC</span>
+                Eixample
+              </h3>
+              <p class="text-on-surface/60 text-sm leading-relaxed mb-3">
+                Grid layouts, Gaudi masterpieces, and the city's best Modernista architecture.
+              </p>
+              <div class="flex gap-2 flex-wrap">
+                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
+                  >Architecture</span
+                >
+                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
+                  >Culture</span
+                >
               </div>
-              <p class="font-bold text-sm text-surface">TravelCorp</p>
-              <p class="text-xs text-surface/50 font-medium mt-1">Strategic Partner</p>
-            </div>
+            </a>
+            <a
+              href="/enhancer.html"
+              data-reveal
+              style="--reveal-delay: 210ms"
+              class="neighborhood-card motion-surface group"
+            >
+              <h3
+                class="font-sans text-lg font-bold mb-2 group-hover:text-primary transition-colors"
+              >
+                El Born
+              </h3>
+              <p class="text-on-surface/60 text-sm leading-relaxed mb-3">
+                Gallery-dense, food-forward. Evening routes write themselves.
+              </p>
+              <div class="flex gap-2 flex-wrap">
+                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
+                  >Food</span
+                >
+                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
+                  >Nightlife</span
+                >
+                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
+                  >Wellness</span
+                >
+              </div>
+            </a>
+            <a
+              href="/enhancer.html"
+              data-reveal
+              style="--reveal-delay: 280ms"
+              class="neighborhood-card motion-surface group"
+            >
+              <h3
+                class="font-sans text-lg font-bold mb-2 group-hover:text-primary transition-colors"
+              >
+                Barceloneta
+              </h3>
+              <p class="text-on-surface/60 text-sm leading-relaxed mb-3">
+                Beach, seafood, and sunset walks. The city's maritime soul.
+              </p>
+              <div class="flex gap-2 flex-wrap">
+                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
+                  >Food</span
+                >
+                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
+                  >Wellness</span
+                >
+              </div>
+            </a>
+            <a
+              href="/enhancer.html"
+              data-reveal
+              style="--reveal-delay: 70ms"
+              class="neighborhood-card motion-surface group"
+            >
+              <h3
+                class="font-sans text-lg font-bold mb-2 group-hover:text-primary transition-colors"
+              >
+                Gracia
+              </h3>
+              <p class="text-on-surface/60 text-sm leading-relaxed mb-3">
+                Village feel inside the city. Plazas, independent shops, slow mornings.
+              </p>
+              <div class="flex gap-2 flex-wrap">
+                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
+                  >Food</span
+                >
+                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
+                  >Culture</span
+                >
+              </div>
+            </a>
+            <a
+              href="/enhancer.html"
+              data-reveal
+              style="--reveal-delay: 140ms"
+              class="neighborhood-card motion-surface group"
+            >
+              <h3
+                class="font-sans text-lg font-bold mb-2 group-hover:text-primary transition-colors"
+              >
+                Raval
+              </h3>
+              <p class="text-on-surface/60 text-sm leading-relaxed mb-3">
+                Raw edge, world food, contemporary art. The city's creative pulse.
+              </p>
+              <div class="flex gap-2 flex-wrap">
+                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
+                  >Culture</span
+                >
+                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
+                  >Food</span
+                >
+                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
+                  >Nightlife</span
+                >
+              </div>
+            </a>
+            <a
+              href="/enhancer.html"
+              data-reveal
+              style="--reveal-delay: 210ms"
+              class="neighborhood-card motion-surface group"
+            >
+              <h3
+                class="font-sans text-lg font-bold mb-2 group-hover:text-primary transition-colors"
+              >
+                Poble Sec
+              </h3>
+              <p class="text-on-surface/60 text-sm leading-relaxed mb-3">
+                Tapas crawl territory with Montjuic views. Understated and local.
+              </p>
+              <div class="flex gap-2 flex-wrap">
+                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
+                  >Food</span
+                >
+                <span class="text-xs text-on-surface/40 bg-on-surface/[0.04] px-2 py-1 rounded-full"
+                  >Nightlife</span
+                >
+              </div>
+            </a>
           </div>
         </div>
       </section>
 
       <!-- FAQ Section -->
       <section id="faq" class="py-24 px-8 max-w-4xl mx-auto scroll-mt-32">
-        <h2 class="text-3xl font-extrabold mb-12 text-center font-display">
-          Frequently Asked Questions
-        </h2>
+        <h2 class="text-3xl tracking-tight mb-12 text-center">Frequently Asked Questions</h2>
         <div class="space-y-4" role="list">
           <div role="listitem" data-reveal>
             <button
@@ -1137,8 +731,8 @@
               class="faq-btn w-full text-left bg-surface-container-low rounded-lg p-6 cursor-pointer hover:bg-surface-container transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
             >
               <div class="flex justify-between items-center">
-                <h3 class="font-bold text-on-surface text-base">
-                  How does Hostliday's AI actually work?
+                <h3 class="font-sans font-bold text-on-surface text-base">
+                  How does Hostliday match hotels to my trip?
                 </h3>
                 <span class="material-symbols-outlined text-primary faq-chevron" aria-hidden="true"
                   >expand_more</span
@@ -1153,9 +747,9 @@
               class="faq-answer px-6 pb-6 pt-2 bg-surface-container-low rounded-b-lg text-on-surface/70 text-sm leading-relaxed -mt-2"
             >
               <div>
-                Hostliday uses a combination of large language models and a proprietary travel
-                knowledge graph to match your preferences with curated destinations, accommodation
-                options, and activity suggestions — all in real time.
+                Every hotel is filtered by your pace (slow, balanced, packed), budget range, and
+                vibe preference. You see why each one was recommended, plus the source listing so
+                you can verify yourself. No sponsored results.
               </div>
             </div>
           </div>
@@ -1168,9 +762,7 @@
               class="faq-btn w-full text-left bg-surface-container-low rounded-lg p-6 cursor-pointer hover:bg-surface-container transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
             >
               <div class="flex justify-between items-center">
-                <h3 class="font-bold text-on-surface text-base">
-                  Can I book flights and hotels through Hostliday?
-                </h3>
+                <h3 class="font-sans font-bold text-on-surface text-base">Why Barcelona only?</h3>
                 <span class="material-symbols-outlined text-primary faq-chevron" aria-hidden="true"
                   >expand_more</span
                 >
@@ -1184,9 +776,9 @@
               class="faq-answer px-6 pb-6 pt-2 bg-surface-container-low rounded-b-lg text-on-surface/70 text-sm leading-relaxed -mt-2"
             >
               <div>
-                Yes. Hostliday integrates with major booking platforms so you can complete hotel and
-                flight reservations without leaving the conversation. We're adding direct booking
-                for restaurants, tours, and transfers.
+                We'd rather get one city right than do ten cities poorly. Barcelona has the density,
+                the food culture, and the hotel variety to make this approach sing. More cities are
+                coming, but only when we can match this depth.
               </div>
             </div>
           </div>
@@ -1199,9 +791,7 @@
               class="faq-btn w-full text-left bg-surface-container-low rounded-lg p-6 cursor-pointer hover:bg-surface-container transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
             >
               <div class="flex justify-between items-center">
-                <h3 class="font-bold text-on-surface text-base">
-                  Is there a mobile app available?
-                </h3>
+                <h3 class="font-sans font-bold text-on-surface text-base">Is this free?</h3>
                 <span class="material-symbols-outlined text-primary faq-chevron" aria-hidden="true"
                   >expand_more</span
                 >
@@ -1215,8 +805,9 @@
               class="faq-answer px-6 pb-6 pt-2 bg-surface-container-low rounded-b-lg text-on-surface/70 text-sm leading-relaxed -mt-2"
             >
               <div>
-                Our iOS app is in beta. Android follows shortly after. Sign up for early access and
-                we'll send you an invite when your spot is ready.
+                Yes. The trip enhancer, hotel recommendations, and neighborhood guides are all free.
+                We earn a referral fee when you book through partner links, which never affects what
+                we recommend.
               </div>
             </div>
           </div>
@@ -1229,8 +820,8 @@
               class="faq-btn w-full text-left bg-surface-container-low rounded-lg p-6 cursor-pointer hover:bg-surface-container transition-colors focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
             >
               <div class="flex justify-between items-center">
-                <h3 class="font-bold text-on-surface text-base">
-                  What if I need to change my itinerary?
+                <h3 class="font-sans font-bold text-on-surface text-base">
+                  What does "verified" mean?
                 </h3>
                 <span class="material-symbols-outlined text-primary faq-chevron" aria-hidden="true"
                   >expand_more</span
@@ -1245,50 +836,10 @@
               class="faq-answer px-6 pb-6 pt-2 bg-surface-container-low rounded-b-lg text-on-surface/70 text-sm leading-relaxed -mt-2"
             >
               <div>
-                Changes are easy — just message Hostliday like you'd message a friend. Tell us what
-                you want to adjust and we'll re-optimize the full itinerary around your new
-                requirements instantly.
+                We manually check each hotel listing against its source (the hotel's own site or a
+                major booking platform). We note the last verification date and link to the source
+                so you can confirm yourself. No black box.
               </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <!-- Final CTA -->
-      <section class="py-24 px-8 mb-24" data-reveal>
-        <div
-          class="max-w-7xl mx-auto bg-primary rounded-[3rem] p-12 md:p-24 text-center relative overflow-hidden"
-          style="background: linear-gradient(120deg, #da0000 0%, #810000 100%)"
-        >
-          <div
-            class="absolute inset-0 opacity-10"
-            style="
-              background-image: radial-gradient(circle at 2px 2px, white 1px, transparent 0);
-              background-size: 40px 40px;
-            "
-            aria-hidden="true"
-          ></div>
-          <div class="relative z-10">
-            <h2 class="text-4xl md:text-6xl font-extrabold text-white mb-8 font-display">
-              Ready to give it a try?
-            </h2>
-            <p class="text-white/80 text-lg mb-12 max-w-xl mx-auto">
-              Join thousands of travelers who are planning smarter, faster, and better with
-              Hostliday.
-            </p>
-            <div class="flex flex-col md:flex-row justify-center gap-6">
-              <button
-                onclick="openWaitlist()"
-                class="cta-lift cta-press bg-white text-primary px-10 py-5 rounded-full font-bold text-xl shadow-2xl focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
-              >
-                Get Early Access →
-              </button>
-              <a
-                href="#faq"
-                class="cta-lift inline-block bg-white/15 backdrop-blur-md text-white border border-white/30 px-10 py-5 rounded-full font-bold text-xl hover:bg-white/25 transition-all focus-visible:outline focus-visible:outline-2 focus-visible:outline-white focus-visible:outline-offset-2"
-              >
-                Read the FAQ
-              </a>
             </div>
           </div>
         </div>
@@ -1301,117 +852,80 @@
         class="flex flex-col md:flex-row justify-between items-start px-12 py-16 w-full max-w-7xl mx-auto gap-12"
       >
         <div class="max-w-xs">
-          <div class="text-xl font-black text-on-surface mb-6 font-display">Hostliday</div>
+          <a
+            href="/"
+            class="text-xl font-bold text-on-surface mb-6 block"
+            style="font-family: &quot;Instrument Serif&quot;, serif"
+            >Hostliday</a
+          >
           <p class="text-on-surface/60 text-sm leading-relaxed mb-8">
-            The next generation travel concierge, powered by proprietary AI to make world
-            exploration effortless.
+            Trip planning built around how you travel, not just where. Currently serving Barcelona.
           </p>
           <div class="flex gap-4">
             <a
               class="footer-social rounded-full bg-surface-container-high text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
               href="#"
               aria-label="Hostliday on the web (coming soon)"
+              rel="noopener noreferrer"
               ><span class="material-symbols-outlined" aria-hidden="true">public</span></a
             >
             <a
               class="footer-social rounded-full bg-surface-container-high text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
               href="#"
               aria-label="Hostliday on Instagram (coming soon)"
+              rel="noopener noreferrer"
               ><span class="material-symbols-outlined" aria-hidden="true">photo_camera</span></a
-            >
-            <a
-              class="footer-social rounded-full bg-surface-container-high text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
-              href="#"
-              aria-label="Hostliday on X / Twitter (coming soon)"
-              ><span class="material-symbols-outlined" aria-hidden="true">alternate_email</span></a
             >
           </div>
         </div>
         <nav aria-label="Footer navigation">
-          <div class="grid grid-cols-2 md:grid-cols-3 gap-12">
+          <div class="grid grid-cols-2 gap-12">
             <div>
-              <h3 class="font-bold mb-6 text-base">Product</h3>
+              <h3 class="font-sans font-bold mb-6 text-base">Product</h3>
               <ul class="space-y-4 text-on-surface/60 text-sm">
                 <li>
                   <a
                     class="footer-link hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
-                    href="#planner"
-                    >Features</a
+                    href="/enhancer.html"
+                    rel="noopener noreferrer"
+                    >Trip Enhancer</a
                   >
                 </li>
                 <li>
                   <a
                     class="footer-link hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
-                    href="#planner"
-                    >Itineraries</a
+                    href="#neighborhoods"
+                    >Neighborhoods</a
                   >
                 </li>
                 <li>
                   <a
                     class="footer-link hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
-                    href="#planner"
-                    >Concierge</a
-                  >
-                </li>
-                <li>
-                  <span class="footer-link text-on-surface/40" aria-label="Pricing — coming soon"
-                    >Pricing <span class="text-xs">(coming soon)</span></span
+                    href="#how-it-works"
+                    >How it works</a
                   >
                 </li>
               </ul>
             </div>
             <div>
-              <h3 class="font-bold mb-6 text-base">Company</h3>
+              <h3 class="font-sans font-bold mb-6 text-base">Company</h3>
               <ul class="space-y-4 text-on-surface/60 text-sm">
                 <li>
                   <a
                     class="footer-link hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
-                    href="#"
-                    >Press Kit</a
+                    href="#faq"
+                    >FAQ</a
                   >
                 </li>
                 <li>
-                  <a
-                    class="footer-link hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
-                    href="#"
-                    >Careers</a
+                  <span class="footer-link text-on-surface/40" aria-label="Press kit — coming soon"
+                    >Press Kit <span class="text-xs">(coming soon)</span></span
                   >
                 </li>
                 <li>
-                  <a
-                    class="footer-link hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
-                    href="#"
-                    >Blog</a
+                  <span class="footer-link text-on-surface/40" aria-label="Blog — coming soon"
+                    >Blog <span class="text-xs">(coming soon)</span></span
                   >
-                </li>
-                <li>
-                  <a
-                    class="footer-link hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
-                    href="#"
-                    >Contact Us</a
-                  >
-                </li>
-              </ul>
-            </div>
-            <div class="col-span-2 md:col-span-1">
-              <h3 class="font-bold mb-6 text-base">Legal</h3>
-              <ul class="space-y-4 text-on-surface/60 text-sm">
-                <li>
-                  <button
-                    onclick="openWaitlist()"
-                    class="footer-link hover:underline hover:text-primary transition-all duration-300 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
-                  >
-                    Privacy Policy <span class="text-[10px] text-on-surface/30">(pre-launch)</span>
-                  </button>
-                </li>
-                <li>
-                  <button
-                    onclick="openWaitlist()"
-                    class="footer-link hover:underline hover:text-primary transition-all duration-300 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
-                  >
-                    Terms of Service
-                    <span class="text-[10px] text-on-surface/30">(pre-launch)</span>
-                  </button>
                 </li>
               </ul>
             </div>
@@ -1422,143 +936,14 @@
         class="border-t border-surface-container-high/50 max-w-7xl mx-auto px-12 py-8 flex flex-col md:flex-row justify-between items-center gap-4"
       >
         <p class="text-on-surface/60 text-xs">
-          © 2025 Hostliday AI. Experiences, adventures, and stays.
+          &copy; 2025 Hostliday. Barcelona trip planning, done right.
         </p>
-        <div class="flex gap-4">
-          <button onclick="openWaitlist()" class="store-badge cta-lift cta-press text-left">
-            <span class="store-badge__icon material-symbols-outlined" aria-hidden="true"
-              >phone_iphone</span
-            >
-            <span class="store-badge__copy">
-              <span class="store-badge__eyebrow">Prelaunch</span>
-              <span class="store-badge__label">iOS app waitlist</span>
-            </span>
-          </button>
-          <button onclick="openWaitlist()" class="store-badge cta-lift cta-press text-left">
-            <span class="store-badge__icon material-symbols-outlined" aria-hidden="true"
-              >android</span
-            >
-            <span class="store-badge__copy">
-              <span class="store-badge__eyebrow">Prelaunch</span>
-              <span class="store-badge__label">Android beta updates</span>
-            </span>
-          </button>
-        </div>
       </div>
     </footer>
 
     <!-- ─── Scripts ─── -->
     <script>
-      /* ── Waitlist Modal ── */
-      var waitlistPlanningTimer = null;
-      var waitlistLastTrigger = null;
-
-      function clearWaitlistError() {
-        var emailInput = document.getElementById("waitlist-email");
-        var errorNode = document.getElementById("waitlist-error");
-
-        emailInput.setAttribute("aria-invalid", "false");
-        errorNode.textContent = "";
-      }
-
-      function openWaitlist(destination) {
-        var modal = document.getElementById("waitlist-modal");
-        var planning = document.getElementById("modal-planning");
-        var form = document.getElementById("modal-form");
-        var success = document.getElementById("modal-success");
-        var destNote = document.getElementById("modal-destination");
-        var emailInput = document.getElementById("waitlist-email");
-
-        if (waitlistPlanningTimer) {
-          clearTimeout(waitlistPlanningTimer);
-        }
-
-        waitlistLastTrigger = document.activeElement;
-        clearWaitlistError();
-        success.classList.add("hidden");
-        form.classList.add("hidden");
-
-        if (destination) {
-          destNote.textContent = "Planning your trip to: " + destination;
-        } else {
-          destNote.textContent = "";
-        }
-
-        planning.classList.remove("hidden");
-        modal.classList.add("open");
-        document.body.style.overflow = "hidden";
-
-        waitlistPlanningTimer = setTimeout(function () {
-          planning.classList.add("hidden");
-          form.classList.remove("hidden");
-          emailInput.focus();
-          waitlistPlanningTimer = null;
-        }, 1200);
-      }
-
-      function closeWaitlist() {
-        var modal = document.getElementById("waitlist-modal");
-        if (waitlistPlanningTimer) {
-          clearTimeout(waitlistPlanningTimer);
-          waitlistPlanningTimer = null;
-        }
-        modal.classList.remove("open");
-        document.body.style.overflow = "";
-        setTimeout(function () {
-          document.getElementById("modal-form").classList.remove("hidden");
-          document.getElementById("modal-success").classList.add("hidden");
-          document.getElementById("modal-planning").classList.add("hidden");
-          document.getElementById("waitlist-email").value = "";
-          clearWaitlistError();
-          if (waitlistLastTrigger && typeof waitlistLastTrigger.focus === "function") {
-            waitlistLastTrigger.focus();
-          }
-        }, 300);
-      }
-
-      document.getElementById("modal-close-btn").addEventListener("click", closeWaitlist);
-
-      // Close on backdrop click
-      document.getElementById("waitlist-modal").addEventListener("click", function (e) {
-        if (e.target === this) closeWaitlist();
-      });
-
-      // Close on Escape
-      document.addEventListener("keydown", function (e) {
-        if (e.key === "Escape") closeWaitlist();
-      });
-
-      // Submit handler
-      document.getElementById("waitlist-submit").addEventListener("click", function () {
-        var emailInput = document.getElementById("waitlist-email");
-        var errorNode = document.getElementById("waitlist-error");
-        var email = emailInput.value.trim();
-        if (!email || !email.includes("@")) {
-          emailInput.setAttribute("aria-invalid", "true");
-          errorNode.textContent = "Enter a valid email address to join the waitlist.";
-          emailInput.focus();
-          return;
-        }
-        clearWaitlistError();
-        document.getElementById("modal-form").classList.add("hidden");
-        document.getElementById("modal-success").classList.remove("hidden");
-      });
-
-      document.getElementById("waitlist-email").addEventListener("input", clearWaitlistError);
-
-      // Hero search → open modal with destination
-      document.getElementById("hero-search").addEventListener("keydown", function (e) {
-        if (e.key === "Enter" && this.value.trim()) {
-          openWaitlist(this.value.trim());
-        }
-      });
-
-      document.getElementById("nav-search").addEventListener("keydown", function (e) {
-        if (e.key === "Enter" && this.value.trim()) {
-          openWaitlist(this.value.trim());
-        }
-      });
-
+      /* ── Scroll reveal ── */
       if (
         window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
         !("IntersectionObserver" in window)
@@ -1607,7 +992,6 @@
 
           btn.addEventListener("click", function () {
             var isExpanded = btn.getAttribute("aria-expanded") === "true";
-            // Collapse all
             faqs.forEach(function (other) {
               var ob = document.getElementById(other.btn);
               var oa = document.getElementById(other.answer);
@@ -1618,7 +1002,6 @@
                 oa.setAttribute("aria-hidden", "true");
               }
             });
-            // Toggle clicked
             if (!isExpanded) {
               btn.setAttribute("aria-expanded", "true");
               btn.classList.add("is-open");
