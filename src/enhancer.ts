@@ -36,6 +36,16 @@ const gemTemplate = document.getElementById("gemCardTemplate") as HTMLTemplateEl
 
 editButton.addEventListener("click", () => showScreen("input", screenInput, screenResults));
 
+// Pre-fill neighborhood from URL param (e.g. /enhancer?neighborhood=gothic)
+const params = new URLSearchParams(window.location.search);
+const prefill = params.get("neighborhood");
+if (prefill) {
+  const select = document.getElementById("neighborhood") as HTMLSelectElement;
+  if (select && [...select.options].some((o) => o.value === prefill)) {
+    select.value = prefill;
+  }
+}
+
 form.addEventListener("submit", (event: SubmitEvent) => {
   event.preventDefault();
   const result = readForm();
