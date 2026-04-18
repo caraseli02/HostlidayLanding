@@ -1,0 +1,30 @@
+/* ──── Screen transitions (cannot be expressed in Tailwind inline) ──── */
+
+.screen {
+  opacity: 0;
+  transform: translateY(14px);
+  transition:
+    opacity 0.28s ease,
+    transform 0.28s ease;
+}
+
+.screen-active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .screen {
+    transition:
+      opacity 0.28s ease,
+      transform 0.28s ease;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .screen {
+    transition: none;
+    opacity: 1;
+    transform: none;
+  }
+}
