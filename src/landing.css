@@ -130,6 +130,36 @@ p {
   transform: scale(1.05);
 }
 
+.nav-bold__burger {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 4px;
+  z-index: 51;
+}
+
+.nav-bold__burger-line {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background: white;
+  border-radius: 2px;
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.nav-bold__burger[aria-expanded="true"] .nav-bold__burger-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.nav-bold__burger[aria-expanded="true"] .nav-bold__burger-line:nth-child(2) {
+  opacity: 0;
+}
+.nav-bold__burger[aria-expanded="true"] .nav-bold__burger-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
 /* ── Hero — oversized, dramatic ── */
 .hero-bold {
   min-height: 100vh;
@@ -753,8 +783,32 @@ button:focus-visible {
     min-height: 200px;
   }
 
+  .nav-bold__burger {
+    display: flex;
+  }
   .nav-bold__links {
     display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--color-inverse-surface);
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    z-index: 49;
+  }
+  .nav-bold__links.is-open {
+    display: flex;
+  }
+  .nav-bold__links .nav-bold__link {
+    font-size: 1.25rem;
+  }
+  .nav-bold__links .nav-bold__cta {
+    font-size: 1.5rem;
+    padding: 0.75rem 2rem;
   }
 }
 
