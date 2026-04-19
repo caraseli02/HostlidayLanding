@@ -21,6 +21,11 @@ html {
   scroll-behavior: smooth;
   color-scheme: dark;
 }
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
 
 body {
   font-family: "Raleway", sans-serif;
@@ -66,19 +71,6 @@ p {
   line-height: 1.75;
   /* +0.1 from typical 1.65 — light-on-dark needs more breathing room */
   text-wrap: pretty;
-}
-.text-caption {
-  font-size: 0.8rem;
-  line-height: 1.5;
-  letter-spacing: 0.02em;
-}
-.text-label {
-  font-size: 0.8rem;
-  line-height: 1.5;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
-  font-family: "Raleway", sans-serif;
 }
 
 /* ── Editorial section number ── */
@@ -140,6 +132,20 @@ p {
   letter-spacing: 0.08em;
   color: color-mix(in oklch, var(--hostliday-ink) 50%, transparent);
   white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+@media (max-width: 480px) {
+  .editorial-divider-text {
+    display: none;
+  }
+  .editorial-divider {
+    padding: 2rem 1rem;
+  }
+  .editorial-divider::before,
+  .editorial-divider::after {
+    background: color-mix(in oklch, var(--hostliday-primary) 15%, transparent);
+  }
 }
 
 /* ── Section headings left-aligned with decorative number ── */
@@ -267,6 +273,23 @@ button:focus-visible {
   animation: pulse-dot 2s ease-in-out infinite;
 }
 
+/* ── Skip to content (accessibility) ── */
+.skip-link {
+  position: absolute;
+  top: -100%;
+  left: 1rem;
+  z-index: 100;
+  padding: 0.75rem 1.5rem;
+  background: var(--hostliday-primary);
+  color: oklch(0.14 0.025 270);
+  font-weight: 700;
+  border-radius: 0 0 0.5rem 0.5rem;
+  text-decoration: none;
+}
+.skip-link:focus {
+  top: 0;
+}
+
 /* ── Asymmetric "How It Works" 2-column layout ── */
 .how-it-works-grid {
   display: grid;
@@ -280,19 +303,89 @@ button:focus-visible {
   }
 }
 
-/* ── Card size variations for editorial rhythm ── */
-.card-tall {
-  grid-row: span 2;
-}
-.card-short {
-  min-height: 200px;
-}
-
 /* ── Elevated surface for dark theme cards (not glassmorphism) ── */
 .elevated-surface {
-  background: color-mix(in oklch, var(--hostliday-surface) 100%, transparent);
+  background: color-mix(in oklch, oklch(0.20 0.030 266) 100%, transparent);
   border: 1px solid color-mix(in oklch, oklch(0.42 0.025 265) 30%, transparent);
   box-shadow: 0 4px 16px color-mix(in oklch, oklch(0.08 0.02 270) 25%, transparent);
+}
+
+/* ── Mobile hamburger menu ── */
+.mobile-menu-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: none;
+  background: transparent;
+  color: var(--hostliday-ink);
+  cursor: pointer;
+  border-radius: 0.5rem;
+  padding: 0;
+}
+.mobile-menu-btn:hover,
+.mobile-menu-btn:focus-visible {
+  background: color-mix(in oklch, var(--hostliday-ink) 8%, transparent);
+}
+.mobile-menu {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 60;
+  background: color-mix(in oklch, oklch(0.14 0.025 270) 98%, transparent);
+  backdrop-filter: blur(20px);
+  padding: 6rem 2rem 2rem;
+}
+.mobile-menu.is-open {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+.mobile-menu a {
+  display: block;
+  font-family: "Cinzel", serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--hostliday-ink);
+  text-decoration: none;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid color-mix(in oklch, var(--hostliday-primary) 15%, transparent);
+}
+.mobile-menu a:hover,
+.mobile-menu a:focus-visible {
+  color: var(--hostliday-primary);
+}
+.mobile-menu-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  width: 44px;
+  height: 44px;
+  border: none;
+  background: transparent;
+  color: var(--hostliday-ink);
+  cursor: pointer;
+  border-radius: 0.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .mobile-menu-btn {
+    display: none;
+  }
+}
+
+/* ── Featured card min-height on mobile ── */
+@media (max-width: 640px) {
+  .featured-card {
+    min-height: 420px !important;
+  }
 }
 
 /* ── Reduced motion ── */
