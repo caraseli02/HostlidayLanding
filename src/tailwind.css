@@ -74,8 +74,8 @@
   --radius-full: 9999px;
 
   /* ── Fonts ── */
-  --font-display: "Syne", sans-serif;
-  --font-headline: "Nunito", sans-serif;
-  --font-body: "Nunito", sans-serif;
-  --font-label: "Nunito", sans-serif;
+  --font-display: "Young Serif", serif;
+  --font-headline: "Figtree", sans-serif;
+  --font-body: "Figtree", sans-serif;
+  --font-label: "Figtree", sans-serif;
 }

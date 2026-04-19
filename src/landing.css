@@ -20,7 +20,7 @@ html {
 }
 
 body {
-  font-family: "Nunito", sans-serif;
+  font-family: "Figtree", sans-serif;
   background:
     radial-gradient(circle at top, color-mix(in oklch, oklch(0.5033 0.2065 29.23) 6%, transparent), transparent 30%), var(--hostliday-surface);
   color: var(--hostliday-ink);
@@ -34,7 +34,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Syne", sans-serif;
+  font-family: "Young Serif", serif;
   font-weight: 700;
   text-wrap: balance;
 }
