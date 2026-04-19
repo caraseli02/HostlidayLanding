@@ -1,71 +1,73 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════
-   Tailwind v4 theme — shared by landing + enhancer
+   Tailwind v4 theme — Barcelona Nights
+   Variation B: Dark luxury — navy + warm gold
+   Fonts: Cinzel + Raleway
    ═══════════════════════════════════════════ */
 @theme {
   /* ── Colors (OKLCH — perceptually uniform) ── */
 
-  /* Primary — deep red, Barcelona warmth */
-  --color-primary: oklch(0.5033 0.2065 29.23);
-  --color-primary-container: oklch(0.6834 0.2137 8.75);
-  --color-primary-fixed: oklch(0.9185 0.0428 9.00);
-  --color-primary-fixed-dim: oklch(0.8396 0.0909 8.93);
-  --color-inverse-primary: oklch(0.8396 0.0909 8.93);
-  --color-on-primary: oklch(0.9939 0.0030 30);
-  --color-on-primary-container: oklch(0.2993 0.1198 8.81);
-  --color-on-primary-fixed-variant: oklch(0.4181 0.1673 9.02);
+  /* Primary — warm gold/amber, Art Deco warmth */
+  --color-primary: oklch(0.75 0.13 78);
+  --color-primary-container: oklch(0.58 0.10 78);
+  --color-primary-fixed: oklch(0.28 0.04 78);
+  --color-primary-fixed-dim: oklch(0.35 0.06 78);
+  --color-inverse-primary: oklch(0.35 0.06 78);
+  --color-on-primary: oklch(0.14 0.025 270);
+  --color-on-primary-container: oklch(0.92 0.04 78);
+  --color-on-primary-fixed-variant: oklch(0.82 0.08 78);
 
-  /* Secondary — muted purple */
-  --color-secondary: oklch(0.4894 0.0864 297.6);
-  --color-secondary-container: oklch(0.8511 0.0862 299.6);
-  --color-secondary-fixed: oklch(0.9183 0.0477 302.8);
-  --color-secondary-fixed-dim: oklch(0.8356 0.0865 299.5);
-  --color-on-secondary: oklch(0.9939 0.0030 30);
-  --color-on-secondary-container: oklch(0.4607 0.0860 297.7);
-  --color-on-secondary-fixed: oklch(0.2340 0.0893 292.9);
-  --color-on-secondary-fixed-variant: oklch(0.4047 0.0849 296.9);
+  /* Secondary — muted gold, supporting warmth */
+  --color-secondary: oklch(0.62 0.08 75);
+  --color-secondary-container: oklch(0.24 0.04 75);
+  --color-secondary-fixed: oklch(0.32 0.04 75);
+  --color-secondary-fixed-dim: oklch(0.28 0.04 75);
+  --color-on-secondary: oklch(0.14 0.025 270);
+  --color-on-secondary-container: oklch(0.88 0.06 75);
+  --color-on-secondary-fixed: oklch(0.90 0.04 75);
+  --color-on-secondary-fixed-variant: oklch(0.78 0.06 75);
 
-  /* Tertiary — deep blue */
-  --color-tertiary: oklch(0.4768 0.0987 233.1);
-  --color-tertiary-container: oklch(0.6493 0.1287 232.8);
-  --color-tertiary-fixed: oklch(0.9105 0.0493 238.1);
-  --color-tertiary-fixed-dim: oklch(0.8218 0.1053 234.6);
-  --color-on-tertiary: oklch(0.9939 0.0030 30);
-  --color-on-tertiary-container: oklch(0.2799 0.0584 233.8);
-  --color-on-tertiary-fixed: oklch(0.2208 0.0451 232.1);
-  --color-on-tertiary-fixed-variant: oklch(0.3915 0.0803 232.5);
+  /* Tertiary — warm copper, subtle accent */
+  --color-tertiary: oklch(0.55 0.08 55);
+  --color-tertiary-container: oklch(0.25 0.04 55);
+  --color-tertiary-fixed: oklch(0.32 0.04 55);
+  --color-tertiary-fixed-dim: oklch(0.28 0.04 55);
+  --color-on-tertiary: oklch(0.14 0.025 270);
+  --color-on-tertiary-container: oklch(0.88 0.05 55);
+  --color-on-tertiary-fixed: oklch(0.90 0.03 55);
+  --color-on-tertiary-fixed-variant: oklch(0.75 0.06 55);
 
-  /* Error — warm red */
-  --color-error: oklch(0.5060 0.1927 27.70);
-  --color-error-container: oklch(0.9183 0.0418 25.23);
-  --color-on-error: oklch(0.9939 0.0030 30);
-  --color-on-error-container: oklch(0.4171 0.1702 27.38);
+  /* Error — warm rose */
+  --color-error: oklch(0.58 0.18 25);
+  --color-error-container: oklch(0.22 0.06 25);
+  --color-on-error: oklch(0.98 0.005 78);
+  --color-on-error-container: oklch(0.85 0.10 25);
 
-  /* Surface palette — tinted neutrals (hue shifted to primary warmth ~30) */
-  --color-background: oklch(0.9831 0.0080 30);
-  --color-surface: oklch(0.9831 0.0080 30);
-  --color-surface-variant: oklch(0.9143 0.0400 30);
-  --color-surface-container-lowest: oklch(0.9958 0.0030 30);
-  --color-surface-container-low: oklch(0.9666 0.0157 30);
-  --color-surface-container: oklch(0.9474 0.0249 30);
-  --color-surface-container-high: oklch(0.9310 0.0330 30);
-  --color-surface-container-highest: oklch(0.9143 0.0400 30);
-  --color-surface-dim: oklch(0.8875 0.0398 30);
-  --color-surface-tint: oklch(0.5033 0.2065 29.23);
+  /* Surface palette — deep navy tinted toward indigo */
+  --color-background: oklch(0.14 0.025 270);
+  --color-surface: oklch(0.16 0.028 268);
+  --color-surface-variant: oklch(0.20 0.030 266);
+  --color-surface-container-lowest: oklch(0.12 0.022 272);
+  --color-surface-container-low: oklch(0.17 0.028 268);
+  --color-surface-container: oklch(0.19 0.030 267);
+  --color-surface-container-high: oklch(0.21 0.032 266);
+  --color-surface-container-highest: oklch(0.24 0.035 265);
+  --color-surface-dim: oklch(0.12 0.022 272);
+  --color-surface-tint: oklch(0.75 0.13 78);
 
-  /* On-surface — dark warm neutral (tinted, never pure black) */
-  --color-on-surface: oklch(0.2235 0.0100 30);
-  --color-on-surface-variant: oklch(0.7131 0.0100 30);
-  --color-on-background: oklch(0.2235 0.0100 30);
+  /* On-surface — warm ivory (NOT pure white) */
+  --color-on-surface: oklch(0.92 0.01 78);
+  --color-on-surface-variant: oklch(0.68 0.015 78);
+  --color-on-background: oklch(0.92 0.01 78);
 
-  /* Outline — warm-tinted gray */
-  --color-outline: oklch(0.5725 0.0386 7.17);
-  --color-outline-variant: oklch(0.8328 0.0403 10.21);
+  /* Outline — gold-tinted, never pure gray */
+  --color-outline: oklch(0.42 0.025 265);
+  --color-outline-variant: oklch(0.28 0.020 268);
 
   /* Inverse */
-  --color-inverse-surface: oklch(0.3087 0.0100 30);
-  --color-inverse-on-surface: oklch(0.9570 0.0203 30);
+  --color-inverse-surface: oklch(0.90 0.015 78);
+  --color-inverse-on-surface: oklch(0.16 0.028 268);
 
   /* ── Border Radius ── */
   --radius-DEFAULT: 1rem;
@@ -74,8 +76,8 @@
   --radius-full: 9999px;
 
   /* ── Fonts ── */
-  --font-display: "Young Serif", serif;
-  --font-headline: "Figtree", sans-serif;
-  --font-body: "Figtree", sans-serif;
-  --font-label: "Figtree", sans-serif;
+  --font-display: "Cinzel", serif;
+  --font-headline: "Cinzel", serif;
+  --font-body: "Raleway", sans-serif;
+  --font-label: "Raleway", sans-serif;
 }

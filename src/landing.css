@@ -1,14 +1,16 @@
 @import "./tailwind.css";
 
 /* ═══════════════════════════════════════════
-   Custom CSS (extracted from inline <style>)
+   Custom CSS — Barcelona Nights (Variation B)
+   Cinzel + Raleway
+   Dark luxury: deep navy + warm gold
    ═══════════════════════════════════════════ */
 :root {
-  --hostliday-ink: oklch(0.2235 0.0100 30);
-  --hostliday-red: oklch(0.5033 0.2065 29.23);
-  --hostliday-surface: oklch(0.9831 0.0080 30);
-  --hostliday-outline: color-mix(in oklch, oklch(0.8328 0.0403 10.21) 50%, transparent);
-  --hostliday-shadow: 0 24px 64px color-mix(in oklch, oklch(0.2235 0.0100 30) 16%, transparent);
+  --hostliday-ink: oklch(0.92 0.01 78);
+  --hostliday-primary: oklch(0.75 0.13 78);
+  --hostliday-surface: oklch(0.16 0.028 268);
+  --hostliday-outline: color-mix(in oklch, oklch(0.42 0.025 265) 50%, transparent);
+  --hostliday-shadow: 0 24px 64px color-mix(in oklch, oklch(0.08 0.02 270) 40%, transparent);
   --duration-fast: 160ms;
   --duration-medium: 260ms;
   --duration-slow: 520ms;
@@ -17,12 +19,12 @@
 
 html {
   scroll-behavior: smooth;
+  color-scheme: dark;
 }
 
 body {
-  font-family: "Figtree", sans-serif;
-  background:
-    radial-gradient(circle at top, color-mix(in oklch, oklch(0.5033 0.2065 29.23) 6%, transparent), transparent 30%), var(--hostliday-surface);
+  font-family: "Raleway", sans-serif;
+  background: var(--hostliday-surface);
   color: var(--hostliday-ink);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
@@ -34,46 +36,117 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Young Serif", serif;
+  font-family: "Cinzel", serif;
   font-weight: 700;
   text-wrap: balance;
 }
 
-/* ── Modular type scale (1.25 ratio) ── */
+/* ── Modular type scale — dark luxury, high contrast ── */
 h1 {
-  font-size: clamp(3rem, 5vw + 1rem, 5rem);
-  line-height: 0.95;
-  letter-spacing: -0.02em;
+  font-size: clamp(2.8rem, 5vw + 1rem, 5rem);
+  line-height: 1.02;
+  letter-spacing: -0.01em;
+  font-weight: 700;
 }
 h2 {
-  font-size: clamp(2rem, 3vw + 0.5rem, 3.125rem);
-  line-height: 1.1;
-  letter-spacing: -0.01em;
+  font-size: clamp(1.8rem, 3vw + 0.5rem, 2.75rem);
+  line-height: 1.12;
+  letter-spacing: 0.01em;
 }
 h3 {
-  font-size: clamp(1.25rem, 1.5vw + 0.5rem, 1.5625rem);
-  line-height: 1.2;
+  font-size: clamp(1.15rem, 1.5vw + 0.5rem, 1.4rem);
+  line-height: 1.25;
 }
 h4 {
-  font-size: 1.25rem;
-  line-height: 1.25;
+  font-size: 1.15rem;
+  line-height: 1.3;
 }
 p {
   font-size: 1rem;
-  line-height: 1.6;
+  line-height: 1.75;
+  /* +0.1 from typical 1.65 — light-on-dark needs more breathing room */
   text-wrap: pretty;
 }
 .text-caption {
   font-size: 0.8rem;
-  line-height: 1.4;
+  line-height: 1.5;
   letter-spacing: 0.02em;
 }
 .text-label {
-  font-size: 0.875rem;
-  line-height: 1.4;
+  font-size: 0.8rem;
+  line-height: 1.5;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.12em;
   text-transform: uppercase;
+  font-family: "Raleway", sans-serif;
+}
+
+/* ── Editorial section number ── */
+.section-number {
+  font-family: "Cinzel", serif;
+  font-size: clamp(3rem, 5vw, 5rem);
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.02em;
+  color: color-mix(in oklch, var(--hostliday-primary) 22%, transparent);
+  user-select: none;
+}
+
+/* ── Pull quote ── */
+.pull-quote {
+  font-family: "Cinzel", serif;
+  font-size: clamp(1.15rem, 1.8vw, 1.45rem);
+  font-style: italic;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--hostliday-ink);
+  border-left: none;
+  position: relative;
+  padding-left: 1.5rem;
+}
+.pull-quote::before {
+  content: "\201C";
+  position: absolute;
+  left: 0;
+  top: -0.15em;
+  font-size: 2.5em;
+  line-height: 1;
+  color: color-mix(in oklch, var(--hostliday-primary) 50%, transparent);
+  font-style: normal;
+  font-weight: 700;
+}
+
+/* ── Warm gold divider ── */
+.editorial-divider {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 3rem 2rem;
+}
+.editorial-divider::before,
+.editorial-divider::after {
+  content: "";
+  flex: 1;
+  height: 1px;
+  background: color-mix(in oklch, var(--hostliday-primary) 25%, transparent);
+}
+.editorial-divider-text {
+  font-family: "Cinzel", serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: 0.85rem;
+  letter-spacing: 0.08em;
+  color: color-mix(in oklch, var(--hostliday-ink) 50%, transparent);
+  white-space: nowrap;
+}
+
+/* ── Section headings left-aligned with decorative number ── */
+.editorial-heading {
+  display: flex;
+  align-items: baseline;
+  gap: 1rem;
 }
 
 #planner,
@@ -84,7 +157,7 @@ p {
 
 a:focus-visible,
 button:focus-visible {
-  outline: 2px solid var(--hostliday-red);
+  outline: 2px solid var(--hostliday-primary);
   outline-offset: 3px;
   border-radius: 6px;
 }
@@ -101,8 +174,8 @@ button:focus-visible {
 }
 
 .motion-surface:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 24px 40px color-mix(in oklch, oklch(0.2235 0.0100 30) 12%, transparent);
+  transform: translateY(-5px);
+  box-shadow: 0 20px 40px color-mix(in oklch, oklch(0.08 0.02 270) 30%, transparent);
 }
 
 .cta-lift {
@@ -167,6 +240,18 @@ button:focus-visible {
   transform: scale(1.05);
 }
 
+/* ── Featured card gold border accent ── */
+.featured-card {
+  border: 2px solid color-mix(in oklch, var(--hostliday-primary) 45%, transparent);
+  box-shadow:
+    0 0 0 1px color-mix(in oklch, var(--hostliday-primary) 15%, transparent),
+    var(--hostliday-shadow);
+}
+
+.featured-card:hover {
+  border-color: color-mix(in oklch, var(--hostliday-primary) 60%, transparent);
+}
+
 /* ── Trust indicator ── */
 @keyframes pulse-dot {
   0%,
@@ -180,6 +265,34 @@ button:focus-visible {
 
 .trust-pulse {
   animation: pulse-dot 2s ease-in-out infinite;
+}
+
+/* ── Asymmetric "How It Works" 2-column layout ── */
+.how-it-works-grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+@media (max-width: 768px) {
+  .how-it-works-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ── Card size variations for editorial rhythm ── */
+.card-tall {
+  grid-row: span 2;
+}
+.card-short {
+  min-height: 200px;
+}
+
+/* ── Elevated surface for dark theme cards (not glassmorphism) ── */
+.elevated-surface {
+  background: color-mix(in oklch, var(--hostliday-surface) 100%, transparent);
+  border: 1px solid color-mix(in oklch, oklch(0.42 0.025 265) 30%, transparent);
+  box-shadow: 0 4px 16px color-mix(in oklch, oklch(0.08 0.02 270) 25%, transparent);
 }
 
 /* ── Reduced motion ── */

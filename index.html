@@ -1,5 +1,5 @@
 <!doctype html>
-<html class="light" lang="en" style="color-scheme: light">
+<html class="dark" lang="en" style="color-scheme: dark">
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link
-      href="https://fonts.googleapis.com/css2?family=Young+Serif@400&family=Figtree:wght@400;500;600;700&display=swap"
+      href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Raleway:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap"
       rel="stylesheet"
     />
     <link
@@ -30,27 +30,27 @@
       aria-label="Main navigation"
       class="fixed top-0 w-full z-50"
       style="
-        background: color-mix(in oklch, oklch(0.9831 0.0080 30) 88%, transparent);
+        background: color-mix(in oklch, oklch(0.14 0.025 270) 92%, transparent);
         backdrop-filter: blur(16px);
-        border-bottom: 1px solid color-mix(in oklch, oklch(0.8328 0.0403 10.21) 15%, transparent);
+        border-bottom: 1px solid color-mix(in oklch, oklch(0.42 0.025 265) 20%, transparent);
       "
     >
       <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
-        <div class="text-2xl font-bold tracking-tighter text-on-surface font-display">
+        <div class="text-2xl font-bold tracking-tight text-on-surface font-display">
           Hostliday
         </div>
-        <div class="hidden md:flex gap-8 items-center font-medium tracking-tight">
+        <div class="hidden md:flex gap-8 items-center font-medium tracking-wide" style="font-family: 'Raleway', sans-serif">
           <a
-            class="nav-link text-on-surface/80 hover:text-primary transition-colors"
+            class="nav-link text-on-surface/70 hover:text-primary transition-colors"
             href="#neighborhoods"
             >Neighborhoods</a
           >
           <a
-            class="nav-link text-on-surface/80 hover:text-primary transition-colors"
+            class="nav-link text-on-surface/70 hover:text-primary transition-colors"
             href="#planner"
             >How It Works</a
           >
-          <a class="nav-link text-on-surface/80 hover:text-primary transition-colors" href="#faq"
+          <a class="nav-link text-on-surface/70 hover:text-primary transition-colors" href="#faq"
             >FAQ</a
           >
         </div>
@@ -63,7 +63,7 @@
     </nav>
 
     <main id="main" style="scroll-margin-top: 80px">
-      <!-- HERO — Cinematic Barcelona -->
+      <!-- HERO — Cinematic Barcelona (dark luxury) -->
       <section
         class="relative min-h-[100svh] md:min-h-[94vh] pt-16 md:pt-0 overflow-hidden"
         aria-label="Hero"
@@ -77,11 +77,11 @@
           src="https://images.unsplash.com/photo-1583422409516-2895a77efded?w=1920&h=1080&fit=crop&q=85"
         />
         <div
-          class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/35 to-black/10"
+          class="absolute inset-0 bg-gradient-to-t from-[oklch(0.14_0.025_270)]/90 via-[oklch(0.14_0.025_270)]/40 to-[oklch(0.14_0.025_270)]/15"
           aria-hidden="true"
         ></div>
         <div
-          class="absolute inset-0 bg-gradient-to-r from-black/30 to-transparent"
+          class="absolute inset-0 bg-gradient-to-r from-[oklch(0.14_0.025_270)]/35 to-transparent"
           aria-hidden="true"
         ></div>
 
@@ -92,16 +92,16 @@
             <div class="max-w-3xl">
               <div data-hero-reveal style="--reveal-delay: 70ms" class="mb-6 md:mb-8">
                 <div
-                  class="inline-flex items-center gap-3 bg-white/15 backdrop-blur-md border border-white/20 rounded-full px-5 py-2.5"
+                  class="inline-flex items-center gap-3 bg-surface/60 border border-outline-variant/40 rounded-full px-5 py-2.5"
                 >
                   <span
-                    class="w-2.5 h-2.5 rounded-full bg-green-400 trust-pulse"
+                    class="w-2.5 h-2.5 rounded-full bg-[oklch(0.65_0.15_150)] trust-pulse"
                     aria-hidden="true"
                   ></span>
-                  <span class="text-sm font-semibold text-white/80"
+                  <span class="text-sm font-semibold text-on-surface/80" style="font-family: 'Raleway', sans-serif"
                     >Hotel data verified today in Barcelona</span
                   >
-                  <span class="material-symbols-outlined text-green-400 text-lg" aria-hidden="true"
+                  <span class="material-symbols-outlined text-[oklch(0.65_0.15_150)] text-lg" aria-hidden="true"
                     >verified</span
                   >
                 </div>
@@ -109,14 +109,14 @@
               <h1
                 data-hero-reveal
                 style="--reveal-delay: 150ms"
-                class="font-extrabold tracking-[-0.02em] mb-6 md:mb-8 leading-[0.95] text-white max-w-[12ch]"
+                class="font-bold tracking-tight mb-6 md:mb-8 leading-[1.02] text-on-surface max-w-[14ch]"
               >
                 A Barcelona trip that actually fits how you&nbsp;travel
               </h1>
               <p
                 data-hero-reveal
                 style="--reveal-delay: 230ms"
-                class="max-w-xl text-white/75 text-lg md:text-xl leading-relaxed mb-8 md:mb-10"
+                class="max-w-xl text-on-surface/70 text-lg md:text-xl leading-relaxed mb-8 md:mb-10"
               >
                 Every hotel recommendation comes with a source, a freshness check, and a reason why.
                 No more guessing.
@@ -128,14 +128,14 @@
               >
                 <a
                   href="/enhancer"
-                  class="cta-lift cta-press bg-primary text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-primary/90 inline-flex items-center justify-center gap-2 shadow-xl shadow-primary/30"
+                  class="cta-lift cta-press bg-primary text-on-primary px-8 py-4 rounded-full font-bold text-lg hover:brightness-110 inline-flex items-center justify-center gap-2 shadow-xl shadow-primary/25"
                 >
                   Plan your Barcelona trip
                   <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
                 </a>
                 <a
                   href="#planner"
-                  class="cta-lift bg-white/15 backdrop-blur-md text-white border border-white/30 px-8 py-4 rounded-full font-bold text-lg hover:bg-white/25 inline-flex items-center justify-center gap-2"
+                  class="cta-lift text-primary border border-primary/40 px-8 py-4 rounded-full font-bold text-lg hover:bg-primary/10 inline-flex items-center justify-center gap-2"
                 >
                   See how it works
                 </a>
@@ -143,7 +143,7 @@
               <div
                 data-hero-reveal
                 style="--reveal-delay: 390ms"
-                class="mt-10 flex flex-wrap gap-6 text-sm text-white/55 font-medium"
+                class="mt-10 flex flex-wrap gap-6 text-sm text-on-surface/50 font-medium"
               >
                 <div class="flex items-center gap-2">
                   <span
@@ -180,24 +180,24 @@
               class="hidden lg:block"
             >
               <div
-                class="p-6 border border-white/15 rounded-[2rem] bg-gradient-to-b from-white/95 to-white/85 backdrop-blur-sm"
-                style="color: var(--hostliday-ink); box-shadow: var(--hostliday-shadow)"
+                class="p-6 rounded-[2rem] elevated-surface"
+                style="color: var(--hostliday-ink)"
               >
                 <div
-                  class="flex items-baseline justify-between gap-4 pb-4 border-b border-on-surface/10"
+                  class="flex items-baseline justify-between gap-4 pb-4 border-b border-outline-variant/30"
                 >
                   <strong
-                    class="text-xs font-extrabold tracking-[0.18em] uppercase"
-                    style="font-family: 'Figtree', sans-serif"
+                    class="text-xs font-bold tracking-[0.18em] uppercase"
+                    style="font-family: 'Raleway', sans-serif"
                     >Sample trip brief</strong
                   >
-                  <span class="text-xs text-on-surface/50 font-bold tracking-wider uppercase"
+                  <span class="text-xs text-on-surface/40 font-bold tracking-wider uppercase" style="font-family: 'Raleway', sans-serif"
                     >Barcelona / 5 nights</span
                   >
                 </div>
                 <span
-                  class="block mt-5 text-[clamp(1.6rem,2.5vw,2.2rem)] font-normal leading-[1] tracking-tight"
-                  style="font-family: 'Young Serif', serif"
+                  class="block mt-5 text-[clamp(1.4rem,2.2vw,1.9rem)] font-normal leading-[1.1] tracking-tight"
+                  style="font-family: 'Cinzel', serif; font-weight: 500; font-style: italic"
                   >Slower mornings. Longer tables. One clean route through the city.</span
                 >
                 <p class="mt-4 max-w-xs text-sm text-on-surface/60 leading-relaxed">
@@ -206,15 +206,15 @@
                 </p>
                 <div class="grid gap-3 mt-6">
                   <div
-                    class="grid grid-cols-[4rem_minmax(0,1fr)] gap-4 pt-3 border-t border-on-surface/8"
+                    class="grid grid-cols-[4rem_minmax(0,1fr)] gap-4 pt-3 border-t border-outline-variant/20"
                   >
-                    <div class="text-xs font-bold tracking-wider uppercase text-on-surface/40">
+                    <div class="text-xs font-bold tracking-wider uppercase text-on-surface/40" style="font-family: 'Raleway', sans-serif">
                       Day 1
                     </div>
                     <div>
                       <h3
                         class="font-bold text-sm"
-                        style="font-family: 'Figtree', sans-serif"
+                        style="font-family: 'Raleway', sans-serif"
                       >
                         Gothic Quarter arrival
                       </h3>
@@ -225,15 +225,15 @@
                     </div>
                   </div>
                   <div
-                    class="grid grid-cols-[4rem_minmax(0,1fr)] gap-4 pt-3 border-t border-on-surface/8"
+                    class="grid grid-cols-[4rem_minmax(0,1fr)] gap-4 pt-3 border-t border-outline-variant/20"
                   >
-                    <div class="text-xs font-bold tracking-wider uppercase text-on-surface/40">
+                    <div class="text-xs font-bold tracking-wider uppercase text-on-surface/40" style="font-family: 'Raleway', sans-serif">
                       Day 3
                     </div>
                     <div>
                       <h3
                         class="font-bold text-sm"
-                        style="font-family: 'Figtree', sans-serif"
+                        style="font-family: 'Raleway', sans-serif"
                       >
                         Gràcia & Park Güell
                       </h3>
@@ -244,15 +244,15 @@
                     </div>
                   </div>
                   <div
-                    class="grid grid-cols-[4rem_minmax(0,1fr)] gap-4 pt-3 border-t border-on-surface/8"
+                    class="grid grid-cols-[4rem_minmax(0,1fr)] gap-4 pt-3 border-t border-outline-variant/20"
                   >
-                    <div class="text-xs font-bold tracking-wider uppercase text-on-surface/40">
+                    <div class="text-xs font-bold tracking-wider uppercase text-on-surface/40" style="font-family: 'Raleway', sans-serif">
                       Day 5
                     </div>
                     <div>
                       <h3
                         class="font-bold text-sm"
-                        style="font-family: 'Figtree', sans-serif"
+                        style="font-family: 'Raleway', sans-serif"
                       >
                         Barceloneta sunset
                       </h3>
@@ -263,35 +263,45 @@
                   </div>
                 </div>
                 <div
-                  class="flex items-center justify-between gap-4 mt-6 pt-4 border-t border-on-surface/10 text-sm text-on-surface/50"
+                  class="flex items-center justify-between gap-4 mt-6 pt-4 border-t border-outline-variant/30 text-sm text-on-surface/50"
                 >
                   <span>Stays, pacing, and local notes in one brief.</span>
-                  <strong class="text-primary font-extrabold">Editor's cut</strong>
+                  <strong class="text-primary font-bold italic" style="font-family: 'Cinzel', serif">Editor's cut</strong>
                 </div>
               </div>
             </aside>
           </div>
         </div>
       </section>
+
+      <!-- EDITORIAL DIVIDER -->
+      <div class="editorial-divider" aria-hidden="true">
+        <span class="editorial-divider-text">Every neighborhood, a different chapter</span>
+      </div>
+
       <!-- NEIGHBORHOODS -->
-      <section id="neighborhoods" class="pt-24 pb-16 px-8 max-w-7xl mx-auto scroll-mt-32">
-        <div class="max-w-xl mb-16" data-reveal>
-          <h2 class="font-normal tracking-tight mb-4">
-            Explore Barcelona by neighborhood
-          </h2>
-          <p class="text-on-surface/60 leading-relaxed">
+      <section id="neighborhoods" class="pt-8 pb-16 px-8 max-w-7xl mx-auto scroll-mt-32">
+        <!-- Left-aligned heading with decorative number -->
+        <div class="mb-16" data-reveal>
+          <div class="editorial-heading items-baseline gap-4 mb-4">
+            <span class="section-number" aria-hidden="true">01</span>
+            <h2 class="font-normal tracking-wide">
+              Explore Barcelona by neighborhood
+            </h2>
+          </div>
+          <p class="text-on-surface/60 leading-relaxed max-w-xl">
             Each area has its own character. We match you to the right one based on how you like to
             travel.
           </p>
         </div>
 
-        <!-- Asymmetric card grid -->
+        <!-- Asymmetric card grid with varied sizes -->
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 auto-rows-[280px]">
-          <!-- FEATURED: Gothic Quarter — spans 2 cols, 2 rows -->
+          <!-- FEATURED: Gothic Quarter — spans 2 cols, 2 rows, gold border -->
           <a
             href="/enhancer?neighborhood=gothic"
             data-reveal
-            class="neighborhood-card motion-surface relative rounded-2xl overflow-hidden group sm:col-span-2 sm:row-span-2 block"
+            class="neighborhood-card motion-surface featured-card relative rounded-2xl overflow-hidden group sm:col-span-2 sm:row-span-2 block"
           >
             <img
               class="w-full h-full object-cover"
@@ -300,50 +310,56 @@
               src="https://images.unsplash.com/photo-1583422409516-2895a77efded?w=800&h=600&fit=crop&q=80"
             />
             <div
-              class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-on-surface/20 to-transparent"
+              class="absolute inset-0 bg-gradient-to-t from-[oklch(0.14_0.025_270)]/85 via-[oklch(0.14_0.025_270)]/25 to-transparent"
               aria-hidden="true"
             ></div>
             <div class="absolute bottom-8 left-8 right-8">
-              <span class="text-white/60 font-bold uppercase tracking-widest text-[10px] block mb-2"
+              <span class="text-primary/70 font-bold uppercase tracking-widest text-[10px] block mb-2" style="font-family: 'Raleway', sans-serif"
                 >Featured · Medieval heart</span
               >
-              <h3 class="text-3xl font-bold text-white mb-2">Gothic Quarter</h3>
-              <p class="text-white/70 text-sm max-w-xs leading-relaxed">
-                Winding streets, hidden plazas, and Roman ruins beneath a modern city. The oldest
-                neighborhood in Barcelona — where every alleyway holds a story.
+              <h3 class="text-3xl font-bold text-on-surface mb-3" style="font-family: 'Cinzel', serif">Gothic Quarter</h3>
+              <!-- Pull quote inside featured card -->
+              <p class="pull-quote text-on-surface/80 mb-3 text-sm leading-relaxed" style="font-family: 'Cinzel', serif; padding-left: 1rem;">
+                Where every alleyway holds a story — Roman walls beneath a modern city.
               </p>
-              <span class="inline-flex items-center gap-2 mt-4 text-white/80 text-sm font-semibold">
+              <p class="text-on-surface/65 text-sm max-w-xs leading-relaxed">
+                Winding streets, hidden plazas, and 2,000 years of history compressed into the
+                oldest neighborhood in Barcelona.
+              </p>
+              <span class="inline-flex items-center gap-2 mt-4 text-primary text-sm font-semibold" style="font-family: 'Raleway', sans-serif">
                 Explore
                 <span class="material-symbols-outlined text-base" aria-hidden="true">arrow_forward</span>
               </span>
             </div>
           </a>
 
-          <!-- Row 1, cols 3-4 -->
+          <!-- Row 1, col 3 — tall card -->
           <a
             href="/enhancer?neighborhood=eixample"
             data-reveal
             style="--reveal-delay: 70ms"
-            class="neighborhood-card motion-surface relative rounded-2xl overflow-hidden group block"
+            class="neighborhood-card motion-surface relative rounded-2xl overflow-hidden group block sm:row-span-2"
           >
             <img
               class="w-full h-full object-cover"
               loading="lazy"
               alt="Modernist architecture on Passeig de Gràcia"
-              src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=600&h=400&fit=crop&q=80"
+              src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=600&h=800&fit=crop&q=80"
             />
             <div
-              class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent"
+              class="absolute inset-0 bg-gradient-to-t from-[oklch(0.14_0.025_270)]/85 via-transparent to-transparent"
               aria-hidden="true"
             ></div>
             <div class="absolute bottom-6 left-6 right-6">
-              <span class="text-white/60 font-bold uppercase tracking-widest text-[10px] block mb-1"
+              <span class="text-primary/60 font-bold uppercase tracking-widest text-[10px] block mb-1" style="font-family: 'Raleway', sans-serif"
                 >Modernist grid</span
               >
-              <h3 class="text-xl font-bold text-white mb-1">Eixample</h3>
-              <p class="text-white/70 text-sm">Gaudí masterpieces, upscale dining, grid layout</p>
+              <h3 class="text-xl font-bold text-on-surface mb-1" style="font-family: 'Cinzel', serif">Eixample</h3>
+              <p class="text-on-surface/65 text-sm">Gaudí masterpieces, upscale dining, and the grid that changed Barcelona forever.</p>
             </div>
           </a>
+
+          <!-- Row 1, col 4 — short -->
           <a
             href="/enhancer?neighborhood=barceloneta"
             data-reveal
@@ -357,15 +373,15 @@
               src="https://images.unsplash.com/photo-1590758351375-6a95b47f98d3?w=600&h=400&fit=crop&q=80"
             />
             <div
-              class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent"
+              class="absolute inset-0 bg-gradient-to-t from-[oklch(0.14_0.025_270)]/85 via-transparent to-transparent"
               aria-hidden="true"
             ></div>
             <div class="absolute bottom-6 left-6 right-6">
-              <span class="text-white/60 font-bold uppercase tracking-widest text-[10px] block mb-1"
+              <span class="text-primary/60 font-bold uppercase tracking-widest text-[10px] block mb-1" style="font-family: 'Raleway', sans-serif"
                 >Beach & seafood</span
               >
-              <h3 class="text-xl font-bold text-white mb-1">Barceloneta</h3>
-              <p class="text-white/70 text-sm">Sandy beach, fresh seafood, seaside promenade</p>
+              <h3 class="text-xl font-bold text-on-surface mb-1" style="font-family: 'Cinzel', serif">Barceloneta</h3>
+              <p class="text-on-surface/65 text-sm">Sandy beach, fresh seafood, seaside promenade</p>
             </div>
           </a>
 
@@ -383,15 +399,15 @@
               src="https://images.unsplash.com/photo-1564221710304-0b37c8b9d729?w=600&h=400&fit=crop&q=80"
             />
             <div
-              class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent"
+              class="absolute inset-0 bg-gradient-to-t from-[oklch(0.14_0.025_270)]/85 via-transparent to-transparent"
               aria-hidden="true"
             ></div>
             <div class="absolute bottom-6 left-6 right-6">
-              <span class="text-white/60 font-bold uppercase tracking-widest text-[10px] block mb-1"
+              <span class="text-primary/60 font-bold uppercase tracking-widest text-[10px] block mb-1" style="font-family: 'Raleway', sans-serif"
                 >Village vibes</span
               >
-              <h3 class="text-xl font-bold text-white mb-1">Gràcia</h3>
-              <p class="text-white/70 text-sm">Plaza life, indie shops, local atmosphere</p>
+              <h3 class="text-xl font-bold text-on-surface mb-1" style="font-family: 'Cinzel', serif">Gràcia</h3>
+              <p class="text-on-surface/65 text-sm">Plaza life, indie shops, local atmosphere</p>
             </div>
           </a>
           <a
@@ -407,15 +423,15 @@
               src="https://images.unsplash.com/photo-1562883676-8c7feb83f09b?w=600&h=400&fit=crop&q=80"
             />
             <div
-              class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent"
+              class="absolute inset-0 bg-gradient-to-t from-[oklch(0.14_0.025_270)]/85 via-transparent to-transparent"
               aria-hidden="true"
             ></div>
             <div class="absolute bottom-6 left-6 right-6">
-              <span class="text-white/60 font-bold uppercase tracking-widest text-[10px] block mb-1"
+              <span class="text-primary/60 font-bold uppercase tracking-widest text-[10px] block mb-1" style="font-family: 'Raleway', sans-serif"
                 >Creative quarter</span
               >
-              <h3 class="text-xl font-bold text-white mb-1">El Born</h3>
-              <p class="text-white/70 text-sm">Art galleries, cocktail bars, Santa Maria del Mar</p>
+              <h3 class="text-xl font-bold text-on-surface mb-1" style="font-family: 'Cinzel', serif">El Born</h3>
+              <p class="text-on-surface/65 text-sm">Art galleries, cocktail bars, Santa Maria del Mar</p>
             </div>
           </a>
 
@@ -423,20 +439,20 @@
           <div
             data-reveal
             style="--reveal-delay: 350ms"
-            class="sm:col-span-2 flex items-center rounded-2xl bg-surface-container-low p-8 md:p-10"
+            class="sm:col-span-2 flex items-center rounded-2xl elevated-surface p-8 md:p-10"
           >
             <blockquote class="max-w-md">
-              <p class="text-lg md:text-xl font-bold text-on-surface leading-snug mb-3">
+              <p class="text-lg md:text-xl font-bold text-on-surface leading-snug mb-3" style="font-family: 'Cinzel', serif; font-style: italic">
                 "We narrowed it to seven neighborhoods — because seven is enough when each one is
                 genuinely different."
               </p>
-              <cite class="text-sm text-on-surface/50 not-italic">
+              <cite class="text-sm text-on-surface/45 not-italic" style="font-family: 'Raleway', sans-serif">
                 — Hostliday curation team, Barcelona
               </cite>
             </blockquote>
           </div>
 
-          <!-- Row 3, cols 3-4 -->
+          <!-- Row 3, cols 3-4 — varied heights -->
           <a
             href="/enhancer?neighborhood=raval"
             data-reveal
@@ -450,15 +466,15 @@
               src="https://images.unsplash.com/photo-1523531294919-4bcd7c65e216?w=600&h=400&fit=crop&q=80"
             />
             <div
-              class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent"
+              class="absolute inset-0 bg-gradient-to-t from-[oklch(0.14_0.025_270)]/85 via-transparent to-transparent"
               aria-hidden="true"
             ></div>
             <div class="absolute bottom-6 left-6 right-6">
-              <span class="text-white/60 font-bold uppercase tracking-widest text-[10px] block mb-1"
+              <span class="text-primary/60 font-bold uppercase tracking-widest text-[10px] block mb-1" style="font-family: 'Raleway', sans-serif"
                 >Raw & real</span
               >
-              <h3 class="text-xl font-bold text-white mb-1">El Raval</h3>
-              <p class="text-white/70 text-sm">Street art, global food, MACBA museum</p>
+              <h3 class="text-xl font-bold text-on-surface mb-1" style="font-family: 'Cinzel', serif">El Raval</h3>
+              <p class="text-on-surface/65 text-sm">Street art, global food, MACBA museum</p>
             </div>
           </a>
           <a
@@ -474,15 +490,15 @@
               src="https://images.unsplash.com/photo-1560969184-10fe8719e047?w=600&h=400&fit=crop&q=80"
             />
             <div
-              class="absolute inset-0 bg-gradient-to-t from-on-surface/80 via-transparent to-transparent"
+              class="absolute inset-0 bg-gradient-to-t from-[oklch(0.14_0.025_270)]/85 via-transparent to-transparent"
               aria-hidden="true"
             ></div>
             <div class="absolute bottom-6 left-6 right-6">
-              <span class="text-white/60 font-bold uppercase tracking-widest text-[10px] block mb-1"
+              <span class="text-primary/60 font-bold uppercase tracking-widest text-[10px] block mb-1" style="font-family: 'Raleway', sans-serif"
                 >Tech & creative</span
               >
-              <h3 class="text-xl font-bold text-white mb-1">Poblenou</h3>
-              <p class="text-white/70 text-sm">Converted factories, beach proximity, startup hub</p>
+              <h3 class="text-xl font-bold text-on-surface mb-1" style="font-family: 'Cinzel', serif">Poblenou</h3>
+              <p class="text-on-surface/65 text-sm">Converted factories, beach proximity, startup hub</p>
             </div>
           </a>
         </div>
@@ -491,7 +507,7 @@
         <div data-reveal class="mt-12 flex items-center gap-6">
           <a
             href="/enhancer"
-            class="cta-lift cta-press bg-primary text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-primary/90 inline-flex items-center gap-2 shadow-xl shadow-primary/20"
+            class="cta-lift cta-press bg-primary text-on-primary px-8 py-4 rounded-full font-bold text-lg hover:brightness-110 inline-flex items-center gap-2 shadow-xl shadow-primary/20"
           >
             Start planning
             <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
@@ -500,110 +516,110 @@
         </div>
       </section>
 
-      <!-- HOW IT WORKS -->
+      <!-- EDITORIAL DIVIDER -->
+      <div class="editorial-divider" aria-hidden="true">
+        <span class="editorial-divider-text">Verified data, not vibes</span>
+      </div>
+
+      <!-- HOW IT WORKS — asymmetric 2-column layout -->
       <section id="planner" class="py-32 bg-surface-container-low scroll-mt-32">
         <div class="max-w-7xl mx-auto px-8">
-          <div class="max-w-xl mb-16" data-reveal>
-            <h2 class="font-normal tracking-tight mb-4">
-              How Hostliday is different
-            </h2>
-            <p class="text-on-surface/70 text-lg leading-relaxed">
+          <!-- Left-aligned heading with decorative number -->
+          <div class="mb-16" data-reveal>
+            <div class="editorial-heading items-baseline gap-4 mb-4">
+              <span class="section-number" aria-hidden="true">02</span>
+              <h2 class="font-normal tracking-wide">
+                How Hostliday is different
+              </h2>
+            </div>
+            <p class="text-on-surface/65 text-lg leading-relaxed max-w-xl">
               We don't just suggest hotels. We tell you <em>why</em> — with sources you can verify
               yourself.
             </p>
           </div>
-          <div class="grid md:grid-cols-3 gap-12">
-            <div data-reveal class="flex flex-col gap-4">
-              <div
-                class="w-14 h-14 shrink-0 rounded-2xl bg-primary/10 flex items-center justify-center"
-                aria-hidden="true"
-              >
-                <span class="material-symbols-outlined text-primary text-3xl">verified</span>
+
+          <!-- Asymmetric 2-column: features left, example right -->
+          <div class="how-it-works-grid">
+            <div class="grid gap-10">
+              <div data-reveal class="flex flex-col gap-4">
+                <div>
+                  <h3 class="text-xl font-bold mb-2">Every hotel has a source</h3>
+                  <p class="text-on-surface/55">
+                    We show you where each recommendation comes from — with a direct link to verify it
+                    yourself. No black-box picks.
+                  </p>
+                </div>
               </div>
-              <div>
-                <h3 class="text-xl font-bold mb-2">Every hotel has a source</h3>
-                <p class="text-on-surface/60">
-                  We show you where each recommendation comes from — with a direct link to verify it
-                  yourself. No black-box picks.
-                </p>
+              <div data-reveal style="--reveal-delay: 100ms" class="flex flex-col gap-4">
+                <div>
+                  <h3 class="text-xl font-bold mb-2">Freshness you can see</h3>
+                  <p class="text-on-surface/55">
+                    Every data point has a timestamp. You'll know exactly when it was last checked —
+                    not "updated recently."
+                  </p>
+                </div>
+              </div>
+              <div data-reveal style="--reveal-delay: 200ms" class="flex flex-col gap-4">
+                <div>
+                  <h3 class="text-xl font-bold mb-2">Pace-matched, not packed</h3>
+                  <p class="text-on-surface/55">
+                    Itineraries built around how you actually travel — not a checklist of tourist
+                    traps. Slow mornings included.
+                  </p>
+                </div>
               </div>
             </div>
-            <div data-reveal style="--reveal-delay: 100ms" class="flex flex-col gap-4">
-              <div
-                class="w-14 h-14 shrink-0 rounded-2xl bg-tertiary/10 flex items-center justify-center"
-                aria-hidden="true"
-              >
-                <span class="material-symbols-outlined text-tertiary text-3xl">schedule</span>
+
+            <!-- Right column: example card with pull quote -->
+            <div
+              data-reveal
+              style="--reveal-delay: 300ms"
+              class="rounded-2xl p-8 md:p-10 elevated-surface"
+            >
+              <p class="text-xs font-bold uppercase tracking-widest text-on-surface/40 mb-4" style="font-family: 'Raleway', sans-serif">
+                Example recommendation
+              </p>
+              <div class="flex items-start gap-4 mb-4">
+                <div>
+                  <h4 class="font-bold text-lg">Hotel 1898</h4>
+                  <p class="text-on-surface/45 text-sm">La Rambla · Eixample-adjacent</p>
+                </div>
               </div>
-              <div>
-                <h3 class="text-xl font-bold mb-2">Freshness you can see</h3>
-                <p class="text-on-surface/60">
-                  Every data point has a timestamp. You'll know exactly when it was last checked —
-                  not "updated recently."
+              <p class="text-on-surface/65 text-sm leading-relaxed mb-4">
+                Recommended for rooftop pool access and central location without Rambla noise. The
+                rooftop is the real draw — sunset views over the city with a cocktail in hand.
+              </p>
+              <div class="flex flex-wrap gap-3 text-xs" style="font-family: 'Raleway', sans-serif">
+                <span
+                  class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full font-semibold"
+                  style="background: color-mix(in oklch, oklch(0.62 0.08 75) 15%, transparent); color: oklch(0.82 0.06 75)"
+                >
+                  <span class="w-1.5 h-1.5 rounded-full" style="background: oklch(0.62 0.08 75)"></span> Verified 2h ago
+                </span>
+                <span
+                  class="inline-flex items-center gap-1 bg-surface-container-high px-3 py-1.5 rounded-full font-semibold text-on-surface/50"
+                >
+                  <span class="material-symbols-outlined text-sm">link</span> Source: booking.com
+                </span>
+                <span
+                  class="inline-flex items-center gap-1 bg-surface-container-high px-3 py-1.5 rounded-full font-semibold text-on-surface/50"
+                >
+                  Why: rooftop + quiet
+                </span>
+              </div>
+              <!-- Editorial pull quote below the card -->
+              <blockquote class="mt-6 pt-6 border-t border-outline-variant/25">
+                <p class="pull-quote text-sm text-on-surface/60" style="font-size: 0.95rem">
+                  The rooftop at sunset is why we keep recommending this one.
                 </p>
-              </div>
-            </div>
-            <div data-reveal style="--reveal-delay: 200ms" class="flex flex-col gap-4">
-              <div
-                class="w-14 h-14 shrink-0 rounded-2xl bg-secondary/10 flex items-center justify-center"
-                aria-hidden="true"
-              >
-                <span class="material-symbols-outlined text-secondary text-3xl">route</span>
-              </div>
-              <div>
-                <h3 class="text-xl font-bold mb-2">Pace-matched, not packed</h3>
-                <p class="text-on-surface/60">
-                  Itineraries built around how you actually travel — not a checklist of tourist
-                  traps. Slow mornings included.
-                </p>
-              </div>
+              </blockquote>
             </div>
           </div>
-          <div
-            data-reveal
-            style="--reveal-delay: 300ms"
-            class="mt-16 bg-white rounded-2xl p-8 md:p-10 shadow-sm border border-surface-container-highest max-w-2xl"
-          >
-            <p class="text-xs font-bold uppercase tracking-widest text-on-surface/40 mb-4">
-              Example recommendation
-            </p>
-            <div class="flex items-start gap-4 mb-4">
-              <div
-                class="w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center shrink-0"
-              >
-                <span class="material-symbols-outlined text-primary">hotel</span>
-              </div>
-              <div>
-                <h4 class="font-bold text-lg">Hotel 1898</h4>
-                <p class="text-on-surface/50 text-sm">La Rambla · Eixample-adjacent</p>
-              </div>
-            </div>
-            <p class="text-on-surface/70 text-sm leading-relaxed mb-4">
-              Recommended for rooftop pool access and central location without Rambla noise. The
-              rooftop is the real draw — sunset views over the city with a cocktail in hand.
-            </p>
-            <div class="flex flex-wrap gap-3 text-xs">
-              <span
-                class="inline-flex items-center gap-1 bg-green-50 text-green-700 px-3 py-1.5 rounded-full font-semibold"
-              >
-                <span class="w-1.5 h-1.5 rounded-full bg-green-500"></span> Verified 2h ago
-              </span>
-              <span
-                class="inline-flex items-center gap-1 bg-surface-container-low px-3 py-1.5 rounded-full font-semibold text-on-surface/50"
-              >
-                <span class="material-symbols-outlined text-sm">link</span> Source: booking.com
-              </span>
-              <span
-                class="inline-flex items-center gap-1 bg-surface-container-low px-3 py-1.5 rounded-full font-semibold text-on-surface/50"
-              >
-                Why: rooftop + quiet
-              </span>
-            </div>
-          </div>
-          <div data-reveal style="--reveal-delay: 300ms" class="mt-12">
+
+          <div data-reveal style="--reveal-delay: 400ms" class="mt-16">
             <a
               href="/enhancer"
-              class="cta-lift cta-press bg-primary text-white px-8 py-4 rounded-full font-bold text-lg hover:bg-primary/90 inline-flex items-center gap-2 shadow-xl shadow-primary/20"
+              class="cta-lift cta-press bg-primary text-on-primary px-8 py-4 rounded-full font-bold text-lg hover:brightness-110 inline-flex items-center gap-2 shadow-xl shadow-primary/20"
             >
               Try it for your trip
               <span class="material-symbols-outlined" aria-hidden="true">arrow_forward</span>
@@ -612,9 +628,20 @@
         </div>
       </section>
 
+      <!-- EDITORIAL DIVIDER -->
+      <div class="editorial-divider" aria-hidden="true">
+        <span class="editorial-divider-text">Questions, answered honestly</span>
+      </div>
+
       <!-- FAQ -->
       <section id="faq" class="py-24 px-8 max-w-4xl mx-auto scroll-mt-32">
-        <h2 class="font-normal mb-12 text-center">Frequently Asked Questions</h2>
+        <!-- Left-aligned heading with decorative number -->
+        <div class="mb-12" data-reveal>
+          <div class="editorial-heading items-baseline gap-4 mb-4">
+            <span class="section-number" aria-hidden="true">03</span>
+            <h2 class="font-normal">FAQ</h2>
+          </div>
+        </div>
         <div class="space-y-4" role="list">
           <div role="listitem" data-reveal>
             <button
@@ -624,7 +651,7 @@
               class="faq-btn w-full text-left bg-surface-container-low rounded-lg p-6 cursor-pointer hover:bg-surface-container transition-colors"
             >
               <div class="flex justify-between items-center">
-                <h3 class="font-bold text-on-surface text-base">
+                <h3 class="font-bold text-on-surface text-base" style="font-family: 'Raleway', sans-serif">
                   What does "verified hotel data" mean?
                 </h3>
                 <span class="material-symbols-outlined text-primary faq-chevron" aria-hidden="true"
@@ -637,7 +664,7 @@
               role="region"
               aria-labelledby="faq-1-btn"
               aria-hidden="true"
-              class="faq-answer px-6 pb-6 pt-2 bg-surface-container-low rounded-b-lg text-on-surface/70 text-sm leading-relaxed -mt-2"
+              class="faq-answer px-6 pb-6 pt-2 bg-surface-container-low rounded-b-lg text-on-surface/60 text-sm leading-relaxed -mt-2"
             >
               <div>
                 Every hotel recommendation includes a direct source URL (like Booking.com or the
@@ -654,7 +681,7 @@
               class="faq-btn w-full text-left bg-surface-container-low rounded-lg p-6 cursor-pointer hover:bg-surface-container transition-colors"
             >
               <div class="flex justify-between items-center">
-                <h3 class="font-bold text-on-surface text-base">
+                <h3 class="font-bold text-on-surface text-base" style="font-family: 'Raleway', sans-serif">
                   Is Hostliday only for Barcelona?
                 </h3>
                 <span class="material-symbols-outlined text-primary faq-chevron" aria-hidden="true"
@@ -667,7 +694,7 @@
               role="region"
               aria-labelledby="faq-2-btn"
               aria-hidden="true"
-              class="faq-answer px-6 pb-6 pt-2 bg-surface-container-low rounded-b-lg text-on-surface/70 text-sm leading-relaxed -mt-2"
+              class="faq-answer px-6 pb-6 pt-2 bg-surface-container-low rounded-b-lg text-on-surface/60 text-sm leading-relaxed -mt-2"
             >
               <div>
                 Right now, yes. We're focused on making Barcelona incredibly good before expanding.
@@ -684,7 +711,7 @@
               class="faq-btn w-full text-left bg-surface-container-low rounded-lg p-6 cursor-pointer hover:bg-surface-container transition-colors"
             >
               <div class="flex justify-between items-center">
-                <h3 class="font-bold text-on-surface text-base">Is it free?</h3>
+                <h3 class="font-bold text-on-surface text-base" style="font-family: 'Raleway', sans-serif">Is it free?</h3>
                 <span class="material-symbols-outlined text-primary faq-chevron" aria-hidden="true"
                   >expand_more</span
                 >
@@ -695,7 +722,7 @@
               role="region"
               aria-labelledby="faq-3-btn"
               aria-hidden="true"
-              class="faq-answer px-6 pb-6 pt-2 bg-surface-container-low rounded-b-lg text-on-surface/70 text-sm leading-relaxed -mt-2"
+              class="faq-answer px-6 pb-6 pt-2 bg-surface-container-low rounded-b-lg text-on-surface/60 text-sm leading-relaxed -mt-2"
             >
               <div>
                 Yes, the trip planner is free to use. We're building the best Barcelona trip tool
@@ -712,7 +739,7 @@
               class="faq-btn w-full text-left bg-surface-container-low rounded-lg p-6 cursor-pointer hover:bg-surface-container transition-colors"
             >
               <div class="flex justify-between items-center">
-                <h3 class="font-bold text-on-surface text-base">
+                <h3 class="font-bold text-on-surface text-base" style="font-family: 'Raleway', sans-serif">
                   How is this different from ChatGPT or Google?
                 </h3>
                 <span class="material-symbols-outlined text-primary faq-chevron" aria-hidden="true"
@@ -725,7 +752,7 @@
               role="region"
               aria-labelledby="faq-4-btn"
               aria-hidden="true"
-              class="faq-answer px-6 pb-6 pt-2 bg-surface-container-low rounded-b-lg text-on-surface/70 text-sm leading-relaxed -mt-2"
+              class="faq-answer px-6 pb-6 pt-2 bg-surface-container-low rounded-b-lg text-on-surface/60 text-sm leading-relaxed -mt-2"
             >
               <div>
                 ChatGPT can suggest hotels, but it can't tell you when it last verified the info or
@@ -744,7 +771,7 @@
       >
         <div class="max-w-xs">
           <div class="text-xl font-bold text-on-surface mb-6 font-display">Hostliday</div>
-          <p class="text-on-surface/60 text-sm leading-relaxed">
+          <p class="text-on-surface/50 text-sm leading-relaxed">
             Barcelona hotel recommendations with verified sources, freshness timestamps, and reasons
             why.
           </p>
@@ -752,8 +779,8 @@
         <nav aria-label="Footer navigation">
           <div class="grid grid-cols-2 md:grid-cols-3 gap-12">
             <div>
-              <h3 class="font-bold mb-6 text-base">Product</h3>
-              <ul class="space-y-4 text-on-surface/60 text-sm">
+              <h3 class="font-bold mb-6 text-base" style="font-family: 'Raleway', sans-serif">Product</h3>
+              <ul class="space-y-4 text-on-surface/50 text-sm">
                 <li>
                   <a class="hover:underline hover:text-primary transition-all" href="/enhancer"
                     >Trip Planner</a
@@ -772,8 +799,8 @@
               </ul>
             </div>
             <div>
-              <h3 class="font-bold mb-6 text-base">Company</h3>
-              <ul class="space-y-4 text-on-surface/60 text-sm">
+              <h3 class="font-bold mb-6 text-base" style="font-family: 'Raleway', sans-serif">Company</h3>
+              <ul class="space-y-4 text-on-surface/50 text-sm">
                 <li>
                   <a class="hover:underline hover:text-primary transition-all" href="#">About</a>
                 </li>
@@ -783,8 +810,8 @@
               </ul>
             </div>
             <div class="col-span-2 md:col-span-1">
-              <h3 class="font-bold mb-6 text-base">Legal</h3>
-              <ul class="space-y-4 text-on-surface/60 text-sm">
+              <h3 class="font-bold mb-6 text-base" style="font-family: 'Raleway', sans-serif">Legal</h3>
+              <ul class="space-y-4 text-on-surface/50 text-sm">
                 <li>
                   <a class="hover:underline hover:text-primary transition-all" href="#"
                     >Privacy Policy</a
@@ -801,9 +828,9 @@
         </nav>
       </div>
       <div
-        class="border-t border-surface-container-high/50 max-w-7xl mx-auto px-12 py-8 flex justify-center"
+        class="border-t border-outline-variant/20 max-w-7xl mx-auto px-12 py-8 flex justify-center"
       >
-        <p class="text-on-surface/60 text-xs">
+        <p class="text-on-surface/40 text-xs">
           &copy; 2025 Hostliday AI. Barcelona trips, planned with care.
         </p>
       </div>
