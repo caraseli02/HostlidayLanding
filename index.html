@@ -30,12 +30,22 @@
     <nav class="nav-motion" aria-label="Main navigation">
       <div class="nav-motion__inner">
         <a href="#" class="nav-motion__logo">Hostliday</a>
+        <button class="nav-motion__hamburger" aria-label="Open menu" aria-expanded="false">
+          <span class="material-symbols-outlined">menu</span>
+        </button>
         <div class="nav-motion__links">
           <a href="#journey" class="nav-motion__link">Explore</a>
           <a href="#how" class="nav-motion__link">How It Works</a>
           <a href="#faq" class="nav-motion__link">FAQ</a>
           <a href="/enhancer" class="nav-motion__cta">Plan your trip</a>
         </div>
+      </div>
+      <!-- Mobile menu dropdown -->
+      <div class="nav-motion__mobile" aria-hidden="true">
+        <a href="#journey" class="nav-motion__mobile-link">Explore</a>
+        <a href="#how" class="nav-motion__mobile-link">How It Works</a>
+        <a href="#faq" class="nav-motion__mobile-link">FAQ</a>
+        <a href="/enhancer" class="nav-motion__mobile-cta">Plan your trip</a>
       </div>
     </nav>
 
@@ -356,8 +366,10 @@
     <section id="faq" class="faq-section" aria-label="Frequently asked questions">
       <h2 class="faq-section__title" data-reveal>Questions</h2>
 
-      <div class="faq-item" data-reveal>
+      <div role="list">
+      <div class="faq-item" role="listitem" data-reveal>
         <button
+          id="faq-1-btn"
           class="faq-item__question"
           aria-expanded="false"
           aria-controls="faq-1-answer"
@@ -365,7 +377,7 @@
           <span>What does "verified hotel data" mean?</span>
           <span class="faq-item__icon material-symbols-outlined">add</span>
         </button>
-        <div id="faq-1-answer" class="faq-item__answer" aria-hidden="true">
+        <div id="faq-1-answer" class="faq-item__answer" role="region" aria-labelledby="faq-1-btn" aria-hidden="true">
           <p class="faq-item__answer-text">
             Every hotel recommendation includes a direct source URL (like Booking.com or
             the hotel's own site), a timestamp showing when the data was last checked, and
@@ -374,8 +386,9 @@
         </div>
       </div>
 
-      <div class="faq-item" data-reveal style="--reveal-delay: 70ms">
+      <div class="faq-item" role="listitem" data-reveal style="--reveal-delay: 70ms">
         <button
+          id="faq-2-btn"
           class="faq-item__question"
           aria-expanded="false"
           aria-controls="faq-2-answer"
@@ -383,7 +396,7 @@
           <span>Is Hostliday only for Barcelona?</span>
           <span class="faq-item__icon material-symbols-outlined">add</span>
         </button>
-        <div id="faq-2-answer" class="faq-item__answer" aria-hidden="true">
+        <div id="faq-2-answer" class="faq-item__answer" role="region" aria-labelledby="faq-2-btn" aria-hidden="true">
           <p class="faq-item__answer-text">
             Right now, yes. We're focused on making Barcelona incredibly good before expanding.
             This means every recommendation is deeply vetted by people who actually know the city.
@@ -391,8 +404,9 @@
         </div>
       </div>
 
-      <div class="faq-item" data-reveal style="--reveal-delay: 140ms">
+      <div class="faq-item" role="listitem" data-reveal style="--reveal-delay: 140ms">
         <button
+          id="faq-3-btn"
           class="faq-item__question"
           aria-expanded="false"
           aria-controls="faq-3-answer"
@@ -400,7 +414,7 @@
           <span>Is it free?</span>
           <span class="faq-item__icon material-symbols-outlined">add</span>
         </button>
-        <div id="faq-3-answer" class="faq-item__answer" aria-hidden="true">
+        <div id="faq-3-answer" class="faq-item__answer" role="region" aria-labelledby="faq-3-btn" aria-hidden="true">
           <p class="faq-item__answer-text">
             Yes, the trip planner is free to use. We're building the best Barcelona trip
             tool first, and we'll figure out the business model once we know travelers
@@ -409,8 +423,9 @@
         </div>
       </div>
 
-      <div class="faq-item" data-reveal style="--reveal-delay: 210ms">
+      <div class="faq-item" role="listitem" data-reveal style="--reveal-delay: 210ms">
         <button
+          id="faq-4-btn"
           class="faq-item__question"
           aria-expanded="false"
           aria-controls="faq-4-answer"
@@ -418,7 +433,7 @@
           <span>How is this different from ChatGPT or Google?</span>
           <span class="faq-item__icon material-symbols-outlined">add</span>
         </button>
-        <div id="faq-4-answer" class="faq-item__answer" aria-hidden="true">
+        <div id="faq-4-answer" class="faq-item__answer" role="region" aria-labelledby="faq-4-btn" aria-hidden="true">
           <p class="faq-item__answer-text">
             ChatGPT can suggest hotels, but it can't tell you when it last verified the
             info or link to the source. Google shows prices but doesn't explain why a
@@ -426,6 +441,7 @@
             attached to every pick.
           </p>
         </div>
+      </div>
       </div>
     </section>
 
@@ -439,6 +455,7 @@
             freshness timestamps, and reasons why.
           </p>
         </div>
+        <!-- TODO: Add real URLs for Company and Legal links -->
         <div class="footer__links">
           <div class="footer__col">
             <div class="footer__col-title">Product</div>
@@ -470,10 +487,11 @@
     </footer>
 
     <script>
-      /* ── Nav scroll state ── */
+      /* ── Nav scroll state + mobile menu ── */
       (function () {
         var nav = document.querySelector(".nav-motion");
-        var last = 0;
+        var hamburger = document.querySelector(".nav-motion__hamburger");
+        var mobile = document.querySelector(".nav-motion__mobile");
         window.addEventListener("scroll", function () {
           var y = window.scrollY;
           if (y > 80) {
@@ -481,8 +499,23 @@
           } else {
             nav.classList.remove("is-scrolled");
           }
-          last = y;
         }, { passive: true });
+
+        if (hamburger && mobile) {
+          hamburger.addEventListener("click", function () {
+            var open = hamburger.getAttribute("aria-expanded") === "true";
+            hamburger.setAttribute("aria-expanded", String(!open));
+            mobile.setAttribute("aria-hidden", String(open));
+            mobile.classList.toggle("is-open");
+          });
+          mobile.querySelectorAll("a").forEach(function (link) {
+            link.addEventListener("click", function () {
+              hamburger.setAttribute("aria-expanded", "false");
+              mobile.setAttribute("aria-hidden", "true");
+              mobile.classList.remove("is-open");
+            });
+          });
+        }
       })();
 
       /* ── Parallax hero image ── */

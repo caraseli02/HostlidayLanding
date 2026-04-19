@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* NOTE: This dark cinematic palette currently only supports dark mode.
+   If the enhancer page (/enhancer) shares this Tailwind theme,
+   the dark surface colors will break its layout. Consider scoping
+   theme overrides per-page or adding light mode support later. */
+
 /* ═══════════════════════════════════════════
    Tailwind v4 theme — Motion Storytelling
    ═══════════════════════════════════════════ */
