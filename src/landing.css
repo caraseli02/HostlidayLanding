@@ -1,18 +1,15 @@
 @import "./tailwind.css";
 
 /* ═══════════════════════════════════════════
-   Custom CSS (extracted from inline <style>)
+   Distilled — Pure editorial, zero decoration
    ═══════════════════════════════════════════ */
 :root {
-  --hostliday-ink: oklch(0.2235 0.0100 30);
-  --hostliday-red: oklch(0.5033 0.2065 29.23);
-  --hostliday-surface: oklch(0.9831 0.0080 30);
-  --hostliday-outline: color-mix(in oklch, oklch(0.8328 0.0403 10.21) 50%, transparent);
-  --hostliday-shadow: 0 24px 64px color-mix(in oklch, oklch(0.2235 0.0100 30) 16%, transparent);
-  --duration-fast: 160ms;
-  --duration-medium: 260ms;
-  --duration-slow: 520ms;
-  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+  --hostliday-ink: oklch(0.2000 0.0100 80.00);
+  --hostliday-terracotta: oklch(0.5500 0.1000 45.00);
+  --hostliday-paper: oklch(0.9750 0.0050 80.00);
+  --hostliday-rule: oklch(0.8500 0.0060 80.00);
+  --duration: 300ms;
+  --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
 }
 
 html {
@@ -20,112 +17,590 @@ html {
 }
 
 body {
-  font-family: "Figtree", sans-serif;
-  background:
-    radial-gradient(circle at top, color-mix(in oklch, oklch(0.5033 0.2065 29.23) 6%, transparent), transparent 30%), var(--hostliday-surface);
+  font-family: "Manrope", sans-serif;
+  font-weight: 400;
+  background: var(--hostliday-paper);
   color: var(--hostliday-ink);
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
+  line-height: 1.7;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  font-family: "Young Serif", serif;
-  font-weight: 700;
+/* ── Typography ── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Libre Baskerville", serif;
+  font-weight: 400;
   text-wrap: balance;
+  color: var(--hostliday-ink);
 }
 
-/* ── Modular type scale (1.25 ratio) ── */
 h1 {
-  font-size: clamp(3rem, 5vw + 1rem, 5rem);
-  line-height: 0.95;
-  letter-spacing: -0.02em;
-}
-h2 {
-  font-size: clamp(2rem, 3vw + 0.5rem, 3.125rem);
-  line-height: 1.1;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  line-height: 1.15;
   letter-spacing: -0.01em;
 }
-h3 {
-  font-size: clamp(1.25rem, 1.5vw + 0.5rem, 1.5625rem);
+
+h2 {
+  font-size: clamp(1.5rem, 3vw, 2.2rem);
   line-height: 1.2;
 }
-h4 {
-  font-size: 1.25rem;
-  line-height: 1.25;
+
+h3 {
+  font-size: clamp(1.1rem, 1.8vw, 1.35rem);
+  line-height: 1.35;
 }
+
 p {
-  font-size: 1rem;
-  line-height: 1.6;
-  text-wrap: pretty;
+  font-family: "Manrope", sans-serif;
+  font-size: 1.05rem;
+  line-height: 1.8;
+  color: oklch(0.4000 0.0080 80.00);
+  max-width: 65ch;
 }
-.text-caption {
+
+.caption {
+  font-family: "Manrope", sans-serif;
   font-size: 0.8rem;
-  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: oklch(0.5000 0.0080 80.00);
+}
+
+/* ── Layout — single column, maximum 720px ── */
+.container-editorial {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+.container-wide {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 0 2rem;
+}
+
+/* ── Rules (horizontal dividers) ── */
+.rule {
+  width: 100%;
+  height: 1px;
+  background: var(--hostliday-rule);
+  border: none;
+  margin: 0;
+}
+
+.rule--short {
+  width: 48px;
+  background: var(--hostliday-terracotta);
+}
+
+/* ── Navigation — minimal ── */
+.nav-distilled {
+  padding: 2rem 2rem 0;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.nav-distilled__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--hostliday-rule);
+}
+
+.nav-distilled__logo {
+  font-family: "Libre Baskerville", serif;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--hostliday-ink);
+  text-decoration: none;
   letter-spacing: 0.02em;
 }
-.text-label {
-  font-size: 0.875rem;
-  line-height: 1.4;
-  font-weight: 600;
-  letter-spacing: 0.04em;
+
+.nav-distilled__links {
+  display: flex;
+  gap: 2rem;
+  align-items: baseline;
+}
+
+.nav-distilled__link {
+  font-family: "Manrope", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 500;
+  letter-spacing: 0.06em;
   text-transform: uppercase;
+  color: oklch(0.4500 0.0080 80.00);
+  text-decoration: none;
+  transition: color var(--duration) var(--ease);
 }
 
-#planner,
-#faq,
-#neighborhoods {
-  scroll-margin-top: 96px;
+.nav-distilled__link:hover {
+  color: var(--hostliday-ink);
 }
 
-a:focus-visible,
-button:focus-visible {
-  outline: 2px solid var(--hostliday-red);
-  outline-offset: 3px;
-  border-radius: 6px;
+/* ── Hero — editorial, text-only ── */
+.hero-editorial {
+  padding: 6rem 0 4rem;
 }
 
-/* ── Motion ── */
-.motion-surface,
-.cta-lift {
-  transition-timing-function: var(--ease-out-expo);
+.hero-editorial__kicker {
+  font-family: "Manrope", sans-serif;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--hostliday-terracotta);
+  margin-bottom: 2rem;
 }
 
-.motion-surface {
-  transition-duration: var(--duration-medium);
-  transition-property: transform, box-shadow, border-color, background-color;
+.hero-editorial__title {
+  margin-bottom: 2rem;
 }
 
-.motion-surface:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 24px 40px color-mix(in oklch, oklch(0.2235 0.0100 30) 12%, transparent);
+.hero-editorial__lead {
+  font-size: 1.2rem;
+  line-height: 1.7;
+  color: oklch(0.3500 0.0080 80.00);
+  max-width: 55ch;
+  margin-bottom: 2.5rem;
 }
 
-.cta-lift {
-  transition-duration: var(--duration-fast);
-  transition-property: transform, box-shadow, background-color, color;
+.hero-editorial__cta {
+  font-family: "Manrope", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--hostliday-terracotta);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: gap var(--duration) var(--ease);
 }
 
-.cta-lift:hover {
-  transform: translateY(-3px);
+.hero-editorial__cta:hover {
+  gap: 1rem;
 }
 
-.cta-press:active {
-  transform: translateY(0) scale(0.98);
+/* ── Neighborhood story — flowing vertical ── */
+.story {
+  padding: 4rem 0;
 }
 
-/* ── Reveal animations ── */
+.story__header {
+  margin-bottom: 3rem;
+}
+
+.story__label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: oklch(0.5000 0.0080 80.00);
+  margin-bottom: 0.75rem;
+}
+
+.story__title {
+  font-size: clamp(1.3rem, 2.5vw, 1.8rem);
+  margin-bottom: 0.75rem;
+}
+
+.story__subtitle {
+  color: oklch(0.5000 0.0080 80.00);
+  font-size: 0.95rem;
+}
+
+/* Neighborhood entry — editorial treatment */
+.hood {
+  padding: 3rem 0;
+  border-bottom: 1px solid var(--hostliday-rule);
+}
+
+.hood:last-child {
+  border-bottom: none;
+}
+
+.hood__inner {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+.hood__inner--wide {
+  grid-template-columns: 2fr 1fr;
+}
+
+.hood__inner--wide-reverse {
+  grid-template-columns: 1fr 2fr;
+}
+
+.hood__image {
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+}
+
+.hood__image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(30%) contrast(1.05);
+  transition: filter var(--duration) var(--ease);
+}
+
+.hood:hover .hood__image img {
+  filter: grayscale(0%) contrast(1);
+}
+
+.hood__content {
+  padding: 0.5rem 0;
+}
+
+.hood__name {
+  font-size: 1.4rem;
+  margin-bottom: 0.5rem;
+}
+
+.hood__descriptor {
+  font-family: "Manrope", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--hostliday-terracotta);
+  margin-bottom: 1rem;
+}
+
+.hood__text {
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+}
+
+.hood__link {
+  font-family: "Manrope", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--hostliday-terracotta);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: gap var(--duration) var(--ease);
+}
+
+.hood__link:hover {
+  gap: 1rem;
+}
+
+/* ── How it works — simple numbered list ── */
+.process {
+  padding: 5rem 0;
+  border-top: 1px solid var(--hostliday-rule);
+  border-bottom: 1px solid var(--hostliday-rule);
+}
+
+.process__header {
+  margin-bottom: 3rem;
+}
+
+.process__kicker {
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: oklch(0.5000 0.0080 80.00);
+  margin-bottom: 0.75rem;
+}
+
+.process__title {
+  font-size: 1.6rem;
+}
+
+.process__step {
+  padding: 2rem 0;
+  display: grid;
+  grid-template-columns: 3rem 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.process__step-num {
+  font-family: "Libre Baskerville", serif;
+  font-size: 1.8rem;
+  color: oklch(0.8000 0.0060 80.00);
+  line-height: 1.2;
+}
+
+.process__step-title {
+  font-family: "Manrope", sans-serif;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--hostliday-ink);
+  margin-bottom: 0.5rem;
+}
+
+.process__step-text {
+  font-size: 0.9rem;
+  color: oklch(0.4500 0.0080 80.00);
+  max-width: 55ch;
+}
+
+/* ── Recommendation — editorial pull-quote style ── */
+.pull {
+  padding: 4rem 0;
+}
+
+.pull__label {
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: oklch(0.5000 0.0080 80.00);
+  margin-bottom: 1.5rem;
+}
+
+.pull__hotel {
+  margin-bottom: 1.5rem;
+}
+
+.pull__hotel-name {
+  font-size: 1.3rem;
+  margin-bottom: 0.25rem;
+}
+
+.pull__hotel-loc {
+  font-family: "Manrope", sans-serif;
+  font-size: 0.85rem;
+  color: oklch(0.5000 0.0080 80.00);
+}
+
+.pull__text {
+  font-family: "Libre Baskerville", serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  line-height: 1.7;
+  color: oklch(0.3000 0.0080 80.00);
+  max-width: 55ch;
+  padding-left: 1.5rem;
+  border-left: 2px solid var(--hostliday-terracotta);
+  margin-bottom: 1.5rem;
+}
+
+.pull__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  font-family: "Manrope", sans-serif;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: oklch(0.5000 0.0080 80.00);
+}
+
+.pull__meta-item {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.pull__meta-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: oklch(0.7000 0.0800 150.00);
+}
+
+/* ── CTA — understated ── */
+.invite {
+  padding: 5rem 0;
+  text-align: center;
+}
+
+.invite__title {
+  font-size: 1.6rem;
+  margin-bottom: 1rem;
+}
+
+.invite__text {
+  color: oklch(0.4500 0.0080 80.00);
+  max-width: 45ch;
+  margin: 0 auto 2rem;
+  font-size: 0.95rem;
+}
+
+.invite__link {
+  font-family: "Manrope", sans-serif;
+  font-size: 0.8rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--hostliday-terracotta);
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: gap var(--duration) var(--ease);
+}
+
+.invite__link:hover {
+  gap: 1rem;
+}
+
+/* ── FAQ — plain text accordion ── */
+.faq-distilled {
+  padding: 4rem 0;
+  border-top: 1px solid var(--hostliday-rule);
+}
+
+.faq-distilled__title {
+  font-size: 1.3rem;
+  margin-bottom: 2rem;
+}
+
+.faq-item-d {
+  border-bottom: 1px solid var(--hostliday-rule);
+}
+
+.faq-item-d__q {
+  width: 100%;
+  background: none;
+  border: none;
+  padding: 1.25rem 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  cursor: pointer;
+  font-family: "Manrope", sans-serif;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--hostliday-ink);
+  text-align: left;
+  transition: color var(--duration);
+  gap: 2rem;
+}
+
+.faq-item-d__q:hover {
+  color: var(--hostliday-terracotta);
+}
+
+.faq-item-d__icon {
+  font-family: "Libre Baskerville", serif;
+  font-size: 1.2rem;
+  color: oklch(0.6000 0.0080 80.00);
+  flex-shrink: 0;
+  transition: transform var(--duration) var(--ease);
+}
+
+.faq-item-d__q[aria-expanded="true"] .faq-item-d__icon {
+  transform: rotate(45deg);
+}
+
+.faq-item-d__a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height var(--duration) var(--ease),
+              padding var(--duration) var(--ease);
+}
+
+.faq-item-d__a.is-open {
+  max-height: 300px;
+  padding-bottom: 1.25rem;
+}
+
+.faq-item-d__a-text {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: oklch(0.4000 0.0080 80.00);
+  max-width: 60ch;
+}
+
+/* ── Footer — minimal ── */
+.footer-d {
+  padding: 3rem 0 2rem;
+  border-top: 1px solid var(--hostliday-rule);
+}
+
+.footer-d__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.footer-d__brand {
+  max-width: 300px;
+}
+
+.footer-d__logo {
+  font-family: "Libre Baskerville", serif;
+  font-size: 0.9rem;
+  color: var(--hostliday-ink);
+  margin-bottom: 0.75rem;
+}
+
+.footer-d__text {
+  font-size: 0.8rem;
+  color: oklch(0.5000 0.0080 80.00);
+  line-height: 1.6;
+}
+
+.footer-d__links {
+  display: flex;
+  gap: 3rem;
+}
+
+.footer-d__col-title {
+  font-family: "Manrope", sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: oklch(0.5500 0.0080 80.00);
+  margin-bottom: 0.75rem;
+}
+
+.footer-d__col ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-d__col li {
+  margin-bottom: 0.5rem;
+}
+
+.footer-d__col a {
+  font-size: 0.8rem;
+  color: oklch(0.5000 0.0080 80.00);
+  text-decoration: none;
+  transition: color var(--duration);
+}
+
+.footer-d__col a:hover {
+  color: var(--hostliday-ink);
+}
+
+.footer-d__copy {
+  font-size: 0.7rem;
+  color: oklch(0.6000 0.0060 80.00);
+  text-align: center;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--hostliday-rule);
+}
+
+/* ── Reveal ── */
 [data-reveal],
 [data-hero-reveal] {
   opacity: 0;
-  transform: translateY(24px);
+  transform: translateY(20px);
   transition:
-    opacity var(--duration-slow) var(--ease-out-expo),
-    transform var(--duration-slow) var(--ease-out-expo);
+    opacity 600ms var(--ease),
+    transform 600ms var(--ease);
   transition-delay: var(--reveal-delay, 0ms);
 }
 
@@ -135,64 +610,17 @@ button:focus-visible {
   transform: translateY(0);
 }
 
-/* ── FAQ ── */
-.faq-answer {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height var(--duration-medium) var(--ease-out-expo);
-}
-
-.faq-answer.is-open {
-  max-height: 200px;
-}
-
-.faq-chevron {
-  transition: transform var(--duration-fast) var(--ease-out-expo);
-}
-
-.faq-btn.is-open .faq-chevron {
-  transform: rotate(180deg);
-}
-
-/* ── Neighborhood cards ── */
-.neighborhood-card {
-  isolation: isolate;
-}
-
-.neighborhood-card img {
-  transition: transform var(--duration-slow) var(--ease-out-expo);
-}
-
-.neighborhood-card:hover img {
-  transform: scale(1.05);
-}
-
-/* ── Trust indicator ── */
-@keyframes pulse-dot {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0.4;
-  }
-}
-
-.trust-pulse {
-  animation: pulse-dot 2s ease-in-out infinite;
+/* ── Focus ── */
+a:focus-visible,
+button:focus-visible {
+  outline: 2px solid var(--hostliday-terracotta);
+  outline-offset: 3px;
 }
 
 /* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
-  .motion-surface,
-  .cta-lift {
-    transition: none;
-  }
-  .motion-surface:hover {
-    transform: none;
-  }
-  .cta-lift:hover {
-    transform: none;
+  html {
+    scroll-behavior: auto;
   }
   [data-reveal],
   [data-hero-reveal] {
@@ -200,10 +628,24 @@ button:focus-visible {
     opacity: 1;
     transform: none;
   }
-  .neighborhood-card img {
+  .hood__image img {
     transition: none;
   }
-  .trust-pulse {
-    animation: none;
+  .faq-item-d__icon {
+    transition: none;
+  }
+}
+
+/* ── Print ── */
+@media print {
+  .nav-distilled,
+  .hero-editorial__cta,
+  .invite,
+  .footer-d {
+    display: none;
+  }
+  body {
+    color: #000;
+    background: #fff;
   }
 }
