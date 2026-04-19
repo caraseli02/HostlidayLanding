@@ -1,2 +1,2 @@
 import "./landing.css";
-import "./script.ts";
+import "./lib/mobile-nav";

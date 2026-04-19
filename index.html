@@ -8,6 +8,40 @@
       name="description"
       content="Plan your Barcelona trip with Hostliday. Every hotel recommendation comes with a source, a freshness check, and a reason why."
     />
+    <link rel="canonical" href="https://hostliday.vercel.app/" />
+    <meta name="theme-color" content="#be0000" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://hostliday.vercel.app/" />
+    <meta
+      property="og:title"
+      content="Hostliday | Barcelona trips planned with verified hotel data"
+    />
+    <meta
+      property="og:description"
+      content="Plan your Barcelona trip with Hostliday. Every hotel recommendation comes with a source, a freshness check, and a reason why."
+    />
+    <meta
+      property="og:image"
+      content="https://images.unsplash.com/photo-1583422409516-2895a77efded?w=1200&h=630&fit=crop&q=85"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Hostliday" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Hostliday | Barcelona trips planned with verified hotel data"
+    />
+    <meta
+      name="twitter:description"
+      content="Plan your Barcelona trip with Hostliday. Every hotel recommendation comes with a source, a freshness check, and a reason why."
+    />
+    <meta
+      name="twitter:image"
+      content="https://images.unsplash.com/photo-1583422409516-2895a77efded?w=1200&h=630&fit=crop&q=85"
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="dns-prefetch" href="https://images.unsplash.com" />
     <link
       rel="preload"
       as="image"
@@ -26,6 +60,20 @@
     />
   </head>
   <body class="antialiased">
+    <noscript
+      ><style>
+        [data-reveal],
+        [data-hero-reveal] {
+          opacity: 1;
+          transform: none;
+        }
+      </style></noscript
+    >
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:absolute focus:p-4 focus:bg-surface focus:text-on-surface focus:z-50 focus:rounded"
+      >Skip to main content</a
+    >
     <nav
       aria-label="Main navigation"
       class="fixed top-0 w-full z-50"
@@ -36,9 +84,9 @@
       "
     >
       <div class="flex justify-between items-center px-8 py-4 max-w-7xl mx-auto">
-        <div class="text-2xl font-bold tracking-tighter text-on-surface font-display">
+        <a href="/" class="text-2xl font-bold tracking-tighter text-on-surface font-display">
           Hostliday
-        </div>
+        </a>
         <div class="hidden md:flex gap-8 items-center font-medium tracking-tight">
           <a
             class="nav-link text-on-surface/80 hover:text-primary transition-colors"
@@ -56,11 +104,67 @@
         </div>
         <a
           href="/enhancer"
-          class="cta-lift cta-press bg-primary text-on-primary px-6 py-2.5 rounded-full font-bold shadow-lg shadow-primary/20"
+          class="cta-lift cta-press bg-primary text-on-primary px-6 py-2.5 rounded-full font-bold shadow-lg shadow-primary/20 hidden md:inline-flex"
           >Plan your Barcelona trip</a
         >
+        <button
+          type="button"
+          class="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] relative z-[60]"
+          id="menuToggle"
+          aria-expanded="false"
+          aria-controls="mobileDrawer"
+          aria-label="Open navigation menu"
+        >
+          <span class="hamburger-line block w-5 h-[2px] bg-on-surface rounded-full"></span>
+          <span class="hamburger-line block w-5 h-[2px] bg-on-surface rounded-full"></span>
+          <span class="hamburger-line block w-5 h-[2px] bg-on-surface rounded-full"></span>
+        </button>
       </div>
     </nav>
+
+    <!-- Mobile drawer -->
+    <div
+      id="drawerBackdrop"
+      class="fixed inset-0 z-[55] bg-black/40 opacity-0 pointer-events-none transition-opacity duration-[260ms]"
+      aria-hidden="true"
+    ></div>
+    <aside
+      id="mobileDrawer"
+      class="fixed top-0 right-0 z-[60] h-dvh w-[280px] translate-x-full flex flex-col shadow-2xl transition-transform duration-[260ms]"
+      style="
+        background: rgba(248, 249, 255, 0.95);
+        backdrop-filter: blur(16px);
+        border-left: 1px solid rgba(225, 190, 194, 0.15);
+      "
+      role="dialog"
+      aria-hidden="true"
+      aria-label="Navigation menu"
+      data-open="false"
+    >
+      <div class="flex justify-end p-4">
+        <button
+          type="button"
+          id="drawerClose"
+          class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-container-high transition-colors"
+          aria-label="Close navigation menu"
+        >
+          <span class="material-symbols-outlined text-on-surface" aria-hidden="true">close</span>
+        </button>
+      </div>
+      <nav class="flex flex-col px-6 gap-1" aria-label="Mobile navigation">
+        <a href="#neighborhoods" class="mobile-nav-link">Neighborhoods</a>
+        <a href="#planner" class="mobile-nav-link">How It Works</a>
+        <a href="#faq" class="mobile-nav-link">FAQ</a>
+      </nav>
+      <div class="mt-auto px-6 pb-8">
+        <a
+          href="/enhancer"
+          class="cta-lift cta-press bg-primary text-on-primary px-6 py-3 rounded-full font-bold text-center shadow-lg shadow-primary/20 block"
+        >
+          Plan your Barcelona trip
+        </a>
+      </div>
+    </aside>
 
     <main id="main" style="scroll-margin-top: 80px">
       <!-- HERO — Cinematic Barcelona -->
@@ -181,7 +285,7 @@
             >
               <div
                 class="p-6 border border-white/15 rounded-[2rem] bg-gradient-to-b from-white/95 to-white/85 backdrop-blur-sm shadow-[0_30px_60px_rgba(0,0,0,0.25)]"
-                style="color: var(--hostliday-ink)"
+                style="color: var(--color-on-surface)"
               >
                 <div
                   class="flex items-baseline justify-between gap-4 pb-4 border-b border-black/10"
@@ -711,7 +815,9 @@
         class="flex flex-col md:flex-row justify-between items-start px-12 py-16 w-full max-w-7xl mx-auto gap-12"
       >
         <div class="max-w-xs">
-          <div class="text-xl font-bold text-on-surface mb-6 font-display">Hostliday</div>
+          <a href="/" class="text-xl font-bold text-on-surface mb-6 font-display block"
+            >Hostliday</a
+          >
           <p class="text-on-surface/60 text-sm leading-relaxed">
             Barcelona hotel recommendations with verified sources, freshness timestamps, and reasons
             why.
@@ -772,7 +878,7 @@
         class="border-t border-surface-container-high/50 max-w-7xl mx-auto px-12 py-8 flex justify-center"
       >
         <p class="text-on-surface/60 text-xs">
-          &copy; 2025 Hostliday AI. Barcelona trips, planned with care.
+          &copy; 2025–2026 Hostliday AI. Barcelona trips, planned with care.
         </p>
       </div>
     </footer>

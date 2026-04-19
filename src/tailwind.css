@@ -62,4 +62,69 @@
   --font-headline: "DM Sans", sans-serif;
   --font-body: "DM Sans", sans-serif;
   --font-label: "DM Sans", sans-serif;
+
+  /* ── Transition durations ── */
+  --duration-fast: 160ms;
+  --duration-medium: 260ms;
+  --duration-slow: 520ms;
+
+  /* ── Transition easings ── */
+  --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* ═══════════════════════════════════════════
+   Mobile drawer navigation
+   ═══════════════════════════════════════════ */
+.hamburger-line {
+  transition:
+    transform var(--duration-fast) var(--ease-out-expo),
+    opacity var(--duration-fast) var(--ease-out-expo);
+}
+
+body.menu-is-open .hamburger-line:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+body.menu-is-open .hamburger-line:nth-child(2) {
+  opacity: 0;
+}
+body.menu-is-open .hamburger-line:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+#mobileDrawer[data-open="true"] {
+  transform: translateX(0);
+}
+
+#drawerBackdrop[data-visible="true"] {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.mobile-nav-link {
+  display: block;
+  padding: 0.75rem 0;
+  font-weight: 600;
+  font-size: 1.0625rem;
+  color: var(--color-on-surface);
+  border-bottom: 1px solid rgba(225, 190, 194, 0.15);
+  transition: color var(--duration-fast) var(--ease-out-expo);
+  text-decoration: none;
+  letter-spacing: -0.01em;
+}
+
+.mobile-nav-link:hover,
+.mobile-nav-link:focus-visible {
+  color: var(--color-primary);
+}
+
+body.drawer-open {
+  overflow: hidden;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #mobileDrawer,
+  #drawerBackdrop,
+  .hamburger-line {
+    transition-duration: 0ms !important;
+  }
 }

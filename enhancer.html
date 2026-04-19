@@ -3,11 +3,47 @@
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Hostliday | Trip Enhancer</title>
+    <title>Hostliday Trip Enhancer | Walkable picks for your Barcelona hotel</title>
     <meta
       name="description"
       content="Already booked your Barcelona hotel? Get walkable activity picks, local restaurant recommendations, and hidden gems curated for your neighborhood."
     />
+    <link rel="canonical" href="https://hostliday.vercel.app/enhancer" />
+    <meta name="theme-color" content="#be0000" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://hostliday.vercel.app/enhancer" />
+    <meta
+      property="og:title"
+      content="Hostliday Trip Enhancer | Walkable picks for your Barcelona hotel"
+    />
+    <meta
+      property="og:description"
+      content="Already booked your Barcelona hotel? Get walkable activity picks, local restaurant recommendations, and hidden gems curated for your neighborhood."
+    />
+    <meta
+      property="og:image"
+      content="https://images.unsplash.com/photo-1583422409516-2895a77efded?w=1200&h=630&fit=crop&q=85"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Hostliday" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta
+      name="twitter:title"
+      content="Hostliday Trip Enhancer | Walkable picks for your Barcelona hotel"
+    />
+    <meta
+      name="twitter:description"
+      content="Already booked your Barcelona hotel? Get walkable activity picks, local restaurant recommendations, and hidden gems curated for your neighborhood."
+    />
+    <meta
+      name="twitter:image"
+      content="https://images.unsplash.com/photo-1583422409516-2895a77efded?w=1200&h=630&fit=crop&q=85"
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="dns-prefetch" href="https://images.unsplash.com" />
+    <link href="https://fonts.googleapis.com" rel="preconnect" />
+    <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link
       href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&family=Instrument+Serif:ital@0;1&display=swap"
       rel="stylesheet"
@@ -16,40 +52,17 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
       rel="stylesheet"
     />
-    <style>
-      body {
-        font-family: "DM Sans", sans-serif;
-        background-color: #f8f9ff;
-        color: #0b1c30;
-      }
-      h1,
-      h2,
-      h3,
-      h4,
-      h5,
-      h6 {
-        font-family: "Instrument Serif", serif;
-      }
-
-      /* Focus ring - never remove */
-      a:focus-visible,
-      button:focus-visible {
-        outline: 2px solid #be0000;
-        outline-offset: 3px;
-        border-radius: 6px;
-      }
-      input:focus-visible,
-      select:focus-visible {
-        outline: none;
-      }
-      .search-wrap:focus-within {
-        outline: 2px solid #be0000;
-        outline-offset: 2px;
-        border-radius: 12px;
-      }
-    </style>
   </head>
   <body class="bg-surface text-on-surface selection:bg-primary/20">
+    <noscript
+      ><style>
+        [data-reveal],
+        [data-hero-reveal] {
+          opacity: 1;
+          transform: none;
+        }
+      </style></noscript
+    >
     <!-- Skip link -->
     <a
       href="#main"
@@ -73,27 +86,27 @@
         >
         <div class="hidden md:flex gap-8 items-center font-medium tracking-tight">
           <a
-            class="text-primary font-bold border-b-2 border-primary pb-1 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
-            href="#destinations"
+            class="text-on-surface/80 hover:text-primary transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
+            href="/#neighborhoods"
             >Destinations</a
           >
           <a
             class="text-on-surface/80 hover:text-primary transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
-            href="#planner"
+            href="/#planner"
             >Itineraries</a
           >
           <a
             class="text-on-surface/80 hover:text-primary transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
-            href="#faq"
+            href="/#faq"
             >Journal</a
           >
           <a
             class="text-on-surface/80 hover:text-primary transition-colors duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
-            href="#planner"
+            href="/#neighborhoods"
             >Concierge</a
           >
         </div>
-        <div class="flex items-center gap-6">
+        <div class="hidden md:flex items-center gap-6">
           <label
             class="hidden lg:flex items-center bg-surface-container-low px-4 py-2 rounded-full search-wrap cursor-text"
           >
@@ -109,14 +122,64 @@
               type="search"
             />
           </label>
-          <button
-            class="bg-primary text-on-primary px-6 py-2.5 rounded-full font-bold hover:scale-95 duration-200 transition-[transform,background-color] shadow-lg shadow-primary/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
+          <a href="/" class="text-primary font-bold text-sm hover:underline hidden lg:inline-block"
+            >Back to Hostliday</a
           >
-            Sign In
-          </button>
         </div>
+        <button
+          type="button"
+          class="md:hidden flex flex-col justify-center items-center w-10 h-10 gap-[5px] relative z-[60]"
+          id="menuToggle"
+          aria-expanded="false"
+          aria-controls="mobileDrawer"
+          aria-label="Open navigation menu"
+        >
+          <span class="hamburger-line block w-5 h-[2px] bg-on-surface rounded-full"></span>
+          <span class="hamburger-line block w-5 h-[2px] bg-on-surface rounded-full"></span>
+          <span class="hamburger-line block w-5 h-[2px] bg-on-surface rounded-full"></span>
+        </button>
       </div>
     </nav>
+
+    <!-- Mobile drawer -->
+    <div
+      id="drawerBackdrop"
+      class="fixed inset-0 z-[55] bg-black/40 opacity-0 pointer-events-none transition-opacity duration-[260ms]"
+      aria-hidden="true"
+    ></div>
+    <aside
+      id="mobileDrawer"
+      class="fixed top-0 right-0 z-[60] h-dvh w-[280px] translate-x-full flex flex-col shadow-2xl transition-transform duration-[260ms]"
+      style="
+        background: rgba(248, 249, 255, 0.95);
+        backdrop-filter: blur(16px);
+        border-left: 1px solid rgba(225, 190, 194, 0.15);
+      "
+      role="dialog"
+      aria-hidden="true"
+      aria-label="Navigation menu"
+      data-open="false"
+    >
+      <div class="flex justify-end p-4">
+        <button
+          type="button"
+          id="drawerClose"
+          class="w-10 h-10 flex items-center justify-center rounded-lg hover:bg-surface-container-high transition-colors"
+          aria-label="Close navigation menu"
+        >
+          <span class="material-symbols-outlined text-on-surface" aria-hidden="true">close</span>
+        </button>
+      </div>
+      <nav class="flex flex-col px-6 gap-1" aria-label="Mobile navigation">
+        <a href="/#neighborhoods" class="mobile-nav-link">Destinations</a>
+        <a href="/#planner" class="mobile-nav-link">Itineraries</a>
+        <a href="/#faq" class="mobile-nav-link">Journal</a>
+        <a href="/#neighborhoods" class="mobile-nav-link">Concierge</a>
+      </nav>
+      <div class="mt-auto px-6 pb-8">
+        <a href="/" class="mobile-nav-link">Back to Hostliday</a>
+      </div>
+    </aside>
 
     <main id="main" style="scroll-margin-top: 80px">
       <!-- ─── Hero ─── -->
@@ -128,6 +191,7 @@
             Trip Enhancer
           </span>
           <h1
+            id="enhancerTitle"
             class="text-4xl md:text-5xl font-extrabold tracking-tight mb-6 leading-tight font-display text-on-surface"
           >
             Already booked? Make the most of where you're staying.
@@ -161,13 +225,14 @@
                         id="neighborhood"
                         name="neighborhood"
                         required
+                        aria-required="true"
                         class="w-full border border-surface-container-high rounded-lg px-4 py-3 text-base text-on-surface bg-surface-container-lowest appearance-none focus:ring-2 focus:ring-primary/40 focus:border-primary/40"
                       >
                         <option value="">Pick your area</option>
-                        <option value="gothic">Gothic Quarter (Barri G&ograve;tic)</option>
+                        <option value="gothic">Gothic Quarter (Barri Gòtic)</option>
                         <option value="eixample">Eixample</option>
                         <option value="born">El Born / La Ribera</option>
-                        <option value="gracia">Gr&agrave;cia</option>
+                        <option value="gracia">Gràcia</option>
                         <option value="barceloneta">Barceloneta</option>
                         <option value="raval">El Raval</option>
                         <option value="sant-pere">Sant Pere / Arc de Triomf</option>
@@ -452,31 +517,13 @@
         class="flex flex-col md:flex-row justify-between items-start px-12 py-16 w-full max-w-7xl mx-auto gap-12"
       >
         <div class="max-w-xs">
-          <div class="text-xl font-black text-on-surface mb-6 font-display">Hostliday</div>
-          <p class="text-on-surface/60 text-sm leading-relaxed mb-8">
-            The next generation travel concierge, powered by proprietary AI to make world
-            exploration effortless.
+          <a href="/" class="text-xl font-bold text-on-surface mb-6 font-display block"
+            >Hostliday</a
+          >
+          <p class="text-on-surface/60 text-sm leading-relaxed">
+            Barcelona hotel recommendations with verified sources, freshness timestamps, and reasons
+            why.
           </p>
-          <div class="flex gap-4">
-            <a
-              class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
-              href="#"
-              aria-label="Hostliday on the web (coming soon)"
-              ><span class="material-symbols-outlined" aria-hidden="true">public</span></a
-            >
-            <a
-              class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
-              href="#"
-              aria-label="Hostliday on Instagram (coming soon)"
-              ><span class="material-symbols-outlined" aria-hidden="true">photo_camera</span></a
-            >
-            <a
-              class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center text-primary focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:outline-offset-2"
-              href="#"
-              aria-label="Hostliday on X / Twitter (coming soon)"
-              ><span class="material-symbols-outlined" aria-hidden="true">alternate_email</span></a
-            >
-          </div>
         </div>
         <nav aria-label="Footer navigation">
           <div class="grid grid-cols-2 md:grid-cols-3 gap-12">
@@ -486,27 +533,22 @@
                 <li>
                   <a
                     class="hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
-                    href="#planner"
-                    >Features</a
+                    href="/enhancer"
+                    >Trip Planner</a
                   >
                 </li>
                 <li>
                   <a
                     class="hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
-                    href="#planner"
-                    >Itineraries</a
+                    href="/#neighborhoods"
+                    >Neighborhoods</a
                   >
                 </li>
                 <li>
                   <a
                     class="hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
-                    href="#planner"
-                    >Concierge</a
-                  >
-                </li>
-                <li>
-                  <span class="text-on-surface/40" aria-label="Pricing — coming soon"
-                    >Pricing <span class="text-xs">(coming soon)</span></span
+                    href="/#planner"
+                    >How It Works</a
                   >
                 </li>
               </ul>
@@ -517,29 +559,15 @@
                 <li>
                   <a
                     class="hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
-                    href="#"
-                    >Press Kit</a
+                    href="/#faq"
+                    >About</a
                   >
                 </li>
                 <li>
                   <a
                     class="hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
-                    href="#"
-                    >Careers</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
-                    href="#"
-                    >Blog</a
-                  >
-                </li>
-                <li>
-                  <a
-                    class="hover:underline hover:text-primary transition-all duration-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-primary focus-visible:rounded"
-                    href="#"
-                    >Contact Us</a
+                    href="/#faq"
+                    >Contact</a
                   >
                 </li>
               </ul>
@@ -570,7 +598,7 @@
         class="border-t border-surface-container-high/50 max-w-7xl mx-auto px-12 py-8 flex flex-col md:flex-row justify-between items-center gap-4"
       >
         <p class="text-on-surface/60 text-xs">
-          &copy; 2025 Hostliday AI. Experiences, adventures, and stays.
+          &copy; 2025–2026 Hostliday AI. Barcelona trips, planned with care.
         </p>
       </div>
     </footer>
