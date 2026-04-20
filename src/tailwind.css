@@ -1,130 +1,112 @@
 @import "tailwindcss";
 
 /* ═══════════════════════════════════════════
-   Tailwind v4 theme — shared by landing + enhancer
+   Tailwind v4 theme — Bold Maximalist
+   Magazine spread energy
    ═══════════════════════════════════════════ */
 @theme {
-  /* ── Colors ── */
-  --color-primary: #be0000;
-  --color-primary-container: #ff4e7e;
-  --color-primary-fixed: #ffd9de;
-  --color-primary-fixed-dim: #ffb2be;
-  --color-inverse-primary: #ffb2be;
-  --color-on-primary: #ffffff;
-  --color-on-primary-container: #5a0021;
-  --color-on-primary-fixed-variant: #900039;
-  --color-secondary: #66558b;
-  --color-secondary-container: #d6c2ff;
-  --color-secondary-fixed: #eaddff;
-  --color-secondary-fixed-dim: #d1bdfa;
-  --color-on-secondary: #ffffff;
-  --color-on-secondary-container: #5e4d82;
-  --color-on-secondary-fixed: #211143;
-  --color-on-secondary-fixed-variant: #4e3e71;
-  --color-tertiary: #00658b;
-  --color-tertiary-container: #189bd0;
-  --color-tertiary-fixed: #c4e7ff;
-  --color-tertiary-fixed-dim: #7cd0ff;
-  --color-on-tertiary: #ffffff;
-  --color-on-tertiary-container: #002d41;
-  --color-on-tertiary-fixed: #001e2c;
-  --color-on-tertiary-fixed-variant: #004c69;
-  --color-error: #ba1a1a;
-  --color-error-container: #ffdad6;
-  --color-on-error: #ffffff;
-  --color-on-error-container: #93000a;
-  --color-background: #f8f9ff;
-  --color-surface: #f8f9ff;
-  --color-surface-variant: #d3e4fe;
-  --color-surface-container-lowest: #ffffff;
-  --color-surface-container-low: #eff4ff;
-  --color-surface-container: #e5eeff;
-  --color-surface-container-high: #dce9ff;
-  --color-surface-container-highest: #d3e4fe;
-  --color-surface-dim: #cbdbf5;
-  --color-surface-tint: #be0000;
-  --color-on-surface: #0b1c30;
-  --color-on-surface-variant: #a3a2a2;
-  --color-on-background: #0b1c30;
-  --color-outline: #8d6f74;
-  --color-outline-variant: #e1bec2;
-  --color-inverse-surface: #213145;
-  --color-inverse-on-surface: #eaf1ff;
+  /* ── Colors (OKLCH — rich editorial palette) ── */
+
+  /* Primary — electric coral */
+  --color-primary: oklch(0.62 0.22 25);
+  --color-primary-container: oklch(0.92 0.05 25);
+  --color-primary-fixed: oklch(0.96 0.025 25);
+  --color-primary-fixed-dim: oklch(0.9 0.05 25);
+  --color-inverse-primary: oklch(0.62 0.22 25);
+  --color-on-primary: oklch(0.99 0.003 25);
+  --color-on-primary-container: oklch(0.35 0.12 25);
+  --color-on-primary-fixed-variant: oklch(0.5 0.15 25);
+
+  /* Secondary — deep navy */
+  --color-secondary: oklch(0.28 0.06 260);
+  --color-secondary-container: oklch(0.9 0.02 260);
+  --color-secondary-fixed: oklch(0.94 0.01 260);
+  --color-secondary-fixed-dim: oklch(0.88 0.02 260);
+  --color-on-secondary: oklch(0.98 0.005 260);
+  --color-on-secondary-container: oklch(0.9 0.02 260);
+  --color-on-secondary-fixed: oklch(0.2 0.04 260);
+  --color-on-secondary-fixed-variant: oklch(0.3 0.05 260);
+
+  /* Tertiary — electric blue */
+  --color-tertiary: oklch(0.6 0.2 260);
+  --color-tertiary-container: oklch(0.92 0.04 260);
+  --color-tertiary-fixed: oklch(0.95 0.02 260);
+  --color-tertiary-fixed-dim: oklch(0.89 0.04 260);
+  --color-on-tertiary: oklch(0.99 0.003 260);
+  --color-on-tertiary-container: oklch(0.3 0.08 260);
+  --color-on-tertiary-fixed: oklch(0.2 0.05 260);
+  --color-on-tertiary-fixed-variant: oklch(0.4 0.08 260);
+
+  /* Error */
+  --color-error: oklch(0.6 0.2 25);
+  --color-error-container: oklch(0.94 0.03 25);
+  --color-on-error: oklch(0.99 0.003 25);
+  --color-on-error-container: oklch(0.45 0.15 25);
+
+  /* Surface palette — warm cream base */
+  --color-background: oklch(0.97 0.008 85);
+  --color-surface: oklch(0.97 0.008 85);
+  --color-surface-variant: oklch(0.93 0.012 85);
+  --color-surface-container-lowest: oklch(0.99 0.004 85);
+  --color-surface-container-low: oklch(0.96 0.008 85);
+  --color-surface-container: oklch(0.94 0.01 85);
+  --color-surface-container-high: oklch(0.92 0.012 85);
+  --color-surface-container-highest: oklch(0.9 0.014 85);
+  --color-surface-dim: oklch(0.88 0.014 85);
+  --color-surface-tint: oklch(0.62 0.22 25);
+
+  /* On-surface — deep charcoal */
+  --color-on-surface: oklch(0.15 0.015 85);
+  --color-on-surface-variant: oklch(0.45 0.012 85);
+  --color-on-background: oklch(0.15 0.015 85);
+
+  /* Outline */
+  --color-outline: oklch(0.55 0.01 85);
+  --color-outline-variant: oklch(0.85 0.008 85);
+
+  /* Inverse */
+  --color-inverse-surface: oklch(0.2 0.015 85);
+  --color-inverse-on-surface: oklch(0.96 0.008 85);
 
   /* ── Border Radius ── */
-  --radius-DEFAULT: 1rem;
-  --radius-lg: 2rem;
-  --radius-xl: 3rem;
+  --radius-DEFAULT: 0.75rem;
+  --radius-lg: 1.5rem;
+  --radius-xl: 2rem;
   --radius-full: 9999px;
 
   /* ── Fonts ── */
-  --font-display: "Instrument Serif", serif;
-  --font-headline: "DM Sans", sans-serif;
-  --font-body: "DM Sans", sans-serif;
-  --font-label: "DM Sans", sans-serif;
+  --font-display: "Bebas Neue", sans-serif;
+  --font-headline: "Bebas Neue", sans-serif;
+  --font-body: "Figtree", sans-serif;
+  --font-label: "Figtree", sans-serif;
 
-  /* ── Transition durations ── */
-  --duration-fast: 160ms;
-  --duration-medium: 260ms;
-  --duration-slow: 520ms;
-
-  /* ── Transition easings ── */
+  /* ── Motion ── */
+  --duration-fast: 150ms;
+  --duration-medium: 280ms;
+  --duration-slow: 500ms;
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* ═══════════════════════════════════════════
-   Mobile drawer navigation
-   ═══════════════════════════════════════════ */
-.hamburger-line {
-  transition:
-    transform var(--duration-fast) var(--ease-out-expo),
-    opacity var(--duration-fast) var(--ease-out-expo);
-}
-
-body.menu-is-open .hamburger-line:nth-child(1) {
+body.menu-is-open .hamburger-line:nth-child(1),
+body.menu-is-open .nav-bold__burger-line:nth-child(1) {
   transform: translateY(7px) rotate(45deg);
 }
-body.menu-is-open .hamburger-line:nth-child(2) {
+
+body.menu-is-open .hamburger-line:nth-child(2),
+body.menu-is-open .nav-bold__burger-line:nth-child(2) {
   opacity: 0;
 }
-body.menu-is-open .hamburger-line:nth-child(3) {
+
+body.menu-is-open .hamburger-line:nth-child(3),
+body.menu-is-open .nav-bold__burger-line:nth-child(3) {
   transform: translateY(-7px) rotate(-45deg);
-}
-
-#mobileDrawer[data-open="true"] {
-  transform: translateX(0);
-}
-
-#drawerBackdrop[data-visible="true"] {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-.mobile-nav-link {
-  display: block;
-  padding: 0.75rem 0;
-  font-weight: 600;
-  font-size: 1.0625rem;
-  color: var(--color-on-surface);
-  border-bottom: 1px solid rgba(225, 190, 194, 0.15);
-  transition: color var(--duration-fast) var(--ease-out-expo);
-  text-decoration: none;
-  letter-spacing: -0.01em;
-}
-
-.mobile-nav-link:hover,
-.mobile-nav-link:focus-visible {
-  color: var(--color-primary);
-}
-
-body.drawer-open {
-  overflow: hidden;
 }
 
 @media (prefers-reduced-motion: reduce) {
   #mobileDrawer,
   #drawerBackdrop,
-  .hamburger-line {
+  .hamburger-line,
+  .nav-bold__burger-line {
     transition-duration: 0ms !important;
   }
 }
