@@ -87,6 +87,13 @@ p {
   font-weight: 700;
   letter-spacing: 0.18em;
   text-transform: uppercase;
+  color: oklch(0.43 0.14 25);
+}
+
+#neighborhoods,
+#how,
+#faq {
+  scroll-margin-top: 6rem;
 }
 
 /* ── Navigation ── */
@@ -318,7 +325,6 @@ body.drawer-open {
 }
 
 .hero-bold__kicker {
-  color: var(--hostliday-coral);
   margin-bottom: 1rem;
 }
 
@@ -375,7 +381,6 @@ body.drawer-open {
 }
 
 .section-header__kicker {
-  color: var(--hostliday-coral);
   margin-bottom: 0.5rem;
 }
 
@@ -584,7 +589,6 @@ body.drawer-open {
 }
 
 .rec-bold__label {
-  color: var(--hostliday-coral);
   margin-bottom: 1.5rem;
 }
 

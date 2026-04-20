@@ -417,11 +417,22 @@
         <h2 class="faq-bold__title" data-reveal>QUESTIONS</h2>
 
         <div class="faq-item-b" data-reveal>
-          <button class="faq-item-b__q" aria-expanded="false" aria-controls="faq-1">
+          <button
+            id="faq-1-button"
+            class="faq-item-b__q"
+            aria-expanded="false"
+            aria-controls="faq-1"
+          >
             <span>WHAT DOES "VERIFIED HOTEL DATA" MEAN?</span>
             <span class="faq-item-b__icon" aria-hidden="true">+</span>
           </button>
-          <div id="faq-1" class="faq-item-b__a" aria-hidden="true">
+          <div
+            id="faq-1"
+            class="faq-item-b__a"
+            role="region"
+            aria-labelledby="faq-1-button"
+            aria-hidden="true"
+          >
             <p class="faq-item-b__a-text">
               Every hotel recommendation includes a direct source URL (like Booking.com or the
               hotel's own site), a timestamp showing when the data was last checked, and a written
@@ -431,11 +442,22 @@
         </div>
 
         <div class="faq-item-b" data-reveal style="--reveal-delay: 50ms">
-          <button class="faq-item-b__q" aria-expanded="false" aria-controls="faq-2">
+          <button
+            id="faq-2-button"
+            class="faq-item-b__q"
+            aria-expanded="false"
+            aria-controls="faq-2"
+          >
             <span>IS HOSTLIDAY ONLY FOR BARCELONA?</span>
             <span class="faq-item-b__icon" aria-hidden="true">+</span>
           </button>
-          <div id="faq-2" class="faq-item-b__a" aria-hidden="true">
+          <div
+            id="faq-2"
+            class="faq-item-b__a"
+            role="region"
+            aria-labelledby="faq-2-button"
+            aria-hidden="true"
+          >
             <p class="faq-item-b__a-text">
               Right now, yes. We're focused on making Barcelona incredibly good before expanding.
               This means every recommendation is deeply vetted by people who actually know the city.
@@ -444,11 +466,22 @@
         </div>
 
         <div class="faq-item-b" data-reveal style="--reveal-delay: 100ms">
-          <button class="faq-item-b__q" aria-expanded="false" aria-controls="faq-3">
+          <button
+            id="faq-3-button"
+            class="faq-item-b__q"
+            aria-expanded="false"
+            aria-controls="faq-3"
+          >
             <span>IS IT FREE?</span>
             <span class="faq-item-b__icon" aria-hidden="true">+</span>
           </button>
-          <div id="faq-3" class="faq-item-b__a" aria-hidden="true">
+          <div
+            id="faq-3"
+            class="faq-item-b__a"
+            role="region"
+            aria-labelledby="faq-3-button"
+            aria-hidden="true"
+          >
             <p class="faq-item-b__a-text">
               Yes, the trip planner is free to use. We're building the best Barcelona trip tool
               first, and we'll figure out the business model once we know travelers actually love
@@ -458,11 +491,22 @@
         </div>
 
         <div class="faq-item-b" data-reveal style="--reveal-delay: 150ms">
-          <button class="faq-item-b__q" aria-expanded="false" aria-controls="faq-4">
+          <button
+            id="faq-4-button"
+            class="faq-item-b__q"
+            aria-expanded="false"
+            aria-controls="faq-4"
+          >
             <span>HOW IS THIS DIFFERENT FROM CHATGPT OR GOOGLE?</span>
             <span class="faq-item-b__icon" aria-hidden="true">+</span>
           </button>
-          <div id="faq-4" class="faq-item-b__a" aria-hidden="true">
+          <div
+            id="faq-4"
+            class="faq-item-b__a"
+            role="region"
+            aria-labelledby="faq-4-button"
+            aria-hidden="true"
+          >
             <p class="faq-item-b__a-text">
               ChatGPT can suggest hotels, but it can't tell you when it last verified the info or
               link to the source. Google shows prices but doesn't explain why a hotel fits your
@@ -516,7 +560,10 @@
     <script>
       /* ── Reveal ── */
       (function () {
-        if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        if (
+          window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+          !("IntersectionObserver" in window)
+        ) {
           document.body.classList.add("motion-ready");
           document
             .querySelectorAll("[data-reveal], [data-hero-reveal], [data-stagger]")
