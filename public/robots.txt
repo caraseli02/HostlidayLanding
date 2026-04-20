@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://hostliday.vercel.app/sitemap.xml
+Sitemap: https://hostliday-landing.vercel.app/sitemap.xml
