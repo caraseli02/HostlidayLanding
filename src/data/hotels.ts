@@ -146,7 +146,7 @@ export const HOTELS: Hotel[] = [
   // ── Sant Pere / Arc de Triomf ──────────────────────────
   {
     name: "Hotel Rec Barcelona",
-    neighborhood: "Arc de Triomf",
+    neighborhood: "Sant Pere / Arc de Triomf",
     neighborhoodKey: "sant-pere",
     vibe: ["quiet old-town charm", "intimate boutique"],
     budgets: ["value", "comfort"],
@@ -160,7 +160,7 @@ export const HOTELS: Hotel[] = [
   },
   {
     name: "Casa Gracia",
-    neighborhood: "Arc de Triomf",
+    neighborhood: "Sant Pere / Arc de Triomf",
     neighborhoodKey: "sant-pere",
     vibe: ["intimate boutique"],
     budgets: ["value"],

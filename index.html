@@ -1,13 +1,41 @@
 <!doctype html>
-<html lang="en">
+<html class="light" lang="en" style="color-scheme: light">
   <head>
     <meta charset="utf-8" />
     <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-    <title>Hostliday — Barcelona trips, verified and real</title>
+    <title>Hostliday | Barcelona trips with proof</title>
     <meta
       name="description"
-      content="Barcelona hotel recommendations with verified sources. Every pick comes with proof."
+      content="Barcelona hotel recommendations with verified sources. Every pick comes with proof, freshness checks, and a reason why."
     />
+    <link rel="canonical" href="https://hostliday-landing.vercel.app/" />
+    <meta name="theme-color" content="#ef5d3c" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://hostliday-landing.vercel.app/" />
+    <meta property="og:title" content="Hostliday | Barcelona trips with proof" />
+    <meta
+      property="og:description"
+      content="Barcelona hotel recommendations with verified sources. Every pick comes with proof, freshness checks, and a reason why."
+    />
+    <meta
+      property="og:image"
+      content="https://images.unsplash.com/photo-1583422409516-2895a77efded?w=1200&h=630&fit=crop&q=85"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Hostliday" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Hostliday | Barcelona trips with proof" />
+    <meta
+      name="twitter:description"
+      content="Barcelona hotel recommendations with verified sources. Every pick comes with proof, freshness checks, and a reason why."
+    />
+    <meta
+      name="twitter:image"
+      content="https://images.unsplash.com/photo-1583422409516-2895a77efded?w=1200&h=630&fit=crop&q=85"
+    />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="dns-prefetch" href="https://images.unsplash.com" />
     <link href="https://fonts.googleapis.com" rel="preconnect" />
     <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
     <link
@@ -22,16 +50,34 @@
     />
   </head>
   <body>
+    <noscript
+      ><style>
+        [data-reveal],
+        [data-hero-reveal],
+        [data-stagger] > * {
+          opacity: 1;
+          transform: none;
+        }
+      </style></noscript
+    >
+    <a class="skip-link" href="#main">Skip to main content</a>
     <!-- NAV -->
     <nav class="nav-bold" aria-label="Main navigation">
       <div class="nav-bold__inner">
-        <a href="#" class="nav-bold__logo">HOSTLIDAY</a>
-        <button class="nav-bold__burger" aria-label="Open menu" aria-expanded="false" aria-controls="nav-menu">
+        <a href="/" class="nav-bold__logo">HOSTLIDAY</a>
+        <button
+          type="button"
+          class="nav-bold__burger"
+          id="menuToggle"
+          aria-label="Open menu"
+          aria-expanded="false"
+          aria-controls="mobileDrawer"
+        >
           <span class="nav-bold__burger-line"></span>
           <span class="nav-bold__burger-line"></span>
           <span class="nav-bold__burger-line"></span>
         </button>
-        <div class="nav-bold__links" id="nav-menu">
+        <div class="nav-bold__links">
           <a href="#neighborhoods" class="nav-bold__link">Explore</a>
           <a href="#how" class="nav-bold__link">How</a>
           <a href="#faq" class="nav-bold__link">FAQ</a>
@@ -40,301 +86,392 @@
       </div>
     </nav>
 
-    <!-- HERO — Oversized, dramatic -->
-    <section class="hero-bold" aria-label="Hero">
-      <div class="hero-bold__bg">
-        <img
-          fetchpriority="high"
-          width="1920"
-          height="1080"
-          alt=""
-          src="https://images.unsplash.com/photo-1583422409516-2895a77efded?w=1920&h=1080&fit=crop&q=85"
-        />
+    <div
+      id="drawerBackdrop"
+      class="nav-bold__backdrop"
+      aria-hidden="true"
+      data-visible="false"
+    ></div>
+    <aside
+      id="mobileDrawer"
+      class="nav-bold__drawer"
+      role="dialog"
+      aria-hidden="true"
+      aria-label="Navigation menu"
+      data-open="false"
+    >
+      <div class="nav-bold__drawer-top">
+        <button type="button" id="drawerClose" class="nav-bold__close" aria-label="Close menu">
+          <svg
+            aria-hidden="true"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path d="M18 6 6 18" />
+            <path d="m6 6 12 12" />
+          </svg>
+        </button>
       </div>
-      <div class="hero-bold__content">
-        <div data-hero-reveal style="--reveal-delay: 100ms" class="hero-bold__kicker label">
-          Barcelona · Verified · Real sources
+      <nav class="nav-bold__drawer-links" aria-label="Mobile navigation">
+        <a href="#neighborhoods" class="nav-bold__drawer-link">Explore</a>
+        <a href="#how" class="nav-bold__drawer-link">How</a>
+        <a href="#faq" class="nav-bold__drawer-link">FAQ</a>
+        <a href="/enhancer" class="nav-bold__drawer-cta">PLAN YOUR TRIP</a>
+      </nav>
+    </aside>
+
+    <main id="main">
+      <!-- HERO — Oversized, dramatic -->
+      <section class="hero-bold" aria-label="Hero">
+        <div class="hero-bold__bg">
+          <img
+            fetchpriority="high"
+            width="1920"
+            height="1080"
+            alt=""
+            src="https://images.unsplash.com/photo-1583422409516-2895a77efded?w=1920&h=1080&fit=crop&q=85"
+          />
         </div>
-        <h1 data-hero-reveal style="--reveal-delay: 250ms" class="hero-bold__title">
-          Barcelona trips<br />with <em>proof</em>
-        </h1>
-        <div data-hero-reveal style="--reveal-delay: 400ms" class="hero-bold__row">
-          <p class="hero-bold__text">
-            Every hotel recommendation comes with a source, a freshness check,
-            and a reason why. No guessing. No generic lists. Just verified picks
-            that actually fit how you travel.
+        <div class="hero-bold__content">
+          <div data-hero-reveal style="--reveal-delay: 100ms" class="hero-bold__kicker label">
+            Barcelona · Verified · Real sources
+          </div>
+          <h1 data-hero-reveal style="--reveal-delay: 250ms" class="hero-bold__title">
+            Barcelona trips<br />with <em>proof</em>
+          </h1>
+          <div data-hero-reveal style="--reveal-delay: 400ms" class="hero-bold__row">
+            <p class="hero-bold__text">
+              Every hotel recommendation comes with a source, a freshness check, and a reason why.
+              No guessing. No generic lists. Just verified picks that actually fit how you travel.
+            </p>
+            <a href="/enhancer" class="hero-bold__cta"> PLAN YOUR TRIP → </a>
+          </div>
+        </div>
+      </section>
+
+      <!-- NEIGHBORHOODS — Broken grid -->
+      <section id="neighborhoods" aria-label="Neighborhoods">
+        <div class="section-header" data-reveal>
+          <div class="section-header__kicker label">Explore the city</div>
+          <h2 class="section-header__title">SIX FACES<br />OF BARCELONA</h2>
+          <p class="section-header__text">
+            Each neighborhood has its own character. We match you to the right one based on how you
+            like to travel.
           </p>
-          <a href="/enhancer" class="hero-bold__cta">
-            PLAN YOUR TRIP →
+        </div>
+
+        <div class="grid-bold" data-stagger>
+          <a href="/enhancer?neighborhood=gothic" class="hood-card hood-card--a">
+            <img
+              class="hood-card__img"
+              loading="lazy"
+              width="800"
+              height="600"
+              alt="Medieval streets of Barcelona's Gothic Quarter"
+              src="https://images.unsplash.com/photo-1583422409516-2895a77efded?w=800&h=600&fit=crop&q=80"
+            />
+            <div class="hood-card__overlay">
+              <div class="hood-card__name">GOTHIC QUARTER</div>
+              <div class="hood-card__vibe">Medieval heart</div>
+            </div>
+          </a>
+
+          <a href="/enhancer?neighborhood=eixample" class="hood-card hood-card--b">
+            <img
+              class="hood-card__img"
+              loading="lazy"
+              width="600"
+              height="400"
+              alt="Modernist architecture on Passeig de Gràcia"
+              src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=600&h=400&fit=crop&q=80"
+            />
+            <div class="hood-card__overlay">
+              <div class="hood-card__name">EIXAMPLE</div>
+              <div class="hood-card__vibe">Modernist grid</div>
+            </div>
+          </a>
+
+          <a href="/enhancer?neighborhood=barceloneta" class="hood-card hood-card--c">
+            <img
+              class="hood-card__img"
+              loading="lazy"
+              width="600"
+              height="400"
+              alt="Sandy beach at Barceloneta"
+              src="https://images.unsplash.com/photo-1590758351375-6a95b47f98d3?w=600&h=400&fit=crop&q=80"
+            />
+            <div class="hood-card__overlay">
+              <div class="hood-card__name">BARCELONETA</div>
+              <div class="hood-card__vibe">Beach &amp; seafood</div>
+            </div>
+          </a>
+
+          <a href="/enhancer?neighborhood=gracia" class="hood-card hood-card--d">
+            <img
+              class="hood-card__img"
+              loading="lazy"
+              width="600"
+              height="600"
+              alt="Vibrant Plaça del Sol in Gràcia"
+              src="https://images.unsplash.com/photo-1564221710304-0b37c8b9d729?w=600&h=600&fit=crop&q=80"
+            />
+            <div class="hood-card__overlay">
+              <div class="hood-card__name">GRÀCIA</div>
+              <div class="hood-card__vibe">Village vibes</div>
+            </div>
+          </a>
+
+          <a href="/enhancer?neighborhood=born" class="hood-card hood-card--e">
+            <img
+              class="hood-card__img"
+              loading="lazy"
+              width="500"
+              height="400"
+              alt="Trendy boutiques in El Born"
+              src="https://images.unsplash.com/photo-1562883676-8c7feb83f09b?w=500&h=400&fit=crop&q=80"
+            />
+            <div class="hood-card__overlay">
+              <div class="hood-card__name">EL BORN</div>
+              <div class="hood-card__vibe">Creative quarter</div>
+            </div>
+          </a>
+
+          <a href="/enhancer?neighborhood=sant-pere" class="hood-card hood-card--f">
+            <img
+              class="hood-card__img"
+              loading="lazy"
+              width="600"
+              height="600"
+              alt="Converted factories in Poblenou"
+              src="https://images.unsplash.com/photo-1560969184-10fe8719e047?w=600&h=600&fit=crop&q=80"
+            />
+            <div class="hood-card__overlay">
+              <div class="hood-card__name">POBLENOU</div>
+              <div class="hood-card__vibe">Tech &amp; creative</div>
+            </div>
+          </a>
+
+          <a href="/enhancer" class="hood-card hood-card--cta">
+            <span class="hood-card--cta__text"> START PLANNING → </span>
           </a>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- NEIGHBORHOODS — Broken grid -->
-    <section id="neighborhoods" aria-label="Neighborhoods">
-      <div class="section-header" data-reveal>
-        <div class="section-header__kicker label">Explore the city</div>
-        <h2 class="section-header__title">SIX FACES<br />OF BARCELONA</h2>
-        <p class="section-header__text">
-          Each neighborhood has its own character. We match you to the right one
-          based on how you like to travel.
-        </p>
-      </div>
+      <!-- HOW IT WORKS — Big numbered steps -->
+      <section id="how" aria-label="How it works">
+        <div class="section-header" data-reveal>
+          <div class="section-header__kicker label">The process</div>
+          <h2 class="section-header__title">THREE STEPS,<br />NO NOISE</h2>
+        </div>
 
-      <div class="grid-bold" data-stagger>
-        <a href="/enhancer?neighborhood=gothic" class="hood-card hood-card--a">
-          <img
-            class="hood-card__img"
-            loading="lazy"
-            width="800"
-            height="600"
-            alt="Medieval streets of Barcelona's Gothic Quarter"
-            src="https://images.unsplash.com/photo-1583422409516-2895a77efded?w=800&h=600&fit=crop&q=80"
-          />
-          <div class="hood-card__overlay">
-            <div class="hood-card__name">GOTHIC QUARTER</div>
-            <div class="hood-card__vibe">Medieval heart</div>
-          </div>
-        </a>
-
-        <a href="/enhancer?neighborhood=eixample" class="hood-card hood-card--b">
-          <img
-            class="hood-card__img"
-            loading="lazy"
-            width="600"
-            height="400"
-            alt="Modernist architecture on Passeig de Gràcia"
-            src="https://images.unsplash.com/photo-1539037116277-4db20889f2d4?w=600&h=400&fit=crop&q=80"
-          />
-          <div class="hood-card__overlay">
-            <div class="hood-card__name">EIXAMPLE</div>
-            <div class="hood-card__vibe">Modernist grid</div>
-          </div>
-        </a>
-
-        <a href="/enhancer?neighborhood=barceloneta" class="hood-card hood-card--c">
-          <img
-            class="hood-card__img"
-            loading="lazy"
-            width="600"
-            height="400"
-            alt="Sandy beach at Barceloneta"
-            src="https://images.unsplash.com/photo-1590758351375-6a95b47f98d3?w=600&h=400&fit=crop&q=80"
-          />
-          <div class="hood-card__overlay">
-            <div class="hood-card__name">BARCELONETA</div>
-            <div class="hood-card__vibe">Beach &amp; seafood</div>
-          </div>
-        </a>
-
-        <a href="/enhancer?neighborhood=gracia" class="hood-card hood-card--d">
-          <img
-            class="hood-card__img"
-            loading="lazy"
-            width="600"
-            height="600"
-            alt="Vibrant Plaça del Sol in Gràcia"
-            src="https://images.unsplash.com/photo-1564221710304-0b37c8b9d729?w=600&h=600&fit=crop&q=80"
-          />
-          <div class="hood-card__overlay">
-            <div class="hood-card__name">GRÀCIA</div>
-            <div class="hood-card__vibe">Village vibes</div>
-          </div>
-        </a>
-
-        <a href="/enhancer?neighborhood=born" class="hood-card hood-card--e">
-          <img
-            class="hood-card__img"
-            loading="lazy"
-            width="500"
-            height="400"
-            alt="Trendy boutiques in El Born"
-            src="https://images.unsplash.com/photo-1562883676-8c7feb83f09b?w=500&h=400&fit=crop&q=80"
-          />
-          <div class="hood-card__overlay">
-            <div class="hood-card__name">EL BORN</div>
-            <div class="hood-card__vibe">Creative quarter</div>
-          </div>
-        </a>
-
-        <a href="/enhancer?neighborhood=sant-pere" class="hood-card hood-card--f">
-          <img
-            class="hood-card__img"
-            loading="lazy"
-            width="600"
-            height="600"
-            alt="Converted factories in Poblenou"
-            src="https://images.unsplash.com/photo-1560969184-10fe8719e047?w=600&h=600&fit=crop&q=80"
-          />
-          <div class="hood-card__overlay">
-            <div class="hood-card__name">POBLENOU</div>
-            <div class="hood-card__vibe">Tech &amp; creative</div>
-          </div>
-        </a>
-
-        <a href="/enhancer" class="hood-card hood-card--cta">
-          <span class="hood-card--cta__text">
-            START PLANNING →
-          </span>
-        </a>
-      </div>
-    </section>
-
-    <!-- HOW IT WORKS — Big numbered steps -->
-    <section id="how" aria-label="How it works">
-      <div class="section-header" data-reveal>
-        <div class="section-header__kicker label">The process</div>
-        <h2 class="section-header__title">THREE STEPS,<br />NO NOISE</h2>
-      </div>
-
-      <div class="steps-bold">
-        <div class="step-big" data-reveal>
-          <div class="step-big__left">
-            <div class="step-big__num">01</div>
-            <div>
-              <h3 class="step-big__title">EVERY HOTEL HAS A SOURCE</h3>
-              <p class="step-big__text">
-                We show you where each recommendation comes from — with a direct link to verify
-                it yourself. Booking.com, the hotel's own site, a trusted review. No black-box picks.
-              </p>
+        <div class="steps-bold">
+          <div class="step-big" data-reveal>
+            <div class="step-big__left">
+              <div class="step-big__num">01</div>
+              <div>
+                <h3 class="step-big__title">EVERY HOTEL HAS A SOURCE</h3>
+                <p class="step-big__text">
+                  We show you where each recommendation comes from — with a direct link to verify it
+                  yourself. Booking.com, the hotel's own site, a trusted review. No black-box picks.
+                </p>
+              </div>
+            </div>
+            <div class="step-big__visual">
+              <svg
+                class="step-big__visual-icon"
+                width="64"
+                height="64"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14" />
+                <polyline points="22 4 12 14.01 9 11.01" />
+              </svg>
             </div>
           </div>
-          <div class="step-big__visual">
-            <svg class="step-big__visual-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
-          </div>
-        </div>
 
-        <div class="step-big step-big--reverse" data-reveal>
-          <div class="step-big__left">
-            <div class="step-big__num">02</div>
-            <div>
-              <h3 class="step-big__title">FRESHNESS YOU CAN SEE</h3>
-              <p class="step-big__text">
-                Every data point has a timestamp. You'll know exactly when it was last checked —
-                not "updated recently" or "current as of last month."
-              </p>
+          <div class="step-big step-big--reverse" data-reveal>
+            <div class="step-big__left">
+              <div class="step-big__num">02</div>
+              <div>
+                <h3 class="step-big__title">FRESHNESS YOU CAN SEE</h3>
+                <p class="step-big__text">
+                  Every data point has a timestamp. You'll know exactly when it was last checked —
+                  not "updated recently" or "current as of last month."
+                </p>
+              </div>
+            </div>
+            <div class="step-big__visual">
+              <svg
+                class="step-big__visual-icon"
+                width="64"
+                height="64"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="12" cy="12" r="10" />
+                <polyline points="12 6 12 12 16 14" />
+              </svg>
             </div>
           </div>
-          <div class="step-big__visual">
-            <svg class="step-big__visual-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-          </div>
-        </div>
 
-        <div class="step-big" data-reveal>
-          <div class="step-big__left">
-            <div class="step-big__num">03</div>
-            <div>
-              <h3 class="step-big__title">PACE-MATCHED, NOT PACKED</h3>
-              <p class="step-big__text">
-                Itineraries built around how you actually travel — not a checklist of tourist
-                traps. Slow mornings, long lunches, space for the places worth lingering in.
-              </p>
+          <div class="step-big" data-reveal>
+            <div class="step-big__left">
+              <div class="step-big__num">03</div>
+              <div>
+                <h3 class="step-big__title">PACE-MATCHED, NOT PACKED</h3>
+                <p class="step-big__text">
+                  Itineraries built around how you actually travel — not a checklist of tourist
+                  traps. Slow mornings, long lunches, space for the places worth lingering in.
+                </p>
+              </div>
+            </div>
+            <div class="step-big__visual">
+              <svg
+                class="step-big__visual-icon"
+                width="64"
+                height="64"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <circle cx="6" cy="19" r="3" />
+                <path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15" />
+                <circle cx="18" cy="5" r="3" />
+              </svg>
             </div>
           </div>
-          <div class="step-big__visual">
-            <svg class="step-big__visual-icon" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="19" r="3"/><path d="M9 19h8.5a3.5 3.5 0 0 0 0-7h-11a3.5 3.5 0 0 1 0-7H15"/><circle cx="18" cy="5" r="3"/></svg>
+        </div>
+      </section>
+
+      <!-- RECOMMENDATION — Split card -->
+      <section class="rec-bold" aria-label="Example recommendation">
+        <div class="rec-bold__card" data-reveal>
+          <div class="rec-bold__left">
+            <div class="rec-bold__label label">Example recommendation</div>
+            <h3 class="rec-bold__name">HOTEL 1898</h3>
+            <div class="rec-bold__loc">La Rambla · Eixample-adjacent</div>
+            <p class="rec-bold__text">
+              Recommended for rooftop pool access and central location without Rambla noise. The
+              rooftop is the real draw — sunset views over the city with a cocktail in hand.
+            </p>
+            <div class="rec-bold__tags">
+              <span class="rec-bold__tag rec-bold__tag--verified">✓ Verified 2h ago</span>
+              <span class="rec-bold__tag">Source: booking.com</span>
+              <span class="rec-bold__tag">Why: rooftop + quiet</span>
+            </div>
+          </div>
+          <div class="rec-bold__right">
+            <svg
+              class="rec-bold__right-icon"
+              width="80"
+              height="80"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.5"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <path d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z" />
+              <path
+                d="m9 16 .348-1.393a2 2 0 0 1 1.3-1.3L12 13l1.352.307a2 2 0 0 1 1.3 1.3L15 16"
+              />
+              <path d="M10 8h4" />
+              <path d="M10 5h4" />
+            </svg>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- RECOMMENDATION — Split card -->
-    <section class="rec-bold" aria-label="Example recommendation">
-      <div class="rec-bold__card" data-reveal>
-        <div class="rec-bold__left">
-          <div class="rec-bold__label label">Example recommendation</div>
-          <h3 class="rec-bold__name">HOTEL 1898</h3>
-          <div class="rec-bold__loc">La Rambla · Eixample-adjacent</div>
-          <p class="rec-bold__text">
-            Recommended for rooftop pool access and central location without Rambla noise.
-            The rooftop is the real draw — sunset views over the city with a cocktail in hand.
+      <!-- CTA — Full-width color block -->
+      <section class="cta-block" aria-label="Call to action">
+        <div class="cta-block__inner" data-reveal>
+          <h2 class="cta-block__title">READY TO<br />FEEL BARCELONA?</h2>
+          <p class="cta-block__text">
+            No generic lists. No guessing. Just verified picks that match how you travel.
           </p>
-          <div class="rec-bold__tags">
-            <span class="rec-bold__tag rec-bold__tag--verified">✓ Verified 2h ago</span>
-            <span class="rec-bold__tag">Source: booking.com</span>
-            <span class="rec-bold__tag">Why: rooftop + quiet</span>
+          <a href="/enhancer" class="cta-block__button"> START PLANNING → </a>
+        </div>
+      </section>
+
+      <!-- FAQ -->
+      <section id="faq" class="faq-bold" aria-label="Frequently asked questions">
+        <h2 class="faq-bold__title" data-reveal>QUESTIONS</h2>
+
+        <div class="faq-item-b" data-reveal>
+          <button class="faq-item-b__q" aria-expanded="false" aria-controls="faq-1">
+            <span>WHAT DOES "VERIFIED HOTEL DATA" MEAN?</span>
+            <span class="faq-item-b__icon" aria-hidden="true">+</span>
+          </button>
+          <div id="faq-1" class="faq-item-b__a" aria-hidden="true">
+            <p class="faq-item-b__a-text">
+              Every hotel recommendation includes a direct source URL (like Booking.com or the
+              hotel's own site), a timestamp showing when the data was last checked, and a written
+              explanation of why we're recommending it. You can verify everything yourself.
+            </p>
           </div>
         </div>
-        <div class="rec-bold__right">
-          <svg class="rec-bold__right-icon" width="80" height="80" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2Z"/><path d="m9 16 .348-1.393a2 2 0 0 1 1.3-1.3L12 13l1.352.307a2 2 0 0 1 1.3 1.3L15 16"/><path d="M10 8h4"/><path d="M10 5h4"/></svg>
+
+        <div class="faq-item-b" data-reveal style="--reveal-delay: 50ms">
+          <button class="faq-item-b__q" aria-expanded="false" aria-controls="faq-2">
+            <span>IS HOSTLIDAY ONLY FOR BARCELONA?</span>
+            <span class="faq-item-b__icon" aria-hidden="true">+</span>
+          </button>
+          <div id="faq-2" class="faq-item-b__a" aria-hidden="true">
+            <p class="faq-item-b__a-text">
+              Right now, yes. We're focused on making Barcelona incredibly good before expanding.
+              This means every recommendation is deeply vetted by people who actually know the city.
+            </p>
+          </div>
         </div>
-      </div>
-    </section>
 
-    <!-- CTA — Full-width color block -->
-    <section class="cta-block" aria-label="Call to action">
-      <div class="cta-block__inner" data-reveal>
-        <h2 class="cta-block__title">READY TO<br />FEEL BARCELONA?</h2>
-        <p class="cta-block__text">
-          No generic lists. No guessing. Just verified picks that match how you travel.
-        </p>
-        <a href="/enhancer" class="cta-block__button">
-          START PLANNING →
-        </a>
-      </div>
-    </section>
-
-    <!-- FAQ -->
-    <section id="faq" class="faq-bold" aria-label="Frequently asked questions">
-      <h2 class="faq-bold__title" data-reveal>QUESTIONS</h2>
-
-      <div class="faq-item-b" data-reveal>
-        <button class="faq-item-b__q" aria-expanded="false" aria-controls="faq-1">
-          <span>WHAT DOES "VERIFIED HOTEL DATA" MEAN?</span>
-          <span class="faq-item-b__icon" aria-hidden="true">+</span>
-        </button>
-        <div id="faq-1" class="faq-item-b__a" aria-hidden="true">
-          <p class="faq-item-b__a-text">
-            Every hotel recommendation includes a direct source URL (like Booking.com or
-            the hotel's own site), a timestamp showing when the data was last checked, and
-            a written explanation of why we're recommending it. You can verify everything yourself.
-          </p>
+        <div class="faq-item-b" data-reveal style="--reveal-delay: 100ms">
+          <button class="faq-item-b__q" aria-expanded="false" aria-controls="faq-3">
+            <span>IS IT FREE?</span>
+            <span class="faq-item-b__icon" aria-hidden="true">+</span>
+          </button>
+          <div id="faq-3" class="faq-item-b__a" aria-hidden="true">
+            <p class="faq-item-b__a-text">
+              Yes, the trip planner is free to use. We're building the best Barcelona trip tool
+              first, and we'll figure out the business model once we know travelers actually love
+              it.
+            </p>
+          </div>
         </div>
-      </div>
 
-      <div class="faq-item-b" data-reveal style="--reveal-delay: 50ms">
-        <button class="faq-item-b__q" aria-expanded="false" aria-controls="faq-2">
-          <span>IS HOSTLIDAY ONLY FOR BARCELONA?</span>
-          <span class="faq-item-b__icon" aria-hidden="true">+</span>
-        </button>
-        <div id="faq-2" class="faq-item-b__a" aria-hidden="true">
-          <p class="faq-item-b__a-text">
-            Right now, yes. We're focused on making Barcelona incredibly good before expanding.
-            This means every recommendation is deeply vetted by people who actually know the city.
-          </p>
+        <div class="faq-item-b" data-reveal style="--reveal-delay: 150ms">
+          <button class="faq-item-b__q" aria-expanded="false" aria-controls="faq-4">
+            <span>HOW IS THIS DIFFERENT FROM CHATGPT OR GOOGLE?</span>
+            <span class="faq-item-b__icon" aria-hidden="true">+</span>
+          </button>
+          <div id="faq-4" class="faq-item-b__a" aria-hidden="true">
+            <p class="faq-item-b__a-text">
+              ChatGPT can suggest hotels, but it can't tell you when it last verified the info or
+              link to the source. Google shows prices but doesn't explain why a hotel fits your
+              travel style. We do both: verified data with a reason attached to every pick.
+            </p>
+          </div>
         </div>
-      </div>
-
-      <div class="faq-item-b" data-reveal style="--reveal-delay: 100ms">
-        <button class="faq-item-b__q" aria-expanded="false" aria-controls="faq-3">
-          <span>IS IT FREE?</span>
-          <span class="faq-item-b__icon" aria-hidden="true">+</span>
-        </button>
-        <div id="faq-3" class="faq-item-b__a" aria-hidden="true">
-          <p class="faq-item-b__a-text">
-            Yes, the trip planner is free to use. We're building the best Barcelona trip
-            tool first, and we'll figure out the business model once we know travelers
-            actually love it.
-          </p>
-        </div>
-      </div>
-
-      <div class="faq-item-b" data-reveal style="--reveal-delay: 150ms">
-        <button class="faq-item-b__q" aria-expanded="false" aria-controls="faq-4">
-          <span>HOW IS THIS DIFFERENT FROM CHATGPT OR GOOGLE?</span>
-          <span class="faq-item-b__icon" aria-hidden="true">+</span>
-        </button>
-        <div id="faq-4" class="faq-item-b__a" aria-hidden="true">
-          <p class="faq-item-b__a-text">
-            ChatGPT can suggest hotels, but it can't tell you when it last verified the
-            info or link to the source. Google shows prices but doesn't explain why a
-            hotel fits your travel style. We do both: verified data with a reason
-            attached to every pick.
-          </p>
-        </div>
-      </div>
-    </section>
+      </section>
+    </main>
 
     <!-- FOOTER -->
     <footer class="footer-bold">
@@ -342,8 +479,8 @@
         <div>
           <div class="footer-bold__logo">HOSTLIDAY</div>
           <p class="footer-bold__text">
-            Barcelona hotel recommendations with verified sources,
-            freshness timestamps, and reasons why.
+            Barcelona hotel recommendations with verified sources, freshness timestamps, and reasons
+            why.
           </p>
         </div>
         <div class="footer-bold__links">
@@ -381,25 +518,32 @@
       (function () {
         if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
           document.body.classList.add("motion-ready");
-          document.querySelectorAll("[data-reveal], [data-hero-reveal], [data-stagger]").forEach(function (el) {
-            el.classList.add("is-visible");
-          });
+          document
+            .querySelectorAll("[data-reveal], [data-hero-reveal], [data-stagger]")
+            .forEach(function (el) {
+              el.classList.add("is-visible");
+            });
           return;
         }
         requestAnimationFrame(function () {
           document.body.classList.add("motion-ready");
         });
-        var obs = new IntersectionObserver(function (entries) {
-          entries.forEach(function (e) {
-            if (e.isIntersecting) {
-              e.target.classList.add("is-visible");
-              obs.unobserve(e.target);
-            }
+        var obs = new IntersectionObserver(
+          function (entries) {
+            entries.forEach(function (e) {
+              if (e.isIntersecting) {
+                e.target.classList.add("is-visible");
+                obs.unobserve(e.target);
+              }
+            });
+          },
+          { threshold: 0.1, rootMargin: "0px 0px -5% 0px" },
+        );
+        document
+          .querySelectorAll("[data-reveal], [data-hero-reveal], [data-stagger]")
+          .forEach(function (el) {
+            obs.observe(el);
           });
-        }, { threshold: 0.1, rootMargin: "0px 0px -5% 0px" });
-        document.querySelectorAll("[data-reveal], [data-hero-reveal], [data-stagger]").forEach(function (el) {
-          obs.observe(el);
-        });
       })();
 
       /* ── FAQ ── */
@@ -412,33 +556,16 @@
             btns.forEach(function (b) {
               b.setAttribute("aria-expanded", "false");
               var a = document.getElementById(b.getAttribute("aria-controls"));
-              if (a) { a.classList.remove("is-open"); a.setAttribute("aria-hidden", "true"); }
+              if (a) {
+                a.classList.remove("is-open");
+                a.setAttribute("aria-hidden", "true");
+              }
             });
             if (!expanded) {
               btn.setAttribute("aria-expanded", "true");
               answer.classList.add("is-open");
               answer.setAttribute("aria-hidden", "false");
             }
-          });
-        });
-      })();
-
-      /* ── Mobile nav ── */
-      (function () {
-        var burger = document.querySelector(".nav-bold__burger");
-        var menu = document.getElementById("nav-menu");
-        if (!burger || !menu) return;
-        burger.addEventListener("click", function () {
-          var open = burger.getAttribute("aria-expanded") === "true";
-          burger.setAttribute("aria-expanded", String(!open));
-          burger.setAttribute("aria-label", open ? "Open menu" : "Close menu");
-          menu.classList.toggle("is-open");
-        });
-        menu.querySelectorAll("a").forEach(function (link) {
-          link.addEventListener("click", function () {
-            burger.setAttribute("aria-expanded", "false");
-            burger.setAttribute("aria-label", "Open menu");
-            menu.classList.remove("is-open");
           });
         });
       })();
