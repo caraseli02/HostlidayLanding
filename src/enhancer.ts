@@ -196,5 +196,3 @@ function renderAltSuggestion(data: EnhancerPayload): void {
 
   altContent.replaceChildren(fragment);
 }
-
-export {};
